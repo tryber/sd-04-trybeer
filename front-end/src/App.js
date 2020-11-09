@@ -13,7 +13,6 @@ function App() {
           and save to reload.
         </p>
         <a
-          // first commit
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
