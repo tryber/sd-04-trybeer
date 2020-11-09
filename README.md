@@ -10,9 +10,9 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 ### ANTES DE COMEÇAR A DESENVOLVER:
 
 1. Clone o repositório
-  * `git clone https://github.com/betrybe/sd-0x-trybeer.git`.
+  * `git clone https://github.com/betrybe/sd-04-trybeer.git`.
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-0x-trybeer`
+    * `cd sd-04-trybeer`
 
 2. Instale as dependências [**Caso existam**]
   * `npm install`
@@ -24,7 +24,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
     * Exemplo: `git checkout master`
   * Agora crie uma branch à qual você vai submeter os `commits` do seu projeto
     * Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-    * Exemplo: `git checkout -b joaozinho-sd-0x-trybeer`
+    * Exemplo: `git checkout -b joaozinho-sd-04-trybeer`
 
 4. Adicione as mudanças ao _stage_ do Git e faça um `commit`
   * Verifique que as mudanças ainda não estão no _stage_
@@ -39,16 +39,16 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
         * `git status` (deve aparecer uma mensagem tipo _nothing to commit_ )
 
 5. Adicione a sua branch com o novo `commit` ao repositório remoto
-  * Usando o exemplo anterior: `git push -u origin joaozinho-sd-0x-trybeer`
+  * Usando o exemplo anterior: `git push -u origin joaozinho-sd-04-trybeer`
 
 6. Crie um novo `Pull Request` _(PR)_
-  * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-0x-trybeer/pulls)
+  * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-04-trybeer/pulls)
   * Clique no botão verde _"New pull request"_
   * Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
   * Clique no botão verde _"Create pull request"_
   * Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
   * **Não se preocupe em preencher mais nada por enquanto!**
-  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-0x-trybeer/pulls) e confira que o seu _Pull Request_ está criado
+  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-04-trybeer/pulls) e confira que o seu _Pull Request_ está criado
 
 ---
 
@@ -99,8 +99,8 @@ Usaremos o [ESLint](https://eslint.org/) para fazer a análise estática do seu 
 
 Este projeto já vem com as dependências relacionadas ao _linter_ configuradas nos arquivos `package.json` nos seguintes caminhos:
 
-- `sd-0x-trybeer/back-end/package.json`
-- `sd-0x-trybeer/front-end/package.json`
+- `sd-04-trybeer/back-end/package.json`
+- `sd-04-trybeer/front-end/package.json`
 
 Para poder rodar os `ESLint` em um projeto basta executar o comando `npm install` dentro do projeto e depois `npm run lint`. Se a análise do `ESLint` encontrar problemas no seu código, tais problemas serão mostrados no seu terminal. Se não houver problema no seu código, nada será impresso no seu terminal.
 
@@ -185,7 +185,7 @@ Isso fará com que abra o terminal do MySQL se abra. Depois, basta executar o co
 
 Assim já irá criar o banco e terá alguns dados inseridos. **É essencial seguir esses passos!**
 
-Haverá um arquivo no caminho: `sd-0x-trybeer/cypress/plugins/index.js`. Neste arquivo, na linha 17, Haverá a seguinte comando:
+Haverá um arquivo no caminho: `sd-04-trybeer/cypress/plugins/index.js`. Neste arquivo, na linha 17, Haverá a seguinte comando:
 
 `const connection = my.createConnection({host: process.env.HOSTNAME, user: process.env.MYSQL_USER, password: process.env.MYSQL_PASSWORD});`
 
@@ -223,7 +223,7 @@ module.exports = {
 
 **(Neste arquivo e obrigatório deixar o nome do database como `"database": 'Trybeer'`)**
 
-`sd-0x-trybeer/back-end/models/connection.js`
+`sd-04-trybeer/back-end/models/connection.js`
 
 ```
 const config = {
@@ -1084,7 +1084,7 @@ Para sinalizar que o seu projeto está pronto para o _"Code Review"_ dos seus co
 
   * No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**;
 
-  * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-0x`.
+  * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-04`.
 
 Caso tenha alguma dúvida, [aqui tem um video explicativo](https://vimeo.com/362189205).
 
