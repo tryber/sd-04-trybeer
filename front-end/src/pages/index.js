@@ -1,3 +1,4 @@
 import Login from './Login';
 
-export { Login };
+const placeholder = 'a';
+export { Login, placeholder };
