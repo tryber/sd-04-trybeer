@@ -1,13 +1,13 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import { Provider } from './context';
+import Produtos from './pages/Produtos';
 
 const Routes = () => (
   <Provider>
     <Switch>
-      Hello World!
-      {/* <Route path="" component={ '' } /> */}
+      <Route path="/products" component={Produtos} />
     </Switch>
   </Provider>
 );
