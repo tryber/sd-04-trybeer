@@ -1,58 +1,53 @@
-import React, { useState, useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
-import axios from "axios";
-
+import React, { useState, useEffect } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import axios from 'axios';
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [role, setRole] = useState('');
   const [users, setUsers] = useState(null);
-
-  const [admin, setAdmin] = useState(false);
-  const [client, setClient] = useState(false);
-
-  const [token, setToken] = useState("");
-
+  const [token, setToken] = useState('');
+  const [redirect, setRedirect] = useState(false);
   useEffect(() => {
     axios
-      .get("http://localhost:3001/users")
+      .get('http://localhost:3001/users')
       .then((res) => {
         setUsers(res.data);
       })
       .catch((error) => console.log(error));
   }, []);
-
   const validEmail = (email) =>
     /[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i.test(email);
-
   const createToken = () =>
     axios
-      .post("http://localhost:3001/login", { email, password })
-      .then((res) => setToken(res.data.token))
+      .post('http://localhost:3001/login', { email, password })
+      .then((res) => {
+        setToken(res.data.token);
+        setRedirect(true);
+      })
       .catch((error) => console.log(error));
-
-  // if (admin) return <Redirect to="/admin/orders" />;
-  // if (client) return <Redirect to="/products" />;
-
+  if (token !== '') {
+    const objUser = { name, email, token, role };
+    localStorage.setItem('user', JSON.stringify(objUser));
+  }
+  if (role === 'administrator' && redirect)
+    return <Redirect to="/admin/orders" />;
+  if (role === 'client' && redirect) {
+    return <Redirect to="/products" />;
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const user = users.find(
-      (item) => item.email === email && item.password === password
+      (item) => item.email === email && item.password === password,
     );
-
-    const { name, role } = user;
-
-    createToken();
-
-    if (token !== "") {
-      const objUser = { name, email, token, role };
-      localStorage.setItem("user", JSON.stringify(objUser));
+    if (user) {
+      const { name, role } = user;
+      setName(name);
+      setRole(role);
     }
-
-    role === "administrator" ? setAdmin(true) : setClient(true);
+    createToken();
   };
-
   return (
     <div>
       <label htmlFor="email">Email</label>
@@ -64,7 +59,7 @@ const Login = () => {
           data-testid="email-input"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label htmlFor="password">Senha</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           name="password"
@@ -88,5 +83,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;
