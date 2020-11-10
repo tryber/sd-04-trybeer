@@ -51,3 +51,22 @@
 .seller-checkbox-div {
   margin: 10px 0;
 }
+
+@media ( max-width : 761px ) {
+.btn-cadastrar {
+  display: inline-block;
+  justify-content: center;
+  margin: auto;
+  margin-top: 5px;
+  width: 300px;
+}
+
+.input-registro {
+  font-size: 23px;
+  width: 370px;
+}
+
+.page-registro {
+  margin: 10px;
+}
+}
