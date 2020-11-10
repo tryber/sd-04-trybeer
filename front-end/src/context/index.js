@@ -12,9 +12,22 @@ const TrybeerContextProvider = ({ children }) => {
   // Eu defini que fosse um booleano, mas pode ser um array, um objeto, um objeto de objetos...
   // um array de objetos, ou a estrutura de dados que você precisar e achar melhor pra trabalhar.
   const [meuEstado, setMeuEstado] = useState(false);
+  const [emailUser, setEmailUser] = useState('');
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSeller, setIsSeller] = useState(false);
+
   const contextValue = {
     meuEstado, // uma variável de estado
     setMeuEstado, // essa é a função que muda a variável de estado
+    emailUser,
+    setEmailUser,
+    userName,
+    setUserName,
+    password,
+    setPassword,
+    isSeller,
+    setIsSeller,
   };
   // No contexto você sempre retorna o Context criado usando a função createContext();
   // Daí você chama o provider desse contexto
