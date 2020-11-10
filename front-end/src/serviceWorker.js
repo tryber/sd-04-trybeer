@@ -11,9 +11,11 @@
 // opt-in, read https://bit.ly/CRA-PWA
 
 const isLocalhost = Boolean(
-  window.location.hostname === 'localhost' ||
-    window.location.hostname === '[::1]' ||
-    window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/),
+  window.location.hostname === 'localhost'
+  || window.location.hostname === '[::1]'
+  || window.location.hostname.match(
+    /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/,
+  ),
 );
 
 const notFound = 404;
@@ -36,8 +38,8 @@ function registerValidSW(swUrl, config) {
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
               console.log(
-                'New content is available and will be used when all ' +
-                  'tabs for this page are closed. See https://bit.ly/CRA-PWA.',
+                'New content is available and will be used when all '
+                  + 'tabs for this page are closed. See https://bit.ly/CRA-PWA.',
               );
 
               // Execute callback
@@ -73,8 +75,9 @@ function checkValidServiceWorker(swUrl, config) {
       // Ensure service worker exists, and that we really are getting a JS file.
       const contentType = response.headers.get('content-type');
       if (
-        response.status === notFound ||
-        (contentType != null && contentType.indexOf('javascript') === numberNegative)
+        response.status === notFound
+
+        || (contentType != null && contentType.indexOf('javascript') === numberNegative)
       ) {
         // No service worker found. Probably a different app. Reload the page.
         navigator.serviceWorker.ready.then((registration) => {
@@ -88,7 +91,9 @@ function checkValidServiceWorker(swUrl, config) {
       }
     })
     .catch(() => {
-      console.log('No internet connection found. App is running in offline mode.');
+      console.log(
+        'No internet connection found. App is running in offline mode.',
+      );
     });
 }
 
@@ -114,8 +119,8 @@ export function register(config) {
         // service worker/PWA documentation.
         navigator.serviceWorker.ready.then(() => {
           console.log(
-            'This web app is being served cache-first by a service ' +
-              'worker. To learn more, visit https://bit.ly/CRA-PWA',
+            'This web app is being served cache-first by a service '
+              + 'worker. To learn more, visit https://bit.ly/CRA-PWA',
           );
         });
       } else {
