@@ -41,20 +41,15 @@ function registerValidSW(swUrl, config) {
               if (config && config.onUpdate) {
                 config.onUpdate(registerWork);
               }
-            } else {
-              // At this point, everything has been precached.
-              // It's the perfect time to display a
-              // "Content is cached for offline use." message.
-              // Execute callback
-              if (config && config.onSuccess) {
-                config.onSuccess(registerWork);
-              }
             }
+            if (config && config.onSuccess) {
+              config.onSuccess(registerWork);
+            }
+
           }
         };
       };
-    })
-    .catch((_error) => { });
+    });
 }
 
 function checkValidServiceWorker(swUrl, config) {
@@ -80,9 +75,6 @@ function checkValidServiceWorker(swUrl, config) {
         // Service worker found. Proceed as normal.
         registerValidSW(swUrl, config);
       }
-    })
-    .catch(() => {
-
     });
 }
 
@@ -122,8 +114,6 @@ export function unregister() {
     navigator.serviceWorker.ready
       .then((registration) => {
         registration.unregister();
-      })
-      .catch((error) => {
       });
   }
 }
