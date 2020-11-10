@@ -7,7 +7,7 @@ const validateUser = async (req, res, next) => {
     const { email, password } = req.body;
     const user = await userModel.findByEmail(email);
 
-    if ( user.password !== password) throw new Error();
+    if (user.password !== password) throw new Error();
 
     const { password: _, ...userSafe } = user;
 
@@ -16,7 +16,7 @@ const validateUser = async (req, res, next) => {
 
     next();
   } catch (error) {
-    console.log("Mensagem de email invalido", error);
+    console.log('Mensagem de email invalido', error);
   }
 };
 

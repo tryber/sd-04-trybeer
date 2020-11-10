@@ -12,8 +12,8 @@ const createToken = (payload) => {
   const token = jwt.sign(payload, SECRET, headers);
 
   return token;
-}
+};
 
 module.exports = {
   createToken,
-}
+};
