@@ -3,4 +3,5 @@ const userAuth = require('./userAuth');
 
 module.exports = {
   validations,
+  userAuth,
 };

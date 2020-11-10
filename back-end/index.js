@@ -10,10 +10,14 @@ const port = 3001;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/login', middleware.validations.loginValidation, loginController.userLogin);
+app.post(
+  '/login',
+  middleware.validations.loginValidation,
+  loginController.userLogin
+);
 
 app.use((err, _req, res, _next) => {
   res.status(404).send({ err });
 });
 
-app.listen(port, () => console.log(`Example app listening on port port!`));
+app.listen(port, () => console.log('Example app listening on port port!'));

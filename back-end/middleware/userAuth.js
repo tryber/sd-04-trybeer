@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken');
 
 const secret = 'grup1';
 
-const authenticar = (req, res, next) => {
+const authenticar = (req, _res, next) => {
   const token = req.headers.authorization;
-  if (!token) throw 'missing token';
+  if (!token) throw { err: 'missing token' };
   const data = jwt.verify(token, secret);
   req.user = data;
   next();
