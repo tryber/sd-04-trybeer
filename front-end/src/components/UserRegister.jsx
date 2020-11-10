@@ -12,32 +12,21 @@ const UserRegister = () => {
 
   const [checkbox, setCheckbox] = useState('');
 
-  // console.log(checkbox ? 'ligado' : 'desligado');
-
   const isNameValid = (name = '') => name.match(/^([a-zA-Zà-úÀ-Ú]|\s+)+$/);
 
   const nameValideted = () => {
-    if (!isNameValid(name)) return true;
+    if (!name || !isNameValid(name) || name.length < 12) return true;
     return false;
   };
 
   const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
   const emailValideted = () => {
-    if (!isEmailValid(email)) return true;
+    if (!email || !isEmailValid(email) || email.length < 6) return true;
     return false;
   };
 
-  const disableButton =
-    !name ||
-    name.length < 12 ||
-    nameValideted() ||
-    !email ||
-    !password ||
-    password.length < 6 ||
-    emailValideted();
-
-  console.log(disableButton);
+  const disableButton = nameValideted() || !password || password.length < 6 || emailValideted();
 
   const handleSubmit = (e) => {
     e.preventDefault();
