@@ -17,7 +17,6 @@ const TrybeerContextProvider = ({ children }) => {
   const [password, setPassword] = useState('');
   const [isSeller, setIsSeller] = useState(false);
 
-
   const contextValue = {
     meuEstado, // uma variável de estado
     setMeuEstado, // essa é a função que muda a variável de estado
@@ -34,7 +33,7 @@ const TrybeerContextProvider = ({ children }) => {
   // Daí você chama o provider desse contexto
   // e como valor você passa um objeto com suas variáveis de estado e funções que alteram elas
   // Children é o elemento que será envolvido com esse Context, no caso, nossa aplicação toda.
-  return <Context.Provider value={contextValue}>{children}</Context.Provider>;
+  return <Context.Provider value={contextValue}>{ children }</Context.Provider>;
 };
 
 // Exporte o Context, pois você precisa dele quando for usar suas variáveis e funções
