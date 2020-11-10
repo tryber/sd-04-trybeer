@@ -8,4 +8,4 @@ app.use(express.json());
 
 app.use('/login', userRouter);
 
-app.listen(port, () => console.log(`API rodando na porta 3001!`));
+app.listen(port, () => console.log('API rodando na porta 3001!'));
