@@ -8,15 +8,14 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const isEmailValid = () => {
-    const reg = '^(([-wd]+)(.[-wd]+)*@([-wd]+)(.[-wd]+)*(.([a-zA-Z]{2,5}|[d]{1,3})){1,2})$';
-    return email.match(reg);
+  const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
+
+  const emailValideted = () => {
+    if (!isEmailValid(email)) return true;
+    return false;
   };
 
-  const disableButton = !email || !password || password.length < 6 || !isEmailValid();
-
-  console.log('linha 11, email input:', email);
-  console.log('linha 12, password input:', password);
+  const disableButton = !email || !password || password.length < 6 || emailValideted();
 
   return (
     <div>
