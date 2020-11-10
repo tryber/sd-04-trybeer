@@ -17,6 +17,7 @@ const TrybeerContextProvider = ({ children }) => {
   const [password, setPassword] = useState('');
   const [isSeller, setIsSeller] = useState(false);
 
+
   const contextValue = {
     meuEstado, // uma variável de estado
     setMeuEstado, // essa é a função que muda a variável de estado

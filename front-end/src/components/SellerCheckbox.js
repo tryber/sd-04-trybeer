@@ -3,6 +3,7 @@ import { Context } from '../context/index';
 
 const SellerCheckbox = () => {
   const { isSeller, setIsSeller } = useContext(Context);
+
   return (
     <div className="seller-checkbox-div">
       <input

@@ -10,6 +10,7 @@ const Registro = () => {
   return (
   <article className="page-registro">
     <img src={TrybeerLogo} alt="Trybeer logo developed by Luma Arruda" className="logo-trybeer" />
+    
     <form className="form-registro">
       <label className="input-labels" htmlFor="input-name">Nome</label>
       <input
@@ -19,6 +20,7 @@ const Registro = () => {
         data-testid="signup-name"
         className="input-registro"
       />
+      
       <label className="input-labels" htmlFor="input-email">Email</label>
       <input
         id="input-email"
@@ -27,6 +29,7 @@ const Registro = () => {
         data-testid="signup-email"
         className="input-registro"
       />
+      
       <label className="input-labels" htmlFor="input-password">Senha</label>
       <input
         onChange={({ target }) => setPassword(target.value)}
@@ -35,7 +38,9 @@ const Registro = () => {
         data-testid="signup-password"
         className="input-registro"
       />
+      
       <SellerCheckbox />
+      
       <button
         data-testid="signup-btn"
         type="submit"
