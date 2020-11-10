@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-    {/* MAIN G7 */}
+    {/* MAIN G7 NEW */}
     </div>
   );
 }
