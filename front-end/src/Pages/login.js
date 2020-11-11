@@ -2,18 +2,13 @@ import React, { useRef, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import SimpleReactValidator from 'simple-react-validator';
 
-
-import { Field, Label, Input, Button } from 'rbx';
-
 import api from '../services/userApi';
 
-const ButtonEnviar = (isDisabled, validaLogin) => {
-  return (
-    <Button type="Button" data-testid="signin-btn" disabled={isDisabled}  onClick={() => validaLogin()} >
-      Entrar
-    </Button>
-  );
-}
+const ButtonEnviar = (isDisabled, validaLogin) => (
+  <Button type="Button" data-testid="signin-btn" disabled={ isDisabled } onClick={() => validaLogin()} >
+    Entrar
+  </Button>
+);
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -25,9 +20,9 @@ const Login = () => {
 
   const validaLogin = async () => {
     const response = await api.login(email, password);
-    
+
     localStorage.setItem('user', JSON.stringify(response.data));
-    if ( response.data.role === "administrator") {
+    if (response.data.role === "administrator") {
       setRedirect('admin');
     }
     else setRedirect('client')
