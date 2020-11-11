@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './TopHamburgerToggle.css';
 
 const topHamburgerToggle = () => (
-  <div className={classes.TopHamburgerToggle}>
+  <div className={ classes.TopHamburgerToggle }>
     <div />
     <div />
     <div />

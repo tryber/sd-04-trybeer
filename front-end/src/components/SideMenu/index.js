@@ -17,30 +17,34 @@ function SideMenu(sideMenuState) {
       <div className="side-menu-container">
         <div className="nav__list">
           <button
+            type="button"
             className="nav__link"
             data-testid="side-menu-item-products"
-            onClick={ () => test(history, 'products') }
+            onClick={() => test(history, 'products')}
           >
             <span>Produtos</span>
           </button>
           <button
+            type="button"
             className="nav__link"
             data-testid="side-menu-item-my-orders"
-            onClick={ () => test(history, 'orders') }
+            onClick={() => test(history, 'orders')}
           >
             <span>Meus Pedidos</span>
           </button>
           <button
+            type="button"
             className="nav__link"
             data-testid="side-menu-item-my-profile"
-            onClick={ () => test(history, 'profile') }
+            onClick={() => test(history, 'profile')}
           >
             <span>Meu Perfil</span>
           </button>
           <button
+            type="button"
             className="nav__link"
             data-testid="side-menu-item-logout"
-            onClick={ () => test(history, null) }
+            onClick={() => test(history, null)}
           >
             <span>Sair</span>
           </button>
