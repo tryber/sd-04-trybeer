@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import './clientProfile.css'
+import './clientProfile.css';
 
 const ClientProfile = () => {
-  const [userEmail, /* setUserEmail */] = useState('');
+  const [userEmail] = useState('');
   const [userName, setUserName] = useState('');
-  const [inputUserName, /* setInputUserName */] = useState('');
+  const [inputUserName] = useState('');
   const [disableButton, setDisableButton] = useState(true);
-  const [message, /* setMessage */] = useState('');
+  const [message] = useState('');
 
+  // const [userEmail, /* setUserEmail */] = useState('');
+  // const [userName, setUserName] = useState('');
+  // const [inputUserName, /* setInputUserName */] = useState('');
+  // const [disableButton, setDisableButton] = useState(true);
+  // const [message, /* setMessage */] = useState('');
   // useEffect(() => {
   //   const { email, name } = JSON.parse(localStorage.getItem('user'));
   //   setUserEmail(email);
@@ -27,11 +32,11 @@ const ClientProfile = () => {
               type="text"
               data-testid="profile-name-input"
               name="name"
-              value={userName}
-              onChange={(e) => {
+              value={ userName }
+              onChange={ (e) => {
                 setUserName(e.target.value);
                 setDisableButton(
-                  !(e.target.value.length > 12) && !(e.target.value !== inputUserName),
+                  !(e.target.value.length >= 12) && !(e.target.value !== inputUserName),
                 );
               }}
               required
@@ -47,14 +52,14 @@ const ClientProfile = () => {
               placeholder="Email"
               type="text"
               name="email"
-              value={userEmail}
+              value={ userEmail }
               readOnly
             />
           </label>
         </div>
         <div className="div_btn">
           <button
-            disabled={disableButton}
+            disabled={ disableButton }
             type="button"
             data-testid="profile-save-btn"
             profile-save-btn
@@ -63,7 +68,7 @@ const ClientProfile = () => {
           >
             Salvar
           </button>
-          <span>{message}</span>
+          <span>{ message }</span>
         </div>
       </form>
     </div>

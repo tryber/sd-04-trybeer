@@ -1,5 +1,5 @@
 const rescue = require('express-rescue');
-const { userService }= require('../services')
+const { userService } = require('../services');
 
 const updateUser = rescue(async (req, res, next) => {
   const { name, email } = req.body;
@@ -15,4 +15,4 @@ const updateUser = rescue(async (req, res, next) => {
 
 module.exports = {
   updateUser,
-}
+};
