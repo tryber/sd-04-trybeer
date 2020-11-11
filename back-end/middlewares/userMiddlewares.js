@@ -16,7 +16,7 @@ const validateUser = async (req, res, next) => {
 
     next();
   } catch (error) {
-    return res.status(404).json({ message: "Email invalido"})
+    return res.status(404).json({ message: 'Email invalido' });
   }
 };
 
