@@ -1,5 +1,5 @@
-const rescue = require('express-rescue');
-const userService = require('../services/userService');
+const rescue = require("express-rescue");
+const userService = require("../services/userService");
 
 const userLogin = rescue(async (req, res) => {
   const { email, password } = req.body;
@@ -13,6 +13,21 @@ const userLogin = rescue(async (req, res) => {
   return res.status(200).json(user);
 });
 
+const getUserByEmail = async (req, res) => {
+  const { email, password } = req.user;
+  try {
+    const selectedUser = await userService.findUserByEmail(email, password);
+    if (!selectedUser) {
+      return res.status(401).json({ message: "Invalid entries. Try again" });
+    }
+
+    return res.status(200).json(selectedUser);
+  } catch (_e) {
+    return res.status(401).json({ message: "Invalid entries. Try again" });
+  }
+};
+
 module.exports = {
   userLogin,
+  getUserByEmail,
 };
