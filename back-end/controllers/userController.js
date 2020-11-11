@@ -1,7 +1,8 @@
 const userLogin = (req, res) => {
   try {
-    const { token, user } = req;
-    const data = { token, user };
+    const { token } = req;
+    const { name, email, role } = req.user;
+    const data = { name, email, token, role };
 
     res.status(200).json(data);
   } catch (error) {

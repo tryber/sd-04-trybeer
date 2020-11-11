@@ -16,7 +16,7 @@ const validateUser = async (req, res, next) => {
 
     next();
   } catch (error) {
-    console.log('Mensagem de email invalido', error);
+    console.log('Email invalado => ', error);
   }
 };
 
