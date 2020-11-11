@@ -15,8 +15,9 @@ module.exports = async () => {
     if (schema) return Promise.resolve(schema);
 
     const session = await mysqlx.getSession(config);
+    schema = session.getSchema(process.env.DB_NAME);
 
-    return (schema = session.getSchema(process.env.DB_NAME));
+    return schema;
   } catch (_) {
     process.exit(1);
   }
