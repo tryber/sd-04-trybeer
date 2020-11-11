@@ -19,10 +19,13 @@ app.post(
   loginController.userLogin,
 );
 
-app.post('/register', userController.userRegister)
+app.post(
+  "/register",
+  middleware.validations.registerValidation,
+  userController.userRegister,
+);
 
 app.use((err, _req, res, _next) => {
-  console.log(err)
   res.status(405).json({ err: err.message });
 });
 

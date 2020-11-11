@@ -11,6 +11,7 @@ const loginSchema = joi.object({
 const registerSchema = joi.object({
   name: joi
     .string()
+    .regex(/^[a-zA-Z\u00C0-\u00FF\s]+$/)
     .min(12)
     .required(),
   email: joi.string().email().required(),
