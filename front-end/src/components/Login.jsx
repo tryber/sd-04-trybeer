@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)} className="m-3">
+    <form onSubmit={handleSubmit} className="m-3">
       <section className="card w-75 mx-auto m-3">
         <div className="form-group w-75 mx-auto m-2">
           <label htmlFor="email">Email</label>
