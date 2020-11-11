@@ -8,11 +8,21 @@ const loginSchema = Joi.object({
 });
 
 const formSchema = Joi.object({
-  name: Joi.string(),
+   name: Joi
+    .string()
+    .regex(/^[a-zA-Z\u00C0-\u00FF\s]+$/)
+    .min(12)
+    .required(),
   
-  email:Joi.string(),
+  email: Joi
+    .string()
+    .email({ tlds: { allow: false } })
+    .required(),
   
-  password:Joi.number(),
+  password: Joi
+    .string()
+    .min(6)
+    .required(),
 });
 
 

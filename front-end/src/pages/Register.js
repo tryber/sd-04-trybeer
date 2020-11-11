@@ -1,44 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { formValidate } from '../services/validate';
-import { requestApi } from '../services/TrybeerApi';
+import { postRegister } from '../services/TrybeerApi';
 
 const Register = () => {
   const [form, setForm] = useState({
     name: null,
     email: null,
     password: null,
-    seller: false,
+    role: false,
     error: null,
+    disableButton: false,
+    redirect: null,
   });
 
-  const { name, email, password, seller, error } = form;
+  const { name, email, password, role, error, disableButton, redirect } = form;
 
-  // const urlRedirect = () => {
-
-  // }
-
-  const postRegister = async (userData) => {
-    const response = await requestApi('register', 'post', userData);
-    console.log('response', response);
+  const requestApi = async (userData) => {
+    const { name, email, password, role } = userData;
+    const seller = role ? 'administrator' : 'client';
+    const response = await postRegister(name, email, password, seller);
+    response.err ? setForm({ ...form, error: response.err }) : setForm({ ...form, error: null })
+    if (response.role) return (response.role === 'administrator' ? setForm({ ...form, redirect: 'administrator' }) : setForm({ ...form, redirect: 'client' }));
   }
 
   const isValidForm = async (param) => {
     const validation = formValidate(param);
-    const { seller, error, ...userData } = param;
-    console.log('userData', userData)
-    validation === true ? setForm({ ...form, error: null }) : setForm({ ...form, error: validation })
+    const { error, ...userData } = param;
     if (validation === true) {
-      postRegister(userData)
-      // requisição API
+      requestApi(userData)
     };
   };
 
   const handleInputChange = (event) => {
-    if(event === "seller") return setForm({ ...form, seller: !seller })
+    if(event === "role") return setForm({ ...form, role: !role })
     const { name: inputName, value } = event.target;
     setForm({ ...form, [inputName]: value })
   };
 
+  useEffect(() => {
+    const validation = formValidate(form);
+    validation === true ? setForm({ ...form, disableButton: false }) : setForm({ ...form, disableButton: true })
+  }, [name, email, password, redirect]);
+
+  if (redirect) return (redirect=== 'administrator' ? <Redirect to="/admin/orders" /> : <Redirect to="/products" />);
+  
   return (
       <form>
         <label htmlFor="userName">
@@ -77,16 +83,16 @@ const Register = () => {
         Quero Vender
           <input
           type="checkbox"
-          name="seller"
+          name="role"
           id="userSeller"
           data-testid="signup-seller"
-          onChange={() => handleInputChange("seller") }
+          onChange={() => handleInputChange("role") }
           />
         </label>
         <button
           onClick={() => isValidForm(form)}
           type="button"
-          disabled={error && !name || !email || !password}
+          disabled={disableButton}
           data-testid="signup-btn"
         >
         Cadastrar

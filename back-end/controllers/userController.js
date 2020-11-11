@@ -3,6 +3,7 @@ const userService = require('../services/userService');
 
 const userRegister = rescue(async (req, res) => {
   const { name, email, password, role } = req.body;
+  console.log('Body', req.body);
   const newUser = await userService.userRegister(name, email, password, role);
   res.status(200).json(newUser);
 });
