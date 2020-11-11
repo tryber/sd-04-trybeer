@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { formValidate }  from '../services/validations';
+import { formValidate } from '../services/validate';
+import { requestApi } from '../services/TrybeerApi';
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -10,13 +11,24 @@ const Register = () => {
     error: null,
   });
 
-  const { name, email, password, seller, error} = form;
+  const { name, email, password, seller, error } = form;
 
-  const isValidForm = (param) => {
+  // const urlRedirect = () => {
+
+  // }
+
+  const postRegister = async (userData) => {
+    const response = await requestApi('register', 'post', userData);
+    console.log('response', response);
+  }
+
+  const isValidForm = async (param) => {
     const validation = formValidate(param);
+    const { seller, error, ...userData } = param;
+    console.log('userData', userData)
     validation === true ? setForm({ ...form, error: null }) : setForm({ ...form, error: validation })
     if (validation === true) {
-      console.log('Requisição API')
+      postRegister(userData)
       // requisição API
     };
   };

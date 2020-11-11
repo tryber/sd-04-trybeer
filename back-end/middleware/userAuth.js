@@ -4,7 +4,7 @@ const secret = 'grup1';
 
 const authenticar = (req, _res, next) => {
   const token = req.headers.authorization;
-  if (!token) throw { err: 'missing token' };
+  if (!token) throw new Error('missing token');
   const data = jwt.verify(token, secret);
   req.user = data;
   next();

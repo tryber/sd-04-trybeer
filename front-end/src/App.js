@@ -1,13 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
-import Register from './pages/Register';
-import './App.css';
+
+import { Switch, Route } from 'react-router-dom';
+import { Login, Register } from './pages';
 
 function App() {
   return (
-    <>
-      <Register />
-    </>
+    <Switch>
+      <Route path="/login">
+        <Login />
+      </Route>
+      <Route path="/register" component={Register} />
+    </Switch>
   );
 }
 

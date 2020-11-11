@@ -14,14 +14,14 @@ async function connection() {
   return schema
     ? Promise.resolve(schema)
     : mysqlx
-        .getSession(config)
-        .then((session) => {
-          schema = session.getSchema('Trybeer');
-          return schema;
-        })
-        .catch(() => {
-          process.exit(1);
-        });
+      .getSession(config)
+      .then((session) => {
+        schema = session.getSchema('Trybeer');
+        return schema;
+      })
+      .catch(() => {
+        process.exit(1);
+      });
 }
 
 module.exports = { connection };

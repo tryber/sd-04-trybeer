@@ -1,6 +1,10 @@
-const axios = require('axios');
+import axios from 'axios';
 
 const baseUrl = 'http://localhost:3001/';
+
+export const postLogin = async (email, password) => axios.post('http://localhost:3001/login', { email, password });
+
+export const placeholder = () => { };
 
 export const requestApi = async (endpoint, method, data) => {
   const response = await axios({
@@ -9,6 +13,6 @@ export const requestApi = async (endpoint, method, data) => {
     data,
   })
     .catch(({ err }) => console.log('Request failed:', err));
-
-  return response;
+ return response;
 };
+
