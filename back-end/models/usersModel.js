@@ -38,4 +38,14 @@ const registerUser = async (name, email, password, role) => {
     .execute());
 };
 
-module.exports = { getUsers, findUserByEmail, registerUser };
+const editUser = async (name, email) => {
+  await connection().then((db) => db
+    .getTable('users')
+    .update()
+    .set('name', name)
+    .where('email = :email')
+    .bind('email', email)
+    .execute());
+};
+
+module.exports = { getUsers, findUserByEmail, registerUser, editUser };

@@ -39,4 +39,10 @@ app.post('/register', async (req, res) => {
   return res.status(200).json({ message: 'user registered successfully' });
 });
 
+app.put('/edit', async (req, res) => {
+  const { name, email } = req.body;
+  await usersModel.editUser(name, email);
+  return res.status(200).json({ message: 'updated' });
+});
+
 app.listen(3001, () => console.log('Listening on 3001'));
