@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const middleware = require('./middleware');
 const loginController = require('./controllers/loginController');
+
 require('dotenv/config');
 
 const app = express();
@@ -13,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post(
   '/login',
   middleware.validations.loginValidation,
-  loginController.userLogin
+  loginController.userLogin,
 );
 
 app.use((err, _req, res, _next) => {
