@@ -12,7 +12,7 @@ const ButtonEnviar = (isDisabled, validaLogin) => (
     disabled={isDisabled}
     onClick={() => validaLogin()}
   >
-    Entrar
+    ENTRAR
   </Button>
 );
 
@@ -33,8 +33,8 @@ const Login = () => {
     } else setRedirect('client');
   };
 
-  if (redirect === 'admin') return <Redirect to="/admin" />;
-  if (redirect === 'client') return <Redirect to="/client" />;
+  if (redirect === 'admin') return <Redirect to="/admin/orders" />;
+  if (redirect === 'client') return <Redirect to="/products" />;
 
   return (
     <div>
@@ -52,7 +52,7 @@ const Login = () => {
           {simpleValidator.current.message('errorEmail', email, 'required|email')}
         </Field>
         <Field>
-          <Label htmlFor="password">Senha:</Label>
+          <Label htmlFor="password">Password:</Label>
           <Input
             name="password"
             type="password"
@@ -66,7 +66,7 @@ const Login = () => {
           ? ButtonEnviar(false, validaLogin)
           : ButtonEnviar(true, validaLogin)}
         <Link to="/register" data-testid="no-account-btn">
-          Ainda nao tenho conta
+          Ainda não tenho conta
         </Link>
       </form>
     </div>
