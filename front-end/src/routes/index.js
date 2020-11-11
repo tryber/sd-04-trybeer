@@ -17,9 +17,9 @@ const Routes = () => (
     <Route path="/admin/orders/:id">
       <OrdersDetails />
     </Route>
+    <Profile path="/admin/profile" />
     <Products path="/products" />
     <Profile path="/profile" />
-    <Profile path="/admin/profile" />
     <Register path="/register" />
     <Route component={ NotFound } />
   </Switch>
