@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import api from '../services/api';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -6,15 +7,25 @@ function Login() {
 
   const validateEmail = (email) => email.match(/[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}/i);
 
-  const validatePassword = (password) => password.match(/^[0-9]{5,}[0-9]$/);
+  const validatePassword = (password) => password.match(/[a-zA-Z0-9]/);
+
+  const login = async (event) => {
+    event.preventDefault();
+    await api.post('/login', {
+      email,
+      password
+    }).then(data => console.log(data))
+    .catch(e => console.log(e));
+  };
 
   return (
     <div>
       <h2>Login Page</h2>
       <div>
-        <form method="POST" action="">
+        <form onSubmit={(event) => login(event)}>
           <input
             data-testid="email-input"
+            name="email"
             type="email"
             required
             value={email}
@@ -23,6 +34,7 @@ function Login() {
 
           <input
             data-testid="password-input"
+            name="password"
             type="password"
             required
             value={password}
@@ -30,7 +42,7 @@ function Login() {
           />
 
           <button
-            type="button"
+            type="submit"
             disabled={!(validateEmail(email) && validatePassword(password))}
             data-testid="signin-btn"
           >
