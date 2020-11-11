@@ -4,12 +4,12 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT;
 
-const userController = require('./controller/UserController');
+const router = require('./routes');
 
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (_, res) => res.send('ok'));
 
-app.use('/register', userController);
+app.use(router);
 
 app.listen(port, () => console.log(`Running on port ${port}...`));
