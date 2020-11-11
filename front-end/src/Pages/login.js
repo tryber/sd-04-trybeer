@@ -44,7 +44,7 @@ const Login = () => {
         </Field>
         { errorEmail && errorPassword
           ? <ButtonEnviar email={ email } password={ password } isDisabled={ false } />
-          : <ButtonEnviar email={ email } password={ password } isDisabled={ true } /> }
+          : <ButtonEnviar email={ email } password={ password } /> }
         <Link to="/register" data-testid="no-account-btn">
           Ainda não tenho conta
         </Link>

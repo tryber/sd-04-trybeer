@@ -5,7 +5,7 @@ import { Button, Notification } from 'rbx';
 
 import api from '../services/userApi';
 
-const ButtonEnviar = ({ email, password, isDisabled }) => {
+const ButtonEnviar = ({ email, password, isDisabled = true }) => {
   const [redirect, setRedirect] = useState('');
   const [message, setMessage] = useState('');
 
@@ -24,19 +24,19 @@ const ButtonEnviar = ({ email, password, isDisabled }) => {
 
   return (
     <div>
-      { message ? <Notification color="danger" >{message}</Notification> : ""}
+      { message ? <Notification color="danger" >{message}</Notification> : '' }
 
       <Button
         type="Button"
         data-testid="signin-btn"
-        disabled={isDisabled}
-        onClick={() => validaLogin()}
+        disabled={ isDisabled }
+        onClick={ () => validaLogin() }
       >
         ENTRAR
       </Button>
     </div>
-  )
-}
+  );
+};
 
 ButtonEnviar.propTypes = {
   email: PropTypes.string.isRequired,
