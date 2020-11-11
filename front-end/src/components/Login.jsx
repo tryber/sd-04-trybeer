@@ -28,6 +28,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const api = await loginApi(email, password);
+
+    localStorage.setItem('user', JSON.stringify(api));
     console.log('linha 29, api:', api);
   };
 
