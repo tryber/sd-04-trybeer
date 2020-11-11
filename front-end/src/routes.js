@@ -8,6 +8,7 @@ const Routes = () => (
     <Switch>
       Hello World!
       {/* <Route path="" component={ '' } /> */}
+      <Route path="/login" component={LoginPage} />
     </Switch>
   </Provider>
 );
