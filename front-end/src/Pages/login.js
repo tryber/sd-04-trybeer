@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SimpleReactValidator from 'simple-react-validator';
 import {
   Field,
@@ -43,8 +43,8 @@ const Login = () => {
           { simpleValidator.current.message('errorPassword', password, 'required|min:5') }
         </Field>
         { errorEmail && errorPassword
-          ? <ButtonEnviar email={email} password={password} isDisabled={false} />
-          : <ButtonEnviar email={email} password={password} isDisabled={true} /> }
+          ? <ButtonEnviar email={ email } password={ password } isDisabled={ false } />
+          : <ButtonEnviar email={ email } password={ password } isDisabled={ true } /> }
         <Link to="/register" data-testid="no-account-btn">
           Ainda não tenho conta
         </Link>
