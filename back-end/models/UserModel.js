@@ -8,9 +8,10 @@ const registerUser = async (name, email, password, role) => {
         .insert(['name', 'email', 'password', 'role'])
         .values([name, email, password, role])
         .execute(),
-    ).catch((err) => {
-       throw err;
-      });
+    )
+    .catch((err) => {
+      throw err;
+    });
   return result;
 };
 
@@ -24,9 +25,10 @@ const findUserByEmail = async (email) => {
         .bind('email', email)
         .then((results) => results.fetchOne())
         .then(([id, name, email, password, role]) => ({ id, name, email, password, role })),
-    ).catch((err) => {
-       throw err;
-      });
+    )
+    .catch((err) => {
+      throw err;
+    });
 };
 
 module.exports = {
