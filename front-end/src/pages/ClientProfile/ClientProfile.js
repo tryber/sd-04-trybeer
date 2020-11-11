@@ -21,6 +21,8 @@ const ClientProfile = () => {
   //   setInputUserName(name);
   // }, []);
 
+  const minNameLenght = 12;
+
   return (
     <div className="container">
       <div className="square">
@@ -40,7 +42,7 @@ const ClientProfile = () => {
                 onChange={ (e) => {
                   setUserName(e.target.value);
                   setDisableButton(
-                    !(e.target.value.length >= 12) && !(e.target.value !== inputUserName),
+                    !(e.target.value.length >= minNameLenght) && !(e.target.value !== inputUserName),
                   );
                 } }
                 required
