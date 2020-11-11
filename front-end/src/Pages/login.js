@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import SimpleReactValidator from 'simple-react-validator';
+import { Field, Label, Input, Button } from "rbx";
 
 import api from '../services/userApi';
 
