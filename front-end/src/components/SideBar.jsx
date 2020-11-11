@@ -1,19 +1,20 @@
 import React from 'react';
 export default function SideBar({ userRole }) {
+  console.log(userRole);
   return (
-    <div class="side-menu-container">
+    <div data-testid="side-menu-container">
       {userRole === 'client' && (
         <nav>
           <a href="/products" data-testid="side-menu-item-products">
             Produtos
           </a>
-          <a href="meusPedidos" data-testid="side-menu-item-my-orders">
+          <a href="/meusPedidos" data-testid="side-menu-item-my-orders">
             meus pedidos
           </a>
-          <a href="meuPerfil" data-testid="side-menu-item-my-profile">
+          <a href="/meuPerfil" data-testid="side-menu-item-my-profile">
             meu perfil"
           </a>
-          <a href="sair" data-testid="side-menu-item-logout">
+          <a href="/login" data-testid="side-menu-item-logout">
             sair
           </a>
         </nav>

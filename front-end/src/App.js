@@ -6,11 +6,14 @@ import { Header } from './components/Header';
 function App() {
   return (
     <Switch>
+      <Route exact path="/">
+        <Header>text</Header>
+      </Route>
       <Route path="/login">
         <Login />
       </Route>
-      <Route path="/">
-        <Header>text</Header>
+      <Route path="/products">
+        <Header>TryBeer</Header>
       </Route>
     </Switch>
   );
