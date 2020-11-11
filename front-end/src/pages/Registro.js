@@ -19,6 +19,10 @@ const Registro = () => {
           type="text"
           data-testid="signup-name"
           className="input-registro"
+          minLength="12"
+          pattern="[A-zA-z\s]{12,}"
+          title="Nome com no mínimo 12 caracteres sem números ou caracteres especiais"
+          required
         />
 
         <label className="input-labels" htmlFor="input-email">Email</label>
@@ -28,6 +32,9 @@ const Registro = () => {
           onChange={({ target }) => setEmailUser(target.value)}
           data-testid="signup-email"
           className="input-registro"
+          pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+          title="Endereço de e-mail inválido, formato recomendado <nome>@<domínio>"
+          required
         />
 
         <label className="input-labels" htmlFor="input-password">Senha</label>
@@ -37,6 +44,8 @@ const Registro = () => {
           id="input-password"
           data-testid="signup-password"
           className="input-registro"
+          minLength="6"
+          required
         />
 
         <SellerCheckbox />

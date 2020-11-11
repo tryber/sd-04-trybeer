@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import propTypes from 'prop-types';
 
 // Isso aqui cria o Contexto da nossa aplicação.
 // Chamei de Context, mas você pode dar o nome que quiser.
@@ -34,6 +35,10 @@ const TrybeerContextProvider = ({ children }) => {
   // e como valor você passa um objeto com suas variáveis de estado e funções que alteram elas
   // Children é o elemento que será envolvido com esse Context, no caso, nossa aplicação toda.
   return <Context.Provider value={contextValue}>{ children }</Context.Provider>;
+};
+
+TrybeerContextProvider.propTypes = {
+  children: propTypes.node.isRequired,
 };
 
 // Exporte o Context, pois você precisa dele quando for usar suas variáveis e funções
