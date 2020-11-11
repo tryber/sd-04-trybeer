@@ -1,7 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import SimpleReactValidator from 'simple-react-validator';
-import { Field, Label, Input, Button } from "rbx";
+import { 
+  Field,
+  Label,
+  Input,
+  Button
+} from 'rbx';
 
 import api from '../services/userApi';
 
@@ -9,8 +14,8 @@ const ButtonEnviar = (isDisabled, validaLogin) => (
   <Button
     type="Button"
     data-testid="signin-btn"
-    disabled={isDisabled}
-    onClick={() => validaLogin()}
+    disabled={ isDisabled }
+    onClick={ () => validaLogin() }
   >
     ENTRAR
   </Button>
@@ -46,10 +51,10 @@ const Login = () => {
             name="email"
             type="email"
             data-testid="email-input"
-            onChange={(e) => setEmail(e.target.value)}
-            onBlur={simpleValidator.current.showMessageFor('errorEmail')}
+            onChange={ (e) => setEmail(e.target.value) }
+            onBlur={ simpleValidator.current.showMessageFor('errorEmail') }
           />
-          {simpleValidator.current.message('errorEmail', email, 'required|email')}
+          { simpleValidator.current.message('errorEmail', email, 'required|email') }
         </Field>
         <Field>
           <Label htmlFor="password">Password:</Label>
@@ -57,14 +62,14 @@ const Login = () => {
             name="password"
             type="password"
             data-testid="password-input"
-            onChange={(e) => setPassword(e.target.value)}
-            onBlur={simpleValidator.current.showMessageFor('errorPassword')}
+            onChange={ (e) => setPassword(e.target.value) }
+            onBlur={ simpleValidator.current.showMessageFor('errorPassword') }
           />
-          {simpleValidator.current.message('errorPassword', password, 'required|min:5')}
+          { simpleValidator.current.message('errorPassword', password, 'required|min:5') }
         </Field>
-        {errorEmail && errorPassword
+        { errorEmail && errorPassword
           ? ButtonEnviar(false, validaLogin)
-          : ButtonEnviar(true, validaLogin)}
+          : ButtonEnviar(true, validaLogin) }
         <Link to="/register" data-testid="no-account-btn">
           Ainda não tenho conta
         </Link>
