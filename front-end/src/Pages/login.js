@@ -1,45 +1,20 @@
 import React, { useRef, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import SimpleReactValidator from 'simple-react-validator';
-import { 
+import {
   Field,
   Label,
   Input,
-  Button
 } from 'rbx';
 
-import api from '../services/userApi';
-
-const ButtonEnviar = (isDisabled, validaLogin) => (
-  <Button
-    type="Button"
-    data-testid="signin-btn"
-    disabled={ isDisabled }
-    onClick={ () => validaLogin() }
-  >
-    ENTRAR
-  </Button>
-);
+import ButtonEnviar from '../Components/buttonEnviar';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [redirect, setRedirect] = useState('');
 
   const simpleValidator = useRef(new SimpleReactValidator());
   const { errorEmail, errorPassword } = simpleValidator.current.fields;
-
-  const validaLogin = async () => {
-    const response = await api.login(email, password);
-
-    localStorage.setItem('user', JSON.stringify(response.data));
-    if (response.data.role === 'administrator') {
-      setRedirect('admin');
-    } else setRedirect('client');
-  };
-
-  if (redirect === 'admin') return <Redirect to="/admin/orders" />;
-  if (redirect === 'client') return <Redirect to="/products" />;
 
   return (
     <div>
@@ -68,8 +43,8 @@ const Login = () => {
           { simpleValidator.current.message('errorPassword', password, 'required|min:5') }
         </Field>
         { errorEmail && errorPassword
-          ? ButtonEnviar(false, validaLogin)
-          : ButtonEnviar(true, validaLogin) }
+          ? <ButtonEnviar email={email} password={password} isDisabled={false} />
+          : <ButtonEnviar email={email} password={password} isDisabled={true} /> }
         <Link to="/register" data-testid="no-account-btn">
           Ainda não tenho conta
         </Link>
