@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import SideBar from './SideBar';
 
-const userinfo = JSON.parse(localStorage.getItem('user'));
 
 export function Header({ children }) {
+  const userinfo = JSON.parse(localStorage.getItem('user'));
   const [btnBurguer, setBtnBurguer] = useState(false);
 
   if(!userinfo) return <Redirect to='/login'/>
-  
+
   return (
     <header>
       <button
