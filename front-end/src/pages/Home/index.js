@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -14,24 +14,16 @@ import {
 
 const Home = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isActive, setActive] = useState('false');
-  const btnRef = React.useRef();
-
-  const toggleClose = () => {
-    setActive(!isActive);
-  };
 
   return (
     <>
-      <Button ref={ btnRef } variantColor="teal" onClick={ toggleClose }>
+      <Button variantColor="teal" onClick={ onOpen }>
         Open
       </Button>
-      {isActive ? onOpen() : onClose()}
       <Drawer
         isOpen={ isOpen }
         placement="right"
         onClose={ onClose }
-        finalFocusRef={ btnRef }
       >
         <DrawerOverlay />
         <DrawerContent>
