@@ -1,7 +1,6 @@
 const connection = require('./connection');
 
-const getUserByEmail = async (email) =>
-  connection()
+const getUserByEmail = async (email) => connection()
     .then((db) => db
       .getTable('users')
       .select(['id', 'name', 'email', 'password', 'role'])
@@ -15,8 +14,7 @@ const getUserByEmail = async (email) =>
         : 'usuário não encontrado'
     ));
 
-const updateUser = async (name, email) =>
-  connection()
+const updateUser = async (name, email) => connection()
     .then((db) => db
       .getTable('users')
       .update()

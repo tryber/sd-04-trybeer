@@ -25,7 +25,7 @@ const ClientProfile = () => {
     <div className="container">
       <div className="square">
         <h1 className="pageTitle">Perfil do Cliente</h1>
-        <img src={cheersIcon} className="cheesIcon" alt="Cheers Beer Icon" />
+        <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
         <form method="POST" action="/profile" className="form">
           <div className="form-group">
             <label htmlFor="name" className="label-text">
@@ -36,13 +36,13 @@ const ClientProfile = () => {
                 type="text"
                 data-testid="profile-name-input"
                 name="name"
-                value={userName}
-                onChange={(e) => {
+                value={ userName }
+                onChange={ (e) => {
                   setUserName(e.target.value);
                   setDisableButton(
                     !(e.target.value.length >= 12) && !(e.target.value !== inputUserName),
                   );
-                }}
+                } }
                 required
               />
             </label>
@@ -56,14 +56,14 @@ const ClientProfile = () => {
                 placeholder="Email"
                 type="text"
                 name="email"
-                value={userEmail}
+                value={ userEmail }
                 readOnly
               />
             </label>
           </div>
           <div className="div_btn">
             <button
-              disabled={disableButton}
+              disabled={ disableButton }
               type="button"
               data-testid="profile-save-btn"
               className="save-button"
@@ -93,7 +93,7 @@ export default ClientProfile;
 //     );
 //     const statusOk = 200;
 //     if (status === statusOk) { setMessage('Atualização concluída com sucesso') }
-//   } catch (err) { 
+//   } catch (err) {
 //     setMessage(err.message);
 //   }
 // };
