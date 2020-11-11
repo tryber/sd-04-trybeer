@@ -24,7 +24,7 @@ const ButtonEnviar = ({ email, password, isDisabled = true }) => {
 
   return (
     <div>
-      { message ? <Notification color="danger" >{message}</Notification> : ''}
+      { message ? <Notification color="danger">{message}</Notification> : '' }
 
       <Button
         type="Button"
