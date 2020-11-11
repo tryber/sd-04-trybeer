@@ -5,7 +5,12 @@ import SimpleReactValidator from 'simple-react-validator';
 import api from '../services/userApi';
 
 const ButtonEnviar = (isDisabled, validaLogin) => (
-  <Button type="Button" data-testid="signin-btn" disabled={ isDisabled } onClick={() => validaLogin()} >
+  <Button
+    type="Button"
+    data-testid="signin-btn"
+    disabled={isDisabled}
+    onClick={() => validaLogin()}
+  >
     Entrar
   </Button>
 );
@@ -22,14 +27,13 @@ const Login = () => {
     const response = await api.login(email, password);
 
     localStorage.setItem('user', JSON.stringify(response.data));
-    if (response.data.role === "administrator") {
+    if (response.data.role === 'administrator') {
       setRedirect('admin');
-    }
-    else setRedirect('client')
+    } else setRedirect('client');
   };
 
-  if (redirect === 'admin') return <Redirect to='/admin' />
-  if (redirect === 'client') return <Redirect to='/client' />
+  if (redirect === 'admin') return <Redirect to="/admin" />;
+  if (redirect === 'client') return <Redirect to="/client" />;
 
   return (
     <div>
@@ -57,9 +61,9 @@ const Login = () => {
           />
           {simpleValidator.current.message('errorPassword', password, 'required|min:5')}
         </Field>
-        {
-          (errorEmail && errorPassword) ? ButtonEnviar(false, validaLogin) : ButtonEnviar(true, validaLogin)
-        }
+        {errorEmail && errorPassword
+          ? ButtonEnviar(false, validaLogin)
+          : ButtonEnviar(true, validaLogin)}
         <Link to="/register" data-testid="no-account-btn">
           Ainda nao tenho conta
         </Link>
