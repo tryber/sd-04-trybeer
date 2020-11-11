@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import cardapio from '../../assets/images/cardapio.svg';
-import SideMenu from '../SideMenu/Index';
+import SideMenu from '../SideMenu/index';
 import './styles.css';
-import topHamburgerToggle from './TopHamburgerToggle/TopHamburgerToggle';
+import TopHamburgerToggle from './TopHamburgerToggle/TopHamburgerToggle';
 
 function TopMenu(title) {
   const [sideMenuState, setSideMenuState] = useState(false);
   return (
     <div>
       <header className="header">
-        <div className="header__img">
-          <topHamburgerToggle
-            onClick={() => setSideMenuState(!sideMenuState)}
+        <div>
+          <TopHamburgerToggle
+            onClick={ () => setSideMenuState(!sideMenuState) }
             data-testid="top-hamburguer"
           />
           {SideMenu(sideMenuState)}
