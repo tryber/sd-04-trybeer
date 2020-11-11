@@ -7,8 +7,7 @@ import ClientProfile from './pages/ClientProfile/ClientProfile';
 const Routes = () => (
   <Provider>
     <Switch>
-      Hello World!
-      {/* <Route path="" component={ '' } /> */}
+      <Route path="/login" component={LoginPage} />
       <Route path="/profile" component={ ClientProfile } />
     </Switch>
   </Provider>
