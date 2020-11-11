@@ -21,7 +21,7 @@ const findUserByEmail = async (emailInput) => {
       .where('email = :email')
       .bind('email', emailInput)
       .then((results) => results.fetchOne())
-      .then(([id, name, email, password, role]) => ({ id, name, email, password, role }))    )
+      .then(([id, name, email, password, role]) => ({ id, name, email, password, role })))
     .catch((err) => {
       throw err;
     });
