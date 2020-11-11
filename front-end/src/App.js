@@ -6,8 +6,8 @@ import UserRegister from './components/UserRegister';
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/login" component={ Login } />
       <Route path="/register" component={ UserRegister } />
+      <Route path="/" component={ Login } />
     </Switch>
   </BrowserRouter>
 );

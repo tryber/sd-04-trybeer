@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import { TrybeerContext } from '../context';
-import { loginApi } from '../services/api';
+import loginApi from '../services/api';
 
 const Login = () => {
   useEffect(() => {
