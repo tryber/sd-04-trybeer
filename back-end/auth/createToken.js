@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const { SECRET } = process.env;
+const { SECRET } = process.env || 'trybe2020';
 
 const createToken = (payload) => {
   const headers = {
