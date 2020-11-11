@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const api = axios.create({
-  baseURL: 'http://localhost:3000',
-});
+const loginApi = async (email, password) =>
+  axios.post('http://localhost:3001/login', { email, password });
 
-export default api;
+export default loginApi;

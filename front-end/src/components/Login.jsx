@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import { TrybeerContext } from '../context';
+import loginApi from '../services/api';
 
 const Login = () => {
   useEffect(() => {
@@ -10,8 +11,10 @@ const Login = () => {
   // const { user, setUser } = useContext(TrybeerContext);
 
   const [email, setEmail] = useState('');
+
   const [password, setPassword] = useState('');
 
+  //  VALIDAÇÃO DE EMAIL
   const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
   const emailValideted = () => {
@@ -19,11 +22,13 @@ const Login = () => {
     return true;
   };
 
+  // VARIÁVEL QUE DEFINE O "ESTADO" DO BOTÃO
   const disableButton = !password || password.length < 6 || !emailValideted();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Hello Trybe!');
+    const api = await loginApi(email, password);
+    console.log('linha 29, api:', api);
   };
 
   return (
