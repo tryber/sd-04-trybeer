@@ -5,17 +5,17 @@ const conn = require('./connection');
 // =======================================================
 
 const readByEmailTest = async (userEmail) => {
-  const db = await conn()
-    ,table = await db.getTable('users')
-    ,user = await table
+  const db = await conn(),
+    table = await db.getTable('users'),
+    user = await table
       .select(['id', 'name', 'email', 'password', 'role'])
       .where('email = :email')
       .bind('email', userEmail)
       .execute();
 
-  return user.fetchAll()
-    .map(([id, name, email, password, role]) =>
-      ({ id, name, email, password, role }))[0];
+  return user
+    .fetchAll()
+    .map(([id, name, email, password, role]) => ({ id, name, email, password, role }))[0];
 };
 
 // ======================================================================
