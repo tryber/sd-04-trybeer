@@ -1,11 +1,12 @@
-const joi = require("joi");
+const joi = require('joi');
 
 const loginSchema = joi.object({
   email: joi
     .string()
     .email({ tlds: { allow: false } })
     .required(),
-  password: joi.string().min(6).required(),
+  password: joi.string().min(6)
+    .required(),
 });
 
 const registerSchema = joi.object({
@@ -14,8 +15,10 @@ const registerSchema = joi.object({
     .regex(/^[a-zA-Z\u00C0-\u00FF\s]+$/)
     .min(12)
     .required(),
-  email: joi.string().email().required(),
-  password: joi.string().min(6).required(),
+  email: joi.string().email()
+    .required(),
+  password: joi.string().min(6)
+    .required(),
 });
 
 const loginValidation = (req, _res, next) => {
