@@ -1,15 +1,17 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Produtos from './pages/Produtos';
+import Produtcs from './pages/Products';
 import ClientProfile from './pages/ClientProfile';
+import MyOrdereds from './pages/MyOrdereds';
 import { Provider } from './context';
 
 const Routes = () => (
   <Provider>
     <Switch>
-      <Route path="/products" component={ Produtos } />
+      <Route path="/products" component={ Produtcs } />
       <Route path="/profile" component={ ClientProfile } />
+      <Route path="/orders" component={ MyOrdereds } />
     </Switch>
   </Provider>
 );

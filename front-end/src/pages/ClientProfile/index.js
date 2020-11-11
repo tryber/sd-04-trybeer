@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './clientProfile.css';
+
+import './styles.css';
 
 const ClientProfile = () => {
   const [userEmail] = useState('');

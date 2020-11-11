@@ -2,7 +2,7 @@ import React from 'react';
 
 import './styles.css';
 
-const ProdutoCard = ({ testid }) => {
+const ProductsCard = ({ testid }) => {
   return (
     <div className="card-body">
       <span data-testid={`${testid}-product-price`}></span>
@@ -15,4 +15,4 @@ const ProdutoCard = ({ testid }) => {
   );
 };
 
-export default ProdutoCard;
+export default ProductsCard;

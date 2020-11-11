@@ -1,0 +1,18 @@
+.orders-card-body {
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 6px;
+  font-size: 19pt;
+  padding: 1rem;
+  width: 331px;
+}
+
+.ordereds-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.bold-text {
+  font-weight: 700;
+}
