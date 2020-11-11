@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+import Header from './Header/index';
+
 // import { TrybeerContext } from '../context';
 // import { loginApi } from '../services/api';
 
@@ -32,7 +35,9 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="m-3">
+    <div>
+    <Header title={'Meu Perfil'} />
+    <form onSubmit={handleSubmit} className="m-3" style={{padding: "15%"}}>
       <section className="card w-75 mx-auto m-3">
         <div className="form-group w-75 mx-auto m-2">
           <label htmlFor="email">Email</label>
@@ -77,6 +82,7 @@ const Login = () => {
         </div>
       </section>
     </form>
+    </div>
   );
 };
 

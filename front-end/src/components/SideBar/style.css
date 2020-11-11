@@ -6,9 +6,9 @@
 #sideBar {
   background-color: black;
   height: 100%;
-  left: -30%;
+  left: -24%;
   position: fixed;
-  width: 30%;
+  width: 24%;
 }
 
 #sideBar.active {
