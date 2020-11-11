@@ -3,10 +3,12 @@ import Menu from '../components/Menu';
 
 const Home = () => {
   return (
-    <div>
-      <Menu />
-      <div>Home</div>
-    </div>
+    <>
+      <Menu nomeTela="Home" />
+      <div className="container-general">
+        <p>Lorem ips</p>
+      </div>
+    </>
   );
 };
 
