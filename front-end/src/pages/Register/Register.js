@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { Context } from '../context/index';
-import SellerCheckbox from '../components/SellerCheckbox';
-import TrybeerLogo from '../imgs/logo.png';
-import './Registro.css';
+import { Context } from '../../context/index';
+import SellerCheckbox from '../../components/SellerCheckbox';
+import TrybeerLogo from '../../imgs/logo.png';
+import './Register.css';
 
-const Registro = () => {
+const Register = () => {
   const { setUserName, setEmailUser, setPassword } = useContext(Context);
 
   return (
@@ -62,4 +62,4 @@ const Registro = () => {
   );
 };
 
-export default Registro;
+export default Register;

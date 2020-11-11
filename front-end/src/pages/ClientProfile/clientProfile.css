@@ -1,0 +1,30 @@
+.container {
+  justify-content: center;
+  display: flex;
+  border-radius: 7px;
+  box-shadow: 1px 1px 50px 10px rgba(1, 1, 1, 40);
+  padding: 20px;
+  width: 250px;
+}
+
+.form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  justify-content: center;
+};
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field {
+  width: 100%;
+}
+
+input {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
