@@ -27,8 +27,8 @@ const ButtonEnviar = ({ email, password, isDisabled = true }) => {
       <Button
         type="Button"
         data-testid="signin-btn"
-        disabled={isDisabled}
-        onClick={() => validaLogin()}
+        disabled={ isDisabled }
+        onClick={ () => validaLogin() }
       >
         ENTRAR
       </Button>
