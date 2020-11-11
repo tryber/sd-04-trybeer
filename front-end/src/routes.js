@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { Provider } from './context';
-import Register from './pages/Register/Register';
-import ClientProfile from './pages/ClientProfile/ClientProfile';
+import Register from './pages/Register/index';
+import ClientProfile from './pages/ClientProfile/index';
 
 const Routes = () => (
   <Provider>

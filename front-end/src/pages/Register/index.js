@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 import { Context } from '../../context/index';
-import SellerCheckbox from '../../components/SellerCheckbox';
 import TrybeerLogo from '../../imgs/logo.png';
-import './Register.css';
+import './styles.css';
 
 const Register = () => {
-  const { setUserName, setEmailUser, setPassword } = useContext(Context);
+  const { setUserName, setEmailUser, setPassword, setIsSeller, isSeller } = useContext(Context);
 
   return (
     <article className="page-registro">
@@ -48,7 +47,18 @@ const Register = () => {
           required
         />
 
-        <SellerCheckbox />
+        <div className="seller-checkbox-div">
+          <input
+            type="checkbox"
+            onChange={() => setIsSeller(true)}
+            data-testid="signup-seller"
+            className="seller-checkbox"
+            value={!isSeller}
+          />
+          <span className="checkbox-text">
+            <label htmlFor="CheckSalesman">Quero vender</label>
+          </span>
+        </div>
 
         <button
           data-testid="signup-btn"

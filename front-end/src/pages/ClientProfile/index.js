@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './clientProfile.css';
+import './styles.css';
 
 const ClientProfile = () => {
   const [userEmail] = useState('');
@@ -38,7 +38,7 @@ const ClientProfile = () => {
                 setDisableButton(
                   !(e.target.value.length >= 12) && !(e.target.value !== inputUserName),
                 );
-              }}
+              } }
               required
             />
           </label>
@@ -89,7 +89,7 @@ export default ClientProfile;
 //     );
 //     const statusOk = 200;
 //     if (status === statusOk) { setMessage('Atualização concluída com sucesso') }
-//   } catch (err) { 
+//   } catch (err) {
 //     setMessage(err.message);
 //   }
 // };
