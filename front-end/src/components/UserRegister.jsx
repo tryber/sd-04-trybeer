@@ -14,29 +14,28 @@ const UserRegister = () => {
 
   const isNameValid = (name = '') => name.match(/^([a-zA-Zà-úÀ-Ú]|\s+)+$/);
 
-  const nameValideted = () => {
+  const nameValidated = () => {
     if (!name || !isNameValid(name) || name.length < 12) return false;
     return true;
   };
 
   const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
-  const emailValideted = () => {
+  const emailValidated = () => {
     if (!email || !isEmailValid(email) || email.length < 6) return false;
     return true;
   };
 
-  const disableButton = !nameValideted() || !password || password.length < 6 || !emailValideted();
+  const disableButton = !nameValidated() || !password || password.length < 6 || !emailValidated();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('o checkbox está: ', !!checkbox);
     if (checkbox === 'on') return history.push('/admin/orders');
     return history.push('/products');
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={handleSubmit}>
       <section className="card w-75 mx-auto m-3">
         <div className="form-group w-75 mx-auto m-2">
           <label htmlFor="name">Nome</label>
