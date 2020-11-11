@@ -1,4 +1,6 @@
+
 import React, { createContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 // Isso aqui cria o Contexto da nossa aplicação.
 // Chamei de Context, mas você pode dar o nome que quiser.
@@ -20,10 +22,14 @@ const TrybeerContextProvider = ({ children }) => {
   // Daí você chama o provider desse contexto
   // e como valor você passa um objeto com suas variáveis de estado e funções que alteram elas
   // Children é o elemento que será envolvido com esse Context, no caso, nossa aplicação toda.
-  return <Context.Provider value={contextValue}>{children}</Context.Provider>;
+  return <Context.Provider value={ contextValue }>{ children }</Context.Provider>;
 };
 
 // Exporte o Context, pois você precisa dele quando for usar suas variáveis e funções
 // Exporte o seu Provider, ele é quem vai encapsular a aplicação toda.
 // Vou colocar o Provider no arquivo de routes.js
 export { Context, TrybeerContextProvider as Provider };
+
+TrybeerContextProvider.propTypes = {
+  children: PropTypes.object.isRequired,
+};
