@@ -20,7 +20,8 @@ const connection = () => (
         schema = await session.getSchema('Trybeer');
         return schema;
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         process.exit(1);
       })
 );
