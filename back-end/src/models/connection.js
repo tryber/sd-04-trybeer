@@ -1,4 +1,5 @@
 const mysql = require('@mysql/xdevapi');
+require('dotenv/config');
 
 const config = {
   user: process.env.MYSQL_USER,
@@ -10,15 +11,14 @@ const config = {
 
 let schema;
 
-const connection = () =>
-  schema
-    ? Promise.resolve(schema)
-    : mysql
-        .getSession(config)
-        .then(session => {
-          schema = session.getSchema('Trybeer');
-          return schema;
-        })
-        .catch(err => process.exit(1));
+const connection = () => (
+  schema ? Promise.resolve(schema) : mysql
+    .getSession(config)
+    .then((session) => {
+      schema = session.getSchema('Trybeer');
+      return schema;
+    })
+    .catch((_err) => process.exit(1))
+);
 
 module.exports = connection;
