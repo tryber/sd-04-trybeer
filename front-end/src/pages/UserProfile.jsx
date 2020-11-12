@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { putUpdate } from "../services/TrybeerApi";
+import { Header } from '../components/Header';
 
 function UserProfile() {
   const { name, email } = JSON.parse(localStorage.getItem("user"));
@@ -16,6 +17,8 @@ function UserProfile() {
   return !name ? (
     <Redirect to="/login" />
   ) : (
+    <>
+    <Header>Meu perfil</Header>
     <form onSubmit={handleForm}>
       <label htmlFor="name">
         Name:
@@ -45,6 +48,7 @@ function UserProfile() {
       </button>
       <span>{message}</span>
     </form>
+    </>
   );
 }
 
