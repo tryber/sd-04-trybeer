@@ -7,11 +7,12 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [checkbox, setCheckbox] = useState(false);
+  const [message, setMessage] = useState('');
 
   // Conferir URL e metódo.
   const redirect = () => {
     if (checkbox) {
-      return window.location.replace('http://localhost:3000/admin/profile');
+      return window.location.replace('http://localhost:3000/admin/orders');
     }
     return window.location.replace('http://localhost:3000/products');
   };
@@ -23,16 +24,18 @@ function Register() {
       email,
       password,
       checkbox,
-    }).then((data) => console.log(data))
-      .catch((e) => console.log(e));
+    })
+    .then(() => redirect())
+    .catch((e) => setMessage(e.response.data.message));
 
-    redirect();
+    
   };
 
   return (
     <div>
       <h2>Register Page</h2>
       <form onSubmit={ (event) => register(event) }>
+        <label htmlFor="name">Nome</label>
         <input
           data-testid="signup-name"
           placeholder="name"
@@ -43,6 +46,7 @@ function Register() {
           onChange={ (e) => setName(e.target.value) }
         />
 
+        <label htmlFor="email">Email</label>
         <input
           data-testid="signup-email"
           name="email"
@@ -53,6 +57,7 @@ function Register() {
           onChange={ (e) => setEmail(e.target.value) }
         />
 
+        <label htmlFor="password">Password</label>
         <input
           data-testid="signup-password"
           name="password"
@@ -63,15 +68,14 @@ function Register() {
           onChange={ (e) => setPassword(e.target.value) }
         />
 
-        <label htmlFor="isSeller">
-          Quero vender
-          <input
-            data-testid="signup-password"
-            name="isSeller"
-            type="checkbox"
-            onChange={ (e) => setCheckbox(e.target.checked) }
-          />
-        </label>
+        <label htmlFor="checkbox">Quero Vender</label>
+        <input
+          data-testid="signup-seller"
+          name="checkbox"
+          type="checkbox"
+          onChange={ (e) => setCheckbox(e.target.checked) }
+        />
+        
         <button
           type="submit"
           disabled={ !(validateName(name) && validateEmail(email) && validatePassword(password)) }
@@ -80,6 +84,7 @@ function Register() {
           Cadastrar
         </button>
       </form>
+      {message}
     </div>
   );
 }
