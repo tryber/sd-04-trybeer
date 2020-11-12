@@ -7,16 +7,13 @@ import { Header } from './components/Header';
 function App() {
   return (
     <Switch>
-      <Route exact path="/">
-        <Header>text</Header>
-      </Route>
+      <Route exact path="/" component={ Login } />
       <Route path="/login">
         <Login />
       </Route>
       <Route path="/profile">
         <UserProfile />
       </Route>
-      <Route exact path="/" component={ Login } />
       <Route path="/register" component={ Register } />
       <Route path="/products">
         <Header>TryBeer</Header>
