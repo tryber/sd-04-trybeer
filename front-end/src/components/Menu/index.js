@@ -1,19 +1,20 @@
 import React, { useState, useRef } from 'react';
-import { useOnClickOutside } from '../../hooks';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import useOnClickOutside from '../../hooks';
 import Burger from '../Burger';
-import { StyledMenu } from './style';
+import StyledMenu from './style';
 import './index.css';
 
-export default function ({ nomeTela }) {
+const Menu = ({ nomeTela }) => {
   const [open, setOpen] = useState(false);
   const node = useRef();
   useOnClickOutside(node, () => setOpen(false));
 
   return (
-    <header className="header" ref={node}>
-      <Burger open={open} setOpen={setOpen} />
-      <StyledMenu open={open} className="nav-bar side-menu-container">
+    <header className="header" ref={ node }>
+      <Burger open={ open } setOpen={ setOpen } />
+      <StyledMenu open={ open } className="nav-bar side-menu-container">
         <Link to="/products" className="nav-link" data-testid="side-menu-item-products">
           Produtos
         </Link>
@@ -28,8 +29,14 @@ export default function ({ nomeTela }) {
         </Link>
       </StyledMenu>
       <h1 className="top-title" data-testid="top-title">
-        {nomeTela}
+        { nomeTela }
       </h1>
     </header>
   );
-}
+},
+
+Menu.propTypes = {
+  nomeTela: PropTypes.string.isRequired,
+};
+
+export default Menu;
