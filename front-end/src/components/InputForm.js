@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Input = ({
   name, handleChange, dataTestId, label, value,
 }) => (
-    <div className="login-fields-container">
+  <div className="login-fields-container">
     <label htmlFor={ name } className="input-label">
       { label }
     </label>
