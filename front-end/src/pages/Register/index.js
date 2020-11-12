@@ -45,6 +45,7 @@ const Register = () => {
           onChange={({ target }) => setUserName(target.value)}
           type="text"
           data-testid="signup-name"
+          name="name"
           className="input-registro"
           minLength="12"
           pattern="[A-zA-z\s]{12,}"
@@ -58,6 +59,7 @@ const Register = () => {
           type="email"
           onChange={({ target }) => setEmailUser(target.value)}
           data-testid="signup-email"
+          name="email"
           className="input-registro"
           pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
           title="Endereço de e-mail inválido, formato recomendado <nome>@<domínio>"
@@ -70,11 +72,12 @@ const Register = () => {
           type="password"
           id="input-password"
           data-testid="signup-password"
+          name="password"
           className="input-registro"
           minLength="6"
           pattern="[0-9]*"
           title="Sua senha deve ter no mínimo 6 caracteres, sendo TODOS numéricos."
-          inputmode="numeric"
+          inputMode="numeric"
           required
         />
 
