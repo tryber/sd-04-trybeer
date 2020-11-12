@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import { validateName, validateEmail, validatePassword } from '../utils/inputValidations';
 import api from '../services/api';
@@ -84,14 +83,5 @@ function Register() {
     </div>
   );
 }
-=======
-import React from 'react';
-
-function Register() {
-  return (
-    <h2>Register Page</h2>
-  )
-};
->>>>>>> 4a5923e906e3f81c44bd157ce09b8915fa31b37d
 
 export default Register;
