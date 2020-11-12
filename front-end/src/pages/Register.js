@@ -36,14 +36,13 @@ const Register = () => {
     const response = await postRegister(userName, userEmail, userPass, definedRole);
 
     // response.err ? setForm({ ...form, error: response.err }) : setForm({ ...form, error: null });
-    if (response.err) {
-      return setForm({ ...form, error: response.err });
-    } else setForm({ ...form, error: null });
+    if (response.err) return setForm({ ...form, error: response.err });
 
     if (definedRole === 'administrator') {
       setForm({ ...form, redirect: 'administrator' });
     } else setForm({ ...form, redirect: 'client' });
 
+    setForm({ ...form, error: null });
     return true;
   };
 
