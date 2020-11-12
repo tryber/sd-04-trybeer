@@ -9,7 +9,7 @@ const MyOrdereds = () => {
     <div className="ordereds-container">
       <div>Aqui vai um header...</div>
       {/* Rodar um map() depois */}
-      <OrderedsCard />
+      <OrderedsCard testid={1} />
     </div>
   );
 };
