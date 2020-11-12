@@ -10,8 +10,8 @@ const Register = () => {
 
   const namePattern = "[a-zA-Z ]{12,}";
   const emailPattern = "[^@]+@[^@]+.[^@]+";
-  const nameRegex = new RegExp (namePattern);
-  const emailRegex = new RegExp (emailPattern);
+  const nameRegex = new RegExp(namePattern);
+  const emailRegex = new RegExp(emailPattern);
 
   const ableRegisterButton = () => {
     let disabled = true;
@@ -32,7 +32,7 @@ const Register = () => {
         </Link>
       </div>
     );
-  }
+  };
 
   return (
     <article className="page-registro">

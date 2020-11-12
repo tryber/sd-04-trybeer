@@ -43,5 +43,5 @@ const TrybeerContextProvider = ({ children }) => {
 export { Context, TrybeerContextProvider as Provider };
 
 TrybeerContextProvider.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
 };
