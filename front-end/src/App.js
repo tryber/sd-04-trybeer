@@ -15,6 +15,9 @@ function App() {
       <Route path="/products">
         <Header>TryBeer</Header>
       </Route>
+      <Route path="/admin/orders">
+        <Header>TryBeer</Header>
+      </Route>
     </Switch>
   );
 }
