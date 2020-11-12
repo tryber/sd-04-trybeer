@@ -1,16 +1,44 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Context } from '../../context/index';
 import TrybeerLogo from '../../imgs/logo.png';
 import './styles.css';
 
+
 const Register = () => {
-  const { setUserName, setEmailUser, setPassword, setIsSeller, isSeller } = useContext(Context);
+  const { userName, setUserName, emailUser, setEmailUser, setPassword, setIsSeller, isSeller } = useContext(Context);
+
+  const namePattern = "[a-zA-Z ]{12,}";
+  const emailPattern = "[^@]+@[^@]+.[^@]+";
+  const nameRegex = new RegExp (namePattern);
+  const emailRegex = new RegExp (emailPattern);
+
+  const ableRegisterButton = () => {
+    let disabled = true;
+    if (emailRegex.test(emailUser) && nameRegex.test(userName)) {
+      disabled = false;
+    }
+    return (
+      <div className="btn-div">
+        <Link to="/">
+          <button
+            data-testid="signup-btn"
+            type="submit"
+            className="btn-cadastrar"
+            disabled={disabled}
+          >
+            CADASTRAR
+              </button>
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <article className="page-registro">
       <img src={TrybeerLogo} alt="Trybeer logo developed by Luma Arruda" className="logo-trybeer" />
 
-      <form className="form-registro">
+      <form action="/register" method="POST" className="form-registro">
         <label className="input-labels" htmlFor="input-name">Nome</label>
         <input
           id="input-name"
@@ -44,6 +72,9 @@ const Register = () => {
           data-testid="signup-password"
           className="input-registro"
           minLength="6"
+          pattern="[0-9]*"
+          title="Sua senha deve ter no mínimo 6 caracteres, sendo TODOS numéricos."
+          inputmode="numeric"
           required
         />
 
@@ -60,13 +91,8 @@ const Register = () => {
           </span>
         </div>
 
-        <button
-          data-testid="signup-btn"
-          type="submit"
-          className="btn-cadastrar"
-        >
-          CADASTRAR
-      </button>
+        {ableRegisterButton()}
+
       </form>
     </article>
   );

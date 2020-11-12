@@ -1,12 +1,23 @@
+button:disabled {
+  color: gray;
+}
+.btn-div {
+  margin: auto;
+}
+
 .btn-cadastrar {
+  align-items: center;
   background-color: rgb(20, 33, 61);
   border: 1px solid rgb(252, 163, 17);
   border-radius: 5px;
   color: rgb(252, 163, 17);
+  display: flex;
   font-size: 20px;
   font-weight: 700;
   height: 60px;
+  justify-content: center;
   margin: 20px 0;
+  width: 332px;
 }
 
 .checkbox-text {
