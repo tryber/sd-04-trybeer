@@ -12,7 +12,7 @@ const userUpdate = async (name, email) => {
   const { id } = await genericModel.findUserBy(email, 'email');
   try {
     await userModel.updateUser(id, name);
-    return { message: 'User updated' };
+    return { message: 'Atualização concluída com sucesso' };
   } catch (err) {
     throw new Error(err);
   }
