@@ -1,6 +1,5 @@
 const rescue = require("express-rescue");
 const userService = require("../services/userService");
-const userModel = require('../models/userModel');
 
 const userLogin = rescue(async (req, res) => {
   const { email, password } = req.body;
@@ -19,12 +18,12 @@ const getUserByEmail = async (req, res) => {
   try {
     const selectedUser = await userService.findUserByEmail(email, password);
     if (!selectedUser) {
-      return res.status(401).json({ message: "Invalid entries. Try again" });
+      return res.status(401).json({ message: 'Invalid entries. Try again' });
     }
 
     return res.status(200).json(selectedUser);
   } catch (_e) {
-    return res.status(401).json({ message: "Invalid entries. Try again" });
+    return res.status(401).json({ message: 'Invalid entries. Try again' });
   }
 };
 

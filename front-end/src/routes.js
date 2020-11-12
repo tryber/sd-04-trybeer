@@ -6,7 +6,9 @@ import {
   Redirect,
 } from 'react-router-dom';
 
+import Orders from './pages/admin/Orders';
 import Login from './pages/Login';
+import Products from './pages/Products';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
 
@@ -19,6 +21,9 @@ const routes = () => (
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
       <Route exact path="/profile" component={ Profile } />
+      <Route exact path="/products" component={ Products } />
+      <Route exact path="/admin/orders" component={ Orders } />
+      <Route exact path="/register" component={ Register } />
     </Switch>
   </Router>
 );
