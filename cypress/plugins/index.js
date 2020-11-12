@@ -15,10 +15,12 @@
 /**
  * @type {Cypress.PluginConfig}
  */
-require('dotenv').config();
+require('dotenv/config')
+
 const  my = require('mysql2');
 
 function queryTestDb(query, config) {
+  console.log(process.env.HOSTNAME, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD)
   const connection = my.createConnection({host: process.env.HOSTNAME, user: process.env.MYSQL_USER, password: process.env.MYSQL_PASSWORD})
   connection.connect()
   return new Promise((resolve, reject) => {
