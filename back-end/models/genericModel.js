@@ -1,5 +1,6 @@
 const { connection } = require('./connection');
 
+// essa função não é genérica podemos move-la para o userModel
 const findUserBy = async (info, fieldSearch) => connection()
   .then((db) => db
     .getTable('users')
@@ -10,7 +11,7 @@ const findUserBy = async (info, fieldSearch) => connection()
   .then((result) => result.fetchOne())
   .then((user) => {
     if (!user) return null;
-    const [id, name, email, password, role] = user;
+    const [ id, name, email, password, role ] = user;
     return {
       id,
       name,
@@ -20,4 +21,19 @@ const findUserBy = async (info, fieldSearch) => connection()
     };
   });
 
-module.exports = { findUserBy };
+const getAll = async (selection, table) => connection()
+  .then((db) => db
+    .getTable(table)
+    .select(selection)
+    .execute()
+    .then((result) => {
+      const info = result.fetchAll();
+      if (!info) return null;
+      const infoObjects = info.map((arr) => arr.reduce((acc, curr, i) => {
+        acc[ selection[ i ] ] = curr;
+        return acc;
+      }, {}));
+      return infoObjects;
+    }));
+
+module.exports = { findUserBy, getAll };

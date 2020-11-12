@@ -24,7 +24,7 @@ app.post(
   controllers.user.userRegister,
 );
 
-app.get('/products', controllers.products);
+app.get('/products', controllers.products.getAllProducts);
 
 app.put('/profile', controllers.user.userUpdate);
 

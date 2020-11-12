@@ -1,5 +1,4 @@
-import Login from './Login';
-import UserProfile from './UserProfile';
-import Register from './Register';
-
-export { Login, UserProfile, Register };
+export { default as Login } from './Login';
+export { default as UserProfile } from './UserProfile';
+export { default as Register } from './Register';
+export { default as Products } from './Products';
