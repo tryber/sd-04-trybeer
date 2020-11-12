@@ -39,19 +39,19 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <form onSubmit={handleSubmit} className="login-form">
+      <form onSubmit={ handleSubmit } className="login-form">
         <InputForm
           name="email"
-          value={form.email}
+          value={ form.email }
           label="Email"
-          handleChange={handleChange}
+          handleChange={ handleChange }
           dataTestId="email-input"
         />
         <InputForm
           name="password"
-          value={form.password}
+          value={ form.password }
           label="Password"
-          handleChange={handleChange}
+          handleChange={ handleChange }
           dataTestId="password-input"
         />
         <button

@@ -12,8 +12,8 @@ const login = async (req, res) => {
   } catch (err) {
     console.log(err);
     if (
-      err.message === ERR_EMAIL_NOT_FOUND ||
-      err.message === ERR_INVALID_PASSWORD
+      err.message === ERR_EMAIL_NOT_FOUND
+      || err.message === ERR_INVALID_PASSWORD
     ) {
       res.status(401).json({ message: 'Incorrect email or password' });
     }
