@@ -4,7 +4,7 @@ const secret = 'Trybeer';
 
 const createNewJWT = (payload) => {
   const jwtConfig = {
-    expiresIn: '10m',
+    expiresIn: '1h',
     algorithm: 'HS256',
   };
 

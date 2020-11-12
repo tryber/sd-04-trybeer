@@ -1,12 +1,12 @@
 const UserModel = require('../models/UserModel');
 
-const userService = require('../services/userService');
+const userMiddlewares = require('../middlewares/userMiddleware');
 
 const userLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await userService.findUserByEmail(email, password);
+    const user = await userMiddlewares.validateUserByEmail(email, password);
 
     if (!user) return res.status(400).json({ message: 'user not exists' });
 

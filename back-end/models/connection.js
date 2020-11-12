@@ -19,7 +19,8 @@ module.exports = async () => {
     schema = session.getSchema(process.env.DB_NAME);
 
     return schema;
-  } catch (_) {
+  } catch (err) {
+    console.error(err);
     process.exit(1);
   }
 };
