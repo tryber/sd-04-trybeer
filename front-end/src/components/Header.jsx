@@ -10,6 +10,7 @@ export function Header({ children }) {
   if(!userinfo) return <Redirect to='/login'/>
 
   return (
+    <div>
     <header>
       <button
         data-testid="top-hamburguer"
@@ -18,8 +19,8 @@ export function Header({ children }) {
         hamburguer
       </button>
       <h1 data-testid="top-title">{children}</h1>
-      {console.log(userinfo)}
-      {btnBurguer && <SideBar userRole={userinfo.role} />}
     </header>
+      {btnBurguer && <SideBar userRole={userinfo.role} />}
+    </div>
   );
 }
