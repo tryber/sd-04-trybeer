@@ -1,4 +1,4 @@
 import Login from './Login';
+import UserProfile from './UserProfile';
 
-const placeholder = 'a';
-export { Login, placeholder };
+export { Login, UserProfile };
