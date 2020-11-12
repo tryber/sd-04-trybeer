@@ -19,6 +19,7 @@ const Registro = () => {
   const [message, setMessage] = useState('');
 
   const history = useHistory();
+  const bool = true;
 
   const simpleValidator = useRef(new SimpleReactValidator());
   const {
@@ -103,7 +104,7 @@ const Registro = () => {
           {simpleValidator.current.message(
             'errorPassword',
             password,
-            'required|min:5'
+            'required|min:5',
           )}
         </Field>
         <Field>
@@ -123,7 +124,7 @@ const Registro = () => {
             Cadastrar
           </Button>
         ) : (
-          <Button data-testid="signup-btn" color="success" disabled={ true }>
+          <Button data-testid="signup-btn" color="success" disabled={ bool }>
             Cadastrar
           </Button>
         )}
