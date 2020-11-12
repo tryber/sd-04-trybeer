@@ -25,4 +25,4 @@ const updateUser = async (userId, userName) => {
     .execute();
 };
 
-module.exports = { registerNewUser, updateUser }; 
+module.exports = { registerNewUser, updateUser };

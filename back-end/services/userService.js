@@ -16,7 +16,6 @@ const userUpdate = async (name, email) => {
   } catch (err) {
     throw new Error(err);
   }
-}
+};
 
 module.exports = { userRegister, userUpdate };
- 
