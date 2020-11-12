@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
-import { 
-  Field, Label, Input, Button, Notification
+import {
+  Field, Label, Input, Button, Notification,
 } from 'rbx';
 import api from '../services/userApi';
 
