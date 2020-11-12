@@ -5,8 +5,8 @@ const findByEmail = async (userEmail) => connection()
     .select()
     .where('email = :email')
     .bind('email', userEmail)
-    .execute(),
-  ).then((results) => results.fetchOne())
+    .execute())
+  .then((results) => results.fetchOne())
   .then(([id, name, email, password, role]) => ({
     id,
     name,
