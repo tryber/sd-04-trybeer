@@ -4,12 +4,16 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const usersModel = require('./models/usersModel');
 const createToken = require('./auth/createJWT');
+const productsModel = require('./models/productsModel');
 
 const app = express();
 
 app.use(cors());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use('/images', express.static('back-end'));
 
 app.get('/login', (_req, res) => {
   res.status(200).send({ project: 'Trybeer' });
@@ -44,5 +48,14 @@ app.put('/edit', async (req, res) => {
   await usersModel.editUser(name, email);
   return res.status(200).json({ message: 'updated' });
 });
+
+app.get('/products', async (_req, res) => {
+  const products = await productsModel.getProducts();
+  res.status(200).json(products);
+});
+
+// app.get('/images', (req, res) => {
+//   console.log(req, res)
+// });
 
 app.listen(3001, () => console.log('Listening on 3001'));
