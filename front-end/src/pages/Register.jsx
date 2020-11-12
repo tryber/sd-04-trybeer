@@ -8,6 +8,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [checkbox, setCheckbox] = useState(false);
 
+  // Conferir URL e metódo.
   const redirect = () => {
     if (checkbox) {
       return window.location.replace('http://localhost:3000/admin/profile');
@@ -21,6 +22,7 @@ function Register() {
       name,
       email,
       password,
+      checkbox,
     }).then((data) => console.log(data))
       .catch((e) => console.log(e));
 
@@ -33,6 +35,7 @@ function Register() {
       <form onSubmit={ (event) => register(event) }>
         <input
           data-testid="signup-name"
+          placeholder="name"
           name="name"
           type="text"
           required
@@ -43,6 +46,7 @@ function Register() {
         <input
           data-testid="signup-email"
           name="email"
+          placeholder="email"
           type="email"
           required
           value={ email }
@@ -52,6 +56,7 @@ function Register() {
         <input
           data-testid="signup-password"
           name="password"
+          placeholder="passwrod"
           type="password"
           required
           value={ password }
@@ -74,9 +79,7 @@ function Register() {
         >
           Cadastrar
         </button>
-
       </form>
-      {`checked: ${checkbox}`}
     </div>
   );
 }

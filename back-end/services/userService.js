@@ -8,6 +8,20 @@ const findUserByEmail = async (email, password) => {
   return user;
 };
 
+const registerUserService = async (name, email, password, checkbox) => {
+
+  const isEmailAlreadyRegistered = await userModel.findUserByEmail(email);
+  if (isEmailAlreadyRegistered) {
+    return { err: { message: 'Email is already registered' } };
+  }
+  const role = checkbox ? 'administrator' : 'client';
+  
+
+  const newUser = await userModel.registerUser(email, password, name, role);
+  return newUser;
+}
+
 module.exports = {
   findUserByEmail,
+  registerUserService,
 };

@@ -1,5 +1,6 @@
 const rescue = require("express-rescue");
 const userService = require("../services/userService");
+const userModel = require('../models/userModel');
 
 const userLogin = rescue(async (req, res) => {
   const { email, password } = req.body;
@@ -27,7 +28,19 @@ const getUserByEmail = async (req, res) => {
   }
 };
 
+const registerUserController = async (req, res) => {
+  const { name, email, password, checkbox } = req.body;
+  try {
+
+    const newUser = await userService.registerUserService(email, password, name, checkbox);
+    return res.status(201).json(newUser);
+  } catch (_err) {
+    return res.status(401).json({ message: 'BAD REQUEST'});
+  }
+};
+
 module.exports = {
   userLogin,
   getUserByEmail,
+  registerUserController,
 };
