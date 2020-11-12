@@ -4,8 +4,11 @@ const apiTrybeer = axios.create({
   baseURL: 'http://localhost:3001',
 });
 
-const loginApi = async (email, password) => apiTrybeer.post('/login', { email, password });
+const loginApi = async (email, password) => await apiTrybeer.post('/login', { email, password });
 
-const getUserByEmail = async (email) => axios.get(`/${email}`);
+const registerApi = async (name, email, password, role) => (
+  await apiTrybeer.post('/register', { name, email, password, role }));
 
-export default { loginApi, getUserByEmail };
+// const getUserByEmail = async (email) => axios.get(`/${email}`);
+
+export default { loginApi, registerApi };

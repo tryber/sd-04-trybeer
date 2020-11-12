@@ -2,31 +2,46 @@ const UserModel = require('../models/UserModel');
 
 const userMiddlewares = require('../middlewares/userMiddleware');
 
-const userLogin = async (req, res) => {
-  try {
-    const { email, password } = req.body;
+const createJWT = require('../authentication/createJWT');
 
+const userLogin = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
     const user = await userMiddlewares.validateUserByEmail(email, password);
 
-    if (!user) return res.status(400).json({ message: 'user not exists' });
+    if (!user) return res.status(400).json({ err: 'user not exists' });
 
-    return res.status(200).json(user);
+    const token = createJWT(user);
+
+    // console.log('linha 17, controller, token gerado: ', token);
+
+    return res.status(200).json({ user, token });
   } catch (err) {
     console.log(err);
-    return res.status(400).json({ message: 'Something gone wrong' });
+    return res.status(400).json({ err: 'Something gone wrong on Login' });
   }
 };
 
 const userRegister = async (req, res) => {
   const { name, email, password, role } = req.body;
+
   try {
-    if (!name || !email || !password) return res.status(400).json({ message: 'Invalid entries' });
+    if (!name || !email || !password) return res.status(400).json({ err: 'Invalid entries' });
+
+    const userAlreadyExists = await UserModel.searchUserByEmail(email);
+
+    console.log('linha 34, userAlreadyExists', userAlreadyExists);
+
+    // if (userAlreadyExists.email === email) {
+    //   return res.status(400).json({ err: 'E-mail already in database.' });
+    // }
 
     const user = await UserModel.registerUser(name, email, password, role);
 
-    res.status(201).json({ user });
+    return res.status(201).json({ user });
   } catch (err) {
-    res.status(400).json({ message: 'Something gone wrong...' });
+    res.status(400).json({ err: 'Something gone wrong on register user' });
   }
 };
 

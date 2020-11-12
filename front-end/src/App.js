@@ -7,6 +7,7 @@ const App = () => (
   <BrowserRouter>
     <Switch>
       <Route path="/register" component={ UserRegister } />
+      <Route path="/login" component={ Login } />
       <Route path="/" component={ Login } />
     </Switch>
   </BrowserRouter>

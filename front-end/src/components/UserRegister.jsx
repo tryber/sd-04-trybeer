@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import API from '../services/api';
+
 const UserRegister = () => {
   const history = useHistory();
 
@@ -11,6 +13,8 @@ const UserRegister = () => {
   const [password, setPassword] = useState('');
 
   const [checkbox, setCheckbox] = useState('');
+
+  const [errMsg, setErrMsg] = useState('');
 
   const isNameValid = (name = '') => name.match(/^([a-zA-Zà-úÀ-Ú]|\s+)+$/);
 
@@ -28,9 +32,19 @@ const UserRegister = () => {
 
   const disableButton = !nameValidated() || !password || password.length < 6 || !emailValidated();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const role = checkbox === 'on' ? 'administrator' : 'client';
+
+    const apiResult = await API.registerApi(name, email, password, role);
+
+    if (apiResult.data.err) return setErrMsg('E-mail already in database.');
+
+    console.log('linha 38, apiResult', apiResult);
+
     if (checkbox === 'on') return history.push('/admin/orders');
+
     return history.push('/products');
   };
 
@@ -61,6 +75,8 @@ const UserRegister = () => {
             className="form-control"
           />
         </div>
+
+        <span className="mx-auto m-3 text-danger">{errMsg.toUpperCase()}</span>
 
         <div className="form-group w-75 mx-auto m-2">
           <label htmlFor="password">Password</label>
