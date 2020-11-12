@@ -18,7 +18,9 @@ const userProfile = async (req, res) => {
     const user = await userModel.findByEmail(email);
     const { password: _, ...userData } = user;
     res.status(200).json(userData);
-  } catch {}
+  } catch {
+    res.status(400).json("Email inexistente")
+  }
 };
 
 const editProfile = async (req, res) => {

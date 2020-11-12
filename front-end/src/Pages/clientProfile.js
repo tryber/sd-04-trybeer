@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
+import { 
+  Field, Label, Input, Button, Notification
+} from 'rbx';
 import api from '../services/userApi';
-import { Field, Label, Input, Button, Notification } from 'rbx';
 
 const Profile = () => {
   const [auth, setAuth] = useState(true);
@@ -42,16 +44,16 @@ const Profile = () => {
   return (
     <div>
       <h2 data-testid="top-title">Meu perfil</h2>
-      {message ? <Notification color="danger">{message}</Notification> : ''}
-      <form onSubmit={editProfile}>
+      {message ? <Notification color="danger">{ message }</Notification> : ''}
+      <form onSubmit={ editProfile }>
         <Field>
           <Label htmlFor="name">Name:</Label>
           <Input
             name="name"
             type="name"
-            value={name}
+            value={ name }
             data-testid="profile-name-input"
-            onChange={(e) => changeName(e)}
+            onChange={ (e) => changeName(e) }
           />
         </Field>
         <Field>
@@ -59,12 +61,12 @@ const Profile = () => {
           <Input
             name="email"
             type="email"
-            value={email}
+            value={ email }
             readOnly
             data-testid="profile-email-input"
           />
         </Field>
-        <Button disabled={disabled}>Salvar</Button>
+        <Button disabled={ disabled }>Salvar</Button>
       </form>
     </div>
   );
