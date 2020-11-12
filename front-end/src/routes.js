@@ -8,6 +8,7 @@ import {
 
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import Register from './pages/Register';
 
 const routes = () => (
   <Router>
@@ -16,7 +17,7 @@ const routes = () => (
         <Redirect to="/login" />
       </Route>
       <Route path="/login" component={ Login } />
-
+      <Route path="/register" component={ Register } />
       <Route exact path="/profile" component={ Profile } />
     </Switch>
   </Router>
