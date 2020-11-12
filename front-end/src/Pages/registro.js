@@ -42,8 +42,7 @@ const Registro = () => {
       } else {
         history.push('/products');
       }
-    }).catch((err) => {
-      console.log(err.message);
+    }).catch(() => {
       setMessage('E-mail already in database.');
     });
   };
