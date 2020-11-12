@@ -1,6 +1,6 @@
 import React from 'react';
-import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import {
   Checkout, Home, Login, NotFound, Orders, OrdersDetails, Products, Profile, Register,
 } from '../pages';
