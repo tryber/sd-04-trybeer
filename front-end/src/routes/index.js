@@ -11,14 +11,18 @@ const Routes = () => (
       <Checkout path="/checkout" />
       <Login path="/login" />
       <Orders exact path="/orders" />
-      <OrdersDetails path="/orders/:id" />
+      <Route path="/orders/:id">
+        <OrdersDetails />
+      </Route>
       <Orders exact path="/admin/orders" />
-      <OrdersDetails path="/admin/orders/:id" />
+      <Route path="/admin/orders/:id">
+        <OrdersDetails />
+      </Route>
       <Profile path="/admin/profile" />
       <Products path="/products" />
       <Profile path="/profile" />
       <Register path="/register" />
-      <NotFound path="/" />
+      <Route component={ NotFound } />
     </Switch>
   </BrowserRouter>
 );
