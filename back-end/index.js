@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const middleware = require('./middleware');
-const loginController = require('./controllers/loginController');
+const controllers = require('./controllers');
 require('dotenv/config');
 
 const app = express();
@@ -15,8 +15,10 @@ app.use(cors());
 app.post(
   '/login',
   middleware.validations.loginValidation,
-  loginController.userLogin,
+  controllers.login.userLogin,
 );
+
+app.get('/products', controllers.products);
 
 app.use((err, _req, res, _next) => {
   res.status(405).json({ err: err.message });
