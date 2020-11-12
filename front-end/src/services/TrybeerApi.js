@@ -22,4 +22,3 @@ export const postRegister = async (name, email, password, role) => {
 
   return dataResponse;
 };
-
