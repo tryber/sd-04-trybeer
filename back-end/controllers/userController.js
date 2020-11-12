@@ -1,3 +1,5 @@
+const userModel = require('../model/userModel');
+
 const userLogin = (req, res) => {
   try {
     const { token } = req;
@@ -10,6 +12,27 @@ const userLogin = (req, res) => {
   }
 };
 
+const userProfile = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await userModel.findByEmail(email);
+    const { password: _, ...userData } = user;
+    res.status(200).json(userData);
+  } catch {}
+};
+
+const editProfile = async (req, res) => {
+  try {
+    const { id, name } = req.body;
+    await userModel.editProfile(id, name);
+    res.status(200).json('Name changed successfully!');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   userLogin,
+  userProfile,
+  editProfile,
 };

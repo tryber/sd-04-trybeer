@@ -8,6 +8,7 @@ import Login from './Pages/login';
 import Admin from './Pages/adminPage';
 import Registro from './Pages/registro';
 import Client from './Pages/clientPage';
+import Profile from './Pages/clientProfile';
 
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/admin/orders" component={ Admin } />
         <Route path="/register" component={ Registro } />
         <Route path="/products" component={ Client } />
+        <Route path="/profile" component={ Profile } />
       </Switch>
     </Container>
   );
