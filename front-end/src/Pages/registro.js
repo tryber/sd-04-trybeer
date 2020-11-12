@@ -1,14 +1,20 @@
-import React, { useState, useRef } from "react";
-import { Field, Label, Input, Button, Notification } from "rbx";
-import SimpleReactValidator from "simple-react-validator";
-import { useHistory } from "react-router";
-import api from "../services/userApi";
+import React, { useState, useRef } from 'react';
+import {
+  Field,
+  Label,
+  Input,
+  Button,
+  Notification
+} from 'rbx';
+import SimpleReactValidator from 'simple-react-validator';
+import { useHistory } from 'react-router';
+import api from '../services/userApi';
 
 const Registro = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("client");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState('client');
   const [checked, setChecked] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -21,41 +27,37 @@ const Registro = () => {
     errorPassword,
   } = simpleValidator.current.fields;
 
-  //https://stackoverflow.com/questions/56356900/way-to-determine-checkbox-checked-in-react-usestate
+  // https://stackoverflow.com/questions/56356900/way-to-determine-checkbox-checked-in-react-usestate
   const handleChecked = () => {
     setChecked(!checked);
-    setRole("admin");
+    setRole('admin');
   };
 
   const registraUsuario = (e) => {
     e.preventDefault();
-    api.register(name, email, password, role).then((res) => {
-      if (role === "admin") {
-        history.push("/admin/orders");
+    api.register(name, email, password, role).then(() => {
+      if (role === 'admin') {
+        history.push('/admin/orders');
       } else {
-        history.push("/products");
+        history.push('/products');
       }
     }).catch((err) => {
       console.log(err.message);
-      setMessage('E-mail already in database.')
+      setMessage('E-mail already in database.');
     });
-
-    console.log("name", name);
-    console.log("email", email);
-    console.log("pass", password);
-    console.log("checked", checked);
-    console.log("role", role);
-    
   };
 
   return (
     <div>
       <h2>Registro</h2>
-      {message ?
-        <Notification color='danger' size='small'>{message}</Notification>
-        : ""
-      }
-      <form onSubmit={registraUsuario}>
+      {message ? (
+        <Notification color="danger" size="small">
+          { message }
+        </Notification>
+      ) : (
+        ''
+      )}
+      <form onSubmit={ registraUsuario }>
         <Field>
           <Label>Nome</Label>
           <Input
@@ -66,11 +68,11 @@ const Registro = () => {
             onChange={(e) => setName(e.target.value)}
             onBlur={simpleValidator.current.showMessageFor("errorName")}
           />
-          {simpleValidator.current.message(
+          { simpleValidator.current.message(
             "errorName",
             name,
             "required|min:11|alpha_space"
-          )}
+          ) }
         </Field>
         <Field>
           <Label>Email</Label>
@@ -78,7 +80,7 @@ const Registro = () => {
             data-testid="signup-email"
             type="text"
             placeholder="Digite seu email"
-            value={email}
+            value={ email }
             onChange={(e) => setEmail(e.target.value)}
             onBlur={simpleValidator.current.showMessageFor("errorEmail")}
           />
@@ -94,9 +96,9 @@ const Registro = () => {
             data-testid="signup-password"
             type="password"
             placeholder="Digite a senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onBlur={simpleValidator.current.showMessageFor("errorPassword")}
+            value={ password }
+            onChange={ (e) => setPassword(e.target.value) }
+            onBlur={ simpleValidator.current.showMessageFor("errorPassword") }
           />
           {simpleValidator.current.message(
             "errorPassword",
@@ -109,9 +111,9 @@ const Registro = () => {
             <input
               data-testid="signup-seller"
               type="checkbox"
-              value={checked}
-              checked={checked}
-              onClick={handleChecked}
+              value={ checked }
+              checked={ checked }
+              onClick={ handleChecked }
             />
             Quero Vender
           </Label>
