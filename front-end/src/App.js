@@ -1,6 +1,7 @@
 import React from 'react';
+
 import { Switch, Route } from 'react-router-dom';
-import { Login, UserProfile } from './pages';
+import { Login, UserProfile, Register } from './pages';
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
       <Route path="/profile">
         <UserProfile />
       </Route>
+      <Route exact path="/" component={ Login } />
+      <Route path="/register" component={ Register } />
     </Switch>
   );
 }

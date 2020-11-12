@@ -6,9 +6,9 @@
   "scripts": {
     "start": "npm run install-back && npm run install-front && npm run start-back && npm run start-front",
     "install-back": "npm --prefix back-end/ install",
-    "start-back": "npm --prefix back-end/ run start",
+    "start-back": "npm --prefix back-end/ run start&",
     "install-front": "npm --prefix front-end/ install",
-    "start-front": "npm --prefix front-end/ run start",
+    "start-front": "npm --prefix front-end/ run start&",
     "lint": "npm --prefix front-end/ run lint && npm --prefix back-end/ run lint",
     "lint-front": "npm --prefix front-end/ run lint",
     "lint-back": "npm --prefix back-end/ run lint",
