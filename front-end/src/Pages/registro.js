@@ -4,7 +4,7 @@ import {
   Label,
   Input,
   Button,
-  Notification
+  Notification,
 } from 'rbx';
 import SimpleReactValidator from 'simple-react-validator';
 import { useHistory } from 'react-router';
@@ -64,14 +64,14 @@ const Registro = () => {
             data-testid="signup-name"
             type="text"
             placeholder="Digite seu nome"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            onBlur={simpleValidator.current.showMessageFor("errorName")}
+            value={ name }
+            onChange={ (e) => setName(e.target.value) }
+            onBlur={ simpleValidator.current.showMessageFor('errorName') }
           />
           { simpleValidator.current.message(
-            "errorName",
+            'errorName',
             name,
-            "required|min:11|alpha_space"
+            'required|min:11|alpha_space',
           ) }
         </Field>
         <Field>
@@ -81,13 +81,13 @@ const Registro = () => {
             type="text"
             placeholder="Digite seu email"
             value={ email }
-            onChange={(e) => setEmail(e.target.value)}
-            onBlur={simpleValidator.current.showMessageFor("errorEmail")}
+            onChange={ (e) => setEmail(e.target.value) }
+            onBlur={ simpleValidator.current.showMessageFor('errorEmail') }
           />
           {simpleValidator.current.message(
-            "errorEmail",
+            'errorEmail',
             email,
-            "required|email"
+            'required|email',
           )}
         </Field>
         <Field>
@@ -98,12 +98,12 @@ const Registro = () => {
             placeholder="Digite a senha"
             value={ password }
             onChange={ (e) => setPassword(e.target.value) }
-            onBlur={ simpleValidator.current.showMessageFor("errorPassword") }
+            onBlur={ simpleValidator.current.showMessageFor('errorPassword') }
           />
           {simpleValidator.current.message(
-            "errorPassword",
+            'errorPassword',
             password,
-            "required|min:5"
+            'required|min:5'
           )}
         </Field>
         <Field>
@@ -123,7 +123,7 @@ const Registro = () => {
             Cadastrar
           </Button>
         ) : (
-          <Button data-testid="signup-btn" color="success" disabled={true}>
+          <Button data-testid="signup-btn" color="success" disabled={ true }>
             Cadastrar
           </Button>
         )}

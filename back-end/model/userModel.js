@@ -1,14 +1,13 @@
 const connection = require('./connection');
 
 const findByEmail = async (userEmail) =>
-  connection()
-    .then((db) =>
+  connection().then((db) =>
       db
         .getTable('users')
         .select()
         .where('email = :email')
         .bind('email', userEmail)
-        .execute()
+        .execute(),
     )
     .then((results) => results.fetchOne())
     .then(([id, name, email, password, role]) => ({
@@ -23,11 +22,11 @@ const registerUser = async (name, email, password, role) => {
   if (!findByEmail(email)) throw new Error();
   
   return await connection().then((db) =>
-  db
-    .getTable('users')
-    .insert(['name', 'email', 'password', 'role'])
-    .values(name, email, password, role)
-    .execute()
+    db
+      .getTable('users')
+      .insert(['name', 'email', 'password', 'role'])
+      .values(name, email, password, role)
+      .execute()
   );
 };
 
