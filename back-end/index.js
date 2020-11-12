@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT;
 
-const router = require('./routes');
+const routes = require('./routes');
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -14,6 +14,6 @@ app.use(cors());
 
 app.get('/', (_, res) => res.send('ok'));
 
-app.use(router);
+app.use(routes);
 
 app.listen(port, () => console.log(`Running on port ${port}...`));

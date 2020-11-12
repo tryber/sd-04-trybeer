@@ -13,7 +13,7 @@ const registerUser = async (name, email, password, role) => {
   return result;
 };
 
-const findUserByEmail = async (emailInput) => {
+const searchUserByEmail = async (emailInput) => {
   const result = await connection()
     .then((db) => db
       .getTable('users')
@@ -30,5 +30,5 @@ const findUserByEmail = async (emailInput) => {
 
 module.exports = {
   registerUser,
-  findUserByEmail,
+  searchUserByEmail,
 };
