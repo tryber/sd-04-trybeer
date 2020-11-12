@@ -1,13 +1,9 @@
-import Checkout from './Checkout';
-import Home from './Home';
-import Login from './Login';
-import NotFound from './NotFound';
-import Orders from './Orders';
-import OrdersDetails from './OrdersDetails';
-import Products from './Products';
-import Profile from './Profile';
-import Register from './Register';
-
-export {
-  Checkout, Home, Login, NotFound, Orders, OrdersDetails, Products, Profile, Register,
-};
+export { default as Checkout } from './Checkout';
+export { default as Home } from './Home';
+export { default as Login } from './Login';
+export { default as NotFound } from './NotFound';
+export { default as Orders } from './Orders';
+export { default as OrdersDetails } from './OrdersDetails';
+export { default as Products } from './Products';
+export { default as Profile } from './Profile';
+export { default as Register } from './Register';
