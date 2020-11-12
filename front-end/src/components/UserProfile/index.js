@@ -1,43 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../Header/index';
 
 import './style.css';
 
-const UserProfile = () => {
+const UserProfile = ({ name, mail }) => {
+  const [newName, setNewName] = useState(name);
+  const disableButton = newName === name;
   return (
     <div>
       <Header title={'Meu Perfil'} />
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
+      <form action="/profile" method="POST">
+        <div className="form-group">
+          <label htmlFor="exampleInputPassword1">Name</label>
           <input
+            data-testid="profile-name-input"
+            onChange={(e) => setNewName(e.target.value)}
+            type="text"
+            className="form-control"
+            id="disabledInput"
+            placeholder="Name"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1">Email</label>
+          <input
+            data-testid="profile-email-input"
             type="email"
-            class="form-control"
+            className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            placeholder="Enter email"
-          />
-          <small id="emailHelp" class="form-text text-muted">
-            We'll never share your email with anyone else.
-          </small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-            placeholder="Password"
+            placeholder={mail}
+            disabled
           />
         </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
-            Check me out
-          </label>
-        </div>
-        <button type="submit" class="btn btn-primary">
-          Submit
+        <button
+          data-testid="profile-save-btn"
+          type="submit"
+          className="btn btn-primary"
+          disabled={disableButton}
+        >
+          Salvar
         </button>
       </form>
     </div>

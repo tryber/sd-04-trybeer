@@ -36,7 +36,7 @@ const Login = () => {
 
   return (
     <div>
-    <Header title={'Meu Perfil'} />
+    <Header title={'Login'} />
     <form onSubmit={handleSubmit} className="m-3" style={{padding: "15%"}}>
       <section className="card w-75 mx-auto m-3">
         <div className="form-group w-75 mx-auto m-2">
