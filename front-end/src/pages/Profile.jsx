@@ -6,9 +6,10 @@ import axios from 'axios';
 import api from '../services/api';
 import TopBar from '../components/ClientBar.jsx';
 
-const sendEdit = async (e, name, email, history) => {
+const sendEdit = async (e, name, email, history, setMessage) => {
   e.preventDefault();
   await api.put('/profile', { name, email });
+  setMessage('Atualização concluída com sucesso');
   history.push('/profile');
   // ========================== //
 };
@@ -16,6 +17,7 @@ const sendEdit = async (e, name, email, history) => {
 const URL = 'http://localhost:3001/profile/1';
 
 export default () => {
+  const [message, setMessage] = useState(null);
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -44,7 +46,8 @@ export default () => {
   const history = useHistory();
   return (
     <div>
-      <TopBar title={'Meu Perfil'} isAdm={false} />
+      <h2>{message}</h2>
+      <TopBar title={'Meu perfil'} isAdm={false} />
 
       <div className="container">
         <div className="col-8">
@@ -69,11 +72,12 @@ export default () => {
               className="form-control"
               value={userEmail}
               readOnly
-              data-testid="profile-save-btn"
             />
             <br />
             <button
-              onClick={(e) => sendEdit(e, newName, userEmail, history)}
+              onClick={(e) =>
+                sendEdit(e, newName, userEmail, history, setMessage)
+              }
               className="btn btn-outline-success"
               disabled={validateEdit(newName, userName)}
               data-testid="profile-save-btn"

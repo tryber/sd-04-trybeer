@@ -22,20 +22,20 @@ const routes = () => (
       <Route exact path="/">
         <Redirect to="/login" />
       </Route>
-      <Route path="/login" component={Login} />
+      <Route path="/login" component={ Login } />
 
-      <Route exact path="/profile/:id" component={Profile} />
-      <Route exact path="/products" component={Products} />
+      <Route exact path="/profile/:id" component={ Profile } />
+      <Route exact path="/products" component={ Products } />
 
-      <Route exact path="/register" component={Register} />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/checkout" component={Checkout} />
-      <Route path="/orders" component={OrdersClient} />
-      <Route exact path="/orders:id" component={Details} />
-      <Route exact path="/admin/orders" component={OrdersAdm} />
-      <Route path="/test" component={test} />
+      <Route exact path="/register" component={ Register } />
+      <Route path="/login" component={ Login } />
+      <Route path="/register" component={ Register } />
+      <Route path="/profile" component={ Profile } />
+      <Route path="/checkout" component={ Checkout } />
+      <Route path="/orders" component={ OrdersClient } />
+      <Route exact path="/orders:id" component={ Details } />
+      <Route exact path="/admin/orders" component={ OrdersAdm } />
+      <Route path="/test" component={ test } />
     </Switch>
   </Router>
 );
