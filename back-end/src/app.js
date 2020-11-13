@@ -11,5 +11,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/register', router.userRouter)
+app.use('/login', router.loginRoute);
 
 module.exports = app;

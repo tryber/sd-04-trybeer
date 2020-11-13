@@ -1,35 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
-import RegisterUserAPI from '../services/api';
+import api from '../services/api';
 import './RegisterForm.css';
 
 
 const createUserAPI = async (name, email, password, role) => {
-  return await RegisterUserAPI(name, email, password, role)
+  return await api.RegisterUserAPI(name, email, password, role)
     .then((data) =>  data)
     .catch((error) => error);
 };
 
 const RegisterForm = () => {
-  const [ state, setState ] = useState (
+  const [ state, setState ] = useState(
     {
     name: '',
     email: '',
     password: '',
     role:'cliente',
-    box: false
+    box: false,
+    erro: null,
   });
 
-  const { name, email, password, role, box } = state;
+  const { name, email, password, role, box, erro } = state;
 
-  const checkName = (nome) => nome.match(/^[a-zA-Z\s]+$/);
+  const checkName = (nome) => nome.match(/^([a-zA-Z\s]){12,100}$/);
   const checkEmail = (mail) => mail.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
-  const checkSenha = (senha) => senha.length > 6;
+  const checkSenha = (senha) => senha.length >= 6;
 
   const handleName = (nome) => setState({ ...state, name: nome });
   const handleEmail = (carta) => setState({ ...state, email: carta });
   const handlePassword = (valor) => setState({ ...state, password: valor });
-  const handleBox = () => setState({ ...state, box: true, role: "administrador" });
+  const handleBox = () => setState({ ...state, box: true, role: "administrador"});
+
+  useEffect(() => {
+      api.getEmail().then((result) => console.log(result)) 
+  },[]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -37,12 +42,12 @@ const RegisterForm = () => {
       const response = createUserAPI( name, email, password, role );
       const user = await response;
       // setLs('user', response);
-      localStorage.setItem('user', JSON.stringify(response));
+      localStorage.setItem('user', JSON.stringify(user));
       return history.push( box ? '/admin/orders' : '/products');
     } catch (err) {
-      return console.error('E-mail already in database.');
+      return setState({ ...state, erro:'E-mail already in database.' });
     }
-  }
+  };
   const history = useHistory();
 
   return(
@@ -102,6 +107,7 @@ const RegisterForm = () => {
           <label className="quero-vender">
             Quero Vender
           </label>
+            {erro && <span>{erro}</span>}
           <input
             className="cadastrar-input"
             type="submit"
