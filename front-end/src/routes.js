@@ -7,6 +7,7 @@ import { Provider } from './context';
 import Register from './pages/Register/index';
 import ClientProfile from './pages/ClientProfile/index';
 import LoginPage from './pages/LoginPage';
+import ProductDetails from './pages/ProductDetails';
 
 const Routes = () => (
   <Provider>
@@ -17,7 +18,8 @@ const Routes = () => (
       <Route path="/products" component={ Produtcs } />
       <Route path="/login" component={ LoginPage } />
       <Route path="/profile" component={ ClientProfile } />
-      <Route path="/orders" component={ MyOrdereds } />
+      <Route path="/orders" exact component={ MyOrdereds } />
+      <Route path="/orders/:orderNumber" exact component={ ProductDetails } />
     </Switch>
   </Provider>
 );
