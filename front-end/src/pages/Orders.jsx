@@ -1,10 +1,10 @@
 import React from 'react';
 import TopBar from '../components/ClientBar.jsx';
 
-const Products = () => (
+const Orders = () => (
   <div>
-    <TopBar title={'TryBeer'} isAdm={false} />
+    <TopBar title={'Meus Pedidos'} isAdm={false} />
   </div>
 );
 
-export default Products;
+export default Orders;
