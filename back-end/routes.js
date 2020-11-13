@@ -4,7 +4,7 @@ const userMiddlewares = require('./middlewares/userMiddleware');
 
 const userController = require('./controller/UserController');
 
-router.post('/login', userMiddlewares.validateUser, userController.userLogin);
+router.post('/login', userController.userLogin);
 
 router.post('/register', userMiddlewares.isEmailAlreadyExists, userController.userRegister);
 
