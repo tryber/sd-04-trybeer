@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/images', express.static('back-end'));
+app.use('/images', express.static('images'));
 
 app.get('/login', (_req, res) => {
   res.status(200).send({ project: 'Trybeer' });
@@ -53,9 +53,5 @@ app.get('/products', async (_req, res) => {
   const products = await productsModel.getProducts();
   res.status(200).json(products);
 });
-
-// app.get('/images', (req, res) => {
-//   console.log(req, res)
-// });
 
 app.listen(3001, () => console.log('Listening on 3001'));

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const Menu = ({ title }) => {
   const [menu, setMenu] = useState(false);
-  console.log(menu);
 
   const cleanLocal = () => {
     localStorage.clear();
