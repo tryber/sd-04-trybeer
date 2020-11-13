@@ -42,8 +42,24 @@ const saveEditController = async (req, res) => {
   }
 };
 
+const registerUserController = async (req, res) => {
+  const { name, email, password, checkbox } = req.body;
+  try {
+    const newUser = await userService.registerUserService(
+      name,
+      email,
+      password,
+      checkbox
+    );
+    return res.status(201).json(newUser);
+  } catch (_err) {
+    return res.status(401).json({ message: 'BAD REQUEST' });
+  }
+};
+
 module.exports = {
   userLogin,
   getUserByEmail,
   saveEditController,
+  registerUserController,
 };

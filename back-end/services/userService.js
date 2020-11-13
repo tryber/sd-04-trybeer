@@ -6,7 +6,13 @@ const findUserByEmail = async (email, password) => {
   if (!user || user.password !== password) {
     return { err: { message: 'Incorrect username or password' } };
   }
-  return { token: createToken(user), name: user.name, role: user.role };
+  return { token: createToken(user), user };
+};
+
+const registerUserService = async (name, email, password, checkbox) => {
+  const role = checkbox ? 'administrator' : 'client';
+  const newUser = await userModel.registerUser(email, password, name, role);
+  return newUser;
 };
 
 const findByIdService = async (id) => {
@@ -38,4 +44,5 @@ module.exports = {
   findUserByEmail,
   findByIdService,
   updateUserService,
+  registerUserService,
 };

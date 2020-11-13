@@ -1,12 +1,16 @@
+import { useHistory } from 'react-router-dom';
 import React, { useContext, useState } from 'react';
 import { useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import api from '../services/api';
+import TopBar from '../components/ClientBar.jsx';
 
-const sendEdit = async (e, name, email) => {
+const sendEdit = async (e, name, email, history) => {
   e.preventDefault();
-  await api.put('/profile', { name, email }); // ========================== //
+  await api.put('/profile', { name, email });
+  history.push('/profile');
+  // ========================== //
 };
 
 const URL = 'http://localhost:3001/profile/1';
@@ -37,9 +41,11 @@ export default () => {
   };
 
   const validateEdit = (value, compare) => value === compare;
-
+  const history = useHistory();
   return (
     <div>
+      <TopBar title={'Meu Perfil'} isAdm={false} />
+
       <div className="container">
         <div className="col-8">
           <h1>Profile</h1>
@@ -48,6 +54,7 @@ export default () => {
             <label htmlFor="">Name</label>
             <input
               onChange={(e) => callSetName(e.target.value)}
+              data-testid="profile-name-input"
               type="text"
               name={newName}
               value={newName}
@@ -56,17 +63,20 @@ export default () => {
             <br />
             <label htmlFor="">E-mail</label>
             <input
+              data-testid="profile-email-input"
               type="text"
               name={userEmail}
               className="form-control"
               value={userEmail}
               readOnly
+              data-testid="profile-save-btn"
             />
             <br />
             <button
-              onClick={(e) => sendEdit(e, newName, userEmail)}
+              onClick={(e) => sendEdit(e, newName, userEmail, history)}
               className="btn btn-outline-success"
               disabled={validateEdit(newName, userName)}
+              data-testid="profile-save-btn"
             >
               Salvar
             </button>

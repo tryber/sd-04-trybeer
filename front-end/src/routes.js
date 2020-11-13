@@ -6,11 +6,15 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import Orders from './pages/admin/Orders';
 import Login from './pages/Login';
 import Products from './pages/Products';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
+import Checkout from './pages/CloseOrder';
+import OrdersClient from './pages/Orders';
+import Details from './pages/Details';
+import OrdersAdm from './pages/admin/Orders';
+import test from './pages/test';
 
 const routes = () => (
   <Router>
@@ -22,8 +26,16 @@ const routes = () => (
 
       <Route exact path="/profile/:id" component={Profile} />
       <Route exact path="/products" component={Products} />
-      <Route exact path="/admin/orders" component={Orders} />
+
       <Route exact path="/register" component={Register} />
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
+      <Route path="/profile" component={Profile} />
+      <Route path="/checkout" component={Checkout} />
+      <Route path="/orders" component={OrdersClient} />
+      <Route exact path="/orders:id" component={Details} />
+      <Route exact path="/admin/orders" component={OrdersAdm} />
+      <Route path="/test" component={test} />
     </Switch>
   </Router>
 );

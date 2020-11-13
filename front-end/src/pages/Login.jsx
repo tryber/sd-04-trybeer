@@ -19,9 +19,12 @@ function Login() {
       password
     })
       .then(response => {
-        const { token, role } = response.data;
+        const { token, user } = response.data;
+        const { name, email, role } = user;
+        const userData = { name, email, token, role };
         localStorage.setItem('token', JSON.stringify(token));
-        return (role === 'administrator' ? setAdminUser(true) : setClientUser(true));
+        localStorage.setItem('user', JSON.stringify(userData));
+        return (user.role === 'administrator' ? setAdminUser(true) : setClientUser(true));
       })
       .catch(e => console.log(e));
   };
