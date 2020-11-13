@@ -7,8 +7,13 @@ import {
 } from 'react-router-dom';
 
 import Login from './pages/Login';
-import Profile from './pages/Profile';
-import Main from './pages/MainPage';
+import Products from './pages/Products';
+import ProfileClient from './pages/Profile';
+import Register from './pages/Register';
+import Checkout from './pages/CloseOrder';
+import OrdersClient from './pages/Orders';
+import Details from './pages/Details';
+import OrdersAdm from './pages/admin/Orders';
 import test from './pages/test';
 
 const routes = () => (
@@ -18,10 +23,14 @@ const routes = () => (
         <Redirect to="/login" />
       </Route>
       <Route path="/login" component={ Login } />
-      <Route path="/trybeer" component={ Main } />
+      <Route path="/register" component={ Register } />
+      <Route path="/profile" component={ ProfileClient } />
+      <Route path="/products" component={ Products } />
+      <Route path="/checkout" component={ Checkout } />
+      <Route path="/orders" component={ OrdersClient } />
+      <Route exact path="/orders:id" component={ Details } />
+      <Route exact path="/admin/orders" component={ OrdersAdm } />
       <Route path="/test" component={ test } />
-
-      <Route exact path="/profile" component={ Profile } />
     </Switch>
   </Router>
 );

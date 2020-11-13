@@ -1,3 +1,4 @@
+const { createToken } = require('../middlewares/auth');
 const userModel = require('../models/userModel');
 
 const findUserByEmail = async (email, password) => {
@@ -5,9 +6,16 @@ const findUserByEmail = async (email, password) => {
   if (!user || user.password !== password) {
     return { err: { message: 'Incorrect username or password' } };
   }
-  return user;
+  return { token: createToken(user), user };
+};
+
+const registerUserService = async (name, email, password, checkbox) => {
+  const role = checkbox ? 'administrator' : 'client';
+  const newUser = await userModel.registerUser(email, password, name, role);
+  return newUser;
 };
 
 module.exports = {
   findUserByEmail,
+  registerUserService,
 };

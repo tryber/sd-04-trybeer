@@ -17,6 +17,22 @@ const findUserByEmail = async (emailInput) => {
   }
 };
 
+const registerUser = async (name, email, password, role) => {
+  try {
+    const db = await connection();
+    const table = await db.getTable('users');
+    const result = await table
+      .insert(['name', 'email', 'password', 'role'])
+      .values(name, email, password, role)
+      .execute();
+    return result;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
 module.exports = {
   findUserByEmail,
+  registerUser,
 };
