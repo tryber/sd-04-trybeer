@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 // falta criar o context para adicionar e tirar item do carrinho
 
-export default function ProductCard(props) {
+export default function ProductCard(data) {
   // variavel para formatacao do price
   const formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' };
-  const { index, name, price, urlImage, prodQuantity } = props;
+  const { index, name, price, urlImage, prodQuantity } = data;
   const [quantity, setQuantity] = useState(0);
 
   // roda quando o card eh montado, checa/ cria um localstorage
@@ -49,7 +49,7 @@ export default function ProductCard(props) {
       </div>
       <div>
         <button
-          type='button'
+          type="button"
           disabled={ { quantity } === 0 }
           data-testid={ `${index - 1}-product-minus` }
           onClick={ () => setQuantity(quantity - 1) }
@@ -58,7 +58,7 @@ export default function ProductCard(props) {
         </button>
         <div data-testid={ `${index - 1}-product-qtd` }>{ quantity }</div>
         <button
-          type='button'
+          type="button"
           disabled={ { quantity } === prodQuantity }
           data-testid={ `${index - 1}-product-plus` }
           onClick={ () => setQuantity(quantity + 1) }
