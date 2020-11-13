@@ -27,6 +27,5 @@ const Register = () => (
       </FormControl>
     </div>
   );
-};
 
 export default Register;
