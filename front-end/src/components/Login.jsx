@@ -5,7 +5,7 @@ import loginApi from '../services/api';
 
 const Login = () => {
   useEffect(() => {
-    console.log('Hello World');
+    // console.log('Hello World');
   }, []);
 
   // const { user, setUser } = useContext(TrybeerContext);
