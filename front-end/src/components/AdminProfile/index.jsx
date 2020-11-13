@@ -38,7 +38,7 @@ const AdminProfile = ({ name, mail }) => {
           data-testid="profile-save-btn"
           type="button"
           className="btn btn-primary"
-          onClick={() => window.location.href = 'http://localhost:3000/'}
+          onClick={() => (window.location.href = 'http://localhost:3000/')}
         >
           Login
         </button>

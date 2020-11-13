@@ -8,7 +8,7 @@ const UserProfile = ({ name, mail }) => {
   const disableButton = newName === name;
   return (
     <div>
-      <Header title={'Meu Perfil'} />
+      <Header title={'Meu perfil'} />
       <form action="/profile" method="POST">
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Name</label>
@@ -30,7 +30,7 @@ const UserProfile = ({ name, mail }) => {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder={mail}
-            disabled
+            readOnly
           />
         </div>
         <button

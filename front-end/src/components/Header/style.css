@@ -2,17 +2,13 @@
   align-items: center;
   background-color: #24252a;
   display: flex;
-<<<<<<< HEAD
   height: 80px;
   position: fixed;
   width: 100%;
   flex-direction: column-reverse;
-=======
-  flex-direction: column-reverse;
   height: 80px;
   position: fixed;
   width: 100%;
->>>>>>> 67290b957dc196198b362b2ea3a09d428b7ce878
 }
 
 h1 {
@@ -24,11 +20,8 @@ h1 {
 header {
   position: fixed;
 }
-<<<<<<< HEAD
-=======
 
 div {
   display: flex;
   flex-direction: column;
 }
->>>>>>> 67290b957dc196198b362b2ea3a09d428b7ce878

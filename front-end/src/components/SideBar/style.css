@@ -5,14 +5,11 @@
 
 #sideBar {
   background-color: black;
-<<<<<<< HEAD
   height: 100%;
   left: -24%;
   position: fixed;
-=======
   margin-top: 80px;
   height: 67%;
-  left: -24%;
   /* position: fixed; */
   width: 0px;
 }
@@ -23,29 +20,23 @@
   height: 67%;
   left: -24%;
   /* position: fixed; */
->>>>>>> 67290b957dc196198b362b2ea3a09d428b7ce878
   width: 24%;
 }
 
 #sideBar.active {
-<<<<<<< HEAD
   left: 0;
-=======
   width: 24%;
 }
 
 #sideB.active {
   width: 0px;
->>>>>>> 67290b957dc196198b362b2ea3a09d428b7ce878
 }
 
 #sideBar li {
   border-bottom: 1px solid gray;
   color: white;
   font-size: 30px;
-<<<<<<< HEAD
   padding: 30px;
-=======
   padding: 20px;
   text-align: center;
 }
@@ -55,16 +46,12 @@
   color: white;
   font-size: 30px;
   padding: 20px;
->>>>>>> 67290b957dc196198b362b2ea3a09d428b7ce878
   text-align: center;
 }
 
 .toggle-btn {
-<<<<<<< HEAD
   left: 105%;
-=======
   left: 25%;
->>>>>>> 67290b957dc196198b362b2ea3a09d428b7ce878
   position: absolute;
   top: 15px;
 }
