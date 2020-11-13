@@ -19,7 +19,7 @@ const routes = () => (
         <Redirect to="/login" />
       </Route>
       <Route path="/login" component={ Login } />
-
+      <Route path="/register" component={ Register } />
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/products" component={ Products } />
       <Route exact path="/admin/orders" component={ Orders } />
