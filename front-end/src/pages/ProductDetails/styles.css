@@ -1,0 +1,10 @@
+.product-details-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-detail-info, p {
+  font-size: 19pt;
+  font-weight: 700;
+}
