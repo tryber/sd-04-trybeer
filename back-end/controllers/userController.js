@@ -1,10 +1,12 @@
 const rescue = require('express-rescue');
 const userService = require('../services/userService');
 
-const userRegister = rescue(async (req, res) => {
+const userRegister = rescue(async (req, res, next) => {
   const { name, email, password, role } = req.body;
-  const newUser = await userService.userRegister(name, email, password, role);
-  res.status(200).json(newUser);
+  await userService.userRegister(name, email, password, role);
+  // req.body = newUser
+  next();
+  // res.status(200).json(newUser);
 });
 
 const userUpdate = rescue(async (req, res) => {

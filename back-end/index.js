@@ -23,6 +23,7 @@ app.post(
   '/register',
   middleware.validations.registerValidation,
   userController.userRegister,
+  loginController.userLogin,
 );
 
 app.put('/profile', userController.userUpdate);

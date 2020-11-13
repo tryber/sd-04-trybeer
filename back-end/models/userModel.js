@@ -8,7 +8,7 @@ const registerNewUser = async (userName, userEmail, userPwd, role) => {
       .insert(['name', 'email', 'password', 'role'])
       .values(userName, userEmail, userPwd, role)
       .execute();
-    return { name: userName, email: userEmail, role };
+    return { name: userName, email: userEmail, password: userPwd, role };
   } catch (err) {
     throw new Error(err);
   }

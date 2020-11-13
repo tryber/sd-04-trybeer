@@ -36,7 +36,12 @@ const Register = () => {
     const response = await postRegister(userName, userEmail, userPass, definedRole);
 
     // response.err ? setForm({ ...form, error: response.err }) : setForm({ ...form, error: null });
-    if (response.err) return setForm({ ...form, error: response.err });
+    if (response.data.err) return setForm({ ...form, error: response.data.err });
+
+    const { data: { token, userData: { name, role } } } = response;
+    localStorage.user = JSON.stringify({
+      name, email, token, role,
+    });
 
     const { token } = response;
 
