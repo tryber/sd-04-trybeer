@@ -1,12 +1,12 @@
 const connection = require('./connection');
 
 const createUser = async ({ name, email, password, role }) => {
-    const db = await connection();
-    await db
-      .getTable('users')
-      .insert(['name', 'email', 'password', 'role'])
-      .values(name, email, password, role)
-      .execute();
+  const db = await connection();
+  await db
+    .getTable('users')
+    .insert(['name', 'email', 'password', 'role'])
+    .values(name, email, password, role)
+    .execute();
 };
 
 const getUserByEmail = async (userEmail) => {
@@ -30,7 +30,8 @@ const getUserByEmail = async (userEmail) => {
 
 const getAllEmail = async () => {
   const db = await connection();
-  const results = await db.getTable('users').select(['email']).execute();
+  const results = await db.getTable('users').select(['email'])
+    .execute();
 
   const listing = await results.fetchAll();
   const list = await listing.map(([email]) => ({ email }));
