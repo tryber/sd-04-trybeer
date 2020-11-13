@@ -9,7 +9,7 @@ import {
   Input,
 } from '@chakra-ui/core';
 
-const Register = () => {
+const Register = () => (
   return (
     <div>
       <FormControl>
