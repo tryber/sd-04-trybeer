@@ -8,6 +8,18 @@ const validateUserByEmail = async (email, password) => {
   return user;
 };
 
+const isEmailAlreadyExists = async (req, res, next) => {
+  const { email } = req.body;
+
+  const userExists = await UserModel.searchUserByEmail(email);
+  if (userExists) {
+    return res.status(200).json({ err: 'E-mail already in database.' });
+  }
+
+  next();
+};
+
 module.exports = {
   validateUserByEmail,
+  isEmailAlreadyExists,
 };
