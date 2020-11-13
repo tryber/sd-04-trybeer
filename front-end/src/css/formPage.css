@@ -1,15 +1,15 @@
-body, html, body > div, .login-page{
+body, html, body > div, .form-page{
   height: 100%;
 }
 
-.login-page {
+.form-page {
   align-items: flex-start;
   background: linear-gradient(45deg, #ff1317 0%,#ff3b3b 12%,#ff6767 25%,#ff5b5b 38%,#ff4d50 49%,#ff6767 49%,#ff7173 74%,#ff7d86 100%);
   display: flex;
   justify-content: center;
 }
 
-.login-container {
+.form-container {
   align-items: center;
   background-color: white;
   border-radius: 3px;
@@ -19,11 +19,10 @@ body, html, body > div, .login-page{
   justify-content: flex-start;
   margin-bottom: auto;
   margin-top: 2%;
-  position: relative;
   width: 90%;
 }
 
-.login-form {
+.form {
   align-items: center;
   color: rgb(63, 63, 63);
   display: flex;
@@ -34,24 +33,24 @@ body, html, body > div, .login-page{
   width: 85%;
 }
 
-.login-form > label {
+.form > label {
   display: flex;
   flex-direction: column;
   margin: 2% 0;
   width: 100%;
 }
   
-.login-form input {
+.form input {
   border: 1px solid rgb(189, 189, 189);
   border-radius: 6px;
   color: rgb(75, 75, 75);
 }
 
-.login-form > label {
+.form > label {
   margin: 2% 0;
 }
 
-.login-form > button {
+.form > button {
   border: 1px red groove;
   border-bottom: 1px rgb(141, 4, 4) groove;
   border-radius: 5px;
@@ -63,48 +62,64 @@ body, html, body > div, .login-page{
   width: 100%;
 }
 
-.login-form > button:hover:enabled {
+.form > button:hover:enabled {
   background-color: rgb(235, 235, 235);
   box-shadow: 2px 2px 6px rgb(43, 0, 0);
 }
 
-.login-form > button:disabled {
+.form > button:disabled {
   border: 1px rgb(165, 165, 165) groove;
   color:  rgb(165, 165, 165);
 }
 
-.login-form > a {
+.form > a {
   color: rgb(156, 0, 0);
   text-decoration: dotted;
 }
 
-.login-form > a:hover {
+.form > a:hover {
   color: rgb(255, 0, 0);
 }
 
-.login-header {
+.form-img {
   display: flex;
   justify-content: center;
 }
 
 .duff-logo {
   filter: drop-shadow( 2px 2px 6px rgb(59, 59, 59));
-  width: 70%;
+  width: 50%;
+}
+
+.form-checkbox:hover {
+  text-decoration: underline;
+}
+
+.get-duffed {
+  display: none;
 }
 
 @media screen and (min-width: 500px) {
-  .login-form {
+  .form {
     font-size: initial;
   }
 }
 
 @media screen and (min-width: 560px) {
-  .login-container {
+  .form-container {
     width: 560px;
   }
-  .login-form {
+  .form {
     margin-left: initial;
     width: 80%;
   }
 }
 
+@media screen and (min-width: 700px) {
+  .get-duffed {
+    display: initial;
+    position: absolute;
+    left: 0;
+    width: 15%;
+  }
+}

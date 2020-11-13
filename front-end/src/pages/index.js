@@ -1,5 +1,2 @@
-import Login from './Login';
-import UserProfile from './UserProfile';
-import Register from './Register';
-
-export { Login, UserProfile, Register };
+export { default as UserProfile } from './UserProfile';
+export { default as FormPage } from './FormPage';
