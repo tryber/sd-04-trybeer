@@ -10,7 +10,6 @@ import {
 } from '@chakra-ui/core';
 
 const Register = () => (
-  return (
     <div>
       <FormControl>
         <FormLabel htmlFor="name">Nome</FormLabel>
