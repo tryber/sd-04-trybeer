@@ -36,7 +36,9 @@ const Login = () => {
     const { name, email, role } = await api.data.user;
     const { token } = api.data;
 
-    localStorage.setItem('user', JSON.stringify({ name, email, role, token }));
+    localStorage.setItem(
+      'user', JSON.stringify({ name, email, role, token })
+      );
 
     setErrorMsg('');
 

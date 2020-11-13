@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../Header/index';
 
 import './style.css';
@@ -13,6 +14,7 @@ const UserProfile = ({ name, mail }) => {
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Name</label>
           <input
+            name="exampleInputPassword1"
             data-testid="profile-name-input"
             onChange={ (e) => setNewName(e.target.value) }
             type="text"
@@ -24,6 +26,7 @@ const UserProfile = ({ name, mail }) => {
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email</label>
           <input
+            name="exampleInputEmail1"
             data-testid="profile-email-input"
             type="email"
             className="form-control"
@@ -45,5 +48,10 @@ const UserProfile = ({ name, mail }) => {
     </div>
   );
 };
+
+UserProfile.propTypes = {
+  name: PropTypes.string,
+  mail: PropTypes.string,
+}
 
 export default UserProfile;

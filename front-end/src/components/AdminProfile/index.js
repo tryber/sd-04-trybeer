@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../Header/index';
+import PropTypes from 'prop-types';
 
 import './style.css';
 
 const AdminProfile = ({ name, mail }) => {
-  const [newName, setNewName] = useState(name);
   const newDirection = () => window.location.href = 'http://localhost:3000/';
   return (
     <div>
@@ -13,6 +13,7 @@ const AdminProfile = ({ name, mail }) => {
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Name</label>
           <input
+            name="exampleInputPassword1"
             data-testid="profile-name"
             onChange={ (e) => setNewName(e.target.value) }
             type="text"
@@ -25,6 +26,7 @@ const AdminProfile = ({ name, mail }) => {
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email</label>
           <input
+            name="exampleInputEmail1"
             data-testid="profile-email"
             type="email"
             className="form-control"
@@ -45,6 +47,11 @@ const AdminProfile = ({ name, mail }) => {
       </form>
     </div>
   );
+};
+
+AdminProfile.propTypes = {
+  name: PropTypes.string,
+  mail: PropTypes.string,
 };
 
 export default AdminProfile;
