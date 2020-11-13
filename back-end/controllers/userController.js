@@ -2,11 +2,11 @@ const rescue = require('express-rescue');
 const { userService } = require('../services');
 
 const registerUser = async (req, res) => {
-  const { name, email, password, sellerCheckbox } = req.body;
-  console.log(sellerCheckbox);
-  if (sellerCheckbox.value === true)
+  console.log(req);
+  const { userName, emailUser, password, isSeller } = req.body;
+  // if (sellerCheckbox.value === true)
 
-  const user = await registerUser(name, email, password, role);
+  // const user = await registerUser(name, email, password, role);
 
 };
 
