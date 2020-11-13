@@ -41,15 +41,14 @@ const Register = () => {
     const { token } = response;
 
     localStorage.user = JSON.stringify({
-      name, email, token, role,
+      name, email, token, role: definedRole,
     });
 
     if (definedRole === 'administrator') {
       setForm({ ...form, redirect: 'administrator' });
     } else setForm({ ...form, redirect: 'client' });
 
-    setForm({ ...form, error: null });
-    return true;
+    return setForm({ ...form, error: null });
   };
 
   const handleValidForm = async (param) => {
@@ -60,8 +59,7 @@ const Register = () => {
   const handleChangeInput = (event) => {
     if (event === 'role') return setForm({ ...form, role: !role });
     const { name: inputName, value } = event.target;
-    setForm({ ...form, [inputName]: value });
-    return true;
+    return setForm({ ...form, [inputName]: value });
   };
 
   const handleDisableButton = (param) => {
