@@ -34,12 +34,7 @@ const SideBar = () => {
           <li></li>
         </span>
         <Link to="/login">
-          <li
-            data-testid="side-menu-item-logout"
-            onClick={
-              (() => window.localStorage.clear())
-            }
-          >
+          <li data-testid="side-menu-item-logout" onClick={() => window.localStorage.clear()}>
             Sair
           </li>
         </Link>
