@@ -2,31 +2,32 @@ const { connection } = require('../dbConnection');
 
 const getAll = async () =>
   connection().then((db) => db.getTable('users').select([])
-  .execute())
+    .execute())
     .then((results) => results.fetchAll())
     .then((users) => users.map(([id, name, email, password, role]) => ({
-        id,
-        name,
-        email,
-        password,
-        role,
-      }))
+      id,
+      name,
+      email,
+      password,
+      role,
+    })),
     );
 
-const getById = async (id) =>
+const getById = async (UserId) =>
   connection()
-    .then((db) =>
-      db.getTable('users').select([]).where('id = :id').bind('id', id).execute()
-    )
+    .then((db) => db.getTable('users').select([])
+    .where('id = :id')
+    .bind('id', UserId)
+    .execute())
     .then((results) => results.fetchOne())
     .then(([id, name, email, password, role]) => ({ id, name, email, password, role }));
 
-const getByEmail = async (email) =>
+const getByEmail = async (UserEmail) =>
   connection()
     .then((db) => db.getTable('users'))
     .select([])
     .where('email = :email')
-    .bind('email', email)
+    .bind('email', UserEmail)
     .execute()
     .then((results) => results.fetchOne())
     .then(([id, name, email, password, role]) => ({ id, name, email, password, role }));
