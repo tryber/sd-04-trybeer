@@ -1,10 +1,10 @@
 import React from 'react';
 import Menu from '../components/Menu';
 
-const Home = () => {
+const Orders = () => {
   return (
     <>
-      <Menu nomeTela="Home" />
+      <Menu nomeTela="Orders" />
       <div className="container-general">
         <p>Lorem ips</p>
       </div>
@@ -12,4 +12,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Orders;
