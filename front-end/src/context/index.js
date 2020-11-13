@@ -8,27 +8,12 @@ const ProviderTrybeer = ({ children }) => {
 
   const context = { user, setUser };
 
-<<<<<<< HEAD
-  return <TrybeerContext.Provider value={ context }>{ children }</TrybeerContext.Provider>;
+  return <TrybeerContext.Provider value={context}>{children}</TrybeerContext.Provider>;
 };
 
 ProviderTrybeer.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element])
     .isRequired,
-=======
-  return (
-    <TrybeerContext.Provider value={context}>
-      {children}
-    </TrybeerContext.Provider>
-  );
-};
-
-ProviderTrybeer.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.element),
-    PropTypes.element,
-  ]).isRequired,
->>>>>>> userProfile
 };
 
 export default ProviderTrybeer;
