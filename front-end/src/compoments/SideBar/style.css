@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#sideBar {
+  background-color: black;
+  height: 67%;
+  left: -24%;
+  margin-top: 80px;
+  /* position: fixed; */
+  width: 0px;
+}
+
+#sideBar.active {
+  width: 24%;
+}
+
+#sideBar li {
+  border-bottom: 1px solid gray;
+  color: white;
+  font-size: 30px;
+  padding: 20px;
+  text-align: center;
+}
+
+.toggle-btn {
+  left: 25%;
+  position: absolute;
+  top: 15px;
+}
+
+.toggle-btn span {
+  background-color: black;
+  display: block;
+  height: 5px;
+  margin: 3px;
+  width: 30px;
+}
+
+a {
+  text-decoration: none;
+}
