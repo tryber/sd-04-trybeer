@@ -28,8 +28,6 @@ const userRegister = async (req, res) => {
   try {
     if (!name || !email || !password) return res.status(400).json({ err: 'Invalid entries' });
 
-    // console.log('linha 31, userAlreadyExists', userAlreadyExists);
-
     // if (userAlreadyExists.email === email) {
     //   return res.status(200).json({ err: 'E-mail already in database.' });
     // }
