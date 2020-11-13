@@ -8,7 +8,7 @@ const App = () => (
     <Switch>
       <Route path="/register" component={ UserRegister } />
       <Route path="/login" component={ Login } />
-      <Route path="/" component={ Login } />
+      <Route exact path="/" component={ Login } />
     </Switch>
   </BrowserRouter>
 );
