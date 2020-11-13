@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import api from '../services/api';
+import { setLS } from '../utils'
 import './RegisterForm.css';
 
 
@@ -30,7 +31,7 @@ const RegisterForm = () => {
   const handleName = (nome) => setState({ ...state, name: nome });
   const handleEmail = (carta) => setState({ ...state, email: carta });
   const handlePassword = (valor) => setState({ ...state, password: valor });
-  const handleBox = () => setState({ ...state, box: true, role: "administrador"});
+  const handleBox = () => setState({ ...state, box: true});
 
   useEffect(() => {
       api.getEmail().then((result) => console.log(result)) 
@@ -39,13 +40,16 @@ const RegisterForm = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = createUserAPI( name, email, password, role );
+      const response = await createUserAPI( name, email, password, role );
       const user = await response;
-      // setLs('user', response);
-      localStorage.setItem('user', JSON.stringify(user));
+      console.log("user", user)
+      if(user.status === 403) {
+        return setState({ ...state, erro: user.data.message });
+      }
+      setLS('user', user.data);
       return history.push( box ? '/admin/orders' : '/products');
     } catch (err) {
-      return setState({ ...state, erro:'E-mail already in database.' });
+      console.error(err)
     }
   };
   const history = useHistory();

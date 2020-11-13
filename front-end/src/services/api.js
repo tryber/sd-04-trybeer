@@ -9,16 +9,14 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-const RegisterUserAPI = (name, email, password, role) => api.post('/register',
-  {
-    name,
-    email,
-    password,
-    role,
-  },
-  headers)
-  .then((res) => res)
-  .catch((error) => error);
+const RegisterUserAPI = async(name, email, password, role) => {
+  try{
+    const result = await api.post('/register', { name, email, password, role},  headers)
+    return result;
+  }catch(err) {
+    return err.response
+  }
+};
 
 const getEmail = async() => await api.get('/register');
 
