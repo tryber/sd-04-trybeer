@@ -5,6 +5,7 @@ const routes = Router();
 
 routes.post('/login', userController.userLogin);
 
-routes.get('/profile', userController.getUserByEmail);
+routes.get('/profile/:id', userController.getUserByEmail);
+routes.put('/profile', userController.saveEditController);
 
 module.exports = routes;

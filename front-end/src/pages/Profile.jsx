@@ -1,51 +1,77 @@
-import React, { useContext, useState } from "react";
-import { useEffect } from "react";
-import { AppContext } from "../context/AppContext";
-import axios from "axios";
+import React, { useContext, useState } from 'react';
+import { useEffect } from 'react';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios';
+import api from '../services/api';
 
-const sendEdit = (e) => {
+const sendEdit = async (e, name, email) => {
   e.preventDefault();
-  return alert("entrou no sendEdit");
+  await api.put('/profile', { name, email }); // ========================== //
 };
 
-const URL = "http://localhost:3001/profile";
+const URL = 'http://localhost:3001/profile/1';
 
 export default () => {
-  const { email, setEmail, userName, setUserName } = useContext(AppContext);
+  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [newName, setNewName] = useState('');
 
   useEffect(() => {
-    axios.get(URL).then((result) => console.log(result));
+    /*     const { name, email, token, role } =
+      JSON.parse(localStorage.getItem('user')) || []; */
+    //    setName(name);
+
+    axios.get(URL).then((response) => {
+      setUserName(response.data.name);
+      setName(response.data.name);
+      setNewName(response.data.name);
+      setUserEmail(response.data.email);
+    });
   }, []);
+
+  const callSetName = (value) => {
+    setName(value);
+    setNewName(value);
+  };
+
+  const validateEdit = (value, compare) => value === compare;
 
   return (
     <div>
       <div className="container">
         <div className="col-8">
           <h1>Profile</h1>
-          <form method="POST" action="">
+          <h2>{newName}</h2>
+          <form method="PUT" action="">
             <label htmlFor="">Name</label>
             <input
-              onChange={(e) => setUserName(e.target.value)}
+              onChange={(e) => callSetName(e.target.value)}
               type="text"
-              value={userName}
+              name={newName}
+              value={newName}
               className="form-control"
             />
             <br />
             <label htmlFor="">E-mail</label>
             <input
               type="text"
+              name={userEmail}
               className="form-control"
-              value={email}
+              value={userEmail}
               readOnly
             />
             <br />
             <button
-              onClick={(e) => sendEdit(e)}
+              onClick={(e) => sendEdit(e, newName, userEmail)}
               className="btn btn-outline-success"
+              disabled={validateEdit(newName, userName)}
             >
               Salvar
             </button>
           </form>
+          usuário {newName}
         </div>
       </div>
     </div>

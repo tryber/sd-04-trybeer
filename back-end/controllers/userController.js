@@ -14,20 +14,36 @@ const userLogin = rescue(async (req, res) => {
 });
 
 const getUserByEmail = async (req, res) => {
-  const { email, password } = req.user;
+  const { id } = req.params;
   try {
-    const selectedUser = await userService.findUserByEmail(email, password);
+    const selectedUser = await userService.findByIdService(id);
     if (!selectedUser) {
-      return res.status(401).json({ message: 'Invalid entries. Try again' });
+      return res
+        .status(401)
+        .json({ message: 'Invalid entries. Try again CONTROLLER TRY' });
     }
 
     return res.status(200).json(selectedUser);
   } catch (_e) {
-    return res.status(401).json({ message: 'Invalid entries. Try again' });
+    return res
+      .status(401)
+      .json({ message: 'Invalid entries. Try again CONTROLLER CATCH' });
+  }
+};
+
+const saveEditController = async (req, res) => {
+  const { name, email } = req.body;
+  console.log('entrou no UPDATECONTROLLER', name + email);
+  try {
+    const updatedUser = await userService.updateUserService(name, email);
+    res.status(201).json({ message: 'Edition complete' });
+  } catch (_e) {
+    return res.status(401).json({ message: 'O sorry! Theres something wrong' });
   }
 };
 
 module.exports = {
   userLogin,
   getUserByEmail,
+  saveEditController,
 };
