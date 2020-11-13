@@ -33,7 +33,29 @@
   font-size: 15px;
   height: 25px;
   margin: 5px auto;
+  padding-left: 10px;
   width: 270px;
+}
+
+.input-field::placeholder {
+  color: #5e5e5e;
+}
+
+.input-field:focus {
+  background-color: #fca311;
+  color: white;
+}
+
+.input-field:focus::placeholder {
+  color: white;
+}
+
+.input-field:read-only:focus {
+  background-color: white;
+}
+
+.input-field:read-only::placeholder {
+  color: #5e5e5e;
 }
 
 .save-button {
@@ -58,18 +80,22 @@
 .square {
   align-items: center;
   border-radius: 7px;
-  box-shadow: 1px 1px 30px 10px #0f0f0f;
+  box-shadow: 1px 1px 40px 6px #414141;
   display: flex;
   flex-direction: column;
   height: 85vh;
   justify-content: center;
   width: 300px;
-};
+}
 
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 650px) {
   .square {
      height: 100vh;
-     width: 80vh;
-     background-color: black;
+     width: 100vh;
+     box-shadow: 1px 1px 1px 1px white;
+  }
+
+  .input-field {
+    width: 70vh;
   }
 }
