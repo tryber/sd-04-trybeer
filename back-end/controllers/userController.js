@@ -2,7 +2,8 @@ const rescue = require('express-rescue');
 const { userService } = require('../services');
 
 const registerUser = async (req, res) => {
-  console.log(req);
+  console.log(req.body);
+
   const { userName, emailUser, password, isSeller } = req.body;
   // if (sellerCheckbox.value === true)
 
