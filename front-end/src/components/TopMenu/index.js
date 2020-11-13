@@ -3,7 +3,7 @@ import SideMenu from '../SideMenu/index';
 import './styles.css';
 import TopHamburgerToggle from './TopHamburgerToggle/TopHamburgerToggle';
 
-function TopMenu(title) {
+function TopMenu({ title }) {
   const [sideMenuState, setSideMenuState] = useState(false);
   return (
     <div>

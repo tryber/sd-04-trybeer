@@ -10,7 +10,7 @@ const test = (history, pathName) => {
   return history.push(`/${pathName}`);
 };
 
-function SideMenu(sideMenuState) {
+function SideMenu({ sideMenuState }) {
   const history = useHistory();
   return (
     sideMenuState && (

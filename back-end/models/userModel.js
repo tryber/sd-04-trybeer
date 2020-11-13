@@ -14,6 +14,13 @@ const getUserByEmail = async (email) => connection()
       : 'usuário não encontrado'
   ));
 
+const registerNewUser = async (name, email, password, role) => connection()
+  .then((db) => db
+    .getTable('users')
+    .insert(['name', 'email', 'password', 'role'])
+    .values(name, email, password, role)
+    .execute());
+
 const updateUser = async (name, email) => connection()
   .then((db) => db
     .getTable('users')
@@ -25,5 +32,6 @@ const updateUser = async (name, email) => connection()
 
 module.exports = {
   getUserByEmail,
+  registerNewUser,
   updateUser,
 };

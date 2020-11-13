@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-
-import cheersIcon from './beer.svg';
-
+import TopMenu from '../../components/TopMenu'
+import SideMenu from '../../components/SideMenu'
+// import Footer from '../../components/Rodape';
+import cheersIcon from '../../assets/beer.svg';
 import './styles.css';
 
 const ClientProfile = () => {
@@ -28,6 +29,8 @@ const ClientProfile = () => {
   return (
     <div className="container">
       <div className="square">
+        < TopMenu title='Perfil do Cliente' />
+        < SideMenu sideMenuState={ false } />
         <h1 className="pageTitle">Perfil do Cliente</h1>
         <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
         <form method="POST" action="/profile" className="form">
@@ -78,6 +81,7 @@ const ClientProfile = () => {
             <span>{message}</span>
           </div>
         </form>
+        {/* <Footer className="footer" /> */}
       </div>
     </div>
   );
