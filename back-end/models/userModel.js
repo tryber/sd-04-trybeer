@@ -27,8 +27,8 @@ const registerUser = async (name, email, password, role) => {
       .execute();
     return result;
   } catch (err) {
-      console.error(err);
-      return null
+    console.error(err);
+    return null;
   }
 };
 

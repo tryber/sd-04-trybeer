@@ -1,5 +1,5 @@
-const rescue = require("express-rescue");
-const userService = require("../services/userService");
+const rescue = require('express-rescue');
+const userService = require('../services/userService');
 
 const userLogin = rescue(async (req, res) => {
   const { email, password } = req.body;
@@ -33,7 +33,7 @@ const registerUserController = async (req, res) => {
     const newUser = await userService.registerUserService(name, email, password, checkbox);
     return res.status(201).json(newUser);
   } catch (_err) {
-    return res.status(401).json({ message: 'BAD REQUEST'});
+    return res.status(401).json({ message: 'BAD REQUEST' });
   }
 };
 
