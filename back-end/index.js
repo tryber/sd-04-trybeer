@@ -9,4 +9,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routes);
 
+app.get('/register', controller.userController.registerUser);
+
+
 app.listen(port, () => console.log('Example app listening on port port!'));

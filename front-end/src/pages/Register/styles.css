@@ -1,0 +1,83 @@
+button:disabled {
+  color: gray;
+}
+.btn-div {
+  margin: auto;
+}
+
+.btn-cadastrar {
+  align-items: center;
+  background-color: rgb(20, 33, 61);
+  border: 1px solid rgb(252, 163, 17);
+  border-radius: 5px;
+  color: rgb(252, 163, 17);
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  height: 60px;
+  justify-content: center;
+  margin: 20px 0;
+  width: 332px;
+}
+
+.checkbox-text {
+  font-size: 20px;
+  padding: 10px 5px;
+}
+
+.form-registro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  width: 400px;
+}
+
+.input-labels {
+  font-size: 23px;
+}
+
+.input-registro {
+  height: 50px;
+  margin: 3px 0;
+}
+
+.logo-trybeer {
+  align-items: center;
+  display: flex;
+  margin: auto;
+  width: 250px;
+}
+
+.page-registro {
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.seller-checkbox {
+  transform: scale(1.5)
+}
+
+.seller-checkbox-div {
+  margin: 10px 0;
+}
+
+@media ( max-width : 761px ) {
+.btn-cadastrar {
+  display: inline-block;
+  justify-content: center;
+  margin: auto;
+  margin-top: 5px;
+  width: 300px;
+}
+
+.input-registro {
+  font-size: 23px;
+  width: 370px;
+}
+
+.page-registro {
+  margin: 10px;
+}
+}
