@@ -43,7 +43,7 @@ const Login = () => {
 
   return (
     <div className="login-container container-general">
-      <Menu nomeTela="Home" />
+      <Menu nomeTela="TryBeer" />
       <form onSubmit={ handleSubmit } className="login-form">
         <InputForm
           name="email"

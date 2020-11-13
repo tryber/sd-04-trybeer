@@ -24,10 +24,3 @@ html, body {
 .container-general {
   margin-top: 100px;
 }
-
-@media (min-width: 800px) {
-  .container-general {
-    margin-top: 50px;
-    margin-left: 260px;
-  }
-}

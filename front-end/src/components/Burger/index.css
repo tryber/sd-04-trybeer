@@ -27,9 +27,3 @@
   position: relative;
   transform-origin: 1px;
 }
-
-@media (min-width: 800px) {
-  .btn-burger {
-    display: none;
-  }
-}

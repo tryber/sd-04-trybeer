@@ -15,7 +15,7 @@ const StyledMenu = styled.nav`
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
 
   a {
-    font-size: 2rem;
+    font-size: 16px;
     text-transform: uppercase;
     padding: 2rem 0;
     font-weight: bold;
@@ -23,20 +23,11 @@ const StyledMenu = styled.nav`
     color: #f3ebeb;
     text-decoration: none;
     transition: color 0.3s linear;
-    font-size: 1.5rem;
     text-align: center;
   }
 
   a:hover {
     color: #ffffff;
-  }
-
-  @media (min-width: 800px) {
-    transform: ${({ open }) => !open && 'translateX(0)'};
-
-    a {
-      font-size: 18px;
-    }
   }
 `;
 
