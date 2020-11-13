@@ -86,6 +86,7 @@ const Register = () => {
             type="checkbox"
             onChange={() => setIsSeller(true)}
             data-testid="signup-seller"
+            name="sellerCheckbox"
             className="seller-checkbox"
             value={!isSeller}
           />
