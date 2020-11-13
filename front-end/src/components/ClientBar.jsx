@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './ClientBar.css';
 
 let ctrOpen = false;
@@ -18,7 +19,14 @@ const changeOpen = () => {
   ctrOpen = false;
 };
 
+const changeUrl = (history, url, clear) => {
+  history.push(url);
+  if (clear) localStorage.clear();
+  ctrOpen = false;
+};
+
 const TopBar = ({ title, isAdm }) => {
+  const history = useHistory();
   if (isAdm) return <div>Has side bar</div>;
   return (
     <div>
@@ -34,17 +42,33 @@ const TopBar = ({ title, isAdm }) => {
       <div className="body-nav-bar">
         <nav className="side-menu-container">
           <div>
-            <button className="nav-btn" data-testid="side-menu-item-products">
+            <button
+              className="nav-btn"
+              data-testid="side-menu-item-products"
+              onClick={() => changeUrl(history, 'products')}
+            >
               Produtos
             </button>
-            <button className="nav-btn" data-testid="side-menu-item-my-orders">
+            <button
+              className="nav-btn"
+              data-testid="side-menu-item-my-orders"
+              onClick={() => changeUrl(history, 'orders')}
+            >
               Meus Pedidos
             </button>
-            <button className="nav-btn" data-testid="side-menu-item-my-profile">
+            <button
+              className="nav-btn"
+              data-testid="side-menu-item-my-profile"
+              onClick={() => changeUrl(history, 'profile')}
+            >
               Meu Perfil
             </button>
           </div>
-          <button className="nav-btn" data-testid="side-menu-item-logout">
+          <button
+            className="nav-btn"
+            data-testid="side-menu-item-logout"
+            onClick={() => changeUrl(history, '', true)}
+          >
             Sair
           </button>
         </nav>
