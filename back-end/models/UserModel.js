@@ -1,6 +1,6 @@
 const connection = require('./connection');
 
-const registerUser = async (name, email, password, role = 'client') => {
+const registerUser = async (name, email, password, role) => {
   const result = await connection()
     .then((db) => db
       .getTable('users')

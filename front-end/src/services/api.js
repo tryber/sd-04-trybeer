@@ -6,6 +6,7 @@ const apiTrybeer = axios.create({
 const loginApi = async (email, password) => apiTrybeer.post('/login', { email, password });
 const registerApi = async (name, email, password, role) => (
   apiTrybeer.post('/register',
-    { name, email, password, role }));
+    { name, email, password, role
+    }));
 
 export default { loginApi, registerApi };
