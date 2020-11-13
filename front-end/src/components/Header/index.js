@@ -5,7 +5,6 @@ import SideBar from '../SideBar/index';
 import './style.css';
 
 const Header = ({ title, userType }) => {
-
   return (
     <div>
       <header className="title">
