@@ -43,12 +43,6 @@ const Register = () => {
       name, email, token, role,
     });
 
-    const { token } = response;
-
-    localStorage.user = JSON.stringify({
-      name, email, token, role: definedRole,
-    });
-
     if (definedRole === 'administrator') {
       setForm({ ...form, redirect: 'administrator' });
     } else setForm({ ...form, redirect: 'client' });
