@@ -8,10 +8,23 @@ const validateUserByEmail = async (email, password) => {
   return user;
 };
 
+const validateUser = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  const user = await UserModel.searchUserByEmail(email);
+
+  if (!user || !user.password !== password) {
+    return res.status(200).json({ err: 'incorrect user or password' });
+  }
+
+  next();
+};
+
 const isEmailAlreadyExists = async (req, res, next) => {
   const { email } = req.body;
 
   const userExists = await UserModel.searchUserByEmail(email);
+
   if (userExists) {
     return res.status(200).json({ err: 'E-mail already in database.' });
   }

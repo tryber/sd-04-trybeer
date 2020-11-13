@@ -5,13 +5,13 @@ const conn = require('./connection');
 // =======================================================
 
 const readByEmailTest = async (userEmail) => {
-  const db = await conn(),
-    table = await db.getTable('users'),
-    user = await table
-      .select(['id', 'name', 'email', 'password', 'role'])
-      .where('email = :email')
-      .bind('email', userEmail)
-      .execute();
+  const db = await conn();
+  const table = await db.getTable('users');
+  const user = await table
+    .select(['id', 'name', 'email', 'password', 'role'])
+    .where('email = :email')
+    .bind('email', userEmail)
+    .execute();
 
   return user
     .fetchAll()
@@ -24,4 +24,4 @@ const readByEmailTest = async (userEmail) => {
 // back-end e executem o comando 'node models/connTestModel.js'
 // ======================================================================
 
-// (async () => console.log(await readByEmailTest('tryber@trybe.com.br')))();
+(async () => console.log(await readByEmailTest('tryber@trybe.com.br')))();
