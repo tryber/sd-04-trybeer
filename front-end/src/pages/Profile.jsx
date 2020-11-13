@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
+import TopBar from '../components/ClientBar.jsx';
 
 const sendEdit = (e) => {
   e.preventDefault();
@@ -19,6 +20,7 @@ export default () => {
 
   return (
     <div>
+      <TopBar title={'Meu Perfil'} isAdm={false} />
       <div className="container">
         <div className="col-8">
           <h1>Profile</h1>
