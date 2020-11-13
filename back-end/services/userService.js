@@ -6,7 +6,7 @@ const findUserByEmail = async (email, password) => {
   if (!user || user.password !== password) {
     return { err: { message: 'Incorrect username or password' } };
   }
-  return { token: createToken(user), name: user.name, role: user.role };
+  return { token: createToken(user), user };
 };
 
 module.exports = {
