@@ -19,10 +19,13 @@ const findAllProducts = async () => {
 };
 
 const findProductById = async (productId) => {
-  try{
+  try {
     const db = await connection();
     const table = await db.getTable('products');
-    const result = await table.select([]).where('id = :id').bind('id', productId).execute();
+    const result = await table.select([])
+      .where('id = :id')
+      .bind('id', productId)
+      .execute();
     const [id, name, price, url_image] = await result.fetchOne();
     return {
       id, name, price, url_image,
@@ -43,7 +46,7 @@ const findProductsByName = async (productName) => {
       .execute();
     const results = allTable.fetchAll();
     const products = results.map(([id, name, price, url_image]) => ({
-      id, name, price, url_image
+      id, name, price, url_image,
     }));
     return products;
   } catch (err) {
@@ -56,4 +59,4 @@ module.exports = {
   findAllProducts,
   findProductById,
   findProductsByName,
-}
+};
