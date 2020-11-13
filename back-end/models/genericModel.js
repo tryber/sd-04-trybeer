@@ -29,10 +29,19 @@ const getAll = async (selection, table) => connection()
     .then((result) => {
       const info = result.fetchAll();
       if (!info) return null;
-      const infoObjects = info.map((arr) => arr.reduce((acc, curr, i) => {
-        acc[ selection[ i ] ] = curr;
-        return acc;
-      }, {}));
+      const infoObjects = info.reduce((acc1,curr1) => {
+        const object = curr1.reduce((acc, curr, i) => {
+            acc[ selection[ i ] ] = curr;
+            return acc;
+          }, {});
+        acc1[object.name] = object;
+        return acc1;
+      },{} )
+      
+      // info.map((arr) => arr.reduce((acc, curr, i) => {
+      //   acc[ selection[ i ] ] = curr;
+      //   return acc;
+      // }, {}));
       return infoObjects;
     }));
 

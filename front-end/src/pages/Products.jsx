@@ -5,7 +5,7 @@ import Loading from '../components/Loading';
 import { getProducts } from '../services/TrybeerApi';
 
 function Products() {
-  const [ list, setList ] = useState([]);
+  const [ list, setList ] = useState({});
 
   useEffect(() => { getProducts().then(({ data }) => setList(data)) }, []);
 
