@@ -39,9 +39,11 @@ const UserRegister = () => {
 
     const apiResult = await API.registerApi(name, email, password, role);
 
-    if (apiResult.data.err) return setErrMsg('E-mail already in database.');
+    if (apiResult.data.err) return setErrMsg(apiResult.data.err);
 
     console.log('linha 38, apiResult', apiResult);
+
+    setErrMsg('');
 
     if (checkbox === 'on') return history.push('/admin/orders');
 
@@ -76,7 +78,7 @@ const UserRegister = () => {
           />
         </div>
 
-        <span className="mx-auto m-3 text-danger">{errMsg.toUpperCase()}</span>
+        <span className="mx-auto m-3 text-danger">{errMsg}</span>
 
         <div className="form-group w-75 mx-auto m-2">
           <label htmlFor="password">Password</label>

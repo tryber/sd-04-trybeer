@@ -32,9 +32,6 @@ const Login = () => {
 
     if (api.data.user.err) return setErrorMsg(api.data.user.err);
 
-    console.log('linha 35, Login, api result:', api.data.user);
-    console.log('linha 36, Login, api token:', api.data.token);
-
     const { name, email, role } = await api.data.user;
     const token = api.data.token;
 
