@@ -10,17 +10,18 @@ const config = {
 };
 
 let schema;
-const connection = () =>
+const connection = function () {
   schema
     ? Promise.resolve(schema)
     : mysqlx
-      .getSession(config)
-      .then((session) => {
-        schema = session.getSchema('trybeer');
-        return schema;
-      })
-      .catch(() => {
-        process.exit(1);
-      });
+        .getSession(config)
+        .then((session) => {
+          schema = session.getSchema('trybeer');
+          return schema;
+        })
+        .catch(() => {
+          process.exit(1);
+        });
+};
 
 module.exports = { connection };
