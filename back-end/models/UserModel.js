@@ -6,8 +6,7 @@ const registerUser = async (name, email, password, role = 'client') => {
       .getTable('users')
       .insert(['name', 'email', 'password', 'role'])
       .values([name, email, password, role])
-      .execute(),
-    )
+      .execute())
     .catch((err) => {
       throw err;
     });
@@ -27,8 +26,7 @@ const searchUserByEmail = async (emailInput) => {
         if (!results) return null;
         const [id, name, email, password, role] = results;
         return { id, name, email, password, role };
-      }),
-    )
+      }))
     .catch((err) => {
       console.log('catch linha 30');
       throw err;

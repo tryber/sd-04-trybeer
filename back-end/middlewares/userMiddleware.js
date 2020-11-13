@@ -35,4 +35,5 @@ const isEmailAlreadyExists = async (req, res, next) => {
 module.exports = {
   validateUserByEmail,
   isEmailAlreadyExists,
+  validateUser,
 };
