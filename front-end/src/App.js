@@ -7,10 +7,10 @@ import UserProfile from './components/UserProfile/index';
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/register" component={UserRegister} />
-      <Route path="/login" component={Login} />
-      <Route exact path="/" component={Login} />
-      <Route path="/profile" component={UserProfile} />
+      <Route path="/register" component={ UserRegister } />
+      <Route path="/login" component={ Login } />
+      <Route exact path="/" component={ Login } />
+      <Route path="/profile" component={ UserProfile } />
     </Switch>
   </BrowserRouter>
 );

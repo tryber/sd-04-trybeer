@@ -34,7 +34,7 @@ const Login = () => {
     if (api.data.user.err) return setErrorMsg(api.data.user.err);
 
     const { name, email, role } = await api.data.user;
-    const token = api.data.token;
+    const { token } = api.data;
 
     localStorage.setItem('user', JSON.stringify({ name, email, role, token }));
 
@@ -47,13 +47,13 @@ const Login = () => {
 
   return (
     <div>
-      <Header title={'Trybeer'} />
-      <form onSubmit={handleSubmit} className="m-3">
+      <Header title={ 'Trybeer' } />
+      <form onSubmit={ handleSubmit } className="m-3">
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
             <label htmlFor="email">Email</label>
             <input
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={ (e) => setEmail(e.target.value) }
               data-testid="email-input"
               type="text"
               name="email"
@@ -66,7 +66,7 @@ const Login = () => {
           <div className="form-group w-75 mx-auto m-2">
             <label htmlFor="password">Password</label>
             <input
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={ (e) => setPassword(e.target.value) }
               data-testid="password-input"
               type="password"
               name="password"
@@ -77,13 +77,13 @@ const Login = () => {
             />
           </div>
 
-          <span className="mx-auto m-3 text-danger">{errorMsg.toUpperCase()}</span>
+          <span className="mx-auto m-3 text-danger">{ errorMsg.toUpperCase() }</span>
 
           <div className="mx-auto m-2">
             <button
               data-testid="signin-btn"
               type="submit"
-              disabled={disableButton}
+              disabled={ disableButton }
               className="btn btn-warning m-2"
             >
               ENTRAR

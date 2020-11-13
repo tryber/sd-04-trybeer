@@ -4,15 +4,13 @@ import SideBar from '../SideBar/index';
 
 import './style.css';
 
-const Header = ({ title, userType }) => {
-  return (
+const Header = ({ title, userType }) => (
     <div>
       <header className="title">
         <h1 data-testid="top-title">{title}</h1>
       </header>
-      <SideBar role={userType} />
+      <SideBar role={ userType } />
     </div>
   );
-};
 
 export default Header;

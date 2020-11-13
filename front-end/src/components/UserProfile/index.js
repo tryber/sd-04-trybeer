@@ -8,13 +8,13 @@ const UserProfile = ({ name, mail }) => {
   const disableButton = newName === name;
   return (
     <div>
-      <Header title={'Meu perfil'} />
+      <Header title={ 'Meu perfil' } />
       <form action="/profile" method="POST">
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Name</label>
           <input
             data-testid="profile-name-input"
-            onChange={(e) => setNewName(e.target.value)}
+            onChange={ (e) => setNewName(e.target.value) }
             type="text"
             className="form-control"
             id="disabledInput"
@@ -29,7 +29,7 @@ const UserProfile = ({ name, mail }) => {
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            placeholder={mail}
+            placeholder={ mail }
             readOnly
           />
         </div>
@@ -37,7 +37,7 @@ const UserProfile = ({ name, mail }) => {
           data-testid="profile-save-btn"
           type="submit"
           className="btn btn-primary"
-          disabled={disableButton}
+          disabled={ disableButton }
         >
           Salvar
         </button>

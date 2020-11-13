@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './style.css';
 
-const client = () => {
-  return (
+const client = () => (
     <ul>
       <Link to="products">
         <li data-testid="side-menu-item-products">Produtos</li>
@@ -25,17 +24,15 @@ const client = () => {
       <Link to="/login">
         <li
           data-testid="side-menu-item-logout"
-          onClick={() => window.localStorage.clear()}
+          onClick={ () => window.localStorage.clear() }
         >
           Sair
         </li>
       </Link>
     </ul>
   );
-};
 
-const admin = () => {
-  return (
+const admin = () => (
     <ul>
       <Link to="/admin/orders">
         <li data-testid="side-menu-item-orders">Pedidos</li>
@@ -52,14 +49,13 @@ const admin = () => {
       <Link to="/login">
         <li
           data-testid="side-menu-item-logout"
-          onClick={() => window.localStorage.clear()}
+          onClick={ () => window.localStorage.clear() }
         >
           Sair
         </li>
       </Link>
     </ul>
   );
-};
 
 const SideBar = ({ role }) => {
   let identification = '';
@@ -73,16 +69,16 @@ const SideBar = ({ role }) => {
   const [toggle, setToggle] = useState(false);
   return (
     <nav
-      id={identification}
-      className={`${classes} ${toggle ? 'active' : ''}`}
-      onClick={() => setToggle(!toggle)}
+      id={ identification }
+      className={ `${classes } ${ toggle ? 'active' : '' }` }
+      onClick={ () => setToggle(!toggle) }
     >
       <div data-testid="top-hamburguer" className="toggle-btn">
         <span></span>
         <span></span>
         <span></span>
       </div>
-      {elements}
+      { elements }
     </nav>
   );
 };

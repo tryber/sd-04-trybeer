@@ -5,20 +5,20 @@ import './style.css';
 
 const AdminProfile = ({ name, mail }) => {
   const [newName, setNewName] = useState(name);
-  const disableButton = newName === name;
+  const newDirection = () => window.location.href = 'http://localhost:3000/';
   return (
     <div>
-      <Header title={'Admin - Perfil'} />
+      <Header title={ 'Admin - Perfil' } />
       <form action="/profile" method="POST">
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Name</label>
           <input
             data-testid="profile-name"
-            onChange={(e) => setNewName(e.target.value)}
+            onChange={ (e) => setNewName(e.target.value) }
             type="text"
             className="form-control"
             id="disabledInput"
-            value={name}
+            value={ name }
             readOnly
           />
         </div>
@@ -30,7 +30,7 @@ const AdminProfile = ({ name, mail }) => {
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            value={mail}
+            value={ mail }
             readOnly
           />
         </div>
@@ -38,7 +38,7 @@ const AdminProfile = ({ name, mail }) => {
           data-testid="profile-save-btn"
           type="button"
           className="btn btn-primary"
-          onClick={() => (window.location.href = 'http://localhost:3000/')}
+          onClick={ () => newDirection() }
         >
           Login
         </button>
