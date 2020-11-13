@@ -33,7 +33,7 @@ const Menu = ({ nomeTela }) => {
       </h1>
     </header>
   );
-},
+}
 
 Menu.propTypes = {
   nomeTela: PropTypes.string.isRequired,
