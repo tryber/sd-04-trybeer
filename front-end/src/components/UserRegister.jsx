@@ -41,8 +41,6 @@ const UserRegister = () => {
 
     if (apiResult.data.err) return setErrMsg(apiResult.data.err);
 
-    console.log('linha 38, apiResult', apiResult);
-
     setErrMsg('');
 
     if (checkbox === 'on') return history.push('/admin/orders');

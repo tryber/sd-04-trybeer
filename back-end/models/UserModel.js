@@ -17,8 +17,8 @@ const searchUserByEmail = async (emailInput) => {
   const result = await connection()
     .then((db) => db
       .getTable('users')
-      .select(['id', 'name', 'email', 'password', 'role'])
-      .where('email LIKE :email')
+      .select([])
+      .where('email = :email')
       .bind('email', emailInput)
       .execute()
       .then((results) => results.fetchOne())
@@ -28,7 +28,7 @@ const searchUserByEmail = async (emailInput) => {
         return { id, name, email, password, role };
       }))
     .catch((err) => {
-      console.log('catch linha 30');
+      console.log('catch linha 30', err);
       throw err;
     });
   return result;
