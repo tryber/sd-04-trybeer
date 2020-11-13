@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 // falta criar o context para adicionar e tirar item do carrinho
 
-export default function ProductCard() {
+export default function ProductCard(props) {
   // variavel para formatacao do price
   const formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' };
   const { index, name, price, urlImage, prodQuantity } = props;
@@ -35,7 +35,7 @@ export default function ProductCard() {
         e.quantity = quantity;
         return e;
       }
-      storage.push(additem);
+      return storage.push(additem);
     });
     localStorage.cartItens = JSON.stringify(newStorage);
   }, [quantity]);
@@ -44,20 +44,22 @@ export default function ProductCard() {
     <div>
       <div data-testid={ `${index - 1}-product-price` }>{ price.toLocalString('pt-BR', formato) }</div>
       <div>
-        <div data-testid={`${index - 1}-product-img`}>{ urlImage }</div>
-        <div data-testid={`${index - 1}-product-name`}>{ name }</div>
+        <div data-testid={ `${index - 1}-product-img` }>{ urlImage }</div>
+        <div data-testid={ `${index - 1}-product-name` }>{ name }</div>
       </div>
       <div>
         <button
-          disabled={ { quantity } === 0 ? true : false }
+          type='button'
+          disabled={ { quantity } === 0 }
           data-testid={ `${index - 1}-product-minus` }
           onClick={ () => setQuantity(quantity - 1) }
         >
           -
         </button>
-        <div data-testid={`${index - 1}-product-qtd`}>quantidade{ quantity }</div>
+        <div data-testid={ `${index - 1}-product-qtd` }>{ quantity }</div>
         <button
-          disabled={ { quantity } === prodQuantity ? true : false }
+          type='button'
+          disabled={ { quantity } === prodQuantity }
           data-testid={ `${index - 1}-product-plus` }
           onClick={ () => setQuantity(quantity + 1) }
         >
