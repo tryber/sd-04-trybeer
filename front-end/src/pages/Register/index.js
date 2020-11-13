@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../../context/index';
+import api from '../../services/api';
 import TrybeerLogo from '../../imgs/logo.png';
 import './styles.css';
 
 
 const Register = () => {
-  const { userName, setUserName, emailUser, setEmailUser, setPassword, setIsSeller, isSeller } = useContext(Context);
+  const { userName, setUserName, emailUser, setEmailUser, password, setPassword, setIsSeller, isSeller } = useContext(Context);
 
   const namePattern = "[a-zA-Z ]{12,}";
   const emailPattern = "[^@]+@[^@]+.[^@]+";
@@ -23,9 +24,10 @@ const Register = () => {
         <Link to="/">
           <button
             data-testid="signup-btn"
-            type="submit"
+            type="button"
             className="btn-cadastrar"
             disabled={disabled}
+            onClick={handleSubmit}
           >
             CADASTRAR
               </button>
@@ -34,11 +36,19 @@ const Register = () => {
     );
   };
 
+  const handleSubmit = async () => {
+    try {
+      await api.post('/register', { userName, emailUser, password, isSeller });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <article className="page-registro">
       <img src={TrybeerLogo} alt="Trybeer logo developed by Luma Arruda" className="logo-trybeer" />
 
-      <form action="/register" method="POST" className="form-registro">
+      <form className="form-registro">
         <label className="input-labels" htmlFor="input-name">Nome</label>
         <input
           id="input-name"
