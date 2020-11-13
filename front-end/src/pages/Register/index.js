@@ -26,6 +26,6 @@ const Register = () => (
         <Button variantColor="green" type="submit" data-testid="signup-btn">Cadastrar</Button>
       </FormControl>
     </div>
-  );
+);
 
 export default Register;
