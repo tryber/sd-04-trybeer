@@ -14,7 +14,7 @@
   },
   "plugins": ["react", "react-hooks"],
   "rules": {
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": ["error", "windows"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "class-methods-use-this": ["off"],
