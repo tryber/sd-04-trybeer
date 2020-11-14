@@ -5,7 +5,7 @@ const {
 } = require('../utils/errorTypes');
 const Token = require('./token');
 
-const login = async (userEmail, userPassword) => {
+const authToken = async (userEmail, userPassword) => {
   const user = await userModel.getUserByEmail(userEmail);
 
   if (!user) {
@@ -29,5 +29,5 @@ const login = async (userEmail, userPassword) => {
 };
 
 module.exports = {
-  login,
+  authToken,
 };

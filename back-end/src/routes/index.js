@@ -1,7 +1,7 @@
 const userRouter = require('./userRouter');
-const loginRoute = require('./loginRoute');
+const loginRouter = require('./loginRouter');
 
 module.exports = {
-  loginRoute,
+  loginRouter,
   userRouter,
 };

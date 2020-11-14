@@ -9,7 +9,7 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-const RegisterUserAPI = async (name, email, password, role) => {
+const registerUserAPI = async (name, email, password, role) => {
   try {
     const result = await api.post(
       '/register',
@@ -27,15 +27,9 @@ const RegisterUserAPI = async (name, email, password, role) => {
   }
 };
 
-const getEmail = async () => {
-  const mail = await api.get('/register');
-  return mail;
-};
-
-const login = (email, password) => api.post('/login', { email, password });
+const loginAPI = (email, password) => api.post('/login', { email, password });
 
 export default {
-  RegisterUserAPI,
-  login,
-  getEmail,
+  registerUserAPI,
+  loginAPI,
 };

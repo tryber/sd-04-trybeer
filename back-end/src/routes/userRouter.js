@@ -5,6 +5,4 @@ const userRouter = Router();
 
 userRouter.post('/', userController.createUserController);
 
-userRouter.get('/', userController.showAllEmails);
-
 module.exports = userRouter;
