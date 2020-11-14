@@ -9,32 +9,37 @@ const UserProfile = ({ name, mail }) => {
   const disableButton = newName === name;
   return (
     <div>
-      <Header title={ 'Meu perfil' } />
+      <Header title="Meu perfil" />
       <form action="/profile" method="POST">
         <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Name</label>
-          <input
-            name="exampleInputPassword1"
-            data-testid="profile-name-input"
-            onChange={ (e) => setNewName(e.target.value) }
-            type="text"
-            className="form-control"
-            id="disabledInput"
-            placeholder="Name"
-          />
+          <label htmlFor="exampleInputPassword1">
+            Name
+            <input
+              name="exampleInputPassword1"
+              data-testid="profile-name-input"
+              onChange={ (e) => setNewName(e.target.value) }
+              type="text"
+              className="form-control"
+              id="disabledInput"
+              placeholder="Name"
+            />
+          </label>
         </div>
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Email</label>
-          <input
-            name="exampleInputEmail1"
-            data-testid="profile-email-input"
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder={ mail }
-            readOnly
-          />
+          <label htmlFor="exampleInputEmail1">
+            Email
+            <input
+              name="exampleInputEmail1"
+              data-testid="profile-email-input"
+              type="email"
+              className="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder={ mail }
+              readOnly
+            />
+          </label>
+
         </div>
         <button
           data-testid="profile-save-btn"
@@ -50,8 +55,8 @@ const UserProfile = ({ name, mail }) => {
 };
 
 UserProfile.propTypes = {
-  name: PropTypes.string,
-  mail: PropTypes.string,
-}
+  name: PropTypes.string.isRequired,
+  mail: PropTypes.string.isRequired,
+};
 
 export default UserProfile;

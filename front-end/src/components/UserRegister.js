@@ -52,59 +52,70 @@ const UserRegister = () => {
 
   return (
     <div>
-      <Header title={ 'Register' } usertype={ 'client' }/>
+      <Header title="Register" usertype="client" />
       <form onSubmit={ handleSubmit }>
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="name">Nome</label>
-            <input
-              data-testid="signup-name"
-              id="name"
-              name="name"
-              type="text"
-              onChange={ (e) => setName(e.target.value) }
-              minLength="12"
-              className="form-control"
-            />
+            <label htmlFor="name">
+              Nome
+              <input
+                data-testid="signup-name"
+                id="name"
+                name="name"
+                type="text"
+                onChange={ (e) => setName(e.target.value) }
+                minLength="12"
+                className="form-control"
+              />
+            </label>
+
           </div>
 
           <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="email">Email</label>
-            <input
-              data-testid="signup-email"
-              id="email"
-              name="email"
-              type="email"
-              onChange={ (e) => setEmail(e.target.value) }
-              className="form-control"
-            />
+            <label htmlFor="email">
+              Email
+              <input
+                data-testid="signup-email"
+                id="email"
+                name="email"
+                type="email"
+                onChange={ (e) => setEmail(e.target.value) }
+                className="form-control"
+              />
+            </label>
+
           </div>
 
           <span className="mx-auto m-3 text-danger">{ errMsg }</span>
 
           <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="password">Password</label>
-            <input
-              data-testid="signup-password"
-              id="password"
-              name="password"
-              type="password"
-              onChange={ (e) => setPassword(e.target.value) }
-              minLength="6"
-              className="form-control"
-            />
+            <label htmlFor="password">
+              Password
+              <input
+                data-testid="signup-password"
+                id="password"
+                name="password"
+                type="password"
+                onChange={ (e) => setPassword(e.target.value) }
+                minLength="6"
+                className="form-control"
+              />
+            </label>
+
           </div>
 
           <div className="form-group w-75 mx-auto m-2">
-            <input
-              data-testid="signup-seller"
-              id="sell"
-              name="sell"
-              type="checkbox"
-              onChange={ (e) => setCheckbox(e.target.value) }
-            />
+
             <label htmlFor="sell" className="m-2">
               Quero Vender
+              {' '}
+              <input
+                data-testid="signup-seller"
+                id="sell"
+                name="sell"
+                type="checkbox"
+                onChange={ (e) => setCheckbox(e.target.value) }
+              />
             </label>
           </div>
 

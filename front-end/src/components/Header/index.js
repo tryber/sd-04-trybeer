@@ -15,8 +15,8 @@ const Header = ({ title, userType }) => (
 );
 
 Header.propTypes = {
-  title: PropTypes.string,
-  userType: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  userType: PropTypes.string.isRequired,
 };
 
 export default Header;
