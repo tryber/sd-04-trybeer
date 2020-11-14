@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
-import api from '../services/api';
-import { setLS } from '../utils'
-import './RegisterForm.css';
+import api from '../../services/api';
+import { setLS } from '../../utils'
+import './index.css';
 
 
 const createUserAPI = async (name, email, password, role) => {
-  return await api.RegisterUserAPI(name, email, password, role)
+  return await api.registerUserAPI(name, email, password, role)
     .then((data) =>  data)
     .catch((error) => error);
 };
 
-const RegisterForm = () => {
+const Register = () => {
   const [ state, setState ] = useState(
     {
     name: '',
@@ -33,26 +33,24 @@ const RegisterForm = () => {
   const handlePassword = (valor) => setState({ ...state, password: valor });
   const handleBox = () => setState({ ...state, box: true});
 
-  useEffect(() => {
-      api.getEmail().then((result) => console.log(result)) 
-  },[]);
+  const history = useHistory();
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await createUserAPI( name, email, password, role );
-      const user = await response;
-      console.log("user", user)
-      if(user.status === 403) {
-        return setState({ ...state, erro: user.data.message });
+      const createUser = await createUserAPI( name, email, password, role );
+      const apiResponse = await createUser;
+
+      if(apiResponse.status === 403) {
+        return setState({ ...state, erro: apiResponse.data.message });
       }
-      setLS('user', user.data);
+
+      setLS('user', apiResponse.data);
       return history.push( box ? '/admin/orders' : '/products');
     } catch (err) {
       console.error(err)
     }
   };
-  const history = useHistory();
 
   return(
     <div>
@@ -125,4 +123,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default Register;

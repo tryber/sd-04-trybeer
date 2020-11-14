@@ -28,18 +28,7 @@ const getUserByEmail = async (userEmail) => {
   return userFound;
 };
 
-const getAllEmail = async () => {
-  const db = await connection();
-  const results = await db.getTable('users').select(['email'])
-    .execute();
-
-  const listing = await results.fetchAll();
-  const list = await listing.map(([email]) => ({ email }));
-  return list;
-};
-
 module.exports = {
   createUser,
   getUserByEmail,
-  getAllEmail,
 };

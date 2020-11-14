@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import api from '../services/api';
-import InputForm from '../components/InputForm';
-import { setLS } from '../utils';
-import './LoginPage.css';
-import Menu from '../components/Menu';
+import api from '../../services/api';
+import InputForm from '../../components/InputForm';
+import { setLS } from '../../utils';
+import './index.css';
+import Menu from '../../components/Menu';
 
 const Login = () => {
   const [form, setForm] = React.useState({ email: '', password: '' });
@@ -23,7 +23,7 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const apiResponse = await api.login(form.email, form.password);
+    const apiResponse = await api.loginAPI(form.email, form.password);
 
     await setLS('user', apiResponse.data);
 
