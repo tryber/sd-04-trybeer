@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import api from '../services/api';
-import { getLS, setLS } from '../utils';
 import { useHistory } from 'react-router-dom';
+import api from '../../services/api';
+import { getLS, setLS } from '../../utils';
+
+import Menu from '../../components/Menu';
 
 const ProfilePage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [updated, setUpdated] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -21,18 +24,17 @@ const ProfilePage = () => {
 
   const checkNameChange = () => getLS('name') === name ? true : false;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
   
-    console.log(e.target.value);
-    console.log(name, email)
-    api.updateUserAPI(name, email)
-      .then(() => history.push('/user/update'));
+    setUpdated(!updated)
+
+    await api.updateUserAPI(name, email);
   };
 
   return (
     <div className="container-general">
-      <Menu nomeTela="Profile" />
+      <Menu nomeTela="Meu perfil" />
       <form onSubmit={handleSubmit} >
         <div>
           <label htmlFor="name">Nome:</label>
@@ -64,6 +66,7 @@ const ProfilePage = () => {
           >
             Salvar
           </button>
+          {updated && <span>Atualização concluída com sucesso</span>}
         </div>
       </form>
     </div>

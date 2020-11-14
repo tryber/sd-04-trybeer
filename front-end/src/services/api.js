@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const api = axios.create({
-  baseURL: 'http://localhost:3001'
-});
-
 // método post para que as info sejam passados como json
 const headers = {
   'Content-Type': 'application/json',
 };
+
+const api = axios.create({
+  baseURL: 'http://localhost:3001',
+});
 
 const registerUserAPI = async (name, email, password, role) => {
   try {
@@ -20,7 +20,7 @@ const registerUserAPI = async (name, email, password, role) => {
         role,
       },
       headers,
-      );
+    );
     return result;
   } catch (err) {
     return err.response;
@@ -36,4 +36,3 @@ export default {
   loginAPI,
   updateUserAPI,
 };
-

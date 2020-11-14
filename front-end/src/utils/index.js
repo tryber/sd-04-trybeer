@@ -8,4 +8,6 @@ const getSS = (key) => JSON.parse(sessionStorage.getItem(key));
 
 const setSS = (key, value) => sessionStorage.setItem(key, JSON.stringify(value));
 
-export { getLS, setLS, getSS, setSS };
+export {
+  getLS, setLS, getSS, setSS,
+};
