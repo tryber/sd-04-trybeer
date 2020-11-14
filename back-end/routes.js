@@ -11,7 +11,7 @@ routes.put('/profile', userController.saveEditController);
 routes.post(
   '/register',
   checkEmailInDatabase,
-  userController.registerUserController
+  userController.registerUserController,
 );
 routes.get('/profile', userController.getUserByEmail);
 

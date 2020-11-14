@@ -33,7 +33,7 @@ const findByUserIdModel = async (idUser) => {
 const saveUpdateModel = async (name, email) => {
   console.log('entrou no UPDATEMODEL', name, email);
   const db = await connection();
-  const result = await db
+  await db
     .getTable('users')
     .update()
     .set('name', name)

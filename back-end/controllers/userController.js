@@ -31,11 +31,12 @@ const getUserByEmail = async (req, res) => {
   }
 };
 
+// Controles que Edita o usuário.
+
 const saveEditController = async (req, res) => {
   const { name, email } = req.body;
-  console.log('entrou no UPDATECONTROLLER', name + email);
   try {
-    const updatedUser = await userService.updateUserService(name, email);
+    await userService.updateUserService(name, email);
     res.status(201).json({ message: 'Edition complete' });
   } catch (_e) {
     return res.status(401).json({ message: 'O sorry! Theres something wrong' });
@@ -49,7 +50,7 @@ const registerUserController = async (req, res) => {
       name,
       email,
       password,
-      checkbox
+      checkbox,
     );
     return res.status(201).json(newUser);
   } catch (_err) {

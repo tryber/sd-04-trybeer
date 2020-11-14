@@ -23,7 +23,7 @@ const findByIdService = async (id) => {
     }
     return null;
   } catch (_e) {
-    res.status(400).json({ message: 'Invalid entries! Try again MODEL' });
+    return { err: { message: 'Invalid entries! Try again MODEL' } };
   }
 };
 
@@ -36,7 +36,7 @@ const updateUserService = async (name, email) => {
     }
     return null;
   } catch (_e) {
-    res.status(400).json({ message: 'Bad request from model' });
+    return { err: { message: 'Bad request from model' } };
   }
 };
 
