@@ -3,7 +3,7 @@ import api from '../services/api';
 import { getLS, setLS } from '../utils';
 import { useHistory } from 'react-router-dom';
 
-const ProfileForm = () => {
+const ProfilePage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const history = useHistory();
@@ -26,15 +26,14 @@ const ProfileForm = () => {
   
     console.log(e.target.value);
     console.log(name, email)
-    api.updateUser(name, email)
+    api.updateUserAPI(name, email)
       .then(() => history.push('/user/update'));
   };
 
   return (
-    <div>
-
+    <div className="container-general">
+      <Menu nomeTela="Profile" />
       <form onSubmit={handleSubmit} >
-
         <div>
           <label htmlFor="name">Nome:</label>
           <input
@@ -48,7 +47,6 @@ const ProfileForm = () => {
               }}
           />
         </div>
-
         <div>
           <label htmlFor="email">Email:</label>
           <input
@@ -58,7 +56,6 @@ const ProfileForm = () => {
             readOnly
           />
         </div>
-
         <div>
           <button
             data-testid="profile-save-btn"
@@ -68,11 +65,9 @@ const ProfileForm = () => {
             Salvar
           </button>
         </div>
-
       </form>
-
     </div>
   );
 };
 
-export default ProfileForm;
+export default ProfilePage;
