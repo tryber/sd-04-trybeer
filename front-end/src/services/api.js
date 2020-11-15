@@ -29,7 +29,17 @@ const registerUserAPI = async (name, email, password, role) => {
 
 const loginAPI = (email, password) => api.post('/login', { email, password });
 
+const productsAPI = async () => {
+  try {
+    const { data } = await api.get('/products');
+    return data;
+  } catch (err) {
+    console.error('productsAPI', err)
+  }
+}
+
 export default {
   registerUserAPI,
   loginAPI,
+  productsAPI,
 };
