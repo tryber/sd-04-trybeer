@@ -5,19 +5,6 @@ import api from '../../../services/api';
 import { getLS, setLS } from '../../../helpers/index';
 import './ClientProducts.css';
 
-const getCurrentQtt = (id, qttPdtsCart) => {
-  let qtt;
-
-  for (let i = 0, length = qttPdtsCart.length; i < length; i += 1) {
-    if (qttPdtsCart[i].id === id) {
-      qtt = qttPdtsCart[i].qtt;
-      break;
-    }
-  }
-
-  return qtt;
-};
-
 // Função q primeiro verifica se existe informações de quantidade de produtos no
 // local storage, caso n, então seta quantidade inicial
 const initQttPdtsCart = (products) => {
@@ -25,14 +12,14 @@ const initQttPdtsCart = (products) => {
 
   if (qtt) return qtt;
 
-  qtt = products.map(({ id, price }) => ({ id, price, qtt: 1 }));
+  qtt = products.map(({ id, price }) => ({ id, price, qtt: 1, totalPrice: price }));
 
   setLS('qttPdtsCart', qtt);
 
   return qtt;
 }
 
-// Hook de effect personalizado, com uma IIFE interna, criado para
+// Hook de effect customizado, com uma IIFE interna, criado para
 // diminuir a lógica dentro do componente default
 const useEffectCustom = (setQttPdtsCart, setProducts) => {
   useEffect(() => {
@@ -50,7 +37,9 @@ const useEffectCustom = (setQttPdtsCart, setProducts) => {
 };
 
 export default () => {
+  // Registros de produtos do mysql
   const [products, setProducts] = useState([]);
+  // Registro de quantidade e outras infos no context
   const { qttPdtsCart: [qttPdtsCart, setQttPdtsCart] } = useContext(TrybeerContext);
 
   useEffectCustom(setQttPdtsCart, setProducts);
@@ -59,7 +48,7 @@ export default () => {
     <div>
       <div className="cards-container">
         {products.map(({ id, url_image, name, price }) => {
-          const currentQtt = getCurrentQtt(id, qttPdtsCart);
+          const currentQtt = qttPdtsCart.filter((pdt) => pdt.id === id)[0].qtt;
 
           return <Card
             key={id} id={id} img={url_image} name={name} price={price} qtt={currentQtt}
