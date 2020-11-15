@@ -10,7 +10,7 @@ const ProviderTrybeer = ({ children }) => {
   const [qttPdtsCart, setQttPdtsCart] = useState([]);
 
   // Estado para o valor total no carrinho
-  const [cartValue, setCartValue] = useState(0);
+  const [cartValue, setCartValue] = useState();
 
   const context = {
     user,

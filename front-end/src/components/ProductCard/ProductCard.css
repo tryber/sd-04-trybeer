@@ -1,3 +1,9 @@
+img {
+  height: 80px;
+  margin: 15px auto 25px auto;
+  width: 80px;
+}
+
 .card {
   padding: 0 10px 0 10px;
   margin-top: 5px;
@@ -8,12 +14,13 @@
 
 .card-name {
   font-weight: 700;
+  text-align: center;
 }
 
-img {
-  height: 80px;
-  margin: 15px auto 25px auto;
-  width: 80px;
+.card-price {
+  color: green;
+  font-weight: 700;
+  text-align: center;
 }
 
 .qtt-buttons {

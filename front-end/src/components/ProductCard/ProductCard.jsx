@@ -63,7 +63,7 @@ export default ({ id, img, name, price, qtt }) => {
     <div id={id} className='card'>
       <img src={img} alt="produto" />
       <p className="card-name">{name}</p>
-      <p>{price}</p>
+      <p className="card-price">{price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</p>
       <div className="qtt-buttons">
         <button
           type="button" className="btn btn-outline-success" onClick={addQtt}

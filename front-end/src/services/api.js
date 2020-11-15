@@ -13,5 +13,5 @@ const getProducts = () => apiTrybeer.get('/products');
 export default {
   loginApi,
   getUserByEmail,
-  getProducts
+  getProducts,
 };
