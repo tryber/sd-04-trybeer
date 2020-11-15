@@ -58,6 +58,7 @@ const subQtt = (e) => {
 };
 
 export default ({ id, img, name, price, qtt }) => {
+  console.log('ok')
   return (
     <div id={id} className='card'>
       <img src={img} alt="produto" />
