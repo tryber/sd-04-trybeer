@@ -8,4 +8,10 @@ const loginApi = async (email, password) => apiTrybeer.post('/login', { email, p
 
 const getUserByEmail = async (email) => axios.get(`/${email}`);
 
-export default { loginApi, getUserByEmail };
+const getProducts = () => apiTrybeer.get('/products');
+
+export default {
+  loginApi,
+  getUserByEmail,
+  getProducts
+};
