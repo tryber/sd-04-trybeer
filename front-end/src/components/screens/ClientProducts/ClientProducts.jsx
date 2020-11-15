@@ -54,7 +54,7 @@ export default () => {
   // const totalPriceCartLs = getLS('totalPriceCart');
 
   useEffectCustom(setQttPdtsCart, setTotalPriceCart, setProducts);
-  console.log('c:', qttPdtsCart, 's:', products)
+
   return (
     <div>
       <div className="cards-container">

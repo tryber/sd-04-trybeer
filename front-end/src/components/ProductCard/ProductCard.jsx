@@ -13,9 +13,13 @@ const addOrSub = (qttPdtsCart, index, pdt, setTotalPriceCart, op) => {
   const totalPriceCart = qttPdtsCart.map((pdt) => pdt.totalPrice)
     .reduce((acc, value) => acc + value);
 
+  if (totalPriceCart === 0) {
+    const buttonCart = document.getElementById('btn-cart');
+
+    buttonCart.disabled = true;
+  }
   // Atualiza context
   setTotalPriceCart(totalPriceCart);
-  // Atualiza LS
   setLS('totalPriceCart', totalPriceCart);
   setLS('qttPdtsCart', qttPdtsCart);
 };
@@ -40,11 +44,14 @@ const addQtt = (e, setTotalPriceCart) => {
 
   elQtt.innerText = +(elQtt.innerText) + 1;
 
-  updateTotalPriceLS(e.target, setTotalPriceCart, 'add')
+  updateTotalPriceLS(e.target, setTotalPriceCart, 'add');
+
+  const buttonCart = document.getElementById('btn-cart');
+
+  buttonCart.disabled = false;
 };
 
 const subQtt = (e, setTotalPriceCart) => {
-  console.log('ok')
   const elQtt = e.target.previousSibling;
   let qtt = +(elQtt.innerText);
 
@@ -54,7 +61,7 @@ const subQtt = (e, setTotalPriceCart) => {
 
   elQtt.innerText = qtt - 1;
 
-  updateTotalPriceLS(e.target, setTotalPriceCart, 'sub')
+  updateTotalPriceLS(e.target, setTotalPriceCart, 'sub');
 };
 
 export default ({ id, i, img, name, price, qtt }) => {
