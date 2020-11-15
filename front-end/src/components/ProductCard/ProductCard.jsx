@@ -36,35 +36,12 @@ const updateTotalPriceLS = (target, setTotalPriceCart, op) => {
 };
 
 const addQtt = (e, setTotalPriceCart) => {
-  // const elSub = e.target.nextSibling.nextSibling;
   const elQtt = e.target.nextSibling;
 
   elQtt.innerText = +(elQtt.innerText) + 1;
 
   updateTotalPriceLS(e.target, setTotalPriceCart, 'add')
-
-  // elSub.disabled = false;
 };
-
-// const subQtt = (e, setTotalPriceCart) => {
-//   console.log('ok')
-//   const elQtt = e.target.previousSibling;
-//   let qtt = +(elQtt.innerText) - 1;
-
-//   if (qtt === 0) {
-//     elQtt.innerText = qtt;
-
-//     updateTotalPriceLS(e.target, setTotalPriceCart, 'sub')
-
-//     e.target.disabled = true;
-
-//     return true;
-//   }
-
-//   elQtt.innerText = qtt;
-
-//   updateTotalPriceLS(e.target, setTotalPriceCart, 'sub')
-// };
 
 const subQtt = (e, setTotalPriceCart) => {
   console.log('ok')
@@ -72,12 +49,6 @@ const subQtt = (e, setTotalPriceCart) => {
   let qtt = +(elQtt.innerText);
 
   if (qtt === 0) {
-    // elQtt.innerText = qtt + 1;
-
-    // updateTotalPriceLS(e.target, setTotalPriceCart, 'sub')
-
-    // e.target.disabled = true;
-
     return true;
   }
 

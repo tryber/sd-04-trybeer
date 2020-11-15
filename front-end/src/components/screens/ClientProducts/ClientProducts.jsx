@@ -58,11 +58,11 @@ export default () => {
   return (
     <div>
       <div className="cards-container">
-        {products.map(({ id, url_image, name, price }, i) => {
+        {products.map(({ id, url_image: urlImg, name, price }, i) => {
           const currentQtt = qttPdtsCart.filter((pdt) => pdt.id === id)[0].qtt;
 
           return <Card
-            key={id} id={id} i={i} img={url_image} name={name} price={price} qtt={currentQtt}
+            key={id} id={id} i={i} img={urlImg} name={name} price={price} qtt={currentQtt}
           />
         })}
       </div>
