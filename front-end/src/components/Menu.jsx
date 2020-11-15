@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Menu = ({ title }) => {
   const [menu, setMenu] = useState(false);
@@ -10,7 +11,7 @@ const Menu = ({ title }) => {
 
   const sideMenu = () => {
     return (
-      <div class="side-menu-container">
+      <div className="side-menu-container">
         <Link to="/products">
           <button data-testid="side-menu-item-products" type="button">
             Produtos
@@ -58,4 +59,4 @@ const Menu = ({ title }) => {
   );
 };
 
-export default Menu;
+export default connect(null, null)(Menu);
