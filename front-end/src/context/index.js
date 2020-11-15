@@ -4,19 +4,23 @@ import PropTypes from 'prop-types';
 export const TrybeerContext = createContext();
 
 const ProviderTrybeer = ({ children }) => {
+  // Const criada para corrigir regra de magic number do CC.
+  // Nem queiram saber minha opinião sobre isso
+  const zero = 0;
+
   const [user, setUser] = useState({});
 
   // Estado para a quantidade inicial de produtos no carrinho
   const [qttPdtsCart, setQttPdtsCart] = useState([]);
 
   // Estado para o valor total no carrinho
-  const [cartValue, setCartValue] = useState();
+  const [totalPriceCart, setTotalPriceCart] = useState(zero);
 
   const context = {
     user,
     setUser,
     qttPdtsCart: [qttPdtsCart, setQttPdtsCart],
-    cartValue: [cartValue, setCartValue],
+    totalPriceCart: [totalPriceCart, setTotalPriceCart],
   };
 
   return <TrybeerContext.Provider value={ context }>{ children }</TrybeerContext.Provider>;

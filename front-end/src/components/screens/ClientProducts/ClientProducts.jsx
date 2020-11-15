@@ -8,12 +8,19 @@ import './ClientProducts.css';
 
 // Função q primeiro verifica se existe informações de quantidade de produtos no
 // local storage, caso n, então seta quantidade inicial
-const initQttPdtsCart = (products) => {
+const initQttPdtsCart = (products, setTotalPriceCart) => {
   let qtt = getLS('qttPdtsCart');
 
-  if (qtt) return qtt;
+  if (qtt) {
+    const totalPriceCart = qtt.map((pdt) => pdt.totalPrice)
+    .reduce((acc, value) => acc + value);
 
-  qtt = products.map(({ id, price }) => ({ id, price, qtt: 1, totalPrice: price }));
+    setTotalPriceCart(totalPriceCart);
+
+    return qtt;
+  }
+
+  qtt = products.map(({ id, price }) => ({ id, price, qtt: 0, totalPrice: 0 }));
 
   setLS('qttPdtsCart', qtt);
 
@@ -22,41 +29,44 @@ const initQttPdtsCart = (products) => {
 
 // Hook de effect customizado, com uma IIFE interna, criado para
 // diminuir a lógica dentro do componente default
-const useEffectCustom = (setQttPdtsCart, setProducts) => {
+const useEffectCustom = (setQttPdtsCart, setTotalPriceCart, setProducts) => {
   useEffect(() => {
     (async () => {
       try {
         const products = await api.getProducts();
 
-        setQttPdtsCart(initQttPdtsCart(products.data));
+        setQttPdtsCart(initQttPdtsCart(products.data, setTotalPriceCart));
         setProducts(products.data);
       } catch (e) {
         // console.log({ error: e.message })
       }
     })();
-  }, [setQttPdtsCart, setProducts]);
+  }, [setQttPdtsCart, setTotalPriceCart, setProducts]);
 };
 
 export default () => {
   // Registros de produtos do mysql
   const [products, setProducts] = useState([]);
-  // Registro de quantidade e outras infos no context
-  const { qttPdtsCart: [qttPdtsCart, setQttPdtsCart] } = useContext(TrybeerContext);
+  const {
+    qttPdtsCart: [qttPdtsCart, setQttPdtsCart],
+    totalPriceCart: [totalPriceCart, setTotalPriceCart]
+  } = useContext(TrybeerContext);
+  // const totalPriceCartLs = getLS('totalPriceCart');
 
-  useEffectCustom(setQttPdtsCart, setProducts);
+  useEffectCustom(setQttPdtsCart, setTotalPriceCart, setProducts);
   console.log('c:', qttPdtsCart, 's:', products)
   return (
     <div>
       <div className="cards-container">
-        {products.map(({ id, url_image, name, price }) => {
+        {products.map(({ id, url_image, name, price }, i) => {
           const currentQtt = qttPdtsCart.filter((pdt) => pdt.id === id)[0].qtt;
 
           return <Card
-            key={id} id={id} img={url_image} name={name} price={price} qtt={currentQtt}
+            key={id} id={id} i={i} img={url_image} name={name} price={price} qtt={currentQtt}
           />
         })}
       </div>
-      <ButtonCart />
+      <ButtonCart totalPriceCart={totalPriceCart} />
     </div>
   );
 };

@@ -6,6 +6,6 @@ body {
 
 .cards-container {
   display: flex;
-  margin-bottom: 59px;
+  margin-bottom: 67px;
   flex-wrap: wrap;
 }

@@ -1,6 +1,7 @@
 .btn-cart {
-  bottom: 15px;
+  bottom: 11px;
   color: black;
+  font-size: x-large;
   font-weight: 700;
   position: fixed;
   width: 600px;
