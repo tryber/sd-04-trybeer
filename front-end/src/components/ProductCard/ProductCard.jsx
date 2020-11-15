@@ -58,13 +58,14 @@ const subQtt = (e) => {
 };
 
 export default ({ id, img, name, price, qtt }) => {
-  console.log('ok')
   return (
     <div id={id} className='card'>
       <img src={img} alt="produto" />
       <p className="card-name">{name}</p>
-      <p className="card-price">{price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</p>
-      <div className="qtt-buttons">
+      <p className="card-price">
+        {price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+      </p>
+      <div className="qtt-btns">
         <button
           type="button" className="btn btn-outline-success" onClick={addQtt}
         >

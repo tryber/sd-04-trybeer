@@ -1,9 +1,10 @@
 import React from 'react';
+import './ButtonCart.css';
 
-export default ButtonCart = () => {
+export default () => {
   return (
-    <div className="button-cart-container">
-      <button></button>
+    <div className="btn-cart-container">
+      <button className="btn btn-success btn-cart">Ver carrinho</button>
     </div>
   );
 };

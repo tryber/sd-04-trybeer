@@ -1,9 +1,11 @@
 body {
   margin-top: 5px;
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 .cards-container {
   display: flex;
+  margin-bottom: 59px;
   flex-wrap: wrap;
 }

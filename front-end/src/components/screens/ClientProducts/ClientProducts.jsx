@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Card from '../../ProductCard/ProductCard';
+import ButtonCart from '../../ButtonCart/ButtonCart';
 import { TrybeerContext } from '../../../context/index';
 import api from '../../../services/api';
 import { getLS, setLS } from '../../../helpers/index';
@@ -55,6 +56,7 @@ export default () => {
           />
         })}
       </div>
+      <ButtonCart />
     </div>
   );
 };

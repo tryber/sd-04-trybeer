@@ -1,0 +1,12 @@
+.btn-cart {
+  bottom: 15px;
+  color: black;
+  font-weight: 700;
+  position: fixed;
+  width: 600px;
+}
+
+.btn-cart-container {
+  display: flex;
+  justify-content: center;
+}
