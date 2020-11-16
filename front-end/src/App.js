@@ -4,6 +4,7 @@ import Login from './components/Login';
 import UserRegister from './components/UserRegister';
 import UserProfile from './components/UserProfile/index';
 
+//teste
 const App = () => (
   <BrowserRouter>
     <Switch>

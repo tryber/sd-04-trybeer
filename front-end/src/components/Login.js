@@ -4,6 +4,9 @@ import { Link, useHistory } from 'react-router-dom';
 import API from '../services/api';
 import Header from './Header';
 
+const characterLength = 6;
+
+
 const Login = () => {
   // const { user, setUser } = useContext(TrybeerContext);
 
@@ -19,12 +22,12 @@ const Login = () => {
   const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
   const emailValidated = () => {
-    if (!eMail || !isEmailValid(eMail) || eMail.length < 6) return false;
+    if (!eMail || !isEmailValid(eMail) || eMail.length < characterLength) return false;
     return true;
   };
 
   // VARIÁVEL QUE DEFINE O "ESTADO" DO BOTÃO
-  const disableButton = !password || password.length < 6 || !emailValidated();
+  const disableButton = !password || password.length < characterLength || !emailValidated();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
