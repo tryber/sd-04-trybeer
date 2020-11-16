@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useContext } from 'react';
 import ProductCard from '../components/ProductCard';
+import { AppContext } from '../context/AppContext';
+import api from '../services/api';
 
 function Products() {
-  useEffect(() => {
-    searchRecipesByName(type, '').then((data) => {
-      fetchRecipes(data);
-      setIsFetching(false);
-    });
-  }, []);
+  const { products, setProducts } = useContext(AppContext);
 
-  // const products = [
-  //   { id: 2, name: 'Cerveja Skol', price: 'R$ 6,90', imgProduct: './images/Becks600ml.jpg', quantity: 3 }
-  // ];
+  useEffect(() => {
+    api.get('/products')
+      .then(response => setProducts(response.data));
+  }, []);
 
   return (
     <div>

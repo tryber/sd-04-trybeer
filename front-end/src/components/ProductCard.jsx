@@ -1,5 +1,4 @@
 import React from 'react';
-import imgProd from './images/Becks600ml.jpg';
 import './ProductCard.css';
 
 function ProductCard({ name, price, imgProduct, quantity }) {
