@@ -7,7 +7,7 @@ import {
   FormLabel,
   // FormErrorMessage,
   Input,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 
 const Register = () => (
   <div>
