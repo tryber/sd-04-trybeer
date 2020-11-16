@@ -19,16 +19,18 @@ const UserRegister = () => {
   const [errMsg, setErrMsg] = useState('');
 
   const isNameValid = (name = '') => name.match(/^([a-zA-Zà-úÀ-Ú]|\s+)+$/);
+  const nameLength = 12;
 
   const nameValidated = () => {
-    if (!name || !isNameValid(name) || name.length < 12) return false;
+    if (!name || !isNameValid(name) || name.length < nameLength) return false;
     return true;
   };
 
   const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
+  const emailLength = 6;
   const emailValidated = () => {
-    if (!email || !isEmailValid(email) || email.length < 6) return false;
+    if (!email || !isEmailValid(email) || email.length < emailLength) return false;
     return true;
   };
 
