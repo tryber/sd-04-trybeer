@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import TopMenu from '../../components/TopMenu'
-import SideMenu from '../../components/SideMenu'
+import Header from '../../components/Header';
 // import Footer from '../../components/Rodape';
 import cheersIcon from '../../assets/beer.svg';
 import './styles.css';
@@ -29,10 +28,9 @@ const ClientProfile = () => {
   return (
     <div className="container">
       <div className="square">
-        < TopMenu title='Perfil do Cliente' />
-        < SideMenu sideMenuState={ false } />
+        <Header title="Perfil do cliente"/>
         <h1 className="pageTitle">Perfil do Cliente</h1>
-        <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
+        <img src={cheersIcon} className="cheesIcon" alt="Cheers Beer Icon" />
         <form method="POST" action="/profile" className="form">
           <div className="form-group">
             <label htmlFor="name" className="label-text">
@@ -43,13 +41,13 @@ const ClientProfile = () => {
                 type="text"
                 data-testid="profile-name-input"
                 name="name"
-                value={ userName }
-                onChange={ (e) => {
+                value={userName}
+                onChange={(e) => {
                   setUserName(e.target.value);
                   setDisableButton(
                     !(e.target.value.length >= minNameLenght) && !(e.target.value !== inputUserName),
                   );
-                } }
+                }}
                 required
               />
             </label>
@@ -63,14 +61,14 @@ const ClientProfile = () => {
                 placeholder="Email"
                 type="text"
                 name="email"
-                value={ userEmail }
+                value={userEmail}
                 readOnly
               />
             </label>
           </div>
           <div className="div_btn">
             <button
-              disabled={ disableButton }
+              disabled={disableButton}
               type="button"
               data-testid="profile-save-btn"
               className="save-button"

@@ -1,15 +1,19 @@
-div, form, label, input, button, img {
+div,
+form,
+label,
+input,
+button,
+img {
   margin: 0;
   padding: 0;
 }
 
 .main-container-form {
-  margin: 0 auto;
-  margin-top: 144px;
+  margin: 64px auto 0;
 }
 
 img {
-  background-color: #14213D;
+  background-color: #14213d;
   border-radius: 50%;
   display: block;
   margin: 0 auto 16px;
@@ -25,7 +29,8 @@ form {
   padding: 16px;
 }
 
-#emailInput, #passwordInput {
+#emailInput,
+#passwordInput {
   border: none;
   border-radius: 4px;
   height: 40px;
@@ -34,7 +39,7 @@ form {
 }
 
 button {
-  background-color: #14213D;
+  background-color: #14213d;
   border: none;
   border-radius: 4px;
   color: #ffff;

@@ -1,12 +1,11 @@
 import React from 'react';
-
 import Login from '../../components/Login';
-import TopMenu from  '../../components/TopMenu';
+import Header from '../../components/Header';
 
 const LoginPage = () => {
   return (
     <div>
-      <TopMenu />
+      <Header />
       <Login />
     </div>
   )

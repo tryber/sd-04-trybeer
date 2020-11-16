@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import userIcon from '../../assets/user.png';
-import './Login.css';
+import './style.css';
 
 const Login = () => {
   return (
