@@ -15,6 +15,17 @@ export const postRegister = async (name, email, password, role) => axios
   })
   .catch(({ response }) => response);
 
+export const postOrder = async (nameAdress, numberAdress, cart, user, justNumberPrice) => axios
+  .post(`${baseUrl}/orders`, {
+    nameAdress,
+    numberAdress,
+    cart,
+    user,
+    justNumberPrice,
+  })
+  .catch(({ response }) => response);
+  
+
 // export const postRegister = async (name, email, password, role) => {
 //   const dataResponse = await axios({
 //     baseURL: `${baseUrl}/register`,
