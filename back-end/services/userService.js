@@ -15,7 +15,34 @@ const registerUserService = async (name, email, password, checkbox) => {
   return newUser;
 };
 
+const findByIdService = async (id) => {
+  try {
+    const selectedId = await userModel.findByUserIdModel(id);
+    if (selectedId) {
+      return selectedId;
+    }
+    return null;
+  } catch (_e) {
+    return { err: { message: 'Invalid entries! Try again MODEL' } };
+  }
+};
+
+const updateUserService = async (name, email) => {
+  try {
+    console.log('entroU no UPDATESERVICE', name, email);
+    const sendUpdate = await userModel.saveUpdateModel(name, email);
+    if (sendUpdate) {
+      return sendUpdate;
+    }
+    return null;
+  } catch (_e) {
+    return { err: { message: 'Bad request from model' } };
+  }
+};
+
 module.exports = {
   findUserByEmail,
+  findByIdService,
+  updateUserService,
   registerUserService,
 };

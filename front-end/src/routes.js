@@ -8,7 +8,7 @@ import {
 
 import Login from './pages/Login';
 import Products from './pages/Products';
-import ProfileClient from './pages/Profile';
+import Profile from './pages/Profile';
 import Register from './pages/Register';
 import Checkout from './pages/CloseOrder';
 import OrdersClient from './pages/Orders';
@@ -23,9 +23,14 @@ const routes = () => (
         <Redirect to="/login" />
       </Route>
       <Route path="/login" component={ Login } />
+
+      <Route exact path="/profile/:id" component={ Profile } />
+      <Route exact path="/products" component={ Products } />
+
+      <Route exact path="/register" component={ Register } />
+      <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
-      <Route path="/profile" component={ ProfileClient } />
-      <Route path="/products" component={ Products } />
+      <Route path="/profile" component={ Profile } />
       <Route path="/checkout" component={ Checkout } />
       <Route path="/orders" component={ OrdersClient } />
       <Route exact path="/orders:id" component={ Details } />
