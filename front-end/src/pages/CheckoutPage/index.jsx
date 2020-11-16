@@ -39,12 +39,12 @@ const Checkout = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setFinish(true);
     setFinish('Compra realizada com sucesso!');
+    setLS('cart', []);
     clearTimeout(finsihTimeout.current);
     finsihTimeout.current = setTimeout(() => {
       setFinish(null);
-      history.push('/products');
+      // history.push('/products');
     }, 3000);
   };
 
