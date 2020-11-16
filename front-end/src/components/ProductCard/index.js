@@ -1,69 +1,106 @@
 import React, { useEffect, useState } from 'react';
 
-// falta criar o context para adicionar e tirar item do carrinho
+// funcao verifica se tem itens no storage, se n tiver ele adiciona
+function addStorage(id, name, price, urlImage, quantity) {
+  const storage = JSON.parse(localStorage.cartItens);
+  const additem = {
+    id,
+    name,
+    price,
+    urlImage,
+    quantity,
+  };
+  storage.push(additem);
+  localStorage.cartItens = JSON.stringify(storage);
+}
+
+// funcao para tirar itens do storage caso a quantidade seja 0
+function subStorage(id) {
+  const storage = JSON.parse(localStorage.cartItens);
+  const newStorage = storage.filter((ele) => ele.id !== id);
+  localStorage.cartItens = JSON.stringify(newStorage);
+}
+
+// funcao para atualizar quantidade do item no storage
+function updateStorage(id, quantity) {
+  const storage = JSON.parse(localStorage.cartItens);
+  const newArray = storage.map((ele) => {
+    if (ele.id === id) {
+      ele.quantity = quantity;
+      return ele;
+    }
+    return ele;
+  });
+  localStorage.cartItens = JSON.stringify(newArray);
+}
+
+// funcao que checa se tem item no storage e atualiza a quantidade
+function checkStorage(id, zero, setQuantity) {
+  const storage = JSON.parse(localStorage.cartItens);
+  if (storage.length > zero) {
+    storage.forEach((e) => {
+      if (e.id === id) setQuantity(e.quantity);
+      return null;
+    });
+  }
+}
 
 export default function ProductCard(data) {
-  // variavel para formatacao do price
   const zero = 0;
+  // variavel para formatacao do price
   const formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' };
   const {
-    index, name, price, urlImage,
+    id, name, price, urlImage,
   } = data;
   const [quantity, setQuantity] = useState(zero);
 
-  // roda quando o card eh montado, checa/ cria um localstorage
-  // checa se o item do card ja esta no localstorage e atribui o a quantidade
+  // roda quando o card eh montado, checa localstorage
+  // checa se o item do card ja esta no localstorage e atribui a quantidade
   useEffect(() => {
-    if (!localStorage.cartItens) localStorage.cartItens = JSON.stringify([]);
-    const storage = JSON.parse(localStorage.cartItens);
-    if (storage.length > zero) {
-      storage.map((e) => {
-        if (e.name === name) setQuantity(e.quantity);
-        return e;
-      });
-    }
-  }, [name]);
+    checkStorage(zero, id);
+  }, []);
 
   // roda toda vez que o valor do "quantity" for alterado
   // checa se o item ja esta no localstorage, se tiver atualiza a quantidade,
   // se nao tiver adiciona o item
   useEffect(() => {
+    // pega localStorage
     const storage = JSON.parse(localStorage.cartItens);
-    const additem = {
-      name,
-      quantity,
-    };
-    const newStorage = storage.map((e) => {
-      if (e.name === name) {
-        e.quantity = quantity;
-        return e;
+    // checa se o item ja esta no storage
+    const newArray = storage.find((ele) => ele.id === id);
+    // se o item n estiver no storage add
+    if (!newArray) addStorage(id, name, price, urlImage, quantity);
+    // se a quantidade for 0 tira do storage
+    if (quantity === zero) subStorage(id);
+    // atualiza o array
+    storage.forEach((e) => {
+      if (e.id === id) {
+        updateStorage(id, quantity);
       }
-      return storage.push(additem);
     });
-    localStorage.cartItens = JSON.stringify(newStorage);
-  }, [name, quantity]);
+  }, [id, name, price, quantity, urlImage]);
 
   return (
     <div>
-      <div data-testid={ `${index - 1}-product-price` }>{price.toLocalString('pt-BR', formato)}</div>
+      <div data-testid={ `${id - 1}-product-price` }>{price.toLocalString('pt-BR', formato)}</div>
       <div>
-        <div data-testid={ `${index - 1}-product-img` }>{urlImage}</div>
-        <div data-testid={ `${index - 1}-product-name` }>{name}</div>
+        <div data-testid={ `${id - 1}-product-img` }>{urlImage}</div>
+        <div data-testid={ `${id - 1}-product-name` }>{name}</div>
       </div>
       <div>
         <button
           type="button"
           disabled={ quantity === zero }
-          data-testid={ `${index - 1}-product-minus` }
+          data-testid={ `${id - 1}-product-minus` }
           onClick={ () => setQuantity(quantity - 1) }
         >
           -
         </button>
-        <div data-testid={ `${index - 1}-product-qtd` }>{quantity}</div>
+        <div data-testid={ `${id - 1}-product-qtd` }>{quantity}</div>
         <button
           type="button"
           // disabled={ { quantity } === prodQuantity }
-          data-testid={ `${index - 1}-product-plus` }
+          data-testid={ `${id - 1}-product-plus` }
           onClick={ () => setQuantity(quantity + 1) }
         >
           +
