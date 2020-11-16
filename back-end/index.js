@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 const middleware = require('./middleware');
 const controllers = require('./controllers');
-const path = require('path');
 require('dotenv/config');
 
 const app = express();

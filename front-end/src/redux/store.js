@@ -1,8 +1,7 @@
+import { devToolsEnhancer } from 'redux-devtools-extension';
 import { createStore } from 'redux';
 import rootReducer from './reducers';
 
-const store = createStore(rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-// compose(applyMiddleware(thunk), dev // );
+const store = createStore(rootReducer, devToolsEnhancer());
 
 export default store;
