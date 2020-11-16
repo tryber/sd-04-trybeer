@@ -1,22 +1,33 @@
 import React from 'react';
 
 import { Switch, Route } from 'react-router-dom';
-import {
-  Login, UserProfile, Register, Products,
-} from './pages';
+
+import { UserProfile, FormPage, Products } from './pages';
 import { Header } from './components/Header';
+import LoginForm from './components/forms/LoginForm';
+import RegisterForm from './components/forms/RegisterForm';
 
 function App() {
   return (
     <Switch>
-      <Route exact path="/" component={ Login } />
+      <Route exact path="/">
+        <FormPage>
+          <LoginForm />
+        </FormPage>
+      </Route>
       <Route path="/login">
-        <Login />
+        <FormPage>
+          <LoginForm />
+        </FormPage>
       </Route>
       <Route path="/profile">
         <UserProfile />
       </Route>
-      <Route path="/register" component={ Register } />
+      <Route path="/register">
+        <FormPage>
+          <RegisterForm />
+        </FormPage>
+      </Route>
       <Route path="/products">
         <Products />
       </Route>
