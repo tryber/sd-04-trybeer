@@ -28,21 +28,23 @@ const changeUrl = (history, url, clear) => {
 const admOnline = (history, title) => {
   return (
     <nav className="admin-side-bar-container">
-      <h3>{title}</h3>
-      <button
-        className="nav-btn-adm"
-        data-testid="side-menu-item-orders"
-        onClick={() => changeUrl(history, 'orders')}
-      >
-        Pedidos
-      </button>
-      <button
-        className="nav-btn-adm"
-        data-testid="side-menu-item-profile"
-        onClick={() => changeUrl(history, 'profile')}
-      >
-        Perfil
-      </button>
+      <div>
+        <h3 className='title-adm' >{title}</h3>
+        <button
+          className="nav-btn-adm"
+          data-testid="side-menu-item-orders"
+          onClick={() => changeUrl(history, 'orders')}
+        >
+          Pedidos
+        </button>
+        <button
+          className="nav-btn-adm"
+          data-testid="side-menu-item-profile"
+          onClick={() => changeUrl(history, 'profile')}
+        >
+          Perfil
+        </button>
+      </div>
       <button
         className="nav-btn-adm"
         data-testid="side-menu-item-logout"

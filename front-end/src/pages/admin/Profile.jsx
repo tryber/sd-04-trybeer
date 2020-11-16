@@ -1,6 +1,10 @@
 import React from 'react';
 import SideBar from '../../components/ClientBar.jsx';
 
-const Profile = () => <SideBar title={'TryBeer'} isAdm={true} />;
+const Profile = () => (
+  <div>
+    <SideBar title={'TryBeer'} isAdm={true} />
+  </div>
+);
 
 export default Profile;

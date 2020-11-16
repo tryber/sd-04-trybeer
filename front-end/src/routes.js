@@ -34,9 +34,10 @@ const routes = () => (
       <Route path="/profile" component={ ProfileClient } />
       <Route path="/checkout" component={ Checkout } />
       <Route path="/orders" component={ OrdersClient } />
-      <Route exact path="/orders:id" component={ Details } />
+      <Route exact path="/orders/:id" component={ Details } />
       <Route exact path="/admin/orders" component={ OrdersAdm } />
       <Route exact path="/admin/profile" component={ ProfileAdm } />
+      <Route exact path="/admin/orders/:id" component={ OrdersAdm } />
       <Route path="/test" component={ test } />
     </Switch>
   </Router>

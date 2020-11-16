@@ -62,6 +62,13 @@
 	text-shadow: 0 4px 7px rgba(255, 255, 255, 0.25);
 }
 
+.title-adm {
+	color: rgb(255, 255, 255);
+  font-size: 1.7em;
+  margin-top: 2vh;
+	text-shadow: 0 4px 7px rgba(255, 255, 255, 0.25);
+}
+
 .empty-box {
 	margin-right: 5vw;
 }
@@ -99,16 +106,22 @@
   flex-direction: column;
   height: 100vh;
   justify-content: space-between;
-  position: fixed;
+  position: absolute;
+  text-align: center;
   width: 15vw;
 }
 
 .nav-btn-adm {
-  background-color: transparent;
-  border: transparent;
-  color: transparent;
+  background-color: rgb(24, 24, 24);
+  border-bottom: 2px solid  rgb(255, 255, 255);
+  border-left: transparent;
+  border-right: transparent;
+  border-top: 2px solid  rgb(255, 255, 255);
+  box-shadow: 0 4px 7px rgba(255, 255, 255, 0.25);
+  color: rgb(255, 255, 255);
   font-size: large;
-  margin: 3vh 0 2vh;
+  margin: 5vh 0 2vh;
+  text-shadow: 0 4px 7px rgba(255, 255, 255, 0.25);
   width: 15vw;
 }
 
@@ -143,6 +156,12 @@
 }
 
 .body-nav-bar.open .nav-btn:hover {
+  border-color: rgb(255, 76, 76);
+  box-shadow: 0 4px 7px rgb(255, 92, 92, 0.25);
+  color: rgb(255, 220, 220);
+}
+
+.nav-btn-adm:hover {
   border-color: rgb(255, 76, 76);
   box-shadow: 0 4px 7px rgb(255, 92, 92, 0.25);
   color: rgb(255, 220, 220);
