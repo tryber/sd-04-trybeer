@@ -25,12 +25,12 @@ const client = () => (
     </span>
     <Link to="/login">
       <li data-testid="side-menu-item-logout">
-        <a
+        <button
           onClick={ () => window.localStorage.clear() }
           onKeyDown={ () => window.localStorage.clear() }
         >
           Sair
-        </a>
+        </button>
       </li>
     </Link>
   </ul>
@@ -79,9 +79,9 @@ const SideBar = ({ role }) => {
   return (
     <nav
       id={identification}
-      className={`${classes} ${toggle ? 'active' : ''}`}
-      onClick={ () => setToggle(!toggle) }
-      onKeyDown={ () => setToggle(!toggle) }
+      className={ `${classes} ${toggle ? 'active' : ''}` }
+      onClick= { () => setToggle(!toggle) }
+      onKeyDown= { () => setToggle(!toggle) }
     >
       <div data-testid="top-hamburguer" className="toggle-btn">
         <span />
