@@ -1,0 +1,61 @@
+div,
+form,
+label,
+input,
+button,
+img {
+  margin: 0;
+  padding: 0;
+}
+
+.main-container-form {
+  margin: 64px auto 0;
+}
+
+img {
+  background-color: #14213d;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 16px;
+  padding: 16px;
+}
+
+form {
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+#emailInput,
+#passwordInput {
+  border: none;
+  border-radius: 4px;
+  height: 40px;
+  margin-bottom: 16px;
+  padding: 8px;
+}
+
+button {
+  background-color: #14213d;
+  border: none;
+  border-radius: 4px;
+  color: #ffff;
+  font-size: 16px;
+  height: 40px;
+  outline: none;
+  width: 100%;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+a {
+  display: block;
+  color: rgb(133, 131, 131);
+  margin: 32px auto;
+  width: fit-content;
+}

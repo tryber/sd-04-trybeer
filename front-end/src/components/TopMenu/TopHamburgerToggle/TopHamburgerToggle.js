@@ -1,8 +1,8 @@
-import React from 'react';
-import classes from './TopHamburgerToggle.css';
+import React, { useState } from 'react';
+import './TopHamburgerToggle.css';
 
 const topHamburgerToggle = () => (
-  <div className={classes.TopHamburgerToggle}>
+  <div className='TopHamburgerToggle'>
     <div />
     <div />
     <div />
