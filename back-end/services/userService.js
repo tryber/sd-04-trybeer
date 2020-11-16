@@ -1,11 +1,13 @@
 const { userModel } = require('../models');
 
 const createUser = async (userName, emailUser, password, isSeller) => {
-  const user = await userModel.getUserByEmail(email);
+  const emailInDatabase = await userModel.getUserByEmail(email);
 
-  if (user.email !== email) return { message: 'E-mail invalido' };
+  if (emailInDatabase) return { err: { message: 'Email is already registered' } };
 
-  await userModel.updateUser(name, email);
+  const role = isSeller ? 'administrator' : 'client';
+  const newUser = await userModel.registerNewUser(userName, emailUser, password, role);
+  return newUser;
 }
 
 
@@ -21,4 +23,5 @@ const updateUser = async (name, email) => {
 
 module.exports = {
   updateUser,
+  createUser,
 };

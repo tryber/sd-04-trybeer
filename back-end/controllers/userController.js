@@ -2,13 +2,13 @@ const rescue = require('express-rescue');
 const { userService } = require('../services');
 
 const registerUser = async (req, res) => {
-  console.log(req.body);
-
   const { userName, emailUser, password, isSeller } = req.body;
-  // if (sellerCheckbox.value === true)
-
-  // const user = await registerUser(name, email, password, role);
-
+  try {
+    const newUser = await userService.createUser(userName, emailUser, password, isSeller);
+    return res.status(201).json(newUser);
+  } catch (_err) {
+    return res.status(401).json({ message: 'BAD REQUEST' });
+  }
 };
 
 
