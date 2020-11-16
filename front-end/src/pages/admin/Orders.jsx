@@ -1,9 +1,6 @@
 import React from 'react';
+import SideBar from '../../components/ClientBar.jsx';
 
-function Orders() {
-  return (
-    <h2>Orders Page</h2>
-  )
-};
+const Orders = () => <SideBar title={'TryBeer'} isAdm={true} />;
 
 export default Orders;
