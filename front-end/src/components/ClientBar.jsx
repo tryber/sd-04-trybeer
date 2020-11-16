@@ -25,9 +25,40 @@ const changeUrl = (history, url, clear) => {
   ctrOpen = false;
 };
 
+const admOnline = (history, title) => {
+  return (
+    <nav className="admin-side-bar-container">
+      <div>
+        <h3 className='title-adm' >{title}</h3>
+        <button
+          className="nav-btn-adm"
+          data-testid="side-menu-item-orders"
+          onClick={() => changeUrl(history, 'orders')}
+        >
+          Pedidos
+        </button>
+        <button
+          className="nav-btn-adm"
+          data-testid="side-menu-item-profile"
+          onClick={() => changeUrl(history, 'profile')}
+        >
+          Perfil
+        </button>
+      </div>
+      <button
+        className="nav-btn-adm"
+        data-testid="side-menu-item-logout"
+        onClick={() => changeUrl(history, '', true)}
+      >
+        Sair
+      </button>
+    </nav>
+  );
+};
+
 const TopBar = ({ title, isAdm }) => {
   const history = useHistory();
-  if (isAdm) return <div>Has side bar</div>;
+  if (isAdm) return admOnline(history, title);
   return (
     <div>
       <div className="body-top-bar">
