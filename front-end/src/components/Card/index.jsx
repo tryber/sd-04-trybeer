@@ -35,7 +35,7 @@ const Card = ({ img, title, price, index }) => {
             <img src={img} alt={title} className="card-img" data-testid={`${index}-product-img`} />
             <span data-testid={`${index}-product-name`} >{title}</span>
             <span data-testid={`${index}-product-price`} >
-              {`R$ ${price.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}`}
+              {`${price.toLocaleString("pt-BR", { style: 'currency', currency: 'BRL' })}`}
             </span>
             <div className="button-container">
               <button
