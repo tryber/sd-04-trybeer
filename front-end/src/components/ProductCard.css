@@ -1,0 +1,12 @@
+.beerImg {
+  margin-top: 10px;
+  width: 50%;
+}
+
+.beer-card {
+  align-items: center;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
