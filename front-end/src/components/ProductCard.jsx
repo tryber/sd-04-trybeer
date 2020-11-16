@@ -4,8 +4,9 @@ import './ProductCard.css';
 
 function ProductCard({ name, price, imgProduct, quantity }) {
   return (
-    <div>
-      <img className="beerImg" src={imgProd} alt="imagem" />
+    <div className='beer-card'>
+      <img className="beerImg" src={imgProduct} alt="imagem" />
+      {console.log('HERE ', imgProduct)}
       <p>{name}</p>
       <span>{price}</span>
       <div>
