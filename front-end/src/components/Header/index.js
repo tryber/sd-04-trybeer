@@ -32,11 +32,12 @@ const menuHamburgerBtn = (
   setTransitionMenuHambuger,
 ) => (
     <button
+      type="button"
       data-testid="top-hamburguer"
       className="menu-hamburger-btn"
       onClick={() => {
         if (!navDisplay) {
-          navDisplayFalse(setTransitionMenuHambuger, setNavStyle, setNavDisplay, navDisplay)
+          navDisplayFalse(setTransitionMenuHambuger, setNavStyle, setNavDisplay, navDisplay);
         } else {
           navDisplayTrue(setTransitionMenuHambuger, setNavStyle, setNavDisplay, navDisplay);
         }
@@ -45,15 +46,15 @@ const menuHamburgerBtn = (
       <div
         className="menu-line-1"
         style={{ transform: transitionMenuHambuger.lineOne }}
-      ></div>
+      />
       <div
         className="menu-line-2"
         style={{ opacity: transitionMenuHambuger.lineTwo }}
-      ></div>
+      />
       <div
         className="menu-line-3"
         style={{ transform: transitionMenuHambuger.lineThree }}
-      ></div>
+      />
     </button>
   );
 
