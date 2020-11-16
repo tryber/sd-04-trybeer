@@ -31,7 +31,13 @@ let userTest = {
 
 schema.validate(userTest)
   .then(function (valid) {
-    valid;
+    console.log('Validação: ', valid)})
+  .catch(function (err) {
+    console.log('Erro de validação: ', err);
+  });
+
+schema.fields.signEmail.validate(userTest.signEmail)
+  .then(function (valid) {
     console.log('Validação: ', valid)})
   .catch(function (err) {
     console.log('Erro de validação: ', err);
