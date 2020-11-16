@@ -94,7 +94,22 @@
 }
 
 .admin-side-bar-container {
-  
+  background-color: rgb(24, 24, 24);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+  position: fixed;
+  width: 15vw;
+}
+
+.nav-btn-adm {
+  background-color: transparent;
+  border: transparent;
+  color: transparent;
+  font-size: large;
+  margin: 3vh 0 2vh;
+  width: 15vw;
 }
 
 /* ANIMATION */
