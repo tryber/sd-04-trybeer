@@ -27,14 +27,14 @@ function Register() {
     validator.schema.fields[`${fieldName}`].validate(formField)
     .then((valid) => {
       console.log('Validação: ', valid);
-      // Habilita o botão 'Cadastrar'
+      // Habilita o botão 'Cadastrar' para dados válidos
       signUpBtnDisabled(false);
       return valid; 
     })
     .catch((err) => {
       console.log('Erro de validação: ', err);
       console.log('ERRORS: ', err.errors[0]);
-      // Desabilita o botão 'Cadastrar'
+      // Desabilita o botão 'Cadastrar' para dados inválidos
       signUpBtnDisabled(true);
       return err.errors[0];
     });
