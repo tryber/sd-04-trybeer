@@ -10,7 +10,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 
 const Home = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
