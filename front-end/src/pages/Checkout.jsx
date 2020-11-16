@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useReducer, useEffect } from 'react'
 
 function Checkout() {
   return (
