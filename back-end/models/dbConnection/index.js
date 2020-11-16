@@ -14,7 +14,7 @@ const connection = () => (schema
   ? Promise.resolve(schema)
   : mysqlx.getSession(config)
     .then((session) => {
-      schema = session.getSchema('cookmaster');
+      schema = session.getSchema('Trybeer');
       return schema;
     })
     .catch(() => {
