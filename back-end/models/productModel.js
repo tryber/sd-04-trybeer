@@ -6,11 +6,11 @@ const findAllProducts = async () => {
     const table = await db.getTable('products');
     const results = await table.select([]).execute();
     const products = await results.fetchAll();
-    return products.map(([id, name, price, url_image]) => ({
+    return products.map(([id, name, price, urlImage]) => ({
       id,
       name,
       price,
-      url_image,
+      urlImage,
     }));
   } catch (err) {
     console.error(err);
