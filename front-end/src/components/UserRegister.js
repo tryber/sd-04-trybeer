@@ -35,8 +35,8 @@ const UserRegister = () => {
     return true;
   };
 
-  const disableButton = 
-  !nameValidated() || !password || password.length < emailLength || !emailValidated();
+  const disableButton = !nameValidated()
+  || !password || password.length < emailLength || !emailValidated();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
