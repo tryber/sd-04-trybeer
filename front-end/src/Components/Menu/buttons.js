@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Button(title, link, test) {
+function Buttons(title, link, test) {
   return (
     <div>
       <Link to={ link } onClick={ async () => { if (title === 'Sair') await localStorage.clear(); } }>
@@ -13,4 +13,4 @@ function Button(title, link, test) {
   );
 }
 
-export default Button;
+export default Buttons;

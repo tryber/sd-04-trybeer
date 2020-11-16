@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { BsJustify } from 'react-icons/bs';
 
-import ElementMenu from './ElementMenu';
+import ElementsMenu from './ElementsMenu';
 
 function renderTopMenu(openMenu, setOpenMenu) {
   return openMenu === true ? setOpenMenu(false) : setOpenMenu(true);
@@ -18,7 +18,7 @@ function TopMenu({ title }) {
             <BsJustify />
           </button>
         </div>
-        {openMenu === true ? ElementMenu() : null}
+        {openMenu === true ? ElementsMenu() : null}
       </div>
       <h2 data-testid="top-title">{`${title}`}</h2>
     </div>
