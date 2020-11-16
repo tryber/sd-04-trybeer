@@ -13,12 +13,16 @@ const Login = () => {
         <label htmlFor="passwordInput">Senha</label>
         <input type="password" id="passwordInput" name="password" data-testid="password-input" />
         <div className="buttons">
-          <button type="submit" data-testid="signin-btn">Entrar</button>
+          <button type="submit" data-testid="signin-btn">
+            Entrar
+          </button>
         </div>
       </form>
-      <Link to="/" data-testid="no-account-btn">Ainda nao tenho conta</Link>
+      <Link to="/" data-testid="no-account-btn">
+        Ainda nao tenho conta
+      </Link>
     </div>
-  )
-}
+  );
+};
 
 export default Login;
