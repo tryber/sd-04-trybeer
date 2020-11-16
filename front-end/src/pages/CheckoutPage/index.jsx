@@ -77,15 +77,19 @@ const Checkout = () => {
                   </span>
                 </div>
                 <div className="cart-item-right-container">
-                  <span className="unitary-price">{`(R$ ${price
-                    .toFixed(2)
-                    .replace('.', ',')} un)`}</span>
+                  <span className="unitary-price">{`(${price.toLocaleString(
+                    'pt-BR',
+                    { style: 'currency', currency: 'BRL' },
+                  )} un)`}</span>
                   <span
                     className="cart-item-price"
                     data-testid={`${index}-product-total-value`}
-                  >{`R$ ${(price * quantity)
-                    .toFixed(2)
-                    .replace('.', ',')}`}</span>
+                  >
+                    {(price * quantity).toLocaleString('pt-BR', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })}
+                  </span>
                   <button
                     className="remove-item-btn"
                     onClick={() => handleRemove(id)}
@@ -101,10 +105,15 @@ const Checkout = () => {
         <h3
           className="cart-total"
           data-testid="order-total-value"
-        >{`Total: R$ ${cart.reduce((acc, cur) => {
-          const itemTotal = cur.price * cur.quantity;
-          return acc + itemTotal;
-        }, 0)}`}</h3>
+        >{`Total: ${cart
+          .reduce((acc, cur) => {
+            const itemTotal = cur.price * cur.quantity;
+            return acc + itemTotal;
+          }, 0)
+          .toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          })}`}</h3>
       </section>
       <section className="address">
         <h2>Endereço</h2>
