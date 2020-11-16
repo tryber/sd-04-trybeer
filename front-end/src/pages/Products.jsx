@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { incQuantity, decQuantity } from '../actions';
+import { incQuantity, decQuantity, saveCart } from '../actions';
 
 import Menu from '../components/Menu';
 // import ProductCards from '../components/ProductCards';
 
-const Products = ({ cart, increaseQtd, decreaseQtd, total }) => {
+const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const [products, setProducts] = useState([]);
 
-  const [cartLS, setCartLS] = useState([]);
-
-  const [totalLS, setTotalLS] = useState(0);
+  // const saveCart = () => {
+  //   const cartLS = JSON.parse(localStorage.getItem('cart'));
+  //   if (cartLS && cartLS.length > 1) {
+  //     return saveCartLS(cartLS);
+  //   }
+  // };
 
   useEffect(() => {
     axios
@@ -23,23 +26,29 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total }) => {
       })
       .catch((error) => console.log(error));
 
-    setTotalLS(localStorage.getItem('total'));
-    setCartLS(localStorage.getItem('cart'));
+    // saveCart();
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('total', total);
-  }, [cart, total]);
 
   const quantity = (product) => {
     let qty;
     let productInCart = cart.filter((item) => item.name === product.name);
 
-    productInCart.length > 0 ? (qty = productInCart[0].quantity) : (qty = 0);
+    productInCart.length ? (qty = productInCart[0].quantity) : (qty = 0);
 
     return qty;
   };
+
+  useEffect(() => {
+    if (cart.length) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // localStorage.setItem('total', total);
+  }, [cart, total]);
+
+  // if (!localStorage.getItem('user')) {
+  //   return <Redirect to="/login" />;
+  // }
 
   return (
     <div>
@@ -64,9 +73,7 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total }) => {
             >
               -
             </button>
-            <p type="button" data-testid={`${index}-product-qtd`}>
-              {quantity(product)}
-            </p>
+            <p data-testid={`${index}-product-qtd`}>{quantity(product)}</p>
             <button
               type="button"
               data-testid={`${index}-product-plus`}
@@ -78,7 +85,11 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total }) => {
         ))}
       <div>
         <Link to="/checkout">
-          <button type="button" data-testid="checkout-bottom-btn">
+          <button
+            type="button"
+            data-testid="checkout-bottom-btn"
+            disabled={!cart.length}
+          >
             Ver Carrinho
           </button>
         </Link>
@@ -98,6 +109,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   increaseQtd: (payload) => dispatch(incQuantity(payload)),
   decreaseQtd: (payload) => dispatch(decQuantity(payload)),
+  saveCartLS: (payload) => dispatch(saveCart(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

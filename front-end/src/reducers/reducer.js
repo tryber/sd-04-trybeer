@@ -42,11 +42,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
           total: state.total - product.price,
         };
       }
+
       action.payload.quantity -= 1;
       return {
         ...state,
         cart: [...state.cart, action.payload],
-        total: state.total - action.payload.price,
       };
     }
 

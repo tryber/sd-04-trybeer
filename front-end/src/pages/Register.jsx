@@ -9,6 +9,8 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [checked, setChecked] = useState(false);
 
+  const [token, setToken] = useState('');
+
   const [message, setMessage] = useState('');
   const [redirect, setRedirect] = useState(false);
 
@@ -27,9 +29,22 @@ const Register = () => {
   const registerUser = () => {
     axios
       .post('http://localhost:3001/register', { name, email, password, role })
-      .then((res) => setRedirect(true))
+      .then((_res) => setRedirect(true))
       .catch((_error) => setMessage('E-mail already in database.'));
   };
+
+  const createToken = () =>
+    axios
+      .post('http://localhost:3001/login', { email, password })
+      .then((res) => {
+        setToken(res.data.token);
+      })
+      .catch((error) => console.log(error));
+
+  if (token !== '') {
+    const objUser = { name, email, token, role };
+    localStorage.setItem('user', JSON.stringify(objUser));
+  }
 
   if (role === 'administrator' && redirect)
     return <Redirect to="/admin/orders" />;
@@ -40,6 +55,8 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    createToken();
 
     registerUser();
   };
