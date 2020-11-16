@@ -28,6 +28,7 @@ const UserRegister = () => {
 
   const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
+  // teste
   const emailLength = 6;
   const emailValidated = () => {
     if (!email || !isEmailValid(email) || email.length < emailLength) return false;
