@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 // import { TrybeerContext } from '../context';
-import loginApi from '../services/api';
+import API from '../services/api';
 
 const Login = () => {
   useEffect(() => {
@@ -10,15 +10,19 @@ const Login = () => {
 
   // const { user, setUser } = useContext(TrybeerContext);
 
-  const [email, setEmail] = useState('');
+  const [eMail, setEmail] = useState('');
 
   const [password, setPassword] = useState('');
+
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const history = useHistory();
 
   //  VALIDAÇÃO DE EMAIL
   const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
   const emailValidated = () => {
-    if (!email || !isEmailValid(email) || email.length < 6) return false;
+    if (!eMail || !isEmailValid(eMail) || eMail.length < 6) return false;
     return true;
   };
 
@@ -27,10 +31,14 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const api = await loginApi(email, password);
-
-    localStorage.setItem('user', JSON.stringify(api));
-    console.log('linha 29, api:', api);
+    const api = await API.loginApi(eMail, password);
+    if (api.data.user.err) return setErrorMsg(api.data.user.err);
+    const { name, email, role } = await api.data.user;
+    const token = api.data.token;
+    localStorage.setItem('user', JSON.stringify({ name, email, role, token }));
+    setErrorMsg('');
+    if (api.data.user.role === 'client') return history.push('/products');
+    return history.push('/admin/orders');
   };
 
   return (
@@ -62,6 +70,8 @@ const Login = () => {
             className="form-control"
           />
         </div>
+
+        <span className="mx-auto m-3 text-danger">{errorMsg.toUpperCase()}</span>
 
         <div className="mx-auto m-2">
           <button
