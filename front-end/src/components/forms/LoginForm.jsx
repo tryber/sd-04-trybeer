@@ -1,8 +1,7 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useEffect, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { validateLogin } from '../../services/validate';
 import { postLogin } from '../../services/TrybeerApi';
-import useDidUpdate from '../../hooks/useDidUpdate';
 
 function LoginForm() {
   const history = useHistory();
@@ -29,14 +28,18 @@ function LoginForm() {
     }
   };
 
-  useDidUpdate(() => {
-    const { error } = validateLogin(form.email, form.password);
-    if (error) {
-      setCanLogin(false);
-      return setMessage(error.message);
+  const update = useRef(false);
+  useEffect(() => {
+    if (update.current) {
+      const { error } = validateLogin(form.email, form.password);
+      if (error) {
+        setCanLogin(false);
+        return setMessage(error.message);
+      }
+      setMessage();
+      return setCanLogin(true);
     }
-    setMessage();
-    return setCanLogin(true);
+    else update.current = true;
   }, [form]);
   return (
     <form onSubmit={ handleSubmit } className="form">
