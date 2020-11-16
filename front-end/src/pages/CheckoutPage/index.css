@@ -1,0 +1,158 @@
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  width: 50vw;
+  margin: 0 auto;
+}
+
+.cart-list {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+}
+
+.cart-item {
+  display: flex;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.cart-item-right-container,
+.cart-item-left-container {
+  display: flex;
+  align-items: center;
+}
+.dash-space {
+  margin: 0px 0.5rem;
+}
+
+.cart-item-price {
+  font-weight: 700;
+  margin-left: 1rem;
+}
+
+.cart-item-name {
+  font-weight: 700;
+}
+
+.remove-item-btn {
+  border-style: none;
+  background-color: #4e4848;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.remove-item-btn:hover {
+  background-color: #413b3b;
+}
+
+.cart-total {
+  text-align: right;
+}
+
+.unitary-price {
+  font-size: 0.7rem;
+}
+
+.address-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+}
+
+.address-input {
+  border-radius: 0.2rem;
+  border: 1px solid black;
+  padding: 0.3rem;
+  width: 100%;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.products,
+.address {
+  width: 100%;
+}
+
+.input-label {
+  font-size: 0.8rem;
+}
+
+.checkout-finish-btn {
+  width: 100%;
+  margin-top: 1rem;
+  border: none;
+  padding: 0.8rem 0;
+  background-color: #4e4848;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.checkout-finish-btn:hover {
+  background-color: #413b3b;
+}
+
+.checkout-finish-btn:disabled {
+  background-color: #a7a7a7;
+}
+
+@keyframes finishNotification {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: initial;
+    opacity: 1;
+  }
+}
+
+.finish-notification {
+  position: fixed;
+  background-color: #4e4848;
+  color: white;
+  bottom: 1rem;
+  padding: 0.5rem 2rem;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 0.2rem;
+  transition: 1s ease;
+  animation: finishNotification 0.3s;
+}
+
+@media only screen and (max-width: 600px) {
+  .page-container {
+    width: 90%;
+  }
+
+  .cart-item {
+    flex-direction: column;
+  }
+
+  .cart-item-right-container {
+    margin-top: 0.8rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .address-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .fields-container:last-child {
+    margin-top: 0.8rem;
+  }
+}

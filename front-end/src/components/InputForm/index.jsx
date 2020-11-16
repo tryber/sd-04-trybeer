@@ -2,20 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Input = ({
-  name, handleChange, dataTestId, label, value,
+  name,
+  handleChange,
+  dataTestId,
+  label,
+  value,
+  type,
+  className,
 }) => (
-  <div className="login-fields-container">
-    <label htmlFor={ name } className="input-label">
-      { label }
+  <div className="fields-container">
+    <label htmlFor={name} className="input-label">
+      {label}
     </label>
     <input
-      type={ name }
-      id={ name }
-      name={ name }
-      value={ value }
-      onChange={ handleChange }
-      data-testid={ dataTestId }
-      className="login-input"
+      type={type}
+      id={name}
+      name={name}
+      value={value}
+      onChange={handleChange}
+      data-testid={dataTestId}
+      className={className}
     />
   </div>
 );
