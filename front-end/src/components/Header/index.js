@@ -6,25 +6,31 @@ const navDisplayFalse = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, 
   setTransitionMenuHambuger({
     lineOne: 'translate(0px, 10px) rotate(45deg)',
     lineTwo: '0',
-    lineThree: 'translate(0px, -10px) rotate(-45deg)'
+    lineThree: 'translate(0px, -10px) rotate(-45deg)',
   });
   setNavStyle({ animationName: 'displayNav', left: '-100%' });
   setNavDisplay(!navDisplay);
-}
+};
 
 const navDisplayTrue = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, navDisplay) => {
   setTransitionMenuHambuger({
     lineOne: 'translate(0px, 0px) rotate(0deg)',
     lineTwo: '1',
-    lineThree: 'translate(0px, 0px) rotate(0deg)'
+    lineThree: 'translate(0px, 0px) rotate(0deg)',
   });
   setNavStyle({ animationName: 'coverNav', left: '0%' });
   setTimeout(() => {
     setNavDisplay(!navDisplay);
   }, 400);
-}
+};
 
-const menuHamburgerBtn = (setNavDisplay, navDisplay, setNavStyle, transitionMenuHambuger, setTransitionMenuHambuger) => {
+const menuHamburgerBtn = (
+  setNavDisplay,
+  navDisplay,
+  setNavStyle,
+  transitionMenuHambuger,
+  setTransitionMenuHambuger
+) => {
   return (
     <button
       data-testid="top-hamburguer"
