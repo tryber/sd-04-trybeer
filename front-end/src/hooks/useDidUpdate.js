@@ -5,6 +5,7 @@ const useDidUpdate = (func, deps) => {
   useEffect(() => {
     if (update.current) func();
     else update.current = true;
+  // eslint-disable-next-line
   }, deps);
 };
 
