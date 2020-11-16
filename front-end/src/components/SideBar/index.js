@@ -26,8 +26,8 @@ const client = () => (
     <Link to="/login">
       <li data-testid="side-menu-item-logout">
         <a
-          onClick={() => window.localStorage.clear()}
-          onKeyDown={() => window.localStorage.clear()}
+          onClick={ () => window.localStorage.clear() }
+          onKeyDown={ () => window.localStorage.clear() }
         >
           Sair
         </a>
@@ -53,13 +53,10 @@ const admin = () => (
     <Link to="/login">
       <li
         data-testid="side-menu-item-logout"
+        onClick={ () => window.localStorage.clear() }
+        onKeyDown={ () => window.localStorage.clear() }
       >
-        <a
-          onClick={ () => window.localStorage.clear() }
-          onKeyDown={ () => window.localStorage.clear() }
-        >
-          Sair
-        </a>
+        Sair
       </li>
     </Link>
   </ul>
@@ -83,8 +80,8 @@ const SideBar = ({ role }) => {
     <nav
       id={identification}
       className={`${classes} ${toggle ? 'active' : ''}`}
-      onClick={() => setToggle(!toggle)}
-      onKeyDown={() => setToggle(!toggle)}
+      onClick={ () => setToggle(!toggle) }
+      onKeyDown={ () => setToggle(!toggle) }
     >
       <div data-testid="top-hamburguer" className="toggle-btn">
         <span />
