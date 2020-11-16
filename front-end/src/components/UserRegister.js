@@ -18,7 +18,7 @@ const UserRegister = () => {
 
   const [errMsg, setErrMsg] = useState('');
 
-  const isNameValid = (name = '') => name.match(/^([a-zA-Zà-úÀ-Ú]|\s+)+$/);
+  const isNameValid = (nome = '') => nome.match(/^([a-zA-Zà-úÀ-Ú]|\s+)+$/);
   const nameLength = 12;
 
   const nameValidated = () => {
@@ -26,7 +26,7 @@ const UserRegister = () => {
     return true;
   };
 
-  const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
+  const isEmailValid = (endEmail = '') => endEmail.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
   // teste
   const emailLength = 6;
@@ -35,7 +35,7 @@ const UserRegister = () => {
     return true;
   };
 
-  const disableButton = !nameValidated() || !password || password.length < 6 || !emailValidated();
+  const disableButton = !nameValidated() || !password || password.length < emailLength || !emailValidated();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
