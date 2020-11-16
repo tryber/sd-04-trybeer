@@ -29,9 +29,8 @@ const menuHamburgerBtn = (
   navDisplay,
   setNavStyle,
   transitionMenuHambuger,
-  setTransitionMenuHambuger
-) => {
-  return (
+  setTransitionMenuHambuger,
+) => (
     <button
       data-testid="top-hamburguer"
       className="menu-hamburger-btn"
@@ -57,7 +56,6 @@ const menuHamburgerBtn = (
       ></div>
     </button>
   );
-}
 
 const NavBar = (navStyle, setNavStyle, setTransitionMenuHambuger, setNavDisplay, navDisplay) => {
   return (
