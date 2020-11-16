@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useContext } from 'react';
 import ProductCard from '../components/ProductCard';
 import { AppContext } from '../context/AppContext';
+import TopBar from '../components/ClientBar.jsx';
 import api from '../services/api';
 
 function Products() {
@@ -14,7 +15,7 @@ function Products() {
 
   return (
     <div>
-      <h2>Products Page</h2>
+      <TopBar title={'TryBeer'} isAdm={false} />
       {products.map(product => (
         <ProductCard
           name={product.name}
