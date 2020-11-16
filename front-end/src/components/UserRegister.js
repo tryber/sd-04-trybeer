@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import Header from './Header';
-
 import API from '../services/api';
 
 const UserRegister = () => {
@@ -52,7 +50,6 @@ const UserRegister = () => {
 
   return (
     <div>
-      <Header title={'Register'} usertype={'client'}/>
       <form onSubmit={handleSubmit}>
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">

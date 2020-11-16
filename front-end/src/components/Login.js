@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-// import { TrybeerContext } from '../context';
+
 import API from '../services/api';
-import Header from './Header';
 
 const Login = () => {
-  // const { user, setUser } = useContext(TrybeerContext);
-
   const history = useHistory();
 
   const [errorMsg, setErrorMsg] = useState('');
@@ -47,7 +44,6 @@ const Login = () => {
 
   return (
     <div>
-      <Header title={'Trybeer'} />
       <form onSubmit={handleSubmit} className="m-3">
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
