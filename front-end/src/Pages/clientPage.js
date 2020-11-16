@@ -1,9 +1,9 @@
 import React from 'react';
-import ClientTopMenu from '../Components/Menu/Client/ClientTopMenu';
+import TopMenu from '../Components/Menu/TopMenu';
 
 const Client = () => (
   <div>
-    <ClientTopMenu title="Meu perfil" />
+    <TopMenu title="Meu perfil" />
     <h1>Client</h1>
   </div>
 );
