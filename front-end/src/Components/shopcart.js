@@ -7,7 +7,8 @@ const ShopCart = ({
   product,
   setCartUpdate,
   cartUpdate,
-  index }) => {
+  index
+}) => {
   const { cart, setCart } = useContext(BeerContext);
   const { name } = product;
 
@@ -15,7 +16,7 @@ const ShopCart = ({
     if (!cart[name]) cart[name] = { ...product, quantidade: 1 };
     else cart[name].quantidade += 1;
     setCartUpdate(!cartUpdate);
-    setCart(cart);
+    return setCart(cart);
   };
 
   const removeCart = () => {
@@ -23,7 +24,7 @@ const ShopCart = ({
     else if (!cart[name]) return <p>Esse produto não esta mais no carrinho</p>;
     else delete cart[name];
     setCartUpdate(!cartUpdate);
-    setCart(cart);
+    return setCart(cart);
   };
 
   useEffect(() => {
@@ -60,7 +61,7 @@ const ShopCart = ({
 };
 
 ShopCart.propTypes = {
-  product: PropTypes.object.isRequired,
+  product: PropTypes.isRequired,
   setCartUpdate: PropTypes.func.isRequired,
   cartUpdate: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,

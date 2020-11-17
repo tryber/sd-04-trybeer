@@ -12,7 +12,7 @@ import Registro from './Pages/registro';
 import Client from './Pages/clientPage';
 import Profile from './Pages/clientProfile';
 import ClientOrders from './Pages/clientOrders';
-import Products from './Pages/products';
+// import Products from './Pages/products';
 
 import './App.css';
 
