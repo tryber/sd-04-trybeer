@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Checkbox,
@@ -7,68 +7,88 @@ import {
   FormLabel,
   FormErrorMessage,
   Input,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
+import { useFormik } from 'formik';
 
 const validator = require('./validateRegister');
 
 function Register() {
-  const [signName, setSignName] = useState('');
-  const [signEmail, setSignEmail] = useState('');
-  const [signPassword, setSignPassword] = useState('');
+  const history = useHistory();
+
+  const formik = useFormik({
+    initialValues: {
+      signName: '',
+      signEmail: '',
+      signPassword: '',
+      role: false,
+    },
+    validator,
+    onSubmit: (values) => {
+      const redirect = values.role === false ? '/products' : '/admin/orders';
+      history.push(redirect);
+    },
+  });
 
   const [errorMsg, setErrorMsg] = useState('');
   // Habilita ou desabilita o botão de 'Cadastrar'
+  // true -> para DESABILITAR o botão
+  // false -> para HABILITAR o botão 
   const signUpBtnDisabled = (bool) => {
     const btn = document.getElementById('signup-btn');
     btn.disabled = bool;
   };
 
-  // Faz as validações dos campos do formulário 
-  const handleFormField = (fieldName ,formField) => {
-    validator.schema.fields[`${fieldName}`].validate(formField)
-    .then((valid) => {
-      console.log('Validação: ', valid);
-      // Habilita o botão 'Cadastrar' para dados válidos
-      signUpBtnDisabled(false);
-      return valid; 
-    })
-    .catch((err) => {
-      console.log('Erro de validação: ', err);
-      console.log('ERRORS: ', err.errors[0]);
-      // Desabilita o botão 'Cadastrar' para dados inválidos
-      setErrorMsg(err.errors[0]);
-      signUpBtnDisabled(true);
-      return err.errors[0];
-    });
-  };
-
-  // Roda toda vez que os valores dos campos são alterados
-  useEffect(() => {
-    handleFormField('signName', signName);
-    handleFormField('signEmail', signEmail);
-    handleFormField('signPassword', signPassword);
-
-  }, [signName, signEmail, signPassword]);
-
   return (
   <div>
-    <FormControl>
-      <form method="POST">
+    <form onSubmit={ formik.handleSubmit }>
+      <FormControl isInvalid={ formik.errors.signName && formik.touched.signName}>
         <FormLabel htmlFor="name">Nome</FormLabel>
-        <Input type="text" name="signName" id="name" data-testid="signup-name" onChange={(e) => setSignName(e.target.value)}/>
-        <FormErrorMessage isInvalid={errorMsg}>{errorMsg}</FormErrorMessage>
-
-        <FormLabel htmlFor="email">Email</FormLabel>
-        <Input type="email" name="signEmail" id="email" data-testid="signup-email" onChange={(e) => setSignEmail(e.target.value)}/>
-
+        <Input
+          type="text"
+          name="signName"
+          id="name"
+          data-testid="signup-name"
+          onChange={ formik.handleChange }
+          onBlur={ formik.handleBlur }
+          value={ formik.values.signName }
+        />
+        <FormErrorMessage>{ formik.errors.signName }</FormErrorMessage>
+      </FormControl>
+      <FormControl isInvalid={ formik.errors.signEmail && formik.touched.signEmail }>
+      <FormLabel htmlFor="email">Email</FormLabel>
+        <Input
+          type="email"
+          name="signEmail"
+          id="email"
+          data-testid="signup-email"
+          onChange={ formik.handleChange }
+          onBlur={ formik.handleBlur }
+          value={ formik.values.signEmail }
+        />
+        <FormErrorMessage>{ formik.errors.signEmail }</FormErrorMessage>
+      </FormControl>
+      <FormControl isInvalid={ formik.errors.signPassword && formik.touched.signPassword }>
         <FormLabel htmlFor="password">Senha</FormLabel>
-        <Input type="password" name="signPassword" id="password" data-testid="signup-password" onChange={(e) => setSignPassword(e.target.value)}/>
+        <Input
+          type="password"
+          name="signPassword"
+          id="password"
+          data-testid="signup-password"
+          onChange={ formik.handleChange }
+          onBlur={ formik.handleBlur }
+          value={ formik.values.signPassword }
+        />
+        <FormErrorMessage>{ formik.errors.signPassword }</FormErrorMessage>
+      </FormControl>
 
-        <Checkbox variantColor="green" name="signRole" data-testid="signup-seller">Quero vender</Checkbox>
+      <Checkbox variantColor="green" name="signRole" data-testid="signup-seller">
+        Quero vender
+      </Checkbox>
 
-        <Button variantColor="green" type="submit" id="signup-btn" data-testid="signup-btn">Cadastrar</Button>
-      </form>
-    </FormControl>
+      <Button variantColor="green" type="submit" id="signup-btn" data-testid="signup-btn" disabled={ formik.isSubmitting  }>
+        Cadastrar
+      </Button>
+    </form>
   </div>
   );
 };
