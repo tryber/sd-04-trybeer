@@ -1,10 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const middleware = require('./middleware');
-const loginController = require('./controllers/loginController');
-const userController = require('./controllers/userController');
 const path = require('path');
+const middleware = require('./middleware');
+const controllers = require('./controllers');
 require('dotenv/config');
 
 const app = express();
@@ -20,17 +19,18 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.post(
   '/login',
   middleware.validations.loginValidation,
-  loginController.userLogin,
+  controllers.login.userLogin,
 );
 
 app.post(
   '/register',
   middleware.validations.registerValidation,
-  userController.userRegister,
-  loginController.userLogin,
+  controllers.user.userRegister,
 );
 
-app.put('/profile', userController.userUpdate);
+app.get('/products', controllers.products.getAllProducts);
+
+app.put('/profile', controllers.user.userUpdate);
 
 app.use((err, _req, res, _next) => {
   res.status(405).json({ err: err.message });

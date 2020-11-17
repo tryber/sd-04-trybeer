@@ -28,8 +28,6 @@ const formSchema = Joi.object({
 
 export const validateLogin = (email, password) => loginSchema.validate({ email, password });
 
-export const placeholder = () => {};
-
 export const formValidate = (form) => {
   const { name, email, password } = form;
   const isValid = formSchema.validate({ name, email, password });
