@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
 import Menu from '../components/Menu';
 
 import { updateTotalCheckout, updateCart } from '../actions';
-import { Redirect } from 'react-router-dom';
 
 const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
   const [userLS, setUserLS] = useState(null);
@@ -70,7 +70,7 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
       .then((res) => {
         console.log(res);
         setMessageSuccess('Compra realizada com sucesso!');
-        setRedirect(true);
+        setTimeout(() => setRedirect(true), 2000);
       })
       .catch((error) => console.log(error));
   };
@@ -87,6 +87,7 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
 
   return (
     <div>
+      {!userLS && <Redirect to="/login" />}
       <Menu title="Finalizar Pedido" />
       <h2>Produtos</h2>
       {messageCart && <h3>{messageCart}</h3>}

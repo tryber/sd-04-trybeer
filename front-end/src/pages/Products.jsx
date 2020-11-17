@@ -10,7 +10,8 @@ import Menu from '../components/Menu';
 
 const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const [products, setProducts] = useState([]);
-  const user = JSON.parse(localStorage.getItem('user')) || null;
+
+  const [redirectToLogin, setRedirectToLogin] = useState(false);
 
   const saveCart = () => {
     const cartLS = JSON.parse(localStorage.getItem('cart')) || [];
@@ -21,6 +22,10 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   };
 
   useEffect(() => {
+    if (!localStorage.getItem('user')) {
+      return setRedirectToLogin(true);
+    }
+
     axios
       .get('http://localhost:3001/products')
       .then((res) => {
@@ -57,10 +62,9 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
     interval();
   };
 
-  if(!user) return <Redirect to='/login' />
-
   return (
     <div>
+      {redirectToLogin && <Redirect to="/login" />}
       <Menu title="TryBeer" />
       {products &&
         products.map((product, index) => (
@@ -105,9 +109,11 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
             Ver Carrinho
           </button>
         </Link>
-        <p data-testid="checkout-bottom-btn-value">{`R$ ${total
-          .toFixed(2)
-          .replace('.', ',')}`}</p>
+        <p data-testid="checkout-bottom-btn-value">
+          {total === null
+            ? 'R$ 0,00'
+            : `R$ ${total.toFixed(2).replace('.', ',')}`}
+        </p>
       </div>
     </div>
   );
