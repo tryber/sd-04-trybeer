@@ -1,7 +1,5 @@
 import React from 'react';
-
-import { Switch, Route } from 'react-router-dom';
-
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { UserProfile, FormPage, Products } from './pages';
 import { Header } from './components/Header';
 import LoginForm from './components/forms/LoginForm';
@@ -11,9 +9,7 @@ function App() {
   return (
     <Switch>
       <Route exact path="/">
-        <FormPage>
-          <LoginForm />
-        </FormPage>
+        <Redirect to="/login" />
       </Route>
       <Route path="/login">
         <FormPage>
