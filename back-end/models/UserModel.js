@@ -22,8 +22,7 @@ const searchUserByEmail = async (emailInput) => {
     .execute();
 
   return register.fetchAll()
-    .map(([id, name, email, password, role]) =>
-      ({ id, name, email, password, role }))[0];
+    .map(([id, name, email, password, role]) => ({ id, name, email, password, role }))[0];
 };
 
 // Função para teste, ignorem!!!
