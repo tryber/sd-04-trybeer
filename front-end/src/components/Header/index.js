@@ -11,7 +11,7 @@ const Header = ({ title, userType }) => {
       <header className="title">
         <h1 data-testid="top-title">{title}</h1>
       </header>
-      <SideBar role={userType} />
+      <SideBar role={ userType } />
     </div>
   );
 };
