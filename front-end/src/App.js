@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { UserProfile, FormPage } from './pages';
+import { UserProfile, FormPage, Products } from './pages';
 import { Header } from './components/Header';
 import LoginForm from './components/forms/LoginForm';
 import RegisterForm from './components/forms/RegisterForm';
@@ -25,7 +25,7 @@ function App() {
         </FormPage>
       </Route>
       <Route path="/products">
-        <Header>TryBeer</Header>
+        <Products />
       </Route>
       <Route path="/admin/orders">
         <Header>TryBeer</Header>
