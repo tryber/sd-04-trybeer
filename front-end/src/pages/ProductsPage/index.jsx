@@ -6,15 +6,17 @@ import Menu from '../../components/Menu';
 import './index.css';
 
 import { getLS } from '../../utils';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const Products = () => {
   const [data, setData] = useState([]);
+  const [login, setLogin] = useState(true);
 
   useEffect(() => {
     (async () => {
       const products = await api.productsAPI();
-      console.log('data', products);
+      const { token } = getLS('user') || {};
+      if (!token) setLogin(false);
       setData(products);
     })();
   }, []);
@@ -27,6 +29,9 @@ const Products = () => {
 
   const cart = getLS('cart') || [];
 
+  if (!login) {
+    return <Redirect to='/login' />;
+  }
   return (
     <>
       <Menu nomeTela="TryBeer" />
@@ -39,7 +44,7 @@ const Products = () => {
         <span data-testid="checkout-bottom-btn-value">
           {`Total: R$ ${cartLocalStorage(cart).toFixed(2).replace('.', ',')}`}
         </span>
-        {cart.length < 1 ? (
+        {cart.length === 0 ? (
           <button disabled type="button" data-testid="checkout-bottom-btn">
             Ver Carrinho
           </button>
