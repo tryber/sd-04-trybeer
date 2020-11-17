@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { putUpdate } from '../services/TrybeerApi';
 import { Header } from '../components/Header';
 import { Beer } from '../images/index';
 import '../css/userProfile.css';
 
 function UserProfile() {
-  const { name, email } = JSON.parse(localStorage.getItem('user'));
+  const { name, email } = JSON.parse(localStorage.getItem('user') || '{}');
   const [userName, setUserName] = useState(name);
   const [message, setMessage] = useState('');
 
@@ -16,9 +15,7 @@ function UserProfile() {
     setMessage(update.data.message);
   };
 
-  return !name ? (
-    <Redirect to="/login" />
-  ) : (
+  return (
     <div className="profile page">
       <Header>Meu perfil</Header>
       <form onSubmit={ handleForm } className="profile form page-content">

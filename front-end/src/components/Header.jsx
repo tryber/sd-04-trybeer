@@ -5,11 +5,11 @@ import { Duff, menuIcon } from '../images/index';
 import '../css/header.css';
 
 export function Header({ children }) {
-  const userinfo = JSON.parse(localStorage.getItem('user'));
+  const userInfo = JSON.parse(localStorage.getItem('user') || '{}');
   const [btnBurguer, setBtnBurguer] = useState(
-    userinfo && userinfo.role === 'administrator',
+    userInfo.role === 'administrator',
   );
-  if (!userinfo) return <Redirect to="/login" />;
+  if (!userInfo.role) return <Redirect to="/login" />;
   return (
     <div className="header-container">
       <header>
@@ -23,7 +23,7 @@ export function Header({ children }) {
         <img src={ Duff } alt="duff logo" className="duff-logo" />
         <span data-testid="top-title" className="header-title">{children}</span>
       </header>
-      <SideBar userRole={ userinfo.role } active={btnBurguer}/>
+      <SideBar userRole={ userInfo.role } active={btnBurguer}/>
     </div>
   );
 }

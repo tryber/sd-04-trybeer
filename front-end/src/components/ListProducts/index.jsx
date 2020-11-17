@@ -19,7 +19,7 @@ export const ListProducts = ({ list }) => {
       {carrinho.map((info, index) => (
         <CardProduct key={info[0]} {...info[1]} index={index} />
       ))}
-      <button disabled={carrinho.length === 0} data-testid="checkout-bottom-btn">
+      <button disabled={Object.keys(cart).length === 0} data-testid="checkout-bottom-btn">
         <Link to="/checkout" onClick={(e) => _onClick(e)}>
           <p data-testid="checkout-bottom-btn-value">{`Ver Carrinho: ${total}`}</p>
         </Link>
