@@ -1,7 +1,7 @@
 const { response } = require('express');
 const productModel = require('../model/productModel');
 
-const getBeer = async (req, res) => {
+const getBeer = async (_req, res) => {
   try {
     const beer = await productModel.getAllProducts();
 
