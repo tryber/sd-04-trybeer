@@ -1,24 +1,16 @@
-const yup = require('yup');
+import * as Yup from 'yup';
 
-const schema = yup.object().shape({
-  // nome - deve conter, no mínimo, 12 letras, sem números ou caracteres especiais;
-  signName: yup
-    .string()
-    .min(12, 'O nome deve conter pelo menos 12 letras')
-    .matches(/^([a-zA-Z ])*$/gmi, 'O Nome deve conter somente letras')
-    .required(),
-
+const min = 6;
+const schema = Yup.object().shape({
   // email - deve conter um email válido. Um email válido possui o formato <nome>@<domínio>;
-  signEmail: yup
-    .string()
+  loginEmail: Yup.string()
     .email('O email deve ter o formato nome@domínio.com')
-    .required(),
+    .required('É necessário inserir um email'),
 
   // senha - composta por, no mínimo, 6 números;
-  signPassword: yup
-    .string()
-    .min(6, 'A senha deve conter pelo menos 6 números')
-    .required(),
+  loginPassword: Yup.string()
+    .min(min, 'A senha deve conter pelo menos 6 números')
+    .required('É necessário inserir uma senha'),
 });
 
-module.exports = { schema };
+export default schema;

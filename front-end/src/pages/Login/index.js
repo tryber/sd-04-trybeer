@@ -1,64 +1,68 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Button,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
 } from '@chakra-ui/react';
+import { useFormik } from 'formik';
+
 import { userLogin /* mockUserLogin */ } from '../../api';
-import validator from './validateLogin';
+import validationSchema from './validateLogin';
 
 const Login = () => {
   const history = useHistory();
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
 
-  const handleInput = ({ target: { name, value } }) => {
-    if (name === 'loginEmail') return setEmail(value);
-    return setPassword(value);
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    /* mockAPI call
-    const result = await mockUserLogin();
-    console.log(email, password);
-    const redirect = result.data.role === 'client' ? '/products' : '/admin/profile'; */
-    const yupResults = await validator.isValid();
-    const result = await userLogin(email, password);
-    const redirect = result.role === 'client' ? '/products' : '/admin/profile';
-    // history.push(redirect);
-  };
+  const formik = useFormik({
+    initialValues: {
+      loginEmail: '',
+      loginPassword: '',
+    },
+    validationSchema,
+    onSubmit: async (values) => {
+      const result = await userLogin(values.email, values.password);
+      const redirect = result.role === 'client' ? '/products' : '/admin/profile';
+      history.push(redirect);
+    },
+  });
 
   return (
     <div>
-      <form onSubmit={ (e) => handleLogin(e) }>
-        <FormControl id="email" isRequired>
-          <FormLabel htmlFor="email">Email</FormLabel>
+      <form onSubmit={ formik.handleSubmit }>
+        <FormControl id="loginEmail" isInvalid={ formik.errors.loginEmail && formik.touched.loginEmail }>
+          <FormLabel htmlFor="loginEmail">Email</FormLabel>
           <Input
             type="email"
             name="loginEmail"
             data-testid="email-input"
-            onChange={ handleInput }
+            onChange={ formik.handleChange }
+            onBlur={ formik.handleBlur }
+            value={ formik.values.loginEmail }
           />
+          <FormErrorMessage>{formik.errors.loginEmail}</FormErrorMessage>
         </FormControl>
-        <FormControl id="password" isRequired>
-          <FormLabel htmlFor="password">Senha</FormLabel>
+        <FormControl id="loginPassword" isInvalid={ formik.errors.loginPassword && formik.touched.loginPassword }>
+          <FormLabel htmlFor="loginPassword">Senha</FormLabel>
           <Input
             type="password"
             name="loginPassword"
             data-testid="password-input"
-            onChange={ handleInput }
+            onChange={ formik.handleChange }
+            onBlur={ formik.handleBlur }
+            value={ formik.values.loginPassword }
           />
+          <FormErrorMessage>{formik.errors.loginPassword}</FormErrorMessage>
         </FormControl>
-        <Button variantColor="green" type="submit" data-testid="signin-btn">
+        <Button variantColor="green" type="submit" data-testid="signin-btn" disabled={ formik.isSubmitting }>
           Entrar
         </Button>
         <Button
           variantColor="blue"
           type="submit"
           data-testid="no-account-btn"
+          disabled={ formik.isSubmitting }
           onClick={ () => {
             history.push('/register');
           } }
