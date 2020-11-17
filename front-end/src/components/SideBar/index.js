@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './style.css';
 
-const client = () => {
+function client() {
   return (
     <ul>
       <Link to="products">
@@ -17,22 +17,23 @@ const client = () => {
         <li data-testid="side-menu-item-my-profile">Meu Perfil</li>
       </Link>
       <span>
-        <li></li>
+        <li />
       </span>
       <span>
-        <li></li>
+        <li />
       </span>
       <Link to="/login">
-        <li
+        <button
+          type="button"
           data-testid="side-menu-item-logout"
-          onClick={() => window.localStorage.clear()}
+          onClick={ () => window.localStorage.clear() }
         >
           Sair
-        </li>
+        </button>
       </Link>
     </ul>
   );
-};
+}
 
 const admin = () => {
   return (
@@ -61,13 +62,13 @@ const admin = () => {
   );
 };
 
-const SideBar = ({ role }) => {
+const SideBar = ({ userType }) => {
   let identification = '';
   let elements = '';
   let classes = '';
-  role === 'client' ? (identification = 'sideBar') : (identification = 'sideB');
-  role === 'client' ? (elements = client()) : (elements = admin());
-  role === 'client'
+  userType === 'client' ? (identification = 'sideBar') : (identification = 'sideB');
+  userType === 'client' ? (elements = client()) : (elements = admin());
+  userType === 'client'
     ? (classes = 'side-menu-container')
     : (classes = 'admin-side-bar-container');
   const [toggle, setToggle] = useState(false);

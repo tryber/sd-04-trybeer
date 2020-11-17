@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../Header/index';
+import SideBar from '../SideBar';
 
 import './style.css';
 
@@ -9,6 +10,7 @@ const AdminProfile = ({ name, mail }) => {
   return (
     <div>
       <Header title={'Admin - Perfil'} />
+      <SideBar userType="admin" />
       <form action="/profile" method="POST">
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Name</label>
