@@ -12,9 +12,7 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const [products, setProducts] = useState([]);
 
   const saveCart = () => {
-    const cartLS = JSON.parse(localStorage.getItem('cart')).filter(
-      (product) => product.quantity > 0,
-    );
+    const cartLS = JSON.parse(localStorage.getItem('cart')) || [];
     const totalLS = JSON.parse(localStorage.getItem('total'));
 
     console.log('recupera LS', cartLS);

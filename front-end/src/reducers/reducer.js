@@ -38,7 +38,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       const product = state.cart.find(
         (item) => item.name === action.payload.name,
       );
-      if (product && product.quantity === 0) {
+      if (product && product.quantity === 1) {
         return {
           ...state,
           cart: [
