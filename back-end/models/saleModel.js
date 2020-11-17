@@ -8,17 +8,17 @@ const insertNewSale = async (id,
     .values(id, totalPrice, nameAdress, numberAdress, saleDate, status)
     .execute())
   .then((query) => query.getAutoIncrementValue())
-    .catch((err) => err);
-  
-  const insertProductSale = async (saleId, productId, quantity) => connection()
+  .catch((err) => err);
+
+const insertProductSale = async (saleId, productId, quantity) => connection()
   .then((schema) => schema
     .getTable('sales_products')
     .insert(['sale_id', 'product_id', 'quantity'])
     .values(saleId, productId, quantity)
     .execute())
-    .catch((err) => err);
-  
+  .catch((err) => err);
+
 module.exports = {
   insertNewSale,
   insertProductSale,
-}
+};

@@ -27,4 +27,4 @@ const postNewSale = async (id, addressName, addressNumber, cart, totalPrice) => 
 
 module.exports = {
   postNewSale,
-}
+};

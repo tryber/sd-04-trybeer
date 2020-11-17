@@ -14,7 +14,7 @@ export const postRegister = async (name, email, password, role) => axios
     role,
   })
   .catch(({ response }) => response);
-  
+
 export const getProducts = async () => axios.get(`${baseUrl}/products`);
 
 export const postOrder = async (nameAdress, numberAdress, cart, user, totalPrice) => axios

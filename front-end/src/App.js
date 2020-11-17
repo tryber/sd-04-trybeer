@@ -1,7 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { UserProfile, FormPage, Products, Checkout } from './pages';
+import {
+  UserProfile,
+  FormPage,
+  Products,
+  Checkout,
+} from './pages';
 
 import { Header } from './components/Header';
 import LoginForm from './components/forms/LoginForm';
