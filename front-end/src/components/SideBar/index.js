@@ -80,12 +80,12 @@ const SideBar = ({ role }) => {
   }
   const [toggle, setToggle] = useState(false);
   return (
-    <nav id={identification} className={ `${classes} ${toggle ? 'active' : ''}` }>
+    <nav id={ identification } className={ `${classes} ${toggle ? 'active' : ''}` }>
       <button
         type="button"
         onClick={ () => setToggle(!toggle) }
         onKeyDown={ () => setToggle(!toggle) }
-      />
+      ></button>
       <div data-testid="top-hamburguer" className="toggle-btn">
         <span />
         <span />
