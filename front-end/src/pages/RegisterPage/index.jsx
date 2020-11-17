@@ -53,7 +53,6 @@ const Register = () => {
   };
 
   return(
-    <div>
       <div className="page-register">
         <form className="form-register" method="POST" onSubmit={handleSubmit}>
           <label className="nome" htmlFor="name">
@@ -119,7 +118,6 @@ const Register = () => {
           />
         </form>
       </div>
-    </div>
   );
 };
 

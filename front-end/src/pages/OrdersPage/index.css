@@ -1,0 +1,14 @@
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  height: 100vh;
+  flex-direction: column;
+  width: 50vw;
+  margin: 0 auto;
+}
+
+.products {
+  width: 50%;
+}
+

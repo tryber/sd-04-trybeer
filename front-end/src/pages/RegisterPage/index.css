@@ -1,9 +1,18 @@
 .page-register {
-  background: #E5E5E5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  width: 50vw;
+  margin: 0 auto;
 }
 
 .form-registe {
-  left: 400px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .nome {

@@ -11,5 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/register', router.userRouter);
 app.use('/login', router.loginRouter);
+app.use('/sales', router.salesRouter);
 
 module.exports = app;
