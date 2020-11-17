@@ -86,7 +86,6 @@ const SideBar = ({ role }) => {
   return (
     <button
       type="button"
-      className="btn-fake"
       id={ identification }
       className={ `${classes} ${toggle ? 'active' : ''}` }
       onClick={ () => setToggle(!toggle) }
