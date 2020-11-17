@@ -14,9 +14,10 @@ export const decQuantity = (payload) => ({
   payload,
 });
 
-export const saveCart = (payload) => ({
+export const saveCart = (localstorage, total) => ({
   type: SAVE_CART,
-  payload,
+  localstorage,
+  total,
 });
 
 export const updateTotalCheckout = (payload) => ({

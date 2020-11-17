@@ -3,6 +3,7 @@ import {
   DEC_QUANTITY,
   UPDATE_TOTAL_CHECKOUT,
   UPDATE_CART,
+  SAVE_CART,
 } from '../actions/index';
 
 const INITIAL_STATE = {
@@ -37,7 +38,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       const product = state.cart.find(
         (item) => item.name === action.payload.name,
       );
-
       if (product && product.quantity === 1) {
         return {
           ...state,
@@ -51,9 +51,15 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       action.payload.quantity -= 1;
       return {
         ...state,
-        cart: [...state.cart, action.payload],
+        cart: [...state.cart],
       };
     }
+    case SAVE_CART:
+      return {
+        ...state,
+        cart: [...action.localstorage],
+        total: action.total,
+      };
 
     case UPDATE_TOTAL_CHECKOUT: {
       return {
