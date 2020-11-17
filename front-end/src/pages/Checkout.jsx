@@ -20,7 +20,7 @@ const Checkout = () => {
   };
 
   const totalPrice = cart.reduce((acc, { price, quantity }) => acc + (price * quantity), numberZero);
-  
+
   const requestApi = async () => {
     const response = await postOrder(nameAdress, numberAdress, cart, user, totalPrice);
     if (response.data.message) return setMessage(response.data.message);
