@@ -21,6 +21,7 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const saveCart = () => {
     const cartLS = JSON.parse(localStorage.getItem('cart'));
     const totalLS = JSON.parse(localStorage.getItem('total'));
+    console.log(cartLS, totalLS);
 
     console.log('recupera LS', cartLS);
     return cartLS ? saveCartLS(cartLS, totalLS) : null;
@@ -91,7 +92,10 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
             <button
               type="button"
               data-testid={`${index}-product-plus`}
-              onClick={() => increaseQtd(product)}
+              onClick={() => {
+                increaseQtd(product);
+                interval();
+              }}
             >
               +
             </button>
@@ -107,6 +111,7 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
             Ver Carrinho
           </button>
         </Link>
+        {console.log(total)}
         <p data-testid="checkout-bottom-btn-value">{`R$ ${total
           .toFixed(2)
           .replace('.', ',')}`}</p>

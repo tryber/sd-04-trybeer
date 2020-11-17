@@ -3,6 +3,7 @@ import {
   DEC_QUANTITY,
   UPDATE_TOTAL_CHECKOUT,
   UPDATE_CART,
+  SAVE_CART,
 } from '../actions/index';
 
 const INITIAL_STATE = {
@@ -54,6 +55,12 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         cart: [...state.cart, action.payload],
       };
     }
+    case SAVE_CART:
+      return {
+        ...state,
+        cart: [...action.localstorage],
+        total: action.total,
+      };
 
     case UPDATE_TOTAL_CHECKOUT: {
       return {
