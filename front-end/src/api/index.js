@@ -19,3 +19,9 @@ export const postRegister = async (name, email, password, role) => axios
     role,
   })
   .catch(({ response }) => response);
+
+const api = axios.create({
+  baseURL: 'http//localhost:3001',
+});
+
+export const listProducts = () => (api.get('/products'));
