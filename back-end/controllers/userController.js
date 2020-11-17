@@ -33,8 +33,21 @@ const editProfile = async (req, res) => {
   }
 };
 
+const userRegister = async (req, res) => {
+  try {
+    const { name, email, password, role } = req.body;
+
+    await userModel.registerUser(name, email, password, role);
+    res.status(200).json({ message: 'registrado com sucesso' });
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ message: 'E-mail already in database.' });
+  }
+};
+
 module.exports = {
   userLogin,
   userProfile,
   editProfile,
+  userRegister,
 };

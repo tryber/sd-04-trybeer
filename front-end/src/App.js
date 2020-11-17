@@ -16,6 +16,7 @@ function App() {
   return (
     <Container>
       <Switch>
+        <Route exact path="/" component={ Login } />
         <Route path="/login" component={ Login } />
         <Route path="/admin/orders" component={ Admin } />
         <Route path="/register" component={ Registro } />
