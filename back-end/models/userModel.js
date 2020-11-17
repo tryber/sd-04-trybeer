@@ -5,10 +5,10 @@ const registerNewUser = async (userName, userEmail, userPwd, role) => {
     const db = await connection();
     await db
       .getTable('users')
-      .insert(['name', 'email', 'password', 'role'])
+      .insert(['id', 'name', 'email', 'password', 'role'])
       .values(userName, userEmail, userPwd, role)
       .execute();
-    return { name: userName, email: userEmail, password: userPwd, role };
+    return { id, name: userName, email: userEmail, password: userPwd, role };
   } catch (err) {
     throw new Error(err);
   }

@@ -3,74 +3,53 @@ import { useHistory } from 'react-router-dom';
 import { postOrder } from '../services/TrybeerApi';
 
 const Checkout = () => {
+  const user = JSON.parse(localStorage.getItem('user'))
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem('cart')) || [];
   const [cart, setCart] = useState([]);
-  const [newCart, setNewCart] = useState([]);
+  const [refresh, setRefresh] = useState('');
   const [nameAdress, setNameAdress] = useState('');
   const [numberAdress, setNumberAdress] = useState('');
   const [message, setMessage] = useState(null);
-  const zero = 0;
-  const seconds = 3000;
+  const numberZero = 0;
+  const time = 2000;
 
-  const calculePrice = (param, paramZero) => param
-    .reduce((acc, { price, quantity }) => acc + (price * quantity), paramZero);
-
-  const formatePrice = (price) => price
-    .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-
-  const totalPrice = calculePrice(cart, zero)
-    .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-
-  const justNumberPrice = calculePrice(cart, zero);
-
-  const disableButtton = (price, name, number) => {
-    if (price <= zero) return true;
-    if (!name || !number) return true;
-    return false;
-  };
-
-  const removeOrder = (index) => {
+  const removeItemCart = (index) => {
     cart.splice(index, 1);
-    setNewCart(cart);
+    setRefresh(cart);
     localStorage.setItem('cart', JSON.stringify(cart));
   };
 
-  const sendNewOrder = async (name, number, productCart, userParam, price) => {
-    setNameAdress('');
-    setNumberAdress('');
-    const response = await postOrder(name, number, productCart, userParam, price);
-    return setMessage(response.data.message);
-  };
-
-  function goToProducts() {
-    setTimeout(() => {
-      history.push('/products');
-    }, seconds);
+  const totalPrice = cart.reduce((acc, { price, quantity }) => acc + (price * quantity), numberZero);
+  
+  const requestApi = async () => {
+    const response = await postOrder(nameAdress, numberAdress, cart, user, totalPrice);
+    if (response.data.message) return setMessage(response.data.message);
   }
 
   useEffect(() => {
-    setCart(JSON.parse(localStorage.getItem('cart')) || []);
-  }, [newCart]);
+    setCart(Object.values(JSON.parse(localStorage.getItem('cart')) || []));
+  }, [refresh]);
 
   return (
     <div>
       <h2>Produtos</h2>
+
       {cart.length < 1 && <h2>Não há produtos no carrinho</h2>}
-      {cart.map(({ price = zero, productName, quantity }, index) => (
-        <div className="cart-products" key={ productName }>
+
+      {cart.map(({ price, name, quantity }, index) => (
+        <div className="cart-products" key={ name }>
           <div className="cart-qtd" data-testid={ `${index}-product-qtd-input` }>{ quantity }</div>
-          <div className="cart-name" data-testid={ `${index}-product-name` }>{ productName }</div>
+          <div className="cart-name" data-testid={ `${index}-product-name` }>{ name }</div>
           <div className="cart-total" data-testid={ `${index}-product-total-value` }>
-            { formatePrice(quantity * price) }
+            {`${(quantity * price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`}
           </div>
           <div className="cart-price" data-testid={ `${index}-product-unit-price` }>
-            { `(${formatePrice(price)} un)` }
+            { `(${price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} un)` }
             <button
               type="submit"
               value="Submit"
               data-testid={ `${index}-removal-button` }
-              onClick={ () => removeOrder(index) }
+              onClick={ () => removeItemCart(index) }
             >
               X
             </button>
@@ -79,7 +58,7 @@ const Checkout = () => {
       ))}
 
       <div data-testid="order-total-value">
-        { `Total: ${totalPrice}` }
+        { `Total: ${totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}` }
       </div>
 
       <h2>Endereço</h2>
@@ -112,13 +91,18 @@ const Checkout = () => {
       <button
         type="button"
         data-testid="checkout-finish-btn"
-        disabled={ disableButtton(justNumberPrice, nameAdress, numberAdress) }
-        onClick={ () => sendNewOrder(nameAdress, numberAdress, cart, user, justNumberPrice) }
+        disabled={ totalPrice <= numberZero || !nameAdress || !numberAdress }
+        onClick={ () => requestApi() }
       >
         Finalizar Pedido
       </button>
-      { message && <p>{message}</p> }
-      { message && goToProducts() }
+      { message && <p>{message}</p>}
+
+      { message && 
+        setTimeout(() => {
+          history.push('/products');
+        }, time)
+      }
     </div>
   );
 };

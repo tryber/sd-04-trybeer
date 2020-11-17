@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const baseUrl = 'http://localhost:3001';
 
-export const postLogin = async (email, password) => axios.post('http://localhost:3001/login', { email, password });
+export const postLogin = async (email, password) => axios.post(`${baseUrl}/login`, { email, password });
 
-export const putUpdate = async (name, email) => axios.put('http://localhost:3001/profile', { name, email });
+export const putUpdate = async (name, email) => axios.put(`${baseUrl}/profile`, { name, email });
 
 export const postRegister = async (name, email, password, role) => axios
   .post(`${baseUrl}/register`, {
@@ -14,17 +14,18 @@ export const postRegister = async (name, email, password, role) => axios
     role,
   })
   .catch(({ response }) => response);
+  
+export const getProducts = async () => axios.get(`${baseUrl}/products`);
 
-export const postOrder = async (nameAdress, numberAdress, cart, user, justNumberPrice) => axios
+export const postOrder = async (nameAdress, numberAdress, cart, user, totalPrice) => axios
   .post(`${baseUrl}/orders`, {
     nameAdress,
     numberAdress,
     cart,
     user,
-    justNumberPrice,
+    totalPrice,
   })
   .catch(({ response }) => response);
-  
 
 // export const postRegister = async (name, email, password, role) => {
 //   const dataResponse = await axios({

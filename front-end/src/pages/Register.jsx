@@ -38,10 +38,10 @@ const Register = () => {
     // response.err ? setForm({ ...form, error: response.err }) : setForm({ ...form, error: null });
     if (response.data.err) return setForm({ ...form, error: response.data.err });
 
-    const { token } = response;
+    const { token, id } = response;
 
     localStorage.user = JSON.stringify({
-      name, email, token, role: definedRole,
+      id, name, email, token, role: definedRole,
     });
 
     if (definedRole === 'administrator') {
