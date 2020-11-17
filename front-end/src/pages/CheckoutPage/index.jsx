@@ -15,7 +15,7 @@ const Checkout = () => {
   const [cart, setCart] = React.useState([]);
   const [form, setForm] = React.useState({ street: '', houseNumber: '' });
   const [finish, setFinish] = React.useState(null);
-  const finsihTimeout = React.useRef();
+  const finishTimeout = React.useRef();
   const history = useHistory();
 
   React.useEffect(() => {
@@ -51,8 +51,8 @@ const Checkout = () => {
     );
     setFinish('Compra realizada com sucesso!');
     setLS('cart', []);
-    clearTimeout(finsihTimeout.current);
-    finsihTimeout.current = setTimeout(() => {
+    clearTimeout(finishTimeout.current);
+    finishTimeout.current = setTimeout(() => {
       setFinish(null);
       history.push('/products');
     }, 3000);
