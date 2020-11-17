@@ -10,6 +10,7 @@ import Menu from '../components/Menu';
 
 const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const [products, setProducts] = useState([]);
+  const user = JSON.parse(localStorage.getItem('user')) || null;
 
   const saveCart = () => {
     const cartLS = JSON.parse(localStorage.getItem('cart')) || [];
@@ -56,6 +57,8 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
     decreaseQtd(product);
     interval();
   };
+
+  if(!user) return <Redirect to='/login' />
 
   return (
     <div>
