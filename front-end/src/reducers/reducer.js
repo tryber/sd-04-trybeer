@@ -1,4 +1,9 @@
-import { INC_QUANTITY, DEC_QUANTITY } from '../actions/index';
+import {
+  INC_QUANTITY,
+  DEC_QUANTITY,
+  UPDATE_TOTAL_CHECKOUT,
+  UPDATE_CART,
+} from '../actions/index';
 
 const INITIAL_STATE = {
   cart: [],
@@ -47,6 +52,22 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cart: [...state.cart, action.payload],
+      };
+    }
+
+    case UPDATE_TOTAL_CHECKOUT: {
+      return {
+        ...state,
+        total: state.total.toFixed(1) - action.payload.toFixed(1),
+      };
+    }
+
+    case UPDATE_CART: {
+      return {
+        ...state,
+        cart: [
+          ...state.cart.filter((item) => item.name !== action.payload.name),
+        ],
       };
     }
 

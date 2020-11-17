@@ -18,7 +18,7 @@ const getUsers = async () => {
 const findUserByEmail = async (email) => {
   const userData = await connection().then((db) => db
     .getTable('users')
-    .select(['email'])
+    .select(['id', 'email'])
     .where('email = :email')
     .bind('email', email)
     .execute())
