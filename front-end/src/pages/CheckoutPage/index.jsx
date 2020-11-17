@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Menu from '../../components/Menu';
 import InputForm from '../../components/InputForm';
 import { setLS, getLS } from '../../utils/';
+import api from '../../services/api';
 import './index.css';
 
 const cartItens = [
@@ -37,14 +38,23 @@ const Checkout = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    api.insertSaleAPI(
+      getLS('userId'),
+      cart.reduce((acc, cur) => {
+        const itemTotal = cur.price * cur.quantity;
+        return acc + itemTotal;
+      }, 0),
+      form.street,
+      form.houseNumber,
+    );
     setFinish('Compra realizada com sucesso!');
     setLS('cart', []);
     clearTimeout(finsihTimeout.current);
     finsihTimeout.current = setTimeout(() => {
       setFinish(null);
-      // history.push('/products');
+      history.push('/products');
     }, 3000);
   };
 
