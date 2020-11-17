@@ -36,7 +36,7 @@ const Provider = ({ children }) => {
     isloading,
   };
 
-  return <AppBeertContext.Provider value={contextValue}>{children}</AppBeertContext.Provider>;
+  return <AppBeertContext.Provider value={ contextValue }>{ children }</AppBeertContext.Provider>;
 };
 
 export default Provider;
