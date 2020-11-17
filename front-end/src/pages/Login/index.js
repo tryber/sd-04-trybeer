@@ -34,7 +34,7 @@ const Login = () => {
         formik.resetForm();
         return null;
       }
-      const redirect = result.data.role === 'client' ? '/products' : '/admin/profile';
+      const redirect = result.data.role === 'client' ? '/products' : '/admin/orders';
       return history.push(redirect);
     },
   });
@@ -43,7 +43,10 @@ const Login = () => {
     <div>
       <Alert isOpen={ isOpen } onClose={ onClose } message={ error } />
       <form onSubmit={ formik.handleSubmit }>
-        <FormControl id="loginEmail" isInvalid={ formik.errors.loginEmail && formik.touched.loginEmail }>
+        <FormControl
+          id="loginEmail"
+          isInvalid={ formik.errors.loginEmail && formik.touched.loginEmail }
+        >
           <FormLabel htmlFor="loginEmail">Email</FormLabel>
           <Input
             type="email"
@@ -55,8 +58,13 @@ const Login = () => {
           />
           <FormErrorMessage>{formik.errors.loginEmail}</FormErrorMessage>
         </FormControl>
-        <FormControl id="loginPassword" isInvalid={ formik.errors.loginPassword && formik.touched.loginPassword }>
-          <FormLabel htmlFor="loginPassword">Senha</FormLabel>
+        <FormControl
+          id="loginPassword"
+          isInvalid={
+            formik.errors.loginPassword && formik.touched.loginPassword
+          }
+        >
+          <FormLabel htmlFor="loginPassword">Password</FormLabel>
           <Input
             type="password"
             name="loginPassword"
@@ -67,8 +75,17 @@ const Login = () => {
           />
           <FormErrorMessage>{formik.errors.loginPassword}</FormErrorMessage>
         </FormControl>
-        <Button variantColor="green" type="submit" data-testid="signin-btn" disabled={ formik.isSubmitting }>
-          Entrar
+        <Button
+          variantColor="green"
+          type="submit"
+          data-testid="signin-btn"
+          disabled={
+            formik.errors.loginPassword
+            || formik.errors.loginEmail
+            || formik.isSubmitting
+          }
+        >
+          ENTRAR
         </Button>
         <Button
           variantColor="blue"
