@@ -4,10 +4,9 @@ import {
   Button,
   FormControl,
   FormLabel,
-  // FormErrorMessage,
   Input,
 } from '@chakra-ui/react';
-import { userLogin } from '../../api';
+import { userLogin /* mockUserLogin */ } from '../../api';
 
 const Login = () => {
   const history = useHistory();
@@ -21,35 +20,36 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      await userLogin(email, password);
-      console.log(document.cookies.data.token);
-    } catch (err) {
-      return null;
-    }
-    return null;
+    /* mockAPI call
+    const result = await mockUserLogin();
+    console.log(email, password);
+    const redirect = result.data.role === 'client' ? '/products' : '/admin/profile'; */
+    const result = await userLogin(email, password);
+    const redirect = result.role === 'client' ? '/products' : '/admin/profile';
+    history.push(redirect);
   };
+
   return (
     <div>
-      <FormControl onSubmit={ handleLogin }>
-        <FormLabel htmlFor="email">Email</FormLabel>
-        <Input
-          type="email"
-          name="loginEmail"
-          id="email"
-          data-testid="email-input"
-          onChange={ handleInput }
-        />
-
-        <FormLabel htmlFor="password">Senha</FormLabel>
-        <Input
-          type="password"
-          name="loginPassword"
-          id="password"
-          data-testid="password-input"
-          onChange={ handleInput }
-        />
-
+      <form onSubmit={ (e) => handleLogin(e) }>
+        <FormControl id="email" isRequired>
+          <FormLabel htmlFor="email">Email</FormLabel>
+          <Input
+            type="email"
+            name="loginEmail"
+            data-testid="email-input"
+            onChange={ handleInput }
+          />
+        </FormControl>
+        <FormControl id="password" isRequired>
+          <FormLabel htmlFor="password">Senha</FormLabel>
+          <Input
+            type="password"
+            name="loginPassword"
+            data-testid="password-input"
+            onChange={ handleInput }
+          />
+        </FormControl>
         <Button variantColor="green" type="submit" data-testid="signin-btn">
           Entrar
         </Button>
@@ -63,7 +63,7 @@ const Login = () => {
         >
           Ainda não tenho conta
         </Button>
-      </FormControl>
+      </form>
     </div>
   );
 };
