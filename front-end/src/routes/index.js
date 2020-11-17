@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ThemeProvider, CSSReset } from '@chakra-ui/core';
+import { ChakraProvider } from '@chakra-ui/react';
 import {
   Checkout, Home, Login, NotFound, Orders, OrdersDetails, Products, Profile, Register,
 } from '../pages';
 
 const Routes = () => (
   <BrowserRouter>
-    <ThemeProvider>
-      <CSSReset />
+    <ChakraProvider>
       <Switch>
         <Home exact path="/" />
         <Checkout path="/checkout" />
@@ -27,7 +27,7 @@ const Routes = () => (
         <Register path="/register" />
         <Route component={ NotFound } />
       </Switch>
-    </ThemeProvider>
+    </ChakraProvider>
   </BrowserRouter>
 );
 export default Routes;
