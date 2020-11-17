@@ -5,13 +5,11 @@
 
 #sideBar {
   background-color: black;
-  height: 100%;
-  left: -24%;
-  position: fixed;
   margin-top: 80px;
   height: 67%;
+  left: -24%;
   /* position: fixed; */
-  width: 0px;
+  width: 0%;
 }
 
 #sideB {

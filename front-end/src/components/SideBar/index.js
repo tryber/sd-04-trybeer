@@ -63,7 +63,12 @@ const SideBar = ({ role }) => {
   let identification = '';
   let elements = '';
   let classes = '';
-  if (role === 'client') {
+
+  if (role === '') {
+    identification = '';
+    elements = '';
+    classes = '';
+  } else if (role === 'client') {
     identification = 'sideBar';
     elements = client();
     classes = 'side-menu-container';

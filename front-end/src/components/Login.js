@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 // import { TrybeerContext } from '../context';
 import API from '../services/api';
 import Header from './Header';
+import SideBar from './SideBar';
 
 const Login = () => {
   // const { user, setUser } = useContext(TrybeerContext);
@@ -52,6 +53,7 @@ const Login = () => {
   return (
     <div>
       <Header title="Trybeer" />
+      <SideBar role="" />
       <form onSubmit={ handleSubmit } className="m-3">
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
