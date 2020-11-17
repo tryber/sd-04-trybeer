@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Switch, Route } from 'react-router-dom';
 import { Login, UserProfile, Register } from './pages';
 import { Header } from './components/Header';
@@ -16,6 +15,7 @@ function App() {
         <UserProfile />
       </Route>
       <Route path="/register" component={ Register } />
+      {/* <Route path="/orders/:id"> */}
       <Route path="/orders/teste">
         <OrderDetail />
       </Route>
