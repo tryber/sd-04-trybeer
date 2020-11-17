@@ -16,17 +16,19 @@ const Card = ({ img, title, price, index }) => {
     return cartStore ? setLS('cart', [...cartStore, itemAdd]) : setLS('cart', [itemAdd]);
   };
 
-  const DecrementCounterHandler = title => {
-    if (cart.length < 1) return null;
-
+  const DecrementCounterHandler = (title, cart) => {
+    if (cart.length < 1) return;
+    
     const removeItem = cart.findIndex(item => item.title === title);
-
+    
     if (removeItem >= 0) {
       cart.splice(removeItem, 1);
       setLS('cart', cart);
       setCart(cart);
     }
   };
+
+  const cartStorage = getLS('cart') || [];
 
   return (
     <div key={index} className="card-container">
@@ -43,12 +45,13 @@ const Card = ({ img, title, price, index }) => {
       <div className="button-container">
         <button
           data-testid={`${index}-product-minus`}
-          onClick={() => DecrementCounterHandler(title)}
+          onClick={() => DecrementCounterHandler(title, cartStorage)}
           type="button"
         >
           -
         </button>
         <span data-testid={`${index}-product-qtd`}>
+          {console.log('render', cart)}
           {!cart ? 0 : cart.filter(item => item.title === title).length}
         </span>
         <button
