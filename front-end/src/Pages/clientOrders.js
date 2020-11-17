@@ -3,7 +3,7 @@ import TopMenu from '../Components/Menu/TopMenu';
 
 const ClientOrders = () => (
   <div>
-    <TopMenu title="Cliente - Meus Pedidos" />
+    <TopMenu title="Meus Pedidos" />
   </div>
 );
 

@@ -3,7 +3,7 @@ import TopMenu from '../Components/Menu/TopMenu';
 
 const Products = () => (
   <div>
-    <TopMenu title="Cliente - Produtos" />
+    <TopMenu title="TryBeer" />
   </div>
 );
 
