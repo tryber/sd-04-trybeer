@@ -5,7 +5,7 @@ import {
   Checkbox,
   FormControl,
   FormLabel,
-  // FormErrorMessage,
+  FormErrorMessage,
   Input,
 } from '@chakra-ui/core';
 
@@ -16,6 +16,7 @@ function Register() {
   const [signEmail, setSignEmail] = useState('');
   const [signPassword, setSignPassword] = useState('');
 
+  const [errorMsg, setErrorMsg] = useState('');
   // Habilita ou desabilita o botão de 'Cadastrar'
   const signUpBtnDisabled = (bool) => {
     const btn = document.getElementById('signup-btn');
@@ -35,6 +36,7 @@ function Register() {
       console.log('Erro de validação: ', err);
       console.log('ERRORS: ', err.errors[0]);
       // Desabilita o botão 'Cadastrar' para dados inválidos
+      setErrorMsg(err.errors[0]);
       signUpBtnDisabled(true);
       return err.errors[0];
     });
@@ -54,6 +56,7 @@ function Register() {
       <form method="POST">
         <FormLabel htmlFor="name">Nome</FormLabel>
         <Input type="text" name="signName" id="name" data-testid="signup-name" onChange={(e) => setSignName(e.target.value)}/>
+        <FormErrorMessage isInvalid={errorMsg}>{errorMsg}</FormErrorMessage>
 
         <FormLabel htmlFor="email">Email</FormLabel>
         <Input type="email" name="signEmail" id="email" data-testid="signup-email" onChange={(e) => setSignEmail(e.target.value)}/>
