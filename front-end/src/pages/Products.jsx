@@ -11,12 +11,12 @@ import Menu from '../components/Menu';
 const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const [products, setProducts] = useState([]);
 
-  // const saveCart = () => {
-  //   const cartLS = JSON.parse(localStorage.getItem('cart'));
-  //   if (cartLS && cartLS.length > 1) {
-  //     return saveCartLS(cartLS);
-  //   }
-  // };
+  const initialCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  const initialTotal = Number(localStorage.getItem('total')) || 0;
+
+  const [cartLS, setCartLS] = useState(initialCart);
+  const [totalLS, setTotalLS] = useState(initialTotal);
 
   useEffect(() => {
     axios
@@ -25,8 +25,6 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
         setProducts(res.data);
       })
       .catch((error) => console.log(error));
-
-    // saveCart();
   }, []);
 
   const quantity = (product) => {
@@ -39,16 +37,9 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   };
 
   useEffect(() => {
-    if (cart.length) {
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    // localStorage.setItem('total', total);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('total', total);
   }, [cart, total]);
-
-  // if (!localStorage.getItem('user')) {
-  //   return <Redirect to="/login" />;
-  // }
 
   return (
     <div>

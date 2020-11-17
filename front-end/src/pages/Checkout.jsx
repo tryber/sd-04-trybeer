@@ -5,6 +5,7 @@ import axios from 'axios';
 import Menu from '../components/Menu';
 
 import { updateTotalCheckout, updateCart } from '../actions';
+import { Redirect } from 'react-router-dom';
 
 const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
   const [userLS, setUserLS] = useState(null);
@@ -14,12 +15,16 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
   const [price, setPrice] = useState('');
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(
+    new Date().toISOString().slice(0, 19).replace('T', ' '),
+  );
   const [status, setStatus] = useState('ok');
   ///////////////////////////////////////////////////
 
   const [messageCart, setMessageCart] = useState('');
   const [messageSuccess, setMessageSuccess] = useState('');
+
+  const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user'));
@@ -65,6 +70,7 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
       .then((res) => {
         console.log(res);
         setMessageSuccess('Compra realizada com sucesso!');
+        setRedirect(true);
       })
       .catch((error) => console.log(error));
   };
@@ -72,10 +78,12 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //setDate(new Date().toLocaleString().slice(0, 19).replace('T', ' '));
+    console.log(date);
 
     registerSale();
   };
+
+  if (redirect) return <Redirect to="/products" />;
 
   return (
     <div>
