@@ -9,12 +9,18 @@ const config = {
   socketPath: '/var/run/mysqld/mysqld.sock',
 };
 
+let session2;
+async function session() {
+  return session2 ? 
+  Promise.resolve(session2)
+  : mysqlx.getSession(config);
+}
+
 let schema;
 async function connection() {
   return schema
     ? Promise.resolve(schema)
-    : mysqlx
-      .getSession(config)
+    : session()
       .then((session) => {
         schema = session.getSchema('Trybeer');
         return schema;
@@ -24,4 +30,5 @@ async function connection() {
       });
 }
 
-module.exports = { connection };
+
+module.exports = { connection, session };
