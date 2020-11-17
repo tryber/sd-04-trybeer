@@ -2,9 +2,9 @@ const mysqlx = require('@mysql/xdevapi');
 require('dotenv/config');
 
 const config = {
-  user: process.env.DB_NAME,
-  password: process.env.DB_PASS,
-  host: process.env.DB_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  host: process.env.HOSTNAME,
   port: 33060,
   socketPath: '/var/run/mysqld/mysqld.sock',
 };
