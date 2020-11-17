@@ -6,7 +6,6 @@ import axios from 'axios';
 import { incQuantity, decQuantity, saveCart } from '../actions';
 
 import Menu from '../components/Menu';
-// import ProductCards from '../components/ProductCards';
 
 const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const [products, setProducts] = useState([]);
