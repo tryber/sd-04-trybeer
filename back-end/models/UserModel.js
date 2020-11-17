@@ -27,7 +27,7 @@ const searchUserByEmail = async (emailInput) => {
 };
 
 // Função para teste, ignorem!!!
-// (async () => console.log(await findUserByEmail('tryber@trybe.com.br')))  ();
+// (async () => console.log(await searchUserByEmail('tryber@trybe.com.br')))();
 
 module.exports = {
   registerUser,
