@@ -38,8 +38,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       const product = state.cart.find(
         (item) => item.name === action.payload.name,
       );
-
-      if (product && product.quantity === 1) {
+      if (product && product.quantity === 0) {
         return {
           ...state,
           cart: [
@@ -52,14 +51,15 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       action.payload.quantity -= 1;
       return {
         ...state,
-        cart: [...state.cart, action.payload],
+        cart: [...state.cart],
       };
     }
     case SAVE_CART:
+      console.log(action);
       return {
         ...state,
         cart: [...action.localstorage],
-        total: action.total,
+        total: action.total || 0,
       };
 
     case UPDATE_TOTAL_CHECKOUT: {

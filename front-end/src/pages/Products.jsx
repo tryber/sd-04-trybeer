@@ -11,17 +11,11 @@ import Menu from '../components/Menu';
 const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const [products, setProducts] = useState([]);
 
-  // const initialCart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  // const initialTotal = Number(localStorage.getItem('total')) || 0;
-
-  // const [cartLS, setCartLS] = useState(initialCart);
-  // const [totalLS, setTotalLS] = useState(initialTotal);
-
   const saveCart = () => {
-    const cartLS = JSON.parse(localStorage.getItem('cart'));
+    const cartLS = JSON.parse(localStorage.getItem('cart')).filter(
+      (product) => product.quantity > 0,
+    );
     const totalLS = JSON.parse(localStorage.getItem('total'));
-    console.log(cartLS, totalLS);
 
     console.log('recupera LS', cartLS);
     return cartLS ? saveCartLS(cartLS, totalLS) : null;
@@ -111,7 +105,6 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
             Ver Carrinho
           </button>
         </Link>
-        {console.log(total)}
         <p data-testid="checkout-bottom-btn-value">{`R$ ${total
           .toFixed(2)
           .replace('.', ',')}`}</p>
@@ -128,7 +121,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   increaseQtd: (payload) => dispatch(incQuantity(payload)),
   decreaseQtd: (payload) => dispatch(decQuantity(payload)),
-  saveCartLS: (payload) => dispatch(saveCart(payload)),
+  saveCartLS: (localstorage, total) => dispatch(saveCart(localstorage, total)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
