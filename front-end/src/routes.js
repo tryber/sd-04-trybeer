@@ -12,8 +12,6 @@ import ProductDetails from './pages/ProductDetails';
 const Routes = () => (
   <Provider>
     <Switch>
-      Hello World!
-      {/* <Route path="" component={ '' } /> */}
       <Route path="/register" component={ Register } />
       <Route path="/products" component={ Produtcs } />
       <Route path="/login" component={ LoginPage } />

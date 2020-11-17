@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import SideMenu from '../SideMenu/index';
-import './styles.css';
 import TopHamburgerToggle from './TopHamburgerToggle/TopHamburgerToggle';
 
-function TopMenu({ title }) {
+import './styles.css';
+
+const TopMenu = ({ title }) => {
   const [sideMenuState, setSideMenuState] = useState(false);
   return (
     <div>
@@ -19,6 +22,10 @@ function TopMenu({ title }) {
       </header>
     </div>
   );
-}
+};
+
+TopMenu.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
 export default TopMenu;

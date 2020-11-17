@@ -1,16 +1,27 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
 import { Context } from '../../context/index';
 import api from '../../services/api';
+
 import TrybeerLogo from '../../imgs/logo.png';
+
 import './styles.css';
 
-
 const Register = () => {
-  const { userName, setUserName, emailUser, setEmailUser, password, setPassword, setIsSeller, isSeller } = useContext(Context);
+  const {
+    userName,
+    setUserName,
+    emailUser,
+    setEmailUser,
+    password,
+    setPassword,
+    setIsSeller,
+    isSeller,
+  } = useContext(Context);
 
-  const namePattern = "[a-zA-Z ]{12,}";
-  const emailPattern = "[^@]+@[^@]+.[^@]+";
+  const namePattern = '[a-zA-Z ]{12,}';
+  const emailPattern = '[^@]+@[^@]+.[^@]+';
   const nameRegex = new RegExp(namePattern);
   const emailRegex = new RegExp(emailPattern);
 
@@ -19,6 +30,21 @@ const Register = () => {
     if (emailRegex.test(emailUser) && nameRegex.test(userName)) {
       disabled = false;
     }
+
+    const handleSubmit = async () => {
+      try {
+        await api.post('/register', {
+          userName,
+          emailUser,
+          password,
+          isSeller,
+        });
+      } catch (error) {
+        // alert(error.message);
+        throw new Error();
+      }
+    };
+
     return (
       <div className="btn-div">
         <Link to="/">
@@ -26,33 +52,25 @@ const Register = () => {
             data-testid="signup-btn"
             type="button"
             className="btn-cadastrar"
-            disabled={disabled}
-            onClick={handleSubmit}
+            disabled={ disabled }
+            onClick={ handleSubmit }
           >
             CADASTRAR
-              </button>
+          </button>
         </Link>
       </div>
     );
   };
 
-  const handleSubmit = async () => {
-    try {
-      await api.post('/register', { userName, emailUser, password, isSeller });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
   return (
     <article className="page-registro">
-      <img src={TrybeerLogo} alt="Trybeer logo developed by Luma Arruda" className="logo-trybeer" />
+      <img src={ TrybeerLogo } alt="Trybeer logo developed by Luma Arruda" className="logo-trybeer" />
 
       <form className="form-registro">
         <label className="input-labels" htmlFor="input-name">Nome</label>
         <input
           id="input-name"
-          onChange={({ target }) => setUserName(target.value)}
+          onChange={ (e) => setUserName(e.target.value) }
           type="text"
           data-testid="signup-name"
           name="name"
@@ -67,7 +85,7 @@ const Register = () => {
         <input
           id="input-email"
           type="email"
-          onChange={({ target }) => setEmailUser(target.value)}
+          onChange={ (e) => setEmailUser(e.target.value) }
           data-testid="signup-email"
           name="email"
           className="input-registro"
@@ -78,7 +96,7 @@ const Register = () => {
 
         <label className="input-labels" htmlFor="input-password">Senha</label>
         <input
-          onChange={({ target }) => setPassword(target.value)}
+          onChange={ (e) => setPassword(e.target.value) }
           type="password"
           id="input-password"
           data-testid="signup-password"
@@ -94,11 +112,11 @@ const Register = () => {
         <div className="seller-checkbox-div">
           <input
             type="checkbox"
-            onChange={() => setIsSeller(true)}
+            onChange={ () => setIsSeller(true) }
             data-testid="signup-seller"
             name="sellerCheckbox"
             className="seller-checkbox"
-            value={!isSeller}
+            value={ !isSeller }
           />
           <span className="checkbox-text">
             <label htmlFor="CheckSalesman">Quero vender</label>
