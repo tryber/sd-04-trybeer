@@ -67,3 +67,9 @@
 a {
   text-decoration: none;
 }
+
+.btn-fake {
+  background-color: black;
+  border: none;
+  color: white;
+}
