@@ -55,11 +55,10 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       };
     }
     case SAVE_CART:
-      console.log(action);
       return {
         ...state,
         cart: [...action.localstorage],
-        total: action.total || 0,
+        total: action.total,
       };
 
     case UPDATE_TOTAL_CHECKOUT: {
