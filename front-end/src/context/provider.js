@@ -12,10 +12,10 @@ const Provider = ({ children }) => {
 
   const setData = () => {
     apiProducts.getProducts().then((response) => {
-      setProducts(response.data)
+      setProducts(response.data);
       setIsLoading(false);
     });
-  }
+  };
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -23,7 +23,7 @@ const Provider = ({ children }) => {
     if (!user) history.push('/login');
     if (localStorage.getItem('cart')) {
       const data = localStorage.getItem('cart');
-      setCart(JSON.parse(data))
+      setCart(JSON.parse(data));
     }
   }, []);
 
@@ -36,10 +36,7 @@ const Provider = ({ children }) => {
     isloading,
   };
 
-  return (
-    <AppBeertContext.Provider value={contextValue}>
-      {children}
-    </AppBeertContext.Provider>);
-}
+  return <AppBeertContext.Provider value={contextValue}>{children}</AppBeertContext.Provider>;
+};
 
 export default Provider;

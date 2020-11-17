@@ -1,7 +1,13 @@
 import React, { useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import BeerContext from '../context/appBeerContext';
 
-const ShopCart = ({ product, setCartUpdate, cartUpdate, index }) => {
+const ShopCart = ({
+  product,
+  setCartUpdate,
+  cartUpdate,
+  index }) => {
   const { cart, setCart } = useContext(BeerContext);
   const { name } = product;
 
@@ -14,7 +20,7 @@ const ShopCart = ({ product, setCartUpdate, cartUpdate, index }) => {
 
   const removeCart = () => {
     if (cart[name] && cart[name].quantidade > 1) cart[name].quantidade -= 1;
-    else if (!cart[name]) return console.log('Esse produto não esta mais no carrinho');
+    else if (!cart[name]) return <p>Esse produto não esta mais no carrinho</p>;
     else delete cart[name];
     setCartUpdate(!cartUpdate);
     setCart(cart);
@@ -30,27 +36,34 @@ const ShopCart = ({ product, setCartUpdate, cartUpdate, index }) => {
         <button
           type="button"
           className="btn btn-success"
-          data-testid={`${index}-product-plus`}
-          onClick={() => addCart()}
+          data-testid={ `${index}-product-plus` }
+          onClick={ () => addCart() }
         >
           +
         </button>
       </div>
-      <div className="col px-md-5" data-testid={`${index}-product-qtd`}>
-        {cart[name] === undefined ? <span>0</span> : <span>{cart[name].quantidade}</span>}
+      <div className="col px-md-5" data-testid={ `${index}-product-qtd` }>
+        { cart[name] === undefined ? <span>0</span> : <span>{cart[name].quantidade}</span> }
       </div>
       <div className="col px-md-5">
         <button
           type="button"
           className="btn btn-danger"
-          data-testid={`${index}-product-minus`}
-          onClick={() => removeCart()}
+          data-testid={ `${index}-product-minus` }
+          onClick={ () => removeCart() }
         >
           -
         </button>
       </div>
     </div>
   );
+};
+
+ShopCart.propTypes = {
+  product: PropTypes.object.isRequired,
+  setCartUpdate: PropTypes.func.isRequired,
+  cartUpdate: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default ShopCart;

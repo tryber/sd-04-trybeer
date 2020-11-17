@@ -5,7 +5,6 @@ const userRouter = require('./routers/userRouters');
 const productRouter = require('./routers/productRouters');
 const userController = require('./controllers/userController');
 
-
 const app = express();
 const port = 3001;
 
