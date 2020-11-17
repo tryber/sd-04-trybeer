@@ -15,7 +15,7 @@ export const ListProducts = ({ list }) => {
     return false;
   };
   return (
-    <div>
+    <div className="page-content">
       {carrinho.map((info, index) => (
         <CardProduct key={info[0]} {...info[1]} index={index} />
       ))}

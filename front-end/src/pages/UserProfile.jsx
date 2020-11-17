@@ -19,9 +19,9 @@ function UserProfile() {
   return !name ? (
     <Redirect to="/login" />
   ) : (
-    <div className="profile-page">
+    <div className="profile page">
       <Header>Meu perfil</Header>
-      <form onSubmit={ handleForm } className="profile form">
+      <form onSubmit={ handleForm } className="profile form page-content">
         <label htmlFor="name">
           Name:
           <input
