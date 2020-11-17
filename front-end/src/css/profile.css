@@ -8,6 +8,18 @@
   flex: 1; 
 }
 
+.profile.page-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.profile.page-content > span {
+  margin: 15px;
+}
+
 .duff-beer {
   display: none;
 }
