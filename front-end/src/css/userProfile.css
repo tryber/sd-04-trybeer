@@ -1,0 +1,25 @@
+.profile-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(45deg, #cecece 0%,#f6f6f6 10%,#f3f3f3 25%,#f3f3f3 37%,#f4f4f4 50%,#eaeaea 51%,#f6f6f6 83%,#d3d3d3 100%);
+}
+
+.profile.form {
+  flex: 1; 
+}
+
+.duff-beer {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .duff-beer {
+    display: initial;
+    position: absolute;
+    width: 20%;
+    bottom: 50px;
+    right: 50px;
+    transform: rotate(15deg);
+  }
+}
