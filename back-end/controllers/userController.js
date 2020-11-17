@@ -23,6 +23,8 @@ const updateUser = rescue(async (req, res, next) => {
   res.status(200).json(updated);
 });
 
+
+
 module.exports = {
   updateUser,
   registerUser,
