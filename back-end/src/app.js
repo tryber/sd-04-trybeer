@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/images', express.static(path.join(__dirname, '/images')));
 
+app.use('/user', router.userRouter);
 app.use('/login', router.loginRouter);
 app.use('/products', router.productsRouter);
-app.use('/register', router.userRouter);
 
 module.exports = app;
