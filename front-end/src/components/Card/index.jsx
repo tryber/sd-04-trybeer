@@ -18,7 +18,7 @@ const Card = ({ img, title, price, index }) => {
 
   const DecrementCounterHandler = (title, cart) => {
     if (cart.length < 1) return;
-    
+
     const removeItem = cart.findIndex(item => item.title === title);
     
     if (removeItem >= 0) {
@@ -51,7 +51,6 @@ const Card = ({ img, title, price, index }) => {
           -
         </button>
         <span data-testid={`${index}-product-qtd`}>
-          {console.log('render', cart)}
           {!cart ? 0 : cart.filter(item => item.title === title).length}
         </span>
         <button

@@ -34,9 +34,9 @@ const productsAPI = async () => {
     const { data } = await api.get('/products');
     return data;
   } catch (err) {
-    console.error('productsAPI', err)
+    return console.error('productsAPI', err);
   }
-}
+};
 
 export default {
   registerUserAPI,

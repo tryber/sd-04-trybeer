@@ -36,8 +36,8 @@ const Products = () => {
     <>
       <Menu nomeTela="TryBeer" />
       <div className="container-general container-cards">
-        {data.map(({ url_image, name, price }, index) => (
-          <Card index={index} img={url_image} title={name} price={price} />
+        {data.map(({ urlImage, name, price }, index) => (
+          <Card index={index} img={urlImage} title={name} price={price} />
         ))}
       </div>
       <footer className="footer-cart">

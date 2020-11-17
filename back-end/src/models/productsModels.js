@@ -8,11 +8,11 @@ const getAllProductModels = async () => {
       .select(['id', 'name', 'price', 'url_image'])
       .execute();
     const productsArray = await results.fetchAll();
-    const products = await productsArray.map(([id, name, price, url_image]) => ({
+    const products = await productsArray.map(([id, name, price, urlImage]) => ({
       id,
       name,
       price,
-      url_image,
+      urlImage,
     }));
 
     return products;
