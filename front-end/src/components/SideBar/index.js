@@ -25,7 +25,8 @@ const client = () => (
     </span>
     <Link to="/login">
       <li data-testid="side-menu-item-logout">
-        <button type="button"
+        <button 
+          type="button"
           onClick={ () => window.localStorage.clear() }
           onKeyDown={ () => window.localStorage.clear() }
         >
