@@ -17,9 +17,10 @@ const connection = () => (schema
       schema = session.getSchema('Trybeer');
       return schema;
     })
-    .catch(() => {
+    .catch((e) => {
+      console.log(e);
       process.exit(1);
     })
 );
 
-module.exports = { connection };
+module.exports = connection;
