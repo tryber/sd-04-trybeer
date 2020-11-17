@@ -9,6 +9,7 @@ const Produtos = () => {
   const [products, setProducts] = useState(null);
 
   const [cart, setCart] = useState([]);
+  console.log('carrinho', cart);
 
   useEffect(() => {
     axios

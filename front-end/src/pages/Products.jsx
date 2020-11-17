@@ -11,12 +11,20 @@ import Menu from '../components/Menu';
 const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const [products, setProducts] = useState([]);
 
-  const initialCart = JSON.parse(localStorage.getItem('cart')) || [];
+  // const initialCart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  const initialTotal = Number(localStorage.getItem('total')) || 0;
+  // const initialTotal = Number(localStorage.getItem('total')) || 0;
 
-  const [cartLS, setCartLS] = useState(initialCart);
-  const [totalLS, setTotalLS] = useState(initialTotal);
+  // const [cartLS, setCartLS] = useState(initialCart);
+  // const [totalLS, setTotalLS] = useState(initialTotal);
+
+  const saveCart = () => {
+    const cartLS = JSON.parse(localStorage.getItem('cart'));
+    const totalLS = JSON.parse(localStorage.getItem('total'));
+
+    console.log('recupera LS', cartLS);
+    return cartLS ? saveCartLS(cartLS, totalLS) : null;
+  };
 
   useEffect(() => {
     axios
@@ -25,21 +33,36 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
         setProducts(res.data);
       })
       .catch((error) => console.log(error));
+    saveCart();
   }, []);
 
   const quantity = (product) => {
     let qty;
-    let productInCart = cart.filter((item) => item.name === product.name);
+    const productInCart = cart.filter((item) => item.name === product.name);
 
     productInCart.length ? (qty = productInCart[0].quantity) : (qty = 0);
 
     return qty;
   };
 
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('total', total);
-  }, [cart, total]);
+  // useEffect(() => {
+  //   localStorage.setItem('cart', JSON.stringify(cart));
+  //   localStorage.setItem('total', total);
+  // }, [cart, total]);
+
+  const interval = () => {
+    setTimeout(() => {
+      console.log('interval');
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }, 500);
+  };
+
+  const stopDecreamet = (product) => {
+    const qty = quantity(product);
+    if (qty === 0 || !qty) return null;
+    decreaseQtd(product);
+    interval();
+  };
 
   return (
     <div>
@@ -60,7 +83,7 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
             <button
               type="button"
               data-testid={`${index}-product-minus`}
-              onClick={() => decreaseQtd(product)}
+              onClick={() => stopDecreamet(product)}
             >
               -
             </button>
