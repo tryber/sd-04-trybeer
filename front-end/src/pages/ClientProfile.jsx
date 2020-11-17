@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 import Menu from '../components/Menu';
@@ -64,4 +65,4 @@ const ClientProfile = () => {
   );
 };
 
-export default ClientProfile;
+export default connect(null, null)(ClientProfile);

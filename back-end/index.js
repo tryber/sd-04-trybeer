@@ -5,6 +5,7 @@ const cors = require('cors');
 const usersModel = require('./models/usersModel');
 const createToken = require('./auth/createJWT');
 const productsModel = require('./models/productsModel');
+const salesModel = require('./models/salesModel');
 
 const app = express();
 
@@ -19,7 +20,14 @@ app.get('/login', (_req, res) => {
   res.status(200).send({ project: 'Trybeer' });
 });
 
-app.get('/users', async (_req, res) => {
+app.get('/users', async (req, res) => {
+  const { email } = req.query;
+
+  if (email) {
+    const user = await usersModel.findUserByEmail(email);
+    res.status(200).json(user);
+  }
+
   const users = await usersModel.getUsers();
   res.status(200).json(users);
 });
@@ -52,6 +60,13 @@ app.put('/edit', async (req, res) => {
 app.get('/products', async (_req, res) => {
   const products = await productsModel.getProducts();
   res.status(200).json(products);
+});
+
+app.post('/sales', async (req, res) => {
+  console.log(req.body);
+  const { userId, price, street, number, date, status } = req.body;
+  await salesModel.registerSale(userId, price, street, number, date, status);
+  return res.status(200).json({ message: 'sale registered successfully' });
 });
 
 app.listen(3001, () => console.log('Listening on 3001'));

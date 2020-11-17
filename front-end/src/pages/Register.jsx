@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [checked, setChecked] = useState(false);
 
-  const [message, setMessage] = useState("");
+  const [token, setToken] = useState('');
+
+  const [message, setMessage] = useState('');
   const [redirect, setRedirect] = useState(false);
 
   const checkName = (name) => {
@@ -21,24 +24,39 @@ const Register = () => {
     return regexEmail.test(email);
   };
 
-  const role = checked ? "administrator" : "client";
+  const role = checked ? 'administrator' : 'client';
 
   const registerUser = () => {
     axios
-      .post("http://localhost:3001/register", { name, email, password, role })
-      .then((res) => setRedirect(true))
-      .catch((_error) => setMessage("E-mail already in database."));
+      .post('http://localhost:3001/register', { name, email, password, role })
+      .then((_res) => setRedirect(true))
+      .catch((_error) => setMessage('E-mail already in database.'));
   };
 
-  if (role === "administrator" && redirect)
+  const createToken = () =>
+    axios
+      .post('http://localhost:3001/login', { email, password })
+      .then((res) => {
+        setToken(res.data.token);
+      })
+      .catch((error) => console.log(error));
+
+  if (token !== '') {
+    const objUser = { name, email, token, role };
+    localStorage.setItem('user', JSON.stringify(objUser));
+  }
+
+  if (role === 'administrator' && redirect)
     return <Redirect to="/admin/orders" />;
 
-  if (role === "client" && redirect) {
+  if (role === 'client' && redirect) {
     return <Redirect to="/products" />;
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    createToken();
 
     registerUser();
   };
@@ -85,9 +103,9 @@ const Register = () => {
           Cadastrar
         </button>
       </form>
-      {message !== "" && <p>{message}</p>}
+      {message !== '' && <p>{message}</p>}
     </div>
   );
 };
 
-export default Register;
+export default connect(null, null)(Register);
