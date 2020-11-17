@@ -28,7 +28,7 @@ function LoginForm() {
     }
   };
 
-  const update = useRef(false);
+  const update = useRef(false); 
   useEffect(() => {
     if (update.current) {
       const { error } = validateLogin(form.email, form.password);
@@ -39,7 +39,10 @@ function LoginForm() {
       setMessage();
       return setCanLogin(true);
     }
-    else update.current = true;
+    else {
+      localStorage.user = '';
+      update.current = true;
+    }
   }, [form]);
   return (
     <form onSubmit={ handleSubmit } className="form">
