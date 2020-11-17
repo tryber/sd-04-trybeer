@@ -1,4 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
+const Products = () => (
+  <p>This is the orders page</p>
+);
+export default Products;
+
+/* import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import ProductCard from '../../components/ProductCard';
@@ -40,7 +47,7 @@ function Products() {
           Ver carrinho
         </button>
       </Link>
-      <span data-testid="checkout-bottom-btn-value">{cartValue.toLocalString('pt-BR', formato)}</span>
+    <span data-testid="checkout-bottom-btn-value">{cartValue.toLocalString('pt-BR', formato)}</span>
     </div>
   );
 }
@@ -51,3 +58,4 @@ export default Products;
 // renderizar um card p/ cada produto
 // botao ver carrinho fixo e com valor da compra
 // criar localstorage pra itens
+ */
