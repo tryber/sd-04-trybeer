@@ -81,6 +81,7 @@ const SideBar = ({ role }) => {
   const [toggle, setToggle] = useState(false);
   return (
     <button
+      type="button"
       id={ identification }
       className={ `${classes} ${toggle ? 'active' : ''}` }
       onClick={ () => setToggle(!toggle) }
