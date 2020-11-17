@@ -27,7 +27,7 @@ const client = () => (
       <li>
         <button
           type="button"
-          class="btn-fake"
+          className="btn-fake"
           data-testid="side-menu-item-logout"
           onClick={ () => window.localStorage.clear() }
           onKeyDown={ () => window.localStorage.clear() }
@@ -57,7 +57,7 @@ const admin = () => (
       <li>
         <button
           type="button"
-          class="btn-fake"
+          className="btn-fake"
           data-testid="side-menu-item-logout"
           onClick={ () => window.localStorage.clear() }
           onKeyDown={ () => window.localStorage.clear() }
@@ -86,7 +86,7 @@ const SideBar = ({ role }) => {
   return (
     <button
       type="button"
-      class="btn-fake"
+      className="btn-fake"
       id={ identification }
       className={ `${classes} ${toggle ? 'active' : ''}` }
       onClick={ () => setToggle(!toggle) }
