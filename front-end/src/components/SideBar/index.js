@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import PropTypes from 'prop-types';
+
 import { Link } from 'react-router-dom';
 
 import './style.css';
@@ -35,7 +37,7 @@ function client() {
   );
 }
 
-const admin = () => {
+function admin() {
   return (
     <ul>
       <Link to="/admin/orders">
@@ -45,47 +47,64 @@ const admin = () => {
         <li data-testid="side-menu-item-profile">Perfil</li>
       </Link>
       <span>
-        <li></li>
+        <li />
       </span>
       <span>
-        <li></li>
+        <li />
       </span>
       <Link to="/login">
-        <li
+        <button
+          type="button"
           data-testid="side-menu-item-logout"
-          onClick={() => window.localStorage.clear()}
+          onClick={ () => window.localStorage.clear() }
         >
           Sair
-        </li>
+        </button>
       </Link>
     </ul>
   );
-};
+}
 
 const SideBar = ({ userType }) => {
   let identification = '';
   let elements = '';
   let classes = '';
-  userType === 'client' ? (identification = 'sideBar') : (identification = 'sideB');
-  userType === 'client' ? (elements = client()) : (elements = admin());
-  userType === 'client'
-    ? (classes = 'side-menu-container')
-    : (classes = 'admin-side-bar-container');
+  if (userType === '') {
+    identification = '';
+    elements = '';
+    classes = '';
+  } else if (userType === 'client') {
+    identification = 'sideBar';
+    elements = client();
+    classes = 'side-menu-container';
+  } else {
+    identification = 'sideB';
+    elements = admin();
+    classes = 'admin-side-bar-container';
+  }
+
   const [toggle, setToggle] = useState(false);
   return (
-    <nav
-      id={ identification }
-      className={`${classes} ${toggle ? 'active' : ''}`}
-      onClick={() => setToggle(!toggle)}
-    >
-      <div data-testid="top-hamburguer" className="toggle-btn">
-        <span></span>
-        <span></span>
-        <span></span>
+    <nav id={ identification } className={ `${classes} ${toggle ? 'active' : ''}` }>
+      <div
+        data-testid="top-hamburguer"
+        className="toggle-btn"
+        role="button"
+        onKeyDown={ () => setToggle(!toggle) }
+        onClick={ () => setToggle(!toggle) }
+        tabIndex="0"
+      >
+        <span />
+        <span />
+        <span />
       </div>
       {elements}
     </nav>
   );
+};
+
+SideBar.propTypes = {
+  userType: PropTypes.string.isRequired,
 };
 
 export default SideBar;
