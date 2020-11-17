@@ -7,6 +7,7 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { userLogin /* mockUserLogin */ } from '../../api';
+import validator from './validateLogin';
 
 const Login = () => {
   const history = useHistory();
@@ -24,9 +25,10 @@ const Login = () => {
     const result = await mockUserLogin();
     console.log(email, password);
     const redirect = result.data.role === 'client' ? '/products' : '/admin/profile'; */
+    const yupResults = await validator.isValid();
     const result = await userLogin(email, password);
     const redirect = result.role === 'client' ? '/products' : '/admin/profile';
-    history.push(redirect);
+    // history.push(redirect);
   };
 
   return (
