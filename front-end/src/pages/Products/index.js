@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import ProductCard from '../../components/ProductCard';
-import api from '../../api';
+import * as api from '../../api';
 
 function totalValue() {
   const storage = localStorage.cartItens;
