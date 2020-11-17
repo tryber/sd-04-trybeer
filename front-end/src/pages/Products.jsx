@@ -38,10 +38,9 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
     return qty;
   };
 
-  // useEffect(() => {
-  //   localStorage.setItem('cart', JSON.stringify(cart));
-  //   localStorage.setItem('total', total);
-  // }, [cart, total]);
+  useEffect(() => {
+    localStorage.setItem('total', total);
+  }, [total]);
 
   const interval = () => {
     setTimeout(() => {
