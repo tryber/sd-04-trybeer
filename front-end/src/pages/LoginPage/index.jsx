@@ -25,7 +25,9 @@ const Login = () => {
 
     const apiResponse = await api.loginAPI(form.email, form.password);
 
-    await setLS('user', apiResponse.data);
+    const { id, ...userInfo } = apiResponse.data;
+    await setLS('user', userInfo);
+    await setLS('userId', id);
 
     if (apiResponse.data && apiResponse.data.role === 'administrator') {
       history.push('/admin/orders');
