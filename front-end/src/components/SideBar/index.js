@@ -85,9 +85,7 @@ const SideBar = ({ role }) => {
         type="button"
         onClick={ () => setToggle(!toggle) }
         onKeyDown={ () => setToggle(!toggle) }
-      ></button>
-      
-      //teste
+  >{''}</button>
       <div data-testid="top-hamburguer" className="toggle-btn">
         <span />
         <span />
