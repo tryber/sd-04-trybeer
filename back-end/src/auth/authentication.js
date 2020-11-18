@@ -15,7 +15,7 @@ const authToken = async (userEmail, userPassword) => {
   if (userPassword !== user.password) {
     throw new Error(ERR_INVALID_PASSWORD);
   }
-
+  // isolar esse trecho para ser usado tanto no login qnt no cadastro
   const token = await Token.generate({
     userId: user.id,
     userName: user.name,
