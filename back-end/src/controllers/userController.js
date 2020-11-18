@@ -38,9 +38,7 @@ const loginController = async (req, res) => {
 const createUserController = async (req, res) => {
   try {
     const data = req.body;
-    const userInfo = await authentication.authToken(data.email, data.password);
     const result = await userModel.getUserByEmail(data.email);
-    // console.log(result)
     if (result) {
       if (result.email === data.email) {
         return res.status(403).json({ message: 'E-mail already in database.' });
@@ -48,6 +46,7 @@ const createUserController = async (req, res) => {
     }
 
     await userModel.createUser(data);
+    const userInfo = await authentication.authToken(data.email, data.password);
     return res.status(201).json(userInfo);
   } catch (err) {
     console.error('createUserController', err.message);

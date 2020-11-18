@@ -40,6 +40,22 @@ const getSalesTb = async () => {
   }
 };
 
+const insertSaleAPI = async (
+  userId,
+  totalPrice,
+  deliveryAddr,
+  deliveryNumber,
+) => api.post(
+  '/sales',
+  {
+    userId,
+    totalPrice,
+    deliveryAddr,
+    deliveryNumber,
+  },
+  headers,
+);
+
 const productsAPI = async () => {
   const { data } = await api.get('/products');
   return data;
@@ -51,6 +67,7 @@ export default {
   registerUserAPI,
   loginAPI,
   getSalesTb,
+  insertSaleAPI,
   productsAPI,
   updateUserAPI,
 };

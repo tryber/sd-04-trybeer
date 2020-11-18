@@ -23,7 +23,7 @@ const authToken = async (userEmail, userPassword) => {
     userRole: user.role,
   });
 
-  const { id, password, ...userInfo } = user;
+  const { password, ...userInfo } = user;
 
   return { ...userInfo, token };
 };
