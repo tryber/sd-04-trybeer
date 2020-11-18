@@ -1,4 +1,4 @@
-const yup = require('yup');
+import * as yup from 'yup';
 
 let schema = yup.object().shape({
   // nome - deve conter, no mínimo, 12 letras, sem números ou caracteres especiais;
@@ -44,4 +44,4 @@ schema.fields.signEmail.validate(userTest.signEmail)
   });
 */
 
-module.exports = { schema };
+export default schema;
