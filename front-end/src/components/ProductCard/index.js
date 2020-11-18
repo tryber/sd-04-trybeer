@@ -47,17 +47,13 @@ function checkStorage(id, zero, setQuantity) {
 }
 
 export default function ProductCard(data) {
-  console.log('data', data);
-  console.log('data', data.id);
-
   const { setCartValue, totalValue } = useContext(ProductContext);
   const zero = 0;
   // variavel para formatacao do price
   // const formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' };
   const {
     id, name, price, urlImage,
-  } = data;
-  console.log('id', id);
+  } = data.data;
 
   const [quantity, setQuantity] = useState(zero);
 
@@ -90,10 +86,10 @@ export default function ProductCard(data) {
 
   return (
     <div>
-      <div data-testid={ `${id - 1}-product-price` }>'oi' {price}</div>
+      <div data-testid={ `${id - 1}-product-price` }>{price.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })}</div>
       <div>
-        <img data-testid={ `${id - 1}-product-img` } src="{ urlImage }" alt="url da imagem" />
-        <div data-testid={ `${id - 1}-product-name` }> nome {name}</div>
+        <img width="100px" data-testid={ `${id - 1}-product-img` } src={ urlImage } alt="url da imagem" />
+        <div data-testid={ `${id - 1}-product-name` }>{name}</div>
       </div>
       <div>
         <button

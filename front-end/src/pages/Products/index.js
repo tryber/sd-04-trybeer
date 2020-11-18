@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import ProductCard from '../../components/ProductCard';
@@ -8,7 +8,6 @@ import { ProductContext } from '../../context';
 function Products() {
   const { cartValue } = useContext(ProductContext);
   const [products, setProducts] = useState([]);
-  // const formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' };
 
   useEffect(() => {
     if (!localStorage.cartItens) localStorage.cartItens = JSON.stringify([]);
@@ -22,8 +21,6 @@ function Products() {
   return (
     <div>
       <p>This is the products page</p>
-      {console.log(products)}
-
       {products.map((ele) => <ProductCard data={ ele } key={ ele.id } />)}
       <Link to="/checkout">
         <button type="button" data-testid="checkout-bottom-btn">
