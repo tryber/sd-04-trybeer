@@ -1,5 +1,6 @@
 const moment = require('moment');
 const saleModel = require('../models/saleModel');
+const genericModel = require('../models/genericModel');
 
 const postNewSale = async (id, addressName, addressNumber, cart, totalPrice) => {
   const date = moment().format('YYYY/MM/DD h:mm:ss');
@@ -28,7 +29,19 @@ const orderDetail = async (orderId) => {
   return products;
 };
 
+const getSalesId = async (emailParam) => {
+  const user = await genericModel.findUserBy(emailParam, 'email');
+  if (!user) throw new Error('usuario nao encontrado');
+  const salesUser = await saleModel.getAllSalesBy(user.id, 'user_id', [
+    'id',
+    'total_price',
+    'sale_date',
+  ]);
+  return salesUser;
+};
+
 module.exports = {
   postNewSale,
   orderDetail,
+  getSalesId,
 };

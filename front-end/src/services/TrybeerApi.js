@@ -19,6 +19,8 @@ export const getDetailSales = async (id) => axios.get(`${baseUrl}/orders/${id}`)
 
 export const getProducts = async () => axios.get(`${baseUrl}/products`);
 
+export const getUserSales = async (email) => axios.get(`${baseUrl}/orders?email=${email}`);
+
 export const postOrder = async (nameAdress, numberAdress, cart, user, totalPrice) => axios
   .post(`${baseUrl}/orders`, {
     nameAdress,

@@ -25,6 +25,7 @@ app.post(
 app.post('/register', middleware.validations.registerValidation, controllers.user.userRegister);
 
 app.post('/orders', controllers.sale.saleRegister);
+app.get('/orders', controllers.sale.getAllUserSales);
 
 app.get('/products', controllers.products.getAllProducts);
 

@@ -9,6 +9,7 @@ import {
   AdminOrders,
   AdminOrderDetails,
   AdminProfile,
+  Orders,
 } from './pages';
 import LoginForm from './components/forms/LoginForm';
 import RegisterForm from './components/forms/RegisterForm';
@@ -34,6 +35,9 @@ function App() {
         <FormPage>
           <RegisterForm />
         </FormPage>
+      </Route>
+      <Route path="/orders">
+        <Orders />
       </Route>
       <Route path="/checkout">
         <Checkout />
