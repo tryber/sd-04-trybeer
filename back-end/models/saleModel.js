@@ -1,5 +1,8 @@
 const { connection } = require('./connection');
 
+const arrayToObj = (sales, selection) => sales.map((sale) => sale
+  .reduce((acc, curr, i) => ({ ...acc, [selection[i]]: curr }), {}));
+
 const insertNewSale = async (id,
   totalPrice, nameAdress, numberAdress, saleDate, status) => connection()
   .then((schema) => schema
@@ -26,28 +29,22 @@ const getSales = async () => connection()
   .then((result) => result.fetchAll())
   .catch((err) => err);
 
-const getSaleById = async (id) => connection()
+const getAllSalesBy = async (info, fieldSearch, selection) => connection()
   .then((db) => db
     .getTable('sales')
-    .select()
-    .where('id = :id')
-    .bind('id', id)
+    .select(selection)
+    .where(`${fieldSearch} = :param`)
+    .bind('param', info)
     .execute())
-  .then((sale) => sale.fetchOne())
-  .then(([saleId, userId, totalPrice, nameAdress, numberAdress, date, status]) => ({
-    saleId,
-    userId,
-    totalPrice,
-    nameAdress,
-    numberAdress,
-    date,
-    status,
-  }))
-  .catch((err) => err);
+  .then((result) => result.fetchAll())
+  .then((sales) => {
+    if (!sales) return null;
+    return arrayToObj(sales, selection);
+  });
 
 module.exports = {
   insertNewSale,
   insertProductSale,
   getSales,
-  getSaleById,
+  getAllSalesBy,
 };

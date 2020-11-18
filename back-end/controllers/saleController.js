@@ -1,5 +1,12 @@
+const rescue = require('express-rescue');
 const saleService = require('../services/saleService');
 const saleModel = require('../models/saleModel');
+
+const getAllUserSales = rescue(async (req, res) => {
+  const { email } = req.query;
+  const sales = await saleService.getSalesId(email);
+  res.json(sales);
+});
 
 const saleRegister = async (req, res) => {
   const { nameAdress, numberAdress, cart, user, totalPrice } = req.body;
@@ -24,4 +31,5 @@ const getSales = async (_req, res) => {
 module.exports = {
   saleRegister,
   getSales,
+  getAllUserSales,
 };

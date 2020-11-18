@@ -33,7 +33,6 @@ const Checkout = () => {
 
   return (
     <>
-      {console.log('user', user)}
       <Header>Finalizar Pedido</Header>
       <h2>Produtos</h2>
 
