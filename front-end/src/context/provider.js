@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import AppBeertContext from './appBeerContext';
 import apiProducts from '../services/productApi';
 
@@ -37,6 +39,10 @@ const Provider = ({ children }) => {
   };
 
   return <AppBeertContext.Provider value={ contextValue }>{ children }</AppBeertContext.Provider>;
+};
+
+Provider.propTypes = {
+  children: PropTypes.element.isRequired,
 };
 
 export default Provider;

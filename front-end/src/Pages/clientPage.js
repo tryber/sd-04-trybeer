@@ -5,20 +5,21 @@ import BeerContext from '../context/appBeerContext';
 
 const Client = () => {
   const [cartUpdate, setCartUpdate] = useState(true);
-  const [valorTotal, setValorTotal] = useState(0);
+  const [valorTotal, setValorTotal] = useState();
   const { products, setData, isloading } = useContext(BeerContext);
+  const DOIS = 2;
+  const ZERO = 0;
 
   useEffect(() => {
     setData();
-  }, []);
+  }, [setData]);
 
   useEffect(() => {
-    let SubValor = 0;
     const cart = JSON.parse(localStorage.getItem('cart'));
-    for (let key in cart) {
-      SubValor = SubValor + cart[key].quantidade * cart[key].price;
-    }
-    setValorTotal(SubValor);
+    const newCart = cart && Object.values(cart);
+    const all = newCart
+      ? newCart.reduce((acc, curr) => curr.quantidade * curr.price + acc, ZERO) : ZERO;
+    setValorTotal(all);
   }, [cartUpdate]);
 
   if (isloading) return <div>Loading ...</div>;
@@ -28,7 +29,7 @@ const Client = () => {
       <h2>Cliente - Produtos</h2>
       <h3 data-testid="top-title">TryBeer</h3>
       <div className="row row-cols-1 row-cols-md-3">
-        {products.map((product, index) => (
+        { products.map((product, index) => (
           <div key={ product.id } className="col mb-4">
             <div className="card h-100 border-success" key={ product.id }>
               <img
@@ -44,9 +45,9 @@ const Client = () => {
                 </h4>
                 <h4
                   className="card-title"
-                  data-testid={`${ index}-product-price` }
+                  data-testid={ `${index}-product-price` }
                 >
-                  { `R$ ${product.price.toFixed(2).replace('.', ',')}` }
+                  { `R$ ${product.price.toFixed(DOIS).replace('.', ',')}` }
                 </h4>
               </div>
               <div className="card-footer border-success">
@@ -59,13 +60,13 @@ const Client = () => {
               </div>
             </div>
           </div>
-        ))}
+        )) }
       </div>
       <footer>
-        <button type="button" disabled={ valorTotal ? false : true } data-testid="checkout-bottom-btn">
+        <button type="button" disabled={ !valorTotal } data-testid="checkout-bottom-btn">
           <Link to="/checkout">
             <span data-testid="checkout-bottom-btn-value">
-              { `Ver Carrinho R$ ${valorTotal.toFixed(2).replace('.', ',')}` }
+              { `Ver Carrinho R$ ${valorTotal.toFixed(DOIS).replace('.', ',')}` }
             </span>
           </Link>
         </button>
