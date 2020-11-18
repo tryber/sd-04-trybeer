@@ -9,7 +9,7 @@ import './index.css';
 const Menu = ({ nomeTela }) => {
   const [open, setOpen] = useState(false);
   const node = useRef();
-  useOnClickOutside(node, () => setOpen(false));
+  useOnClickOutside(node, () => setOpen(false)); 
 
   return (
     <header className="header" ref={ node }>
