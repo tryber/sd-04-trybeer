@@ -7,7 +7,7 @@ const ShopCart = ({
   product,
   setCartUpdate,
   cartUpdate,
-  index
+  index,
 }) => {
   const { cart, setCart } = useContext(BeerContext);
   const { name } = product;

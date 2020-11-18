@@ -5,14 +5,12 @@ import 'rbx/index.css';
 import { Container } from 'rbx';
 
 import Provider from './context/provider';
-
 import Login from './Pages/login';
 import Admin from './Pages/adminPage';
 import Registro from './Pages/registro';
 import Client from './Pages/clientPage';
 import Profile from './Pages/clientProfile';
 import ClientOrders from './Pages/clientOrders';
-// import Products from './Pages/products';
 
 import './App.css';
 

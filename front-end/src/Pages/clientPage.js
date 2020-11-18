@@ -31,7 +31,6 @@ const Client = () => {
       <div className="row row-cols-1 row-cols-md-3">
         { products.map((product, index) => (
           <div key={ product.id } className="col mb-4">
-            {console.log(product)}
             <div className="card h-100 border-success" key={ product.id }>
               <img
                 src={ product.urlImage }
