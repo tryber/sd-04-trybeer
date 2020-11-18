@@ -4,14 +4,18 @@ import { AppContext } from '../context/AppContext';
 import TopBar from '../components/ClientBar.jsx';
 import api from '../services/api';
 import '../App.css';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 
 function Products() {
   const { products, setProducts, setCart, total } = useContext(AppContext);
+  const history = useHistory();
 
   useEffect(() => {
-    api.get('/products')
-      .then(response => setProducts(response.data));
+    const token = JSON.parse(localStorage.getItem('token'));
+
+    api.get('/products', { headers: { Authorization: token } })
+      .then(response => setProducts(response.data))
+      .catch(() => history.push('/login'));
 
     if (localStorage.getItem('cart')) {
       setCart(JSON.parse(localStorage.getItem('cart')));
@@ -21,6 +25,7 @@ function Products() {
   return (
     <div>
       <TopBar title={'TryBeer'} isAdm={false} />
+
       <div className="ver-carrinho">
         <Link to="/checkout" style={{ textDecoration: "none" }}>
           <button
@@ -37,6 +42,7 @@ function Products() {
           </button>
         </Link>
       </div>
+
       <div className="products">
         {products.map((product, index) => (
           <ProductCard
@@ -49,6 +55,7 @@ function Products() {
             quantity={0}
           />
         ))}
+
       </div>
     </div>
   )

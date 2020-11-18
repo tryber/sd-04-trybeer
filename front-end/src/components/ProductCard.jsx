@@ -9,11 +9,12 @@ function ProductCard({ index, id, name, price, urlImage, quantity }) {
   const { cart, setCart, setTotal } = useContext(AppContext);
 
   useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
     const sum = cart.reduce((acc, p) => {
-      return acc + p.price;
+      return acc + (p.price * p.quantity);
     }, 0);
     setTotal(sum);
-  }, [product]);
+  }, [cart, product]);
 
   function verifyProduct(prod, op) {
     const isThereAProduct = cart.find(item => item.id === prod.id);
@@ -24,12 +25,11 @@ function ProductCard({ index, id, name, price, urlImage, quantity }) {
         setCart([...cart, { ...prod, quantity: prod.quantity - 1 }])
     } else {
       const i = cart.indexOf(isThereAProduct);
-      console.log(i);
       op === '+' ?
         isThereAProduct.quantity += 1 :
         isThereAProduct.quantity -= 1;
     }
-  }
+  };
 
   function addToCart(prod, op) {
     if (op === 'minus' && prod.quantity === 0) return;
@@ -42,14 +42,11 @@ function ProductCard({ index, id, name, price, urlImage, quantity }) {
       verifyProduct(prod, '-');
 
       const findProd = cart.findIndex(item => item.id === prod.id && item.quantity === 0);
-      console.log(findProd);
       const newCart = cart.filter(item => item.quantity !== 0);
       setCart(newCart);
     }
-    localStorage.setItem('cart', JSON.stringify(cart));
-    console.log(cart);
 
-  }
+  };
 
   return (
     <div className='beer-card'>
