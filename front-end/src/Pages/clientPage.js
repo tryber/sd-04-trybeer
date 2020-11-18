@@ -12,7 +12,7 @@ const Client = () => {
 
   useEffect(() => {
     setData();
-  }, [setData]);
+  }, []);
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart'));
@@ -31,9 +31,10 @@ const Client = () => {
       <div className="row row-cols-1 row-cols-md-3">
         { products.map((product, index) => (
           <div key={ product.id } className="col mb-4">
+            {console.log(product)}
             <div className="card h-100 border-success" key={ product.id }>
               <img
-                src={ product.url_image }
+                src={ product.urlImage }
                 data-testid={ `${index}-product-img` }
                 className="card-img-top img-thumbnail border-success"
                 style={ { width: 400, height: 350 } }

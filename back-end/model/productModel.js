@@ -6,12 +6,11 @@ const getAllProducts = async () =>  connection()
     .select()
     .execute())
   .then((results) => results.fetchAll())
-  .then((beer) =>
-    beer.map(([id, name, price, url_image]) => ({
+  .then((beer) => beer.map(([id, name, price, urlImage]) => ({
       id,
       name,
       price,
-      url_image,
+      urlImage,
     })),
   );
 

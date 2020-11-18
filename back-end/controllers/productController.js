@@ -6,7 +6,7 @@ const getBeer = async (_req, res) => {
 
     res.status(200).json(beer);
   } catch (error) {
-    res.status(404), json({ error: 'Nenhum producto foi encontrado' });
+    res.status(404).json({ error: 'Nenhum producto foi encontrado' });
   }
 };
 
