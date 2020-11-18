@@ -15,4 +15,6 @@ const registerApi = async (name, email, password, role) => {
   return result;
 };
 
-export default { loginApi, registerApi };
+const getProducts = () => apiTrybeer.get('/products');
+
+export default { loginApi, registerApi, getProducts };

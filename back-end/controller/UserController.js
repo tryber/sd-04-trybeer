@@ -28,13 +28,15 @@ const userRegister = async (req, res) => {
   try {
     if (!name || !email || !password) return res.status(400).json({ err: 'Invalid entries' });
 
+    const token = createJWT({ name, email, password, role });
+
     // if (userAlreadyExists.email === email) {
     //   return res.status(200).json({ err: 'E-mail already in database.' });
     // }
 
     const user = await UserModel.registerUser(name, email, password, role);
 
-    return res.status(201).json({ user });
+    return res.status(201).json({ user, token });
   } catch (err) {
     res.status(400).json({ err: 'Something gone wrong on register user' });
   }

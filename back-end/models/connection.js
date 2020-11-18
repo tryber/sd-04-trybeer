@@ -10,7 +10,7 @@ const config = {
 };
 let schema;
 
-module.exports = async () => {
+const connection = async () => {
   try {
     if (schema) return Promise.resolve(schema);
 
@@ -24,3 +24,5 @@ module.exports = async () => {
     process.exit(1);
   }
 };
+
+module.exports = connection;
