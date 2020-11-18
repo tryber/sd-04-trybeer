@@ -25,7 +25,9 @@ const Login = () => {
 
     const apiResponse = await api.loginAPI(form.email, form.password);
 
-    await setLS('user', apiResponse.data);
+    const { id, ...userInfo } = apiResponse.data;
+    await setLS('user', userInfo);
+    await setLS('userId', id);
 
     if (apiResponse.data && apiResponse.data.role === 'administrator') {
       history.push('/admin/orders');
@@ -44,20 +46,24 @@ const Login = () => {
   return (
     <div className="login-container container-general">
       <Menu nomeTela="TryBeer" />
-      <form onSubmit={ handleSubmit } className="login-form">
+      <form onSubmit={handleSubmit} className="login-form">
         <InputForm
+          type="email"
           name="email"
-          value={ form.email }
+          value={form.email}
           label="Email"
-          handleChange={ handleChange }
+          handleChange={handleChange}
           dataTestId="email-input"
+          className="login-input"
         />
         <InputForm
+          type="password"
           name="password"
-          value={ form.password }
+          value={form.password}
           label="Password"
-          handleChange={ handleChange }
+          handleChange={handleChange}
           dataTestId="password-input"
+          className="login-input"
         />
         <button
           type="submit"

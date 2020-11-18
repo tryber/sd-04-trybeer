@@ -29,15 +29,33 @@ const registerUserAPI = async (name, email, password, role) => {
 
 const loginAPI = (email, password) => api.post('/login', { email, password });
 
+const insertSaleAPI = async (
+  userId,
+  totalPrice,
+  deliveryAddr,
+  deliveryNumber,
+) => api.post(
+  '/sales',
+  {
+    userId,
+    totalPrice,
+    deliveryAddr,
+    deliveryNumber,
+  },
+  headers,
+);
+
 const productsAPI = async () => {
   const { data } = await api.get('/products');
   return data;
 };
+
 const updateUserAPI = (name, email) => (api.put('/user/update', { name, email }));
 
 export default {
   registerUserAPI,
   loginAPI,
+  insertSaleAPI,
   productsAPI,
   updateUserAPI,
 };
