@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '../components/Header';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { postOrder } from '../services/TrybeerApi';
 
 const Checkout = () => {
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('user') || null)
   const history = useHistory();
   const [cart, setCart] = useState([]);
   const [refresh, setRefresh] = useState('');
@@ -33,6 +33,7 @@ const Checkout = () => {
 
   return (
     <>
+      {console.log('user', user)}
       <Header>Finalizar Pedido</Header>
       <h2>Produtos</h2>
 
