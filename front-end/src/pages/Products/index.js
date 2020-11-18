@@ -1,34 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import ProductCard from '../../components/ProductCard';
-import api from '../../api';
+import { listProducts } from '../../api';
+import { ProductContext } from '../../context';
 
-function totalValue() {
-  const storage = localStorage.cartItens;
-  if (storage.length > 0) {
-    const valor = storage.map((ele) => ele.price * ele.quantity);
-    const final = valor.reduce((final, numero) => final + numero, 0);
-    return final;
-  }
-  return 0;
-}
-
-// chakra simpleGrid
 function Products() {
+  const { cartValue } = useContext(ProductContext);
   const [products, setProducts] = useState([]);
-  const [cartValue, setCartValue] = useState(0);
-  const formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' };
 
   useEffect(() => {
     if (!localStorage.cartItens) localStorage.cartItens = JSON.stringify([]);
 
-    api.listProducts().then((response) => {
+    listProducts().then((response) => {
       setProducts(response.data);
     })
       .catch(() => 'um erro ocorreu');
-
-    setCartValue(totalValue().toLocalString('pt-BR', formato));
   }, []);
 
   return (
@@ -40,7 +27,7 @@ function Products() {
           Ver carrinho
         </button>
       </Link>
-      <span data-testid="checkout-bottom-btn-value">{cartValue.toLocalString('pt-BR', formato)}</span>
+      <span data-testid="checkout-bottom-btn-value">{cartValue}</span>
     </div>
   );
 }
