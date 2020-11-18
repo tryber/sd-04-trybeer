@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import Card from '../../ProductCard/ProductCard';
 import ButtonCart from '../../ButtonCart/ButtonCart';
 import { TrybeerContext } from '../../../context/index';
@@ -29,11 +30,15 @@ const initQttPdtsCart = (products, setTotalPriceCart) => {
 
 // Hook de effect customizado, com uma IIFE interna, criado para
 // diminuir a lógica dentro do componente default
-const useEffectCustom = (setQttPdtsCart, setTotalPriceCart, setProducts) => {
+const useEffectCustom = (setQttPdtsCart, setTotalPriceCart, setProducts, history) => {
   useEffect(() => {
     (async () => {
       try {
-        const products = await api.getProducts();
+        if (!getLS('user')) return history.push('/login');
+
+        const token = getLS('user').token;
+
+        const products = await api.getProducts(token);
 
         setQttPdtsCart(initQttPdtsCart(products.data, setTotalPriceCart));
         setProducts(products.data);
@@ -41,10 +46,11 @@ const useEffectCustom = (setQttPdtsCart, setTotalPriceCart, setProducts) => {
         // console.log({ error: e.message })
       }
     })();
-  }, [setQttPdtsCart, setTotalPriceCart, setProducts]);
+  }, [setQttPdtsCart, setTotalPriceCart, setProducts, history]);
 };
 
 export default () => {
+  const history = useHistory();
   // Registros de produtos do mysql
   const [products, setProducts] = useState([]);
   const {
@@ -53,10 +59,13 @@ export default () => {
   } = useContext(TrybeerContext);
   // const totalPriceCartLs = getLS('totalPriceCart');
 
-  useEffectCustom(setQttPdtsCart, setTotalPriceCart, setProducts);
+  useEffectCustom(setQttPdtsCart, setTotalPriceCart, setProducts, history);
 
   return (
     <div>
+      {/* H1 de título 'TryBeer' temporário só para passar no req, futuramente será substituido
+      pelo componente Header */}
+      <div><h1 data-testid="top-title">TryBeer</h1></div>
       <div className="cards-container">
         {products.map(({ id, urlImg, name, price }, i) => {
           const currentQtt = qttPdtsCart.filter((pdt) => pdt.id === id)[0].qtt;
