@@ -6,6 +6,8 @@ import { TrybeerContext } from '../../../context/index';
 import api from '../../../services/api';
 import { getLS, setLS } from '../../../helpers/index';
 import './ClientProducts.css';
+import Header from '../../Header';
+import SideBar from '../../SideBar';
 
 // Função q primeiro verifica se existe informações de quantidade de produtos no
 // local storage, caso n, então seta quantidade inicial
@@ -63,9 +65,8 @@ export default () => {
 
   return (
     <div>
-      {/* H1 de título 'TryBeer' temporário só para passar no req, futuramente será substituido
-      pelo componente Header */}
-      <div><h1 data-testid="top-title">TryBeer</h1></div>
+      <Header title="TryBeer" />
+      <SideBar userType="client" />
       <div className="cards-container">
         {products.map(({ id, urlImg, name, price }, i) => {
           const currentQtt = qttPdtsCart.filter((pdt) => pdt.id === id)[0].qtt;
