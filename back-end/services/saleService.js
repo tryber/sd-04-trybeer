@@ -1,4 +1,4 @@
-const salesModel = require("../models/salesModel");
+const salesModel = require("../models/saleModel");
 
 const orderDetail = async (orderId) => {
   // chamada da consulta do Vitao para retornar ID, DATE, PRICE
