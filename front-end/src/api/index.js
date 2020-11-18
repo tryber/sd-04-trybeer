@@ -20,7 +20,7 @@ export const postRegister = async (name, email, password, role) => axios
   })
   .catch(({ response }) => response);
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: 'http//localhost:3001',
 });
 

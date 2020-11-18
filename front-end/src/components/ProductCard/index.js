@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { ProductContext } from '../../context';
 
 // funcao verifica se tem itens no storage, se n tiver ele adiciona
 function addStorage(id, name, price, urlImage, quantity) {
@@ -46,6 +47,7 @@ function checkStorage(id, zero, setQuantity) {
 }
 
 export default function ProductCard(data) {
+  const { setCartValue, totalValue } = useContext(ProductContext);
   const zero = 0;
   // variavel para formatacao do price
   const formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' };
@@ -58,7 +60,7 @@ export default function ProductCard(data) {
   // checa se o item do card ja esta no localstorage e atribui a quantidade
   useEffect(() => {
     checkStorage(zero, id);
-  }, []);
+  }, [id]);
 
   // roda toda vez que o valor do "quantity" for alterado
   // checa se o item ja esta no localstorage, se tiver atualiza a quantidade,
@@ -78,13 +80,14 @@ export default function ProductCard(data) {
         updateStorage(id, quantity);
       }
     });
-  }, [id, name, price, quantity, urlImage]);
+    setCartValue(totalValue());
+  }, [id, name, price, quantity, setCartValue, totalValue, urlImage]);
 
   return (
     <div>
       <div data-testid={ `${id - 1}-product-price` }>{price.toLocalString('pt-BR', formato)}</div>
       <div>
-        <div data-testid={ `${id - 1}-product-img` }>{urlImage}</div>
+        <img data-testid={ `${id - 1}-product-img` } src={ urlImage } alt="url da imagem" />
         <div data-testid={ `${id - 1}-product-name` }>{name}</div>
       </div>
       <div>
