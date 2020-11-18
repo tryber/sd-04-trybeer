@@ -3,30 +3,31 @@ import { useHistory } from 'react-router-dom';
 import Menu from '../../components/Menu';
 import InputForm from '../../components/InputForm';
 import { setLS, getLS } from '../../utils/';
+import { Context } from '../../context/Provider';
 import api from '../../services/api';
 import './index.css';
 
-const cartItens = [
-  { id: 1, name: 'Product 1', quantity: 5, price: 10 },
-  { id: 2, name: 'Product 2', quantity: 2, price: 5 },
-];
-
 const Checkout = () => {
-  const [cart, setCart] = React.useState([]);
+  const { cart, setCart } = React.useContext(Context);
   const [form, setForm] = React.useState({ street: '', houseNumber: '' });
   const [finish, setFinish] = React.useState(null);
   const finishTimeout = React.useRef();
   const history = useHistory();
 
   React.useEffect(() => {
-    setLS('cart', cartItens);
     const setState = () => setCart(getLS('cart'));
     setState();
-  }, []);
+  }, [setCart]);
 
   React.useEffect(() => {
     setLS('cart', cart);
   }, [cart]);
+
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(finishTimeout);
+    }
+  }, [])
 
   const handleRemove = (productId) => {
     const filteredCart = cart.filter(({ id }) => id !== productId);
@@ -87,7 +88,7 @@ const Checkout = () => {
                   </span>
                 </div>
                 <div className="cart-item-right-container">
-                  <span className="unitary-price">{`(${price.toLocaleString(
+                  <span className="unitary-price" data-testid={`${index}-product-unit-price`}>{`(${price.toLocaleString(
                     'pt-BR',
                     { style: 'currency', currency: 'BRL' },
                   )} un)`}</span>
