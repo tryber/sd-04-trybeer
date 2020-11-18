@@ -10,10 +10,10 @@ export default function SideBar({ userRole, active }) {
               Produtos
             </a>
             <a href="/orders" data-testid="side-menu-item-my-orders">
-              meus pedidos
+              Meus pedidos
             </a>
             <a href="/profile" data-testid="side-menu-item-my-profile">
-              meu perfil
+              Meu perfil
             </a>
           </div>
           <a href="/login" data-testid="side-menu-item-logout">

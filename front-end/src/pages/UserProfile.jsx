@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { putUpdate } from '../services/TrybeerApi';
 import { Header } from '../components/Header';
 import { Beer } from '../images/index';
-import '../css/userProfile.css';
+import '../css/profile.css';
 
 function UserProfile() {
   const { name, email } = JSON.parse(localStorage.getItem('user') || '{}');
