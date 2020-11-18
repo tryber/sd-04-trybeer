@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.trybeer {
+  animation: neon 1s ease-in infinite;
+  color: #fb4264;
+  font-family: 'Pacifico', cursive;
+  font-size: 6rem;
+  letter-spacing: 0.3rem;
+  line-height: 9vw;
+  text-decoration: underline;
+  text-shadow: 0 0 3vw #f40a35;
+}
+
+@media (max-width: 40rem) {
+  .trybeer {
+    font-size: 4rem;
+  }
+}
+
+@keyframes neon {
+  0%,
+  100% {
+    text-shadow: 0 0 1vw #fa1c16, 0 0 3vw #fa1c16, 0 0 7vw #fa1c16,
+      0 0 7vw #fa1c16, 0 0 0.4vw #fed128, 0.2vw 0.2vw 0.1vw #806914;
+    color: #fed128;
+  }
+  50% {
+    text-shadow: 0 0 0.2vw #800e0b, 0 0 1.2vw #800e0b, 0 0 2vw #800e0b,
+      0 0 2vw #800e0b, 0 0 0.2vw #800e0b, 0.2vw 0.2vw 0.1vw #40340a;
+    color: #806914;
+  }
+}
