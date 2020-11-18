@@ -31,7 +31,7 @@ function Register() {
     onSubmit: async (values) => {
       // console.log('Values: ', values);
       const {
-        signName, signEmail, signPassword, signRole
+        signName, signEmail, signPassword, signRole,
       } = values;
       const signUp = await postRegister(signName, signEmail, signPassword, signRole);
 
