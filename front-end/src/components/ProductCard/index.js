@@ -88,7 +88,7 @@ export default function ProductCard(data) {
     <div>
       <div data-testid={ `${id - 1}-product-price` }>{price.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })}</div>
       <div>
-        <img data-testid={ `${id - 1}-product-img` } src={ urlImage } alt="url da imagem" />
+        <img width="100px" data-testid={ `${id - 1}-product-img` } src={ urlImage } alt="url da imagem" />
         <div data-testid={ `${id - 1}-product-name` }>{name}</div>
       </div>
       <div>
