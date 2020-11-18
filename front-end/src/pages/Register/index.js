@@ -41,7 +41,7 @@ function Register() {
       }
 
       const redirect = values.signRole ? '/admin/orders' : '/products';
-      history.push(redirect);
+      return history.push(redirect);
     },
   });
 
