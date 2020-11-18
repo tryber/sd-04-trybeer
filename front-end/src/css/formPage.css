@@ -29,6 +29,7 @@ body, html, body > div, .form-page{
   flex-direction: column;
   font-size: 70%;
   justify-content: center;
+  margin: 0 auto;
   padding: 20px;
   width: 85%;
 }
@@ -55,11 +56,14 @@ body, html, body > div, .form-page{
   border-bottom: 1px rgb(141, 4, 4) groove;
   border-radius: 5px;
   border-right: 1px rgb(141, 0, 0) groove;
-  box-shadow: 2px 2px 6px rgb(59, 59, 59);
   color: rgb(59, 59, 59);
   font-weight: bold;
-  margin: 15px;
+  margin: 20px;
   width: 100%;
+}
+
+.form > button:enabled {
+  box-shadow: 2px 2px 6px rgb(59, 59, 59);
 }
 
 .form > button:hover:enabled {
@@ -69,7 +73,8 @@ body, html, body > div, .form-page{
 
 .form > button:disabled {
   border: 1px rgb(165, 165, 165) groove;
-  color:  rgb(165, 165, 165);
+  color:  rgb(187, 187, 187);
+  border-color: rgb(114, 114, 114);
 }
 
 .form > a {
@@ -86,7 +91,7 @@ body, html, body > div, .form-page{
   justify-content: center;
 }
 
-.duff-logo {
+.form-img > .duff-logo {
   filter: drop-shadow( 2px 2px 6px rgb(59, 59, 59));
   width: 50%;
 }
@@ -110,7 +115,6 @@ body, html, body > div, .form-page{
     width: 560px;
   }
   .form {
-    margin-left: initial;
     width: 80%;
   }
 }
@@ -121,5 +125,9 @@ body, html, body > div, .form-page{
     position: absolute;
     left: 0;
     width: 15%;
+  }
+  
+  .profile.form {
+    width: 400px; 
   }
 }
