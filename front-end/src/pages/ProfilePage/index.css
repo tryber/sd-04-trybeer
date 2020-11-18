@@ -1,0 +1,50 @@
+.profile-container {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.input-label {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.profile-input {
+  box-sizing: border-box;
+  margin-bottom: 1.5rem;
+  padding: 10px 0px;
+  width: 100%;
+}
+
+.submit-btn {
+  background-color: #1cd118;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  padding: 10px 0px;
+  transition: 0.5s;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background-color: #18b816;
+}
+
+.submit-btn:disabled {
+  cursor: initial;
+}
+
+.profile-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50vw;
+}
+
+.profile-fields-container {
+  width: 100%;
+}
