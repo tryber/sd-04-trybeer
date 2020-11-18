@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import TopMenu from '../Components/Menu/TopMenu';
 import ShopCart from '../Components/shopcart';
 import BeerContext from '../context/appBeerContext';
 
@@ -22,7 +23,7 @@ const Client = () => {
   return (
     <div className="container">
       <h2>Cliente - Produtos</h2>
-      <h3 data-testid="top-title">TryBeer</h3>
+      <TopMenu title="TryBeer" />
       <div className="row row-cols-1 row-cols-md-3">
         { products.map((product, index) => (
           <div key={ product.id } className="col mb-4">
