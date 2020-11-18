@@ -58,7 +58,7 @@ export default function ProductCard(data) {
   // checa se o item do card ja esta no localstorage e atribui a quantidade
   useEffect(() => {
     checkStorage(zero, id);
-  }, []);
+  });
 
   // roda toda vez que o valor do "quantity" for alterado
   // checa se o item ja esta no localstorage, se tiver atualiza a quantidade,
