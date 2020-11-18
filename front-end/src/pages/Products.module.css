@@ -7,29 +7,35 @@
 }
 .productsDiv {
   align-items: center;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
+  /* background-image: url('../assets/imgs/a.png'); */
+  background-size: contain;
+  background-position: center;
   display: flex;
   flex-wrap: wrap;
+  border-left: 3px solid rgb(255, 204, 0);
+  border-right: 3px solid rgb(255, 204, 0);
+
   justify-content: center;
-  width: 80%;
+  width: 85%;
 }
 
 .productsDiva {
   align-items: center;
-  background-color: rgb(30, 30, 30);
+  background-image: url('../assets/imgs/bricks.jpg');
   border-top: 3px solid rgb(255, 204, 0);
   display: flex;
   height: 100px;
   justify-content: center;
   padding: 3rem 0;
-  width: 80%;
+  width: 100%;
 }
 
 .productsCard {
   align-items: center;
   background-color: white;
-  border-radius: 10px;
-  box-shadow: 1px 0.5px 4px rgb(40, 40, 40);
+  border-radius: 5px;
+  box-shadow: 0 0 1vw rgb(200, 200, 200);
   display: flex;
   height: 210px;
   justify-content: space-around;
@@ -124,6 +130,7 @@
 .total {
   color: rgb(255, 204, 0);
   font-size: 3rem;
+  text-shadow: 0 0 2vw #ff002f;
 }
 
 @media (max-width: 40rem) {

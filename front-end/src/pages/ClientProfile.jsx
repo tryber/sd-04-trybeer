@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import styles from './ClientProfile.module.css';
 
 import Menu from '../components/Menu';
 
@@ -33,9 +34,10 @@ const ClientProfile = () => {
   };
 
   return (
-    <div>
+    <section className={styles.clientSection}>
       <Menu title="Meu perfil" />
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <div className={styles.clientDiv}>
+      <form className={styles.clientForm} onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="name">Name</label>
         <input
           type="text"
@@ -61,7 +63,8 @@ const ClientProfile = () => {
         </button>
       </form>
       {message !== '' && <p>{message}</p>}
-    </div>
+      </div>
+    </section>
   );
 };
 

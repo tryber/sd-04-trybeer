@@ -1,0 +1,169 @@
+.mainSection {
+  align-items: center;
+  background-image: url('../assets/imgs/cans.jpg');
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mainDiv {
+  align-items: flex-start;
+  background-color: rgb(255, 255, 255);
+  /* background-image: url('../assets/imgs/a.png'); */
+  background-size: contain;
+  background-position: center;
+  display: flex;
+  flex-wrap: wrap;
+  border-left: 3px solid rgb(255, 204, 0);
+  border-right: 3px solid rgb(255, 204, 0);
+  height: 86vh;
+  justify-content: center;
+  width: 85%;
+}
+
+.checkoutDiv {
+  /* background-color: wheat; */
+  margin-top: 2rem;
+  border: 2px dotted rgb(30, 30, 30);
+  border-radius: 10px;
+  padding: 1rem 3rem;
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.productTitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-decoration: underline;
+  letter-spacing: 0.2rem;
+}
+
+.productDiv {
+  display: flex;
+  background-color: rgb(255, 255, 130);
+  width: 80%;
+  height: 50px;
+  padding: 1rem 2rem;
+  justify-content: space-around;
+  border: 2px solid rgb(30, 30, 30);
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.productDiv p {
+  font-size: 1.5rem;
+}
+
+.productDiv button {
+  /* justify-self: flex-end; */
+  font-size: 1.7rem;
+  background: none;
+  border: none;
+  font-weight: 900;
+  color: rgb(155, 0, 0);
+  cursor: pointer;
+}
+
+.total {
+  font-size: 3rem;
+  color: rgb(30, 30, 30);
+  box-shadow: 0 0 2rem #d2faa3;
+  /* background-color: yellow; */
+  width: 15%;
+  padding: 0.1rem;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.checkoutForm {
+  /* background-color: yellow; */
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkoutForm label {
+  font-size: 2rem;
+  font-family: 'Alice', serif;
+  letter-spacing: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.checkoutForm input {
+  width: 45%;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid rgb(30, 30, 30);
+  padding-left: 1rem;
+  font-size: 1.3rem;
+}
+
+.checkoutForm button {
+  height: 45px;
+  width: 45%;
+  margin-top: 1rem;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: rgb(29, 29, 29);
+  border: none;
+  background-color: rgb(87, 192, 0);
+  letter-spacing: 0.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.checkoutForm button:hover {
+  background-color: rgb(119, 255, 7);
+}
+
+.checkoutForm button:disabled {
+  opacity: 0.5;
+}
+
+@media (max-width: 40rem) {
+  .mainDiv {
+    width: 95%;
+    /* background-image: url('../assets/imgs/cans.jpg'); */
+  }
+  .checkoutDiv {
+    width: 95%;
+    padding: 1rem 0.5rem;
+    border: none;
+  }
+  .productDiv {
+    width: 90%;
+    align-self: center;
+    padding: 0;
+    margin: 1rem 0;
+  }
+  .productDiv p {
+    font-size: 1rem;
+  }
+  .productDiv button {
+    font-size: 1.2rem;
+  }
+  .total {
+    width: 50%;
+    margin-top: 2rem;
+    align-self: center;
+    font-size: 2rem;
+  }
+  .checkoutForm {
+    width: 100%;
+    align-items: center;
+  }
+  .checkoutForm input {
+    width: 90%;
+  }
+
+  .checkoutForm label {
+    align-self: flex-start;
+    margin-left: 30px;
+  }
+}

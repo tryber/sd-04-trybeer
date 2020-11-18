@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import MenuAdmin from '../components/MenuAdmin';
 import { Redirect } from 'react-router-dom';
+import styles from './ClientProfile.module.css';
 
 const AdminProfile = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  
   const [userLogged, setUserLogged] = useState(false);
 
   useEffect(() => {
@@ -22,14 +22,18 @@ const AdminProfile = () => {
   }, []);
 
   return (
-    <div>
+    <section className={styles.clientSection}>
       {userLogged ? <Redirect to="/login" /> : null}
 
       <MenuAdmin />
-      <h1>Login</h1>
-      <h3 data-testid="profile-name">Nome: {name}</h3>
-      <h3 data-testid="profile-email">Email: {email}</h3>
-    </div>
+      <div className={styles.adminDiv}>
+        <div className={styles.subDiv}>
+          <h1>Login</h1>
+          <h3 data-testid="profile-name">Nome: {name}</h3>
+          <h3 data-testid="profile-email">Email: {email}</h3>
+        </div>
+      </div>
+    </section>
   );
 };
 

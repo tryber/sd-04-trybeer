@@ -1,6 +1,6 @@
 .menuHeader {
   align-items: center;
-  background-color: rgb(30, 30, 30);
+  background-image: url('../assets/imgs/bricks.jpg');
   border-bottom: 3px solid rgb(255, 204, 0);
   display: flex;
   height: 130px;
@@ -9,13 +9,39 @@
   width: 100%;
 }
 
+.menuNav {
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuNav button {
+  font-size: 2.3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: 0.2rem;
+  color: rgb(225, 204, 0);
+  text-shadow: 0 0 1rem #fa0a36;
+  transition: all 0.3s;
+}
+
+.menuNav button:hover {
+  text-shadow: 0 0 2vw #fcd5dc;
+}
+
 .title {
-  color: rgb(255, 204, 0);
+  animation: neon 1s ease-in infinite;
+  color: rgb(225, 204, 0);
   font-family: 'Pacifico', cursive;
   font-size: 4rem;
   letter-spacing: 0.3rem;
+  line-height: 9vw;
   margin-bottom: 15px;
   text-decoration: underline;
+  text-shadow: 0 0 2vw #ff002f;
 }
 
 .hamburguer {
@@ -23,6 +49,7 @@
   background-color: rgb(255, 204, 0);
   border-radius: 10px;
   border: none;
+  box-shadow: 0 0 3vw #ff002f;
   cursor: pointer;
   display: flex;
   height: 50px;
@@ -43,12 +70,14 @@
 .menuContainer {
   align-items: center;
   background-color: rgb(255, 204, 0);
+  background-image: url('../assets/wave.svg');
+  background-size: contain;
+  background-position: center;
   border-bottom: 2px solid rgb(30, 30, 30);
   display: flex;
   justify-content: space-between;
   padding: 1rem 20rem;
   width: 100%;
-
 }
 
 .menuBtn {
@@ -91,5 +120,12 @@
   }
   .menuBtn:after {
     width: 1.5rem;
+  }
+  .menuNav button {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  .menuNav {
+    width: 45%;
   }
 }
