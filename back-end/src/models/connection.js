@@ -11,7 +11,7 @@ const config = {
 
 let schema;
 
-const connection = () => schema
+const connection = () => (schema
   ? Promise.resolve(schema)
   : mysql
     .getSession(config)
@@ -19,7 +19,7 @@ const connection = () => schema
       schema = session.getSchema('Trybeer');
       return schema;
     })
-    .catch((_err) => process.exit(1));
+    .catch((_err) => process.exit(1)));
 
 // const connection = () => {
 //   if (schema) {
