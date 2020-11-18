@@ -8,13 +8,14 @@ function Products() {
   const [list, setList] = useState(false);
 
   useEffect(() => {
-    getProducts().then(({ data }) => setList(data));
+    // timeout apenas para apreciarmos a tela de loading
+    getProducts().then(({ data }) => setTimeout(() => setList(data), 600));
   }, []);
-  
+
   return (
     <div className="page">
       <Header>TryBeer</Header>
-      {list ? <ListProducts list={list} /> :  <Loading /> }
+      {list ? <ListProducts list={ list } /> : <Loading /> }
     </div>
   );
 }

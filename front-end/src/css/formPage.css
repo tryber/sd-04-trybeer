@@ -66,6 +66,10 @@ body, html, body > div, .form-page{
   box-shadow: 2px 2px 6px rgb(59, 59, 59);
 }
 
+.form > button:focus {
+  outline: 0;
+}
+
 .form > button:hover:enabled {
   background-color: rgb(235, 235, 235);
   box-shadow: 2px 2px 6px rgb(43, 0, 0);
@@ -75,6 +79,11 @@ body, html, body > div, .form-page{
   border: 1px rgb(165, 165, 165) groove;
   color:  rgb(187, 187, 187);
   border-color: rgb(114, 114, 114);
+}
+
+.form > button:enabled:active {
+  background-color: rgb(219, 219, 219);
+  color: rgb(136, 136, 136);
 }
 
 .form > a {
@@ -104,6 +113,10 @@ body, html, body > div, .form-page{
   display: none;
 }
 
+.homer-sad {
+  display: none;
+}
+
 @media screen and (min-width: 500px) {
   .form {
     font-size: initial;
@@ -125,6 +138,14 @@ body, html, body > div, .form-page{
     position: absolute;
     left: 0;
     width: 15%;
+  }
+
+  .homer-sad {
+    display: initial;
+    position: absolute;
+    width: 15%;
+    bottom: -10px;
+    left: 15%;
   }
   
   .profile.form {
