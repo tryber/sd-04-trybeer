@@ -1,7 +1,6 @@
 import React from 'react';
-import { UserProfile, FormPage, Products } from './pages';
-import OrderDetail from './pages/OrderDetail';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import OrderDetail from './pages/OrderDetail';
 import {
   UserProfile,
   FormPage,
