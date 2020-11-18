@@ -7,16 +7,17 @@ const ProductContext = createContext();
 
 // criacao do provider, ele que vai prover o acesso das informacoes
 const ProductProvider = ({ children }) => {
-  const [cartValue, setCartValue] = useState(0);
+  const zero = 0;
+  const [cartValue, setCartValue] = useState(zero.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' }));
 
   function totalValue() {
     const storage = JSON.parse(localStorage.cartItens);
     if (storage.length > 0) {
       const valor = storage.map((ele) => ele.price * ele.quantity);
       const final = valor.reduce((acc, numero) => acc + numero, 0);
-      return final;
+      return final.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' });
     }
-    return 0;
+    return zero.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' });
   }
 
   const context = { cartValue, setCartValue, totalValue };
