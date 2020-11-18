@@ -29,8 +29,8 @@ const getAllSales = async () => {
     );
     return salesResults;
   } catch (error) {
-    console.log('estamos no model', error)
-    return null
+    console.log('estamos no model', error);
+    return null;
   }
 };
 

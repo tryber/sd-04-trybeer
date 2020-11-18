@@ -12,7 +12,7 @@ const headers = {
 const registerUserAPI = async (name, email, password, role) => {
   try {
     const result = await api.post(
-      '/register',
+      '/user',
       {
         name,
         email,
@@ -29,18 +29,20 @@ const registerUserAPI = async (name, email, password, role) => {
 
 const loginAPI = (email, password) => api.post('/login', { email, password });
 
-const getSalesTb = async() => {
+const getSalesTb = async () => {
   try {
-    const result = await api.get('/sales', headers );
-    if(!result) throw Error;
+    const result = await api.get('/sales', headers);
+    if (!result) throw Error;
     return result;
-  }catch(err) {
+  } catch (err) {
     return err.response;
   }
 };
+const updateUserAPI = (name, email) => (api.put('/user/update', { name, email }));
 
 export default {
   registerUserAPI,
   loginAPI,
   getSalesTb,
+  updateUserAPI,
 };
