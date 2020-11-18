@@ -1,8 +1,9 @@
 const connection = require('../dbConnection');
 
-const getAll = () => connection().then((db) => db.getTable('users')
-  .select()
-  .execute())
+const getAll = () => connection()
+  .then((db) => db.getTable('users')
+    .select()
+    .execute())
   .then((results) => results.fetchAll())
   .then((users) => users.map(([id, name, email, password, role]) => ({
     id,

@@ -32,4 +32,5 @@ const Routes = () => (
     </ProductProvider>
   </BrowserRouter>
 );
+
 export default Routes;
