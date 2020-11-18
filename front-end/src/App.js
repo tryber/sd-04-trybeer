@@ -1,9 +1,15 @@
 import React from 'react';
-
-import { Switch, Route } from 'react-router-dom';
-
-import { UserProfile, FormPage, Products, Orders } from './pages';
-import { Header } from './components/Header';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import {
+  UserProfile,
+  FormPage,
+  Products,
+  Checkout,
+  AdminOrders,
+  AdminOrderDetails,
+  AdminProfile,
+  Orders,
+} from './pages';
 import LoginForm from './components/forms/LoginForm';
 import RegisterForm from './components/forms/RegisterForm';
 
@@ -11,9 +17,7 @@ function App() {
   return (
     <Switch>
       <Route exact path="/">
-        <FormPage>
-          <LoginForm />
-        </FormPage>
+        <Redirect to="/login" />
       </Route>
       <Route path="/login">
         <FormPage>
@@ -29,13 +33,22 @@ function App() {
         </FormPage>
       </Route>
       <Route path="/orders">
-         <Orders />
+        <Orders />
+      </Route>
+      <Route path="/checkout">
+        <Checkout />
       </Route>
       <Route path="/products">
         <Products />
       </Route>
       <Route path="/admin/orders">
-        <Header>TryBeer</Header>
+        <AdminOrders />
+      </Route>
+      <Route path="/admin/orders/:id">
+        <AdminOrderDetails />
+      </Route>
+      <Route path="/admin/profile">
+        <AdminProfile />
       </Route>
     </Switch>
   );

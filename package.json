@@ -32,6 +32,7 @@
     "sequelize": "^6.3.4"
   },
   "devDependencies": {
+    "redux-devtools-extension": "^2.13.8",
     "cypress": "^5.0.0",
     "cypress-multi-reporters": "^1.2.3",
     "dotenv": "^8.2.0",

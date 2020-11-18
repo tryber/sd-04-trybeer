@@ -17,7 +17,21 @@ export const postRegister = async (name, email, password, role) => axios
 
 export const getProducts = async () => axios.get(`${baseUrl}/products`);
 
-export const getSales = async (email) => axios.get(`${baseUrl}/orders?email=${email}`);
+export const getUserSales = async (email) => axios.get(`${baseUrl}/orders?email=${email}`);
+
+export const postOrder = async (nameAdress, numberAdress, cart, user, totalPrice) => axios
+  .post(`${baseUrl}/orders`, {
+    nameAdress,
+    numberAdress,
+    cart,
+    user,
+    totalPrice,
+  })
+  .catch(({ response }) => response);
+
+export const getSales = async () => axios
+  .get(`${baseUrl}/admin/orders`)
+  .catch(({ response }) => response);
 
 // export const postRegister = async (name, email, password, role) => {
 //   const dataResponse = await axios({

@@ -22,17 +22,16 @@ app.post(
   controllers.login.userLogin,
 );
 
-app.post(
-  '/register',
-  middleware.validations.registerValidation,
-  controllers.user.userRegister,
-);
+app.post('/register', middleware.validations.registerValidation, controllers.user.userRegister);
+
+app.post('/orders', controllers.sale.saleRegister);
+app.get('/orders', controllers.sale.getAllUserSales);
 
 app.get('/products', controllers.products.getAllProducts);
 
 app.put('/profile', controllers.user.userUpdate);
 
-app.get('/orders', controllers.sales.getAllSales);
+app.get('/admin/orders', controllers.sale.getSales);
 
 app.use((err, _req, res, _next) => {
   res.status(405).json({ err: err.message });
