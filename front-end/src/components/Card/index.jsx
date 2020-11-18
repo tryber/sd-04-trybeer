@@ -1,61 +1,76 @@
 import React, { useContext } from 'react';
 import { Context } from '../../context/Provider';
-import { getLS, setLS } from '../../utils';
+// import { getLS, setLS } from '../../utils';
 import './index.css';
 
-const Card = ({ img, title, price, index }) => {
+const Card = ({ img, name, price, index, id }) => {
   const { cart, setCart } = useContext(Context);
 
-  const IncrementCounterHandler = (title, price) => {
-    const itemAdd = { title, price };
+  const incrementCounterHandler = (name, price, productId) => {
+    const itemAdd = { id: productId, name, quantity: 1, price };
 
-    setCart(prevState => [...prevState, itemAdd]);
+    const itemInCart = cart.findIndex((product) => product.id === productId);
 
-    const cartStore = getLS('cart');
-
-    return cartStore ? setLS('cart', [...cartStore, itemAdd]) : setLS('cart', [itemAdd]);
+    itemInCart !== -1
+      ? setCart(
+          cart.map((product) =>
+            product.id === productId
+              ? Object.assign({}, product, (product.quantity += 1))
+              : product,
+          ),
+        )
+      : setCart([...cart, itemAdd]);
   };
 
-  const DecrementCounterHandler = (title, cart) => {
-    if (cart.length < 1) return;
+  const decrementCounterHandler = (productId) => {
+    const itemInCart = cart.findIndex((product) => product.id === id);
 
-    const removeItem = cart.findIndex(item => item.title === title);
-    
-    if (removeItem >= 0) {
-      cart.splice(removeItem, 1);
-      setLS('cart', cart);
-      setCart(cart);
+    if (itemInCart >= 0 && cart[itemInCart].quantity > 0) {
+      setCart(
+        cart.map((product) =>
+          product.id === productId
+            ? Object.assign({}, product, (product.quantity -= 1))
+            : product,
+        ),
+      );
+    }
+
+    if (itemInCart >= 0 && cart[itemInCart].quantity === 0) {
+      setCart(cart.filter((item) => item.quantity > 0));
     }
   };
 
-  const cartStorage = getLS('cart') || [];
-
   return (
-    <div key={index} className="card-container">
+    <div className="card-container">
       <img
         src={img}
-        alt={title}
+        alt={name}
         className="card-img"
         data-testid={`${index}-product-img`}
       />
-      <span data-testid={`${index}-product-name`}>{title}</span>
+      <span data-testid={`${index}-product-name`}>{name}</span>
       <span data-testid={`${index}-product-price`}>
-        {`${price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
+        {`${price.toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+        })}`}
       </span>
       <div className="button-container">
         <button
           data-testid={`${index}-product-minus`}
-          onClick={() => DecrementCounterHandler(title, cartStorage)}
+          onClick={() => decrementCounterHandler(id)}
           type="button"
         >
           -
         </button>
         <span data-testid={`${index}-product-qtd`}>
-          {!cart ? 0 : cart.filter(item => item.title === title).length}
+          {!cart.filter((item) => item.id === id)[0]
+            ? 0
+            : cart.filter((item) => item.id === id)[0].quantity}
         </span>
         <button
           data-testid={`${index}-product-plus`}
-          onClick={() => IncrementCounterHandler(title, price)}
+          onClick={() => incrementCounterHandler(name, price, id)}
           type="button"
         >
           +

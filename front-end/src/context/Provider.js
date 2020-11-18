@@ -11,16 +11,14 @@ const Provider = ({ children }) => {
     setCart,
   };
 
-  return (
-    <Context.Provider value={ states }>
-      { children }
-    </Context.Provider>
-  );
+  return <Context.Provider value={states}>{children}</Context.Provider>;
 };
 
 Provider.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element])
-    .isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element,
+  ]).isRequired,
 };
 
 export default Provider;

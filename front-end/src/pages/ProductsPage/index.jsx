@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import api from '../../services/api';
 
 import Card from '../../components/Card';
 import Menu from '../../components/Menu';
 import './index.css';
 
-import { getLS } from '../../utils';
+import { getLS, setLS } from '../../utils';
 import { Link, Redirect } from 'react-router-dom';
+import { Context } from '../../context/Provider';
 
 const Products = () => {
   const [data, setData] = useState([]);
   const [login, setLogin] = useState(true);
+  const { cart, setCart } = useContext(Context);
+  const isInitialMount = React.useRef(true);
 
   useEffect(() => {
     (async () => {
@@ -18,31 +21,48 @@ const Products = () => {
       const { token } = getLS('user') || {};
       if (!token) setLogin(false);
       setData(products);
+      (() => (getLS('cart') ? setCart(getLS('cart')) : setCart([])))();
     })();
-  }, []);
+  }, [setCart]);
 
-  const cartLocalStorage = cart => {
-    if (!cart) return 0;
-    const total = cart.reduce((acc, curr) => acc + curr.price, 0);
-    return total;
-  };
-
-  const cart = getLS('cart') || [];
+  React.useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      setLS('cart', cart);
+      console.log(cart);
+    }
+  });
 
   if (!login) {
-    return <Redirect to='/login' />;
+    return <Redirect to="/login" />;
   }
   return (
     <>
       <Menu nomeTela="TryBeer" />
       <div className="container-general container-cards">
-        {data.map(({ urlImage, name, price }, index) => (
-          <Card index={index} img={urlImage} title={name} price={price} />
+        {data.map(({ urlImage, id, name, price }, index) => (
+          <Card
+            index={index}
+            id={id}
+            img={urlImage}
+            name={name}
+            price={price}
+            key={`${name}-${index}`}
+          />
         ))}
       </div>
       <footer className="footer-cart">
         <span data-testid="checkout-bottom-btn-value">
-          {`Total: R$ ${cartLocalStorage(cart).toFixed(2).replace('.', ',')}`}
+          {`Total: R$ ${cart
+            .reduce((acc, cur) => {
+              const itemTotal = cur.price * cur.quantity;
+              return acc + itemTotal;
+            }, 0)
+            .toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            })}`}
         </span>
         {cart.length === 0 ? (
           <button disabled type="button" data-testid="checkout-bottom-btn">
