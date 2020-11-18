@@ -10,22 +10,17 @@ const headers = {
 };
 
 const registerUserAPI = async (name, email, password, role) => {
-  try {
-    const result = await api.post(
-      '/user',
-      {
-        name,
-        email,
-        password,
-        role,
-      },
-      headers,
-    );
-    return result;
-  } catch (err) {
-    console.log("erro", err)
-    return err.response;
-  }
+  const result = await api.post(
+    '/user',
+    {
+      name,
+      email,
+      password,
+      role,
+    },
+    headers,
+  );
+  return result;
 };
 
 const loginAPI = (email, password) => api.post('/login', { email, password });

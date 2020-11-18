@@ -33,7 +33,7 @@ const getAllSales = async () => {
     return null;
   }
 };
-  
+
 const insertSale = async (
   userId,
   totalPrice,
