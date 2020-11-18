@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+
 const cors = require('cors');
 
 const router = require('./routes');
@@ -15,5 +16,6 @@ app.use('/images', express.static(path.join(__dirname, '/images')));
 
 app.use('/user', router.userRouter);
 app.use('/login', router.loginRouter);
+app.use('/products', router.productsRouter);
 
 module.exports = app;
