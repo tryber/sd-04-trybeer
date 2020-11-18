@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Context } from '../../context/Provider';
-// import { getLS, setLS } from '../../utils';
 import './index.css';
 
 const Card = ({ img, name, price, index, id }) => {
