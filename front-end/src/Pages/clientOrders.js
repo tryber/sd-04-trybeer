@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router';
+import TopMenu from '../Components/Menu/TopMenu';
 
 const ClientOrders = () => {
   const [auth, setAuth] = useState(true);
@@ -8,13 +9,13 @@ const ClientOrders = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user === null) setAuth(false);
   }, []);
-  
+
   if (auth === false) return <Redirect to="/login" />;
   return (
     <div>
-      <h2 data-testid="top-title">Meus Pedidos</h2>
+      <TopMenu title="Meus Pedidos" />
     </div>
-  )
-}
+  );
+};
 
 export default ClientOrders;

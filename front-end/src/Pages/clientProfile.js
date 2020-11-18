@@ -4,6 +4,7 @@ import {
   Field, Label, Input, Button, Notification,
 } from 'rbx';
 import api from '../services/userApi';
+import TopMenu from '../Components/Menu/TopMenu';
 
 const Profile = () => {
   const [auth, setAuth] = useState(true);
@@ -43,8 +44,10 @@ const Profile = () => {
   if (auth === false) return <Redirect to="/login" />;
   return (
     <div>
-      <h2 data-testid="top-title">Meu perfil</h2>
-      {message ? <Notification color="danger">{ message }</Notification> : ''}
+      <div>
+        <TopMenu title="Meu perfil" />
+      </div>
+      {message ? <Notification color="danger">{message}</Notification> : ''}
       <form onSubmit={ editProfile }>
         <Field>
           <Label htmlFor="name">Name:</Label>
@@ -66,7 +69,9 @@ const Profile = () => {
             data-testid="profile-email-input"
           />
         </Field>
-        <Button disabled={ disabled }>Salvar</Button>
+        <Button disabled={ disabled } data-testid="profile-save-btn">
+          Salvar
+        </Button>
       </form>
     </div>
   );

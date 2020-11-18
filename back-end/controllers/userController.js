@@ -27,7 +27,7 @@ const editProfile = async (req, res) => {
   try {
     const { id, name } = req.body;
     await userModel.editProfile(id, name);
-    res.status(200).json('Name changed successfully!');
+    res.status(200).json('Atualização concluída com sucesso');
   } catch (error) {
     console.log(error);
   }
