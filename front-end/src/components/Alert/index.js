@@ -7,6 +7,7 @@ import {
   AlertDialogOverlay,
   Button,
 } from '@chakra-ui/react';
+import PropTypes from 'prop-types';
 
 const Alert = (props) => {
   const { isOpen, onClose, message } = props;
