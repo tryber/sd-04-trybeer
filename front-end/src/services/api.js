@@ -34,16 +34,22 @@ const insertSaleAPI = async (
   totalPrice,
   deliveryAddr,
   deliveryNumber,
-) =>
-  await api.post(
-    '/sales',
-    { userId, totalPrice, deliveryAddr, deliveryNumber },
-    headers,
-  );
+) => api.post(
+  '/sales',
+  {
+    userId,
+    totalPrice,
+    deliveryAddr,
+    deliveryNumber,
+  },
+  headers,
+);
+
 const productsAPI = async () => {
   const { data } = await api.get('/products');
   return data;
 };
+
 const updateUserAPI = (name, email) => (api.put('/user/update', { name, email }));
 
 export default {

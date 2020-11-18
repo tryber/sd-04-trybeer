@@ -8,7 +8,7 @@ const insertSale = async (
   saleDate,
 ) => {
   const conn = await connection();
-  const insertedRecipe = await conn
+  await conn
     .getTable('sales')
     .insert([
       'user_id',
