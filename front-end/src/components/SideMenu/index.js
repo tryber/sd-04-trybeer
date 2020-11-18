@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
 import './styles.css';
@@ -57,7 +57,7 @@ const SideMenu = ({ sideMenuState }) => {
 };
 
 SideMenu.propTypes = {
-  // sideMenuState: PropTypes.,
+  sideMenuState: PropTypes.bool.isRequired,
 };
 
 export default SideMenu;

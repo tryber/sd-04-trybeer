@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { /* useContext */ useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Context } from '../../context/index';
+// import { Context } from '../../context/index';
+import { EMAIL_PATTERN, NAME_PATTERN } from '../../validation';
 import api from '../../services/api';
 
 import TrybeerLogo from '../../imgs/logo.png';
@@ -9,41 +10,44 @@ import TrybeerLogo from '../../imgs/logo.png';
 import './styles.css';
 
 const Register = () => {
-  const {
-    userName,
-    setUserName,
-    emailUser,
-    setEmailUser,
-    password,
-    setPassword,
-    setIsSeller,
-    isSeller,
-  } = useContext(Context);
+  // const {
+  //   userName,
+  //   setUserName,
+  //   emailUser,
+  //   setEmailUser,
+  //   password,
+  //   setPassword,
+  //   setIsSeller,
+  //   isSeller,
+  // } = useContext(Context);
+  // const [isDisabled, setIsDisabled] = useState(true);
+  const [userName, setUserName] = useState('');
+  const [emailUser, setEmailUser] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSeller, setIsSeller] = useState(false);
+  // const namePattern = /[a-zA-Z ]{12,}/;
+  // const emailPattern = /[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i;
 
-  const namePattern = '[a-zA-Z ]{12,}';
-  const emailPattern = '[^@]+@[^@]+.[^@]+';
-  const nameRegex = new RegExp(namePattern);
-  const emailRegex = new RegExp(emailPattern);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await api.post('/register', {
+        userName,
+        emailUser,
+        password,
+        isSeller,
+      });
+    } catch (error) {
+      // alert(error.message);
+      // throw new Error();
+    }
+  };
 
   const ableRegisterButton = () => {
     let disabled = true;
-    if (emailRegex.test(emailUser) && nameRegex.test(userName)) {
+    if (EMAIL_PATTERN.test(emailUser) && NAME_PATTERN.test(userName)) {
       disabled = false;
     }
-
-    const handleSubmit = async () => {
-      try {
-        await api.post('/register', {
-          userName,
-          emailUser,
-          password,
-          isSeller,
-        });
-      } catch (error) {
-        // alert(error.message);
-        throw new Error();
-      }
-    };
 
     return (
       <div className="btn-div">
@@ -71,12 +75,12 @@ const Register = () => {
         <input
           id="input-name"
           onChange={ (e) => setUserName(e.target.value) }
+          value={ userName }
           type="text"
           data-testid="signup-name"
-          name="name"
           className="input-registro"
           minLength="12"
-          pattern="[A-zA-z\s]{12,}"
+          // pattern="[A-zA-z\s]{12,}"
           title="Nome com no mínimo 12 caracteres sem números ou caracteres especiais"
           required
         />
@@ -86,10 +90,10 @@ const Register = () => {
           id="input-email"
           type="email"
           onChange={ (e) => setEmailUser(e.target.value) }
+          value={ emailUser }
           data-testid="signup-email"
-          name="email"
           className="input-registro"
-          pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+          // pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
           title="Endereço de e-mail inválido, formato recomendado <nome>@<domínio>"
           required
         />
@@ -97,13 +101,13 @@ const Register = () => {
         <label className="input-labels" htmlFor="input-password">Senha</label>
         <input
           onChange={ (e) => setPassword(e.target.value) }
+          name={ password }
           type="password"
           id="input-password"
           data-testid="signup-password"
-          name="password"
           className="input-registro"
           minLength="6"
-          pattern="[0-9]*"
+          // pattern="[0-9]*"
           title="Sua senha deve ter no mínimo 6 caracteres, sendo TODOS numéricos."
           inputMode="numeric"
           required
@@ -112,11 +116,10 @@ const Register = () => {
         <div className="seller-checkbox-div">
           <input
             type="checkbox"
-            onChange={ () => setIsSeller(true) }
+            onChange={ () => setIsSeller(!isSeller) }
             data-testid="signup-seller"
-            name="sellerCheckbox"
             className="seller-checkbox"
-            value={ !isSeller }
+            value={ isSeller }
           />
           <span className="checkbox-text">
             <label htmlFor="CheckSalesman">Quero vender</label>
