@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import styles from './Products.module.css';
 
 import { incQuantity, decQuantity, saveCart } from '../actions';
 
@@ -48,42 +49,63 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   }, [cart, total]);
 
   return (
-    <div>
-      {userLogged ? <Redirect to="/login" /> : null}
+    <section className={styles.productsSection}>
       <Menu title="TryBeer" />
-      {products &&
-        products.map((product, index) => (
-          <div key={product.name}>
-            <p data-testid={`${index}-product-name`}>{product.name}</p>
-            <p
-              data-testid={`${index}-product-price`}
-            >{`R$ ${product.price.toFixed(2).replace('.', ',')}`}</p>
-            <img
-              data-testid={`${index}-product-img`}
-              alt=""
-              src={product.urlImage}
-              width="100px"
-            />
-            <button
-              type="button"
-              data-testid={`${index}-product-minus`}
-              onClick={() => decreaseQtd(product)}
-            >
-              -
-            </button>
-            <p data-testid={`${index}-product-qtd`}>{quantity(product)}</p>
-            <button
-              type="button"
-              data-testid={`${index}-product-plus`}
-              onClick={() => increaseQtd(product)}
-            >
-              +
-            </button>
-          </div>
-        ))}
-      <div>
+
+      <div className={styles.productsDiv}>
+        {userLogged ? <Redirect to="/login" /> : null}
+
+        {products &&
+          products.map((product, index) => (
+            <div key={product.name} className={styles.productsCard}>
+              <div className={styles.photo}>
+                <img
+                  data-testid={`${index}-product-img`}
+                  alt=""
+                  src={product.urlImage}
+                  width="100px"
+                />
+              </div>
+              <div className={styles.info}>
+                <div className={styles.infos}>
+                  <p
+                    className={styles.name}
+                    data-testid={`${index}-product-name`}
+                  >
+                    {product.name}
+                  </p>
+                  <p
+                    className={styles.price}
+                    data-testid={`${index}-product-price`}
+                  >{`R$ ${product.price.toFixed(2).replace('.', ',')}`}</p>
+                </div>
+                <div className={styles.btns}>
+                  <button
+                    type="button"
+                    data-testid={`${index}-product-minus`}
+                    onClick={() => decreaseQtd(product)}
+                  >
+                    -
+                  </button>
+                  <p data-testid={`${index}-product-qtd`}>
+                    {quantity(product)}
+                  </p>
+                  <button
+                    type="button"
+                    data-testid={`${index}-product-plus`}
+                    onClick={() => increaseQtd(product)}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+      </div>
+      <div className={styles.productsDiva}>
         <Link to="/checkout">
           <button
+            className={styles.verCarrinho}
             type="button"
             data-testid="checkout-bottom-btn"
             disabled={!cart.length}
@@ -91,11 +113,13 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
             Ver Carrinho
           </button>
         </Link>
-        <p data-testid="checkout-bottom-btn-value">{`R$ ${total
-          .toFixed(2)
-          .replace('.', ',')}`}</p>
+        <p
+          className={styles.total}
+          data-testid="checkout-bottom-btn-value"
+        >{`R$ ${total.toFixed(2).replace('.', ',')}`}</p>
       </div>
-    </div>
+
+    </section>
   );
 };
 
