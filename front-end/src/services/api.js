@@ -7,7 +7,7 @@ const apiTrybeer = axios.create({
 const loginApi = async (email, password) => {
   const result = await apiTrybeer.post('/login', { email, password });
 
-  return result;  
+  return result;
 };
 
 // const getUserByEmail = async (email) => axios.get(`/${email}`);
