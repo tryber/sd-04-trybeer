@@ -9,7 +9,7 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import validator from './validateRegister';
+import validationSchema from './validateRegister';
 
 function Register() {
   const history = useHistory();
@@ -21,7 +21,7 @@ function Register() {
       signPassword: '',
       role: false,
     },
-    validator,
+    validationSchema,
     onSubmit: (values) => {
       const redirect = values.role === false ? '/products' : '/admin/orders';
       history.push(redirect);
