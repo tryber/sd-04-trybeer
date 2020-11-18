@@ -96,10 +96,9 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(date);
-
     registerSale();
+    localStorage.setItem('cart', []);
+    localStorage.setItem('total', 0);
   };
 
   if (redirect) return <Redirect to="/products" />;
