@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import { getLS, setLS } from '../../utils';
 
@@ -9,25 +8,21 @@ const ProfilePage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [updated, setUpdated] = useState(false);
-  const history = useHistory();
 
   useEffect(() => {
-    setLS('name', 'testuser')
-    setLS('email', 'user@teste.com')
+    setLS('name', 'testuser');
+    setLS('email', 'user@teste.com');
 
     setEmail(getLS('email'));
     setName(getLS('name'));
-
   }, []);
 
-  const emailRegex = /^[a-zA-Z\s,-]{12,}/
-
-  const checkNameChange = () => getLS('name') === name ? true : false;
+  const checkNameChange = () => (getLS('name') === name ? true : false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    setUpdated(!updated)
+
+    setUpdated(!updated);
 
     await api.updateUserAPI(name, email);
   };
@@ -35,7 +30,7 @@ const ProfilePage = () => {
   return (
     <div className="container-general">
       <Menu nomeTela="Meu perfil" />
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Nome:</label>
           <input
@@ -43,10 +38,9 @@ const ProfilePage = () => {
             type="text"
             name="nome"
             value={name}
-            onChange={
-              (e) => {
-                setName(e.target.value);
-              }}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
           />
         </div>
         <div>
