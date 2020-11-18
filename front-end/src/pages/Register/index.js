@@ -30,7 +30,9 @@ function Register() {
     validationSchema,
     onSubmit: async (values) => {
       // console.log('Values: ', values);
-      const { signName, signEmail, signPassword, signRole } = values;
+      const {
+        signName, signEmail, signPassword, signRole
+      } = values;
       const signUp = await postRegister(signName, signEmail, signPassword, signRole);
 
       if (signUp.status !== statusCode) {
@@ -70,7 +72,7 @@ function Register() {
             formik.errors.signEmail && formik.touched.signEmail
           }
         >
-        <FormLabel htmlFor="signEmail">Email</FormLabel>
+          <FormLabel htmlFor="signEmail">Email</FormLabel>
           <Input
             type="email"
             name="signEmail"

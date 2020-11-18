@@ -2,7 +2,7 @@ const { add, getByEmail } = require('../../models/users');
 
 const register = async (req, res) => {
   try {
-    const {signName, signEmail, signPassword, signRole} = req.body;
+    const { signName, signEmail, signPassword, signRole } = req.body;
     // signRole é boolean
     // signRole - true -> 'administrator'
     // signRole - false -> 'client'
@@ -10,7 +10,7 @@ const register = async (req, res) => {
 
     // Verifica se existe usuário com o mesmo email já existe
     const user = await getByEmail(signEmail);
-    if(user) {
+    if (user) {
       res.status(200).json({ message: 'E-mail already in database.' });
     }
 
