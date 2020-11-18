@@ -13,7 +13,7 @@ const navDisplayFalse = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, 
   setNavDisplay(!navDisplay);
 };
 
-const time = 400;
+const TIME = 400;
 const navDisplayTrue = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, navDisplay) => {
   setTransitionMenuHambuger({
     lineOne: 'translate(0px, 0px) rotate(0deg)',
@@ -23,7 +23,7 @@ const navDisplayTrue = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, n
   setNavStyle({ animationName: 'coverNav', left: '0%' });
   setTimeout(() => {
     setNavDisplay(!navDisplay);
-  }, time);
+  }, TIME);
 };
 
 const menuHamburgerBtn = (

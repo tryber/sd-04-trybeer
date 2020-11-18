@@ -39,7 +39,7 @@ const Register = () => {
       });
     } catch (error) {
       // alert(error.message);
-      throw new Error();
+      // throw new Error();
     }
   };
 
