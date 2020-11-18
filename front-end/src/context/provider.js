@@ -36,6 +36,7 @@ const Provider = ({ children }) => {
     setCart,
     setData,
     isloading,
+    setIsLoading,
   };
 
   return <AppBeertContext.Provider value={ contextValue }>{ children }</AppBeertContext.Provider>;

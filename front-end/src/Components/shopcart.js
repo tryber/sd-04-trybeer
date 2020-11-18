@@ -29,7 +29,7 @@ const ShopCart = ({
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cartUpdate]);
+  }, [cartUpdate, cart]);
 
   return (
     <div className="row mx-md-n5">

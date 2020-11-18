@@ -17,7 +17,7 @@ const ButtonEnviar = ({ email, password, isDisabled = true }) => {
         history.push('/admin/orders');
       } else history.push('/products');
     })
-      .catch((err) => setMessage(err.response.data.message));
+      .catch(() => setMessage('Email nao encontrado'));
   };
 
   return (

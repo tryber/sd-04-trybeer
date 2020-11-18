@@ -17,8 +17,7 @@ const Client = () => {
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart'));
     const newCart = cart && Object.values(cart);
-    const all = newCart
-      ? newCart.reduce((acc, curr) => curr.quantidade * curr.price + acc, ZERO) : ZERO;
+    const all = newCart && newCart.reduce((acc, curr) => curr.quantidade * curr.price + acc, ZERO);
     setValorTotal(all);
   }, [cartUpdate]);
 
@@ -65,8 +64,10 @@ const Client = () => {
       <footer>
         <button type="button" disabled={ !valorTotal } data-testid="checkout-bottom-btn">
           <Link to="/checkout">
+            {console.log(valorTotal)}
             <span data-testid="checkout-bottom-btn-value">
-              { `Ver Carrinho R$ ${valorTotal.toFixed(DOIS).replace('.', ',')}` }
+              { `Ver Carrinho R$ ${valorTotal
+                ? valorTotal.toFixed(DOIS).replace('.', ',') : ZERO.toFixed(DOIS).replace('.', ',')}` }
             </span>
           </Link>
         </button>
