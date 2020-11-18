@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Switch, Route } from 'react-router-dom';
 
-import { UserProfile, FormPage, Products } from './pages';
+import { UserProfile, FormPage, Products, Orders } from './pages';
 import { Header } from './components/Header';
 import LoginForm from './components/forms/LoginForm';
 import RegisterForm from './components/forms/RegisterForm';
@@ -27,6 +27,9 @@ function App() {
         <FormPage>
           <RegisterForm />
         </FormPage>
+      </Route>
+      <Route path="/orders">
+         <Orders />
       </Route>
       <Route path="/products">
         <Products />

@@ -32,6 +32,8 @@ app.get('/products', controllers.products.getAllProducts);
 
 app.put('/profile', controllers.user.userUpdate);
 
+app.get('/orders', controllers.sales.getAllSales);
+
 app.use((err, _req, res, _next) => {
   res.status(405).json({ err: err.message });
 });
