@@ -44,7 +44,6 @@ const getAllSalesBy = async (info, fieldSearch, selection) => connection()
   });
 
 const getDetailsSale = async (id) => {
-  // pega os produtos da order de id x
   const db = await session();
   const stmt = await db
     .sql(
@@ -74,7 +73,6 @@ module.exports = {
   insertNewSale,
   insertProductSale,
   getSales,
-  getSaleById,
   getDetailsSale,
   getAllSalesBy,
 };

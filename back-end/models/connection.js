@@ -22,8 +22,8 @@ async function connection() {
   return schema
     ? Promise.resolve(schema)
     : session()
-      .then((session) => {
-        schema = session.getSchema('Trybeer');
+      .then((s) => {
+        schema = s.getSchema('Trybeer');
         return schema;
       })
       .catch(() => {

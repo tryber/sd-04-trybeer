@@ -1,9 +1,14 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY } from '../actions';
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  UPDATE_QUANTITY,
+  REMOVE_CART,
+} from '../actions';
 
 const initialState = JSON.parse(localStorage.getItem('cart')) || {};
 
 export default (state = initialState, { type, payload }) => {
-  const cartList = { ...state };
+  let cartList = { ...state };
 
   switch (type) {
     case UPDATE_QUANTITY:
@@ -16,6 +21,10 @@ export default (state = initialState, { type, payload }) => {
 
     case ADD_TO_CART:
       cartList[payload.name] = { ...payload, quantity: payload.number };
+      break;
+
+    case REMOVE_CART:
+      cartList = {};
       break;
 
     default:

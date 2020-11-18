@@ -23,12 +23,6 @@ const postNewSale = async (id, addressName, addressNumber, cart, totalPrice) => 
   return { message: 'Compra realizada com sucesso!' };
 };
 
-const orderDetail = async (orderId) => {
-  // chamada da consulta do Vitao para retornar ID, DATE, PRICE
-  const products = await saleModel.getDetailsSale(orderId);
-  return products;
-};
-
 const getSalesId = async (emailParam) => {
   const user = await genericModel.findUserBy(emailParam, 'email');
   if (!user) throw new Error('usuario nao encontrado');
@@ -38,6 +32,17 @@ const getSalesId = async (emailParam) => {
     'sale_date',
   ]);
   return salesUser;
+};
+
+const orderDetail = async (orderId) => {
+  // chamada da consulta do Vitao para retornar ID, DATE, PRICE
+  const [sale] = await saleModel.getAllSalesBy(orderId, 'id', [
+    'id',
+    'total_price',
+    'sale_date',
+  ]);
+  const products = await saleModel.getDetailsSale(orderId);
+  return { products, sale };
 };
 
 module.exports = {

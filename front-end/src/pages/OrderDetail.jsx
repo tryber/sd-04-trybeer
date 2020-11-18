@@ -1,29 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Header } from "../components/Header";
-import SalesDetails from "../components/OrderDetails/SalesDetails";
-import { getDetailSales } from "../services/TrybeerApi";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { Header } from '../components/Header';
+import Loading from '../components/Loading';
+import SalesDetails from '../components/OrderDetails/SalesDetails';
+import { getDetailSales, getUserSales } from '../services/TrybeerApi';
 
 function OrderDetail() {
   const { id } = useParams();
-  // const { email } = JSON.parse(localStorage.getItem('user') || '{}');
-  const [products, setProducts] = useState([]);
-  // const [orders, setOrders] = useState([]);
+  const [details, setDetails] = useState(false);
   useEffect(() => {
-    getDetailSales(id).then(({ data }) => setProducts(data));
-    // chamada do Vitão
+    getDetailSales(id).then(({ data }) => setDetails(data));
   }, [id]);
 
   return (
-    <React.Fragment>
+    <div className="page">
       <Header>Detalhes de pedido</Header>
-      <div  style={{"padding-top": "70px"}}>
-        <span data-testid="order-number">Pedido 0001</span>
-        <span data-testid="order-date">26/01</span>      
-          <SalesDetails products={products} />
-        <span data-testid={`order-total-value`}>TOTAL</span>
-      </div>      
-    </React.Fragment>
+      {details ? <SalesDetails details={details} /> : <Loading />}
+    </div>
   );
 }
 
