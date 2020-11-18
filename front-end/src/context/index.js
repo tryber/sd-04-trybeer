@@ -1,4 +1,5 @@
 /* eslint-disable no-magic-numbers */
+import PropTypes from 'prop-types';
 import React, { createContext, useState } from 'react';
 
 // criacao do contexto
@@ -25,6 +26,5 @@ const ProductProvider = ({ children }) => {
 export { ProductContext, ProductProvider };
 
 ProductProvider.propTypes = {
-  // eslint-disable-next-line no-undef
   children: PropTypes.element.isRequired,
 };
