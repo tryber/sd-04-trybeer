@@ -1,4 +1,5 @@
 import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import {
   UserProfile,
   FormPage,
@@ -8,7 +9,6 @@ import {
   AdminOrderDetails,
   AdminProfile,
 } from './pages';
-import { Switch, Route, Redirect } from 'react-router-dom';
 import LoginForm from './components/forms/LoginForm';
 import RegisterForm from './components/forms/RegisterForm';
 
