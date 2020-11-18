@@ -23,6 +23,7 @@ const registerUserAPI = async (name, email, password, role) => {
     );
     return result;
   } catch (err) {
+    console.log("erro", err)
     return err.response;
   }
 };
@@ -38,11 +39,18 @@ const getSalesTb = async () => {
     return err.response;
   }
 };
+
+const productsAPI = async () => {
+  const { data } = await api.get('/products');
+  return data;
+};
+
 const updateUserAPI = (name, email) => (api.put('/user/update', { name, email }));
 
 export default {
   registerUserAPI,
   loginAPI,
   getSalesTb,
+  productsAPI,
   updateUserAPI,
 };

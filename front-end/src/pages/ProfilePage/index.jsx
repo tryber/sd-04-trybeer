@@ -19,8 +19,8 @@ const ProfilePage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    setUpdated(!updated)
+
+    setUpdated(!updated);
 
     await api.updateUserAPI(name, email);
   };

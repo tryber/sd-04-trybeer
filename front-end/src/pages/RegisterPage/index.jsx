@@ -39,12 +39,13 @@ const Register = () => {
     e.preventDefault();
     try {
       const createUser = await createUserAPI( name, email, password, role );
-      const apiResponse = await createUser;
+      // console.log('createUser',createUser)
+      const apiResponse = createUser;
 
       if(apiResponse.status === 403) {
         return setState({ ...state, erro: apiResponse.data.message });
       }
-
+      console.log("apiResponse.data",apiResponse.data);
       setLS('user', apiResponse.data);
       return history.push( box ? '/admin/orders' : '/products');
     } catch (err) {
