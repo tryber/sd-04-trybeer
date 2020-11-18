@@ -6,6 +6,8 @@ import { Redirect } from 'react-router-dom';
 const AdminProfile = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+
+  
   const [userLogged, setUserLogged] = useState(false);
 
   useEffect(() => {

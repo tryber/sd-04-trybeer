@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import beer from '../assets/videos/video.mp4';
+import styles from './Register.module.css';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -62,49 +64,82 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="name">Nome</label>
-        <input
-          type="text"
-          id="name"
-          data-testid="signup-name"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          data-testid="signup-email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          data-testid="signup-password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <label htmlFor="seller">Quero Vender</label>
-        <input
-          type="checkbox"
-          id="seller"
-          data-testid="signup-seller"
-          defaultChecked={checked}
-          onChange={() => setChecked(!checked)}
-        />
-        <button
-          type="submit"
-          data-testid="signup-btn"
-          disabled={
-            !checkEmail(email) || !checkName(name) || password.length < 6
-          }
-        >
-          Cadastrar
-        </button>
-      </form>
-      {message !== '' && <p>{message}</p>}
-    </div>
+    <section className="generalSection">
+      <video
+        autoPlay
+        muted
+        loop
+        style={{
+          position: 'absolute',
+          width: '100%',
+          objectFit: 'cover',
+          zIndex: '-1',
+          height: '100vh',
+        }}
+      >
+        <source src={beer} type="video/mp4" />
+      </video>
+      <div className="generalDiv">
+        <h1 className={styles.cadastrar}>Cadastre-se</h1>
+
+        <form className="generalForm" onSubmit={(e) => handleSubmit(e)}>
+          <label className="generalLabel" htmlFor="name">
+            Nome
+          </label>
+          <input
+            className="generalInput"
+            type="text"
+            id="name"
+            data-testid="signup-name"
+            onChange={(e) => setName(e.target.value)}
+          />
+          <label className="generalLabel" htmlFor="email">
+            Email
+          </label>
+          <input
+            className="generalInput"
+            type="email"
+            id="email"
+            data-testid="signup-email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label className="generalLabel" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="generalInput"
+            type="password"
+            id="password"
+            data-testid="signup-password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div className={styles.minidiv}>
+            <label className="generalLabel" htmlFor="seller">
+              Quero Vender
+            </label>
+            <input
+              className="generalInput"
+              type="checkbox"
+              id="seller"
+              data-testid="signup-seller"
+              defaultChecked={checked}
+              onChange={() => setChecked(!checked)}
+            />
+          </div>
+          <button
+            className="generalSubmit"
+            type="submit"
+            data-testid="signup-btn"
+            disabled={
+              !checkEmail(email) || !checkName(name) || password.length < 6
+            }
+          >
+            Cadastrar
+          </button>
+        </form>
+        {message !== '' && <p>{message}</p>}
+      </div>
+    </section>
   );
 };
 

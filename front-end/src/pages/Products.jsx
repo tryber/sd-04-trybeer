@@ -11,6 +11,8 @@ import Menu from '../components/Menu';
 const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const [products, setProducts] = useState([]);
 
+  const [userLogged, setUserLogged] = useState(false);
+
   const initialCart = JSON.parse(localStorage.getItem('cart')) || [];
 
   const initialTotal = Number(localStorage.getItem('total')) || 0;
@@ -25,6 +27,10 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
         setProducts(res.data);
       })
       .catch((error) => console.log(error));
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      setUserLogged(true);
+    }
   }, []);
 
   const quantity = (product) => {
@@ -43,6 +49,7 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
 
   return (
     <div>
+      {userLogged ? <Redirect to="/login" /> : null}
       <Menu title="TryBeer" />
       {products &&
         products.map((product, index) => (
