@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Button,
@@ -9,10 +9,16 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
+import { postRegister } from '../../api';
 import validationSchema from './validateRegister';
+import Alert from '../../components/Alert';
 
 function Register() {
   const history = useHistory();
+  const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState('');
+  const onClose = () => setIsOpen(false);
+  const statusCode = 201;
 
   const formik = useFormik({
     initialValues: {
@@ -22,8 +28,18 @@ function Register() {
       signRole: false,
     },
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       // console.log('Values: ', values);
+      const { signName, signEmail, signPassword, signRole } = values;
+      const signUp = await postRegister(signName, signEmail, signPassword, signRole);
+
+      if (signUp.status !== statusCode) {
+        setError(signUp.data.message);
+        setIsOpen(true);
+        formik.resetForm();
+        return null;
+      }
+
       const redirect = values.signRole ? '/admin/orders' : '/products';
       history.push(redirect);
     },
@@ -31,8 +47,12 @@ function Register() {
 
   return (
     <div>
+      <Alert isOpen={ isOpen } onClose={ onClose } message={ error } />
       <form onSubmit={ formik.handleSubmit }>
-        <FormControl id="signName" isInvalid={ formik.errors.signName && formik.touched.signName }>
+        <FormControl
+          id="signName"
+          isInvalid={ formik.errors.signName && formik.touched.signName }
+        >
           <FormLabel htmlFor="signName">Nome</FormLabel>
           <Input
             type="text"
@@ -44,7 +64,12 @@ function Register() {
           />
           <FormErrorMessage>{ formik.errors.signName }</FormErrorMessage>
         </FormControl>
-        <FormControl id="signEmail" isInvalid={ formik.errors.signEmail && formik.touched.signEmail }>
+        <FormControl
+          id="signEmail"
+          isInvalid={
+            formik.errors.signEmail && formik.touched.signEmail
+          }
+        >
         <FormLabel htmlFor="signEmail">Email</FormLabel>
           <Input
             type="email"
@@ -56,7 +81,12 @@ function Register() {
           />
           <FormErrorMessage>{ formik.errors.signEmail }</FormErrorMessage>
         </FormControl>
-        <FormControl id="signPassword" isInvalid={ formik.errors.signPassword && formik.touched.signPassword }>
+        <FormControl
+          id="signPassword"
+          isInvalid={
+            formik.errors.signPassword && formik.touched.signPassword
+          }
+        >
           <FormLabel htmlFor="signPassword">Senha</FormLabel>
           <Input
             type="password"
@@ -69,11 +99,28 @@ function Register() {
           <FormErrorMessage>{ formik.errors.signPassword }</FormErrorMessage>
         </FormControl>
 
-        <Checkbox variantColor="green" name="signRole" data-testid="signup-seller" id="signRole" onChange={ formik.handleChange }>
+        <Checkbox
+          variantColor="green"
+          name="signRole"
+          data-testid="signup-seller"
+          id="signRole"
+          onChange={ formik.handleChange }
+        >
           Quero vender
         </Checkbox>
 
-        <Button variantColor="green" type="submit" id="signup-btn" data-testid="signup-btn" disabled={ formik.isSubmitting || formik.errors.signName || formik.errors.signEmail || formik.errors.signPassword }>
+        <Button
+          variantColor="green"
+          type="submit"
+          id="signup-btn"
+          data-testid="signup-btn"
+          disabled={
+            formik.isSubmitting
+            || formik.errors.signName
+            || formik.errors.signEmail
+            || formik.errors.signPassword
+          }
+        >
           Cadastrar
         </Button>
       </form>
