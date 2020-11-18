@@ -20,7 +20,7 @@ const Checkout = () => {
   };
 
   const totalPrice = cart.reduce((acc, { price, quantity }) => acc + (price * quantity), numberZero);
-  
+
   const requestApi = async () => {
     const response = await postOrder(nameAdress, numberAdress, cart, user, totalPrice);
     if (response.data.message) return setMessage(response.data.message);
@@ -31,7 +31,7 @@ const Checkout = () => {
   }, [refresh]);
 
   return (
-    <div>
+    <>
       <h2>Produtos</h2>
 
       {cart.length < 1 && <h2>Não há produtos no carrinho</h2>}
@@ -103,7 +103,7 @@ const Checkout = () => {
           history.push('/products');
         }, time)
       }
-    </div>
+    </>
   );
 };
 

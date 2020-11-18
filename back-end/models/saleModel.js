@@ -18,7 +18,36 @@ const insertProductSale = async (saleId, productId, quantity) => connection()
     .execute())
   .catch((err) => err);
 
+const getSales = async () => connection()
+  .then((db) => db
+    .getTable('sales')
+    .select()
+    .execute())
+  .then((result) => result.fetchAll())
+  .catch((err) => err);
+
+const getSaleById = async (id) => connection()
+  .then((db) => db
+    .getTable('sales')
+    .select()
+    .where('id = :id')
+    .bind('id', id)
+    .execute())
+  .then((sale) => sale.fetchOne())
+  .then(([saleId, userId, totalPrice, nameAdress, numberAdress, date, status]) => ({
+    saleId,
+    userId,
+    totalPrice,
+    nameAdress,
+    numberAdress,
+    date,
+    status,
+  }))
+  .catch((err) => err);
+
 module.exports = {
   insertNewSale,
   insertProductSale,
+  getSales,
+  getSaleById,
 };

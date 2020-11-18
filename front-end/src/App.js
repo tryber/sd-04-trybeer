@@ -6,9 +6,10 @@ import {
   FormPage,
   Products,
   Checkout,
+  AdminOrders,
+  AdminOrderDetails,
 } from './pages';
 
-import { Header } from './components/Header';
 import LoginForm from './components/forms/LoginForm';
 import RegisterForm from './components/forms/RegisterForm';
 
@@ -34,14 +35,16 @@ function App() {
         </FormPage>
       </Route>
       <Route path="/checkout">
-        <Header>Finalizar Pedido</Header>
         <Checkout />
       </Route>
       <Route path="/products">
         <Products />
       </Route>
       <Route path="/admin/orders">
-        <Header>TryBeer</Header>
+        <AdminOrders />
+      </Route>
+      <Route path="/admin/orders/:id">
+        <AdminOrderDetails />
       </Route>
     </Switch>
   );
