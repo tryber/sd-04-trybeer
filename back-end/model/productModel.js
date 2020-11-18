@@ -11,8 +11,9 @@ const getAllProducts = async () => connection()
     name,
     price,
     urlImage,
-    })
-  ));
+  }),
+  )
+  );
 
 module.exports = {
   getAllProducts,
