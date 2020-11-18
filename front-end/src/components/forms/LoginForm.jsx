@@ -18,9 +18,9 @@ function LoginForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data: { token, userData: { name, role } } } = await postLogin(email, password);
+      const { data: { token, userData: { id, name, role } } } = await postLogin(email, password);
       localStorage.user = JSON.stringify({
-        name, email, token, role,
+        id, name, email, token, role,
       });
       history.push(`/${role === 'client' ? 'products' : 'admin/orders'}`);
     } catch (err) {

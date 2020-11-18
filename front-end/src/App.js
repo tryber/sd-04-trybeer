@@ -1,9 +1,14 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import {
-  UserProfile, FormPage, Products, AdminProfile,
+  UserProfile,
+  FormPage,
+  Products,
+  Checkout,
+  AdminOrders,
+  AdminOrderDetails,
+  AdminProfile,
 } from './pages';
-import { Header } from './components/Header';
 import LoginForm from './components/forms/LoginForm';
 import RegisterForm from './components/forms/RegisterForm';
 
@@ -26,11 +31,17 @@ function App() {
           <RegisterForm />
         </FormPage>
       </Route>
+      <Route path="/checkout">
+        <Checkout />
+      </Route>
       <Route path="/products">
         <Products />
       </Route>
       <Route path="/admin/orders">
-        <Header>TryBeer</Header>
+        <AdminOrders />
+      </Route>
+      <Route path="/admin/orders/:id">
+        <AdminOrderDetails />
       </Route>
       <Route path="/admin/profile">
         <AdminProfile />

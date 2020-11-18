@@ -1,11 +1,14 @@
 const genericModel = require('../models/genericModel');
 const userModel = require('../models/userModel');
+const { createToken } = require('./createToken');
 
-const userRegister = async (name, email, password, role) => {
-  const user = await genericModel.findUserBy(email, 'email');
-  if (user) throw new Error('E-mail already in database.');
-  const newUser = await userModel.registerNewUser(name, email, password, role);
-  return newUser;
+const userRegister = async (name, email, pass, role) => {
+  const userEmail = await genericModel.findUserBy(email, 'email');
+  if (userEmail) throw new Error('E-mail already in database.');
+  const user = await userModel.registerNewUser(name, email, pass, role);
+  const { password, ...userData } = user;
+  const token = createToken(userData);
+  return { token, userData };
 };
 
 const userUpdate = async (name, email) => {
