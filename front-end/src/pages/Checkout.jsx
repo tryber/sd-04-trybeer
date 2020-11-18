@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Header } from '../components/Header';
 import { useHistory } from 'react-router-dom';
 import { postOrder } from '../services/TrybeerApi';
 
@@ -20,7 +21,7 @@ const Checkout = () => {
   };
 
   const totalPrice = cart.reduce((acc, { price, quantity }) => acc + (price * quantity), numberZero);
-
+  
   const requestApi = async () => {
     const response = await postOrder(nameAdress, numberAdress, cart, user, totalPrice);
     if (response.data.message) return setMessage(response.data.message);
@@ -32,6 +33,7 @@ const Checkout = () => {
 
   return (
     <>
+      <Header>Finalizar Pedido</Header>
       <h2>Produtos</h2>
 
       {cart.length < 1 && <h2>Não há produtos no carrinho</h2>}
