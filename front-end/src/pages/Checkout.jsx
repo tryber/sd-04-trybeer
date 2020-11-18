@@ -32,8 +32,6 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
   const saveCart = () => {
     const cartLS = JSON.parse(localStorage.getItem('cart')) || [];
     const totalLS = JSON.parse(localStorage.getItem('total'));
-
-    console.log('recupera LS', cartLS);
     return cartLS ? saveCartLS(cartLS, totalLS) : null;
   };
 
@@ -61,11 +59,11 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
 
   useEffect(() => {
     setPrice(total);
-    if (total === 0) {
-      setMessageCart('Não há produtos no carrinho');
+    if (cart.length === 0) {
+      return setMessageCart('Não há produtos no carrinho');
     }
     setMessageCart('');
-  }, [total]);
+  }, [cart, total]);
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -115,6 +113,7 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
       {cart &&
         cart.map((item, index) => (
           <div key={item.name}>
+            {console.log(item)}
             <p data-testid={`${index}-product-name`}>{item.name}</p>
             <p
               data-testid={`${index}-product-unit-price`}
