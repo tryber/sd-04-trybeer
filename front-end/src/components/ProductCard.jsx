@@ -1,16 +1,65 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { AppContext } from '../context/AppContext';
 import './ProductCard.css';
 
-function ProductCard({ name, price, urlImage }) {
+function ProductCard({ index, id, name, price, urlImage, quantity }) {
+  const [product, setProduct] = useState({ id, name, price, urlImage, quantity });
+  const { cart, setCart, setTotal } = useContext(AppContext);
+
+  useEffect(() => {
+    const sum = cart.reduce((acc, p) => {
+      return acc + p.price;
+    }, 0);
+    setTotal(sum);
+  }, [product]);
+
+  function verifyProduct(prod, op) {
+    const isThereAProduct = cart.find(item => item.id === prod.id);
+
+    if (!isThereAProduct) {
+      op === '+' ?
+        setCart([...cart, { ...prod, quantity: prod.quantity + 1 }]) :
+        setCart([...cart, { ...prod, quantity: prod.quantity - 1 }])
+    } else {
+      const i = cart.indexOf(isThereAProduct);
+      console.log(i);
+      op === '+' ?
+        isThereAProduct.quantity += 1 :
+        isThereAProduct.quantity -= 1;
+    }
+  }
+
+  function addToCart(prod, op) {
+    if (op === 'minus' && prod.quantity === 0) return;
+
+    if (op === 'plus') {
+      setProduct({ ...prod, quantity: prod.quantity + 1 });
+      verifyProduct(prod, '+');
+    } else {
+      setProduct({ ...prod, quantity: prod.quantity - 1 });
+      verifyProduct(prod, '-');
+
+      const findProd = cart.findIndex(item => item.id === prod.id && item.quantity === 0);
+      console.log(findProd);
+      const newCart = cart.filter(item => item.quantity !== 0);
+      setCart(newCart);
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(cart);
+
+  }
+
   return (
     <div className='beer-card'>
-      <img className="beerImg" src={urlImage} alt="imagem" />
-      <p>{name}</p>
-      <span>R$ {price}</span>
+      <img data-testid={`${index}-product-img`} className="beerImg" src={urlImage} alt="imagem" />
+      <p data-testid={`${index}-product-name`}>{product.name}</p>
+      <span data-testid={`${index}-product-price`}>{`R$ ${product.price.toFixed(2).toString().replace('.', ',')}`}</span>
       <div className="bottom">
-        <button>-</button>
-        <span>0</span>
-        <button>+</button>
+        <button data-testid={`${index}-product-minus`} onClick={() => addToCart(product, 'minus')}>-</button>
+        <span data-testid={`${index}-product-qtd`}>{product.quantity}</span>
+        <button data-testid={`${index}-product-plus`} onClick={() => addToCart(product, 'plus')}>+</button>
       </div>
     </div>
   )
