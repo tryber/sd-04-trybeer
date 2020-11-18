@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { putUpdate } from '../services/TrybeerApi';
 import { Header } from '../components/Header';
+import { Beer } from '../images/index';
+import '../css/profile.css';
 
 function UserProfile() {
-  const { name, email } = JSON.parse(localStorage.getItem('user'));
+  const { name, email } = JSON.parse(localStorage.getItem('user') || '{}');
   const [userName, setUserName] = useState(name);
   const [message, setMessage] = useState('');
 
@@ -14,45 +15,40 @@ function UserProfile() {
     setMessage(update.data.message);
   };
 
-  return !name ? (
-    <Redirect to="/login" />
-  ) : (
-    <>
+  return (
+    <div className="profile page">
       <Header>Meu perfil</Header>
-      <div className="form-page">
-        <div className="form-container">
-          <form onSubmit={ handleForm } className="form">
-            <label htmlFor="name">
-              Name:
-              <input
-                data-testid="profile-name-input"
-                type="text"
-                name="name"
-                value={ userName }
-                onChange={ (e) => {
-                  setUserName(e.target.value);
-                } }
-              />
-            </label>
-            <label htmlFor="email">
-              Email:
-              <input
-                data-testid="profile-email-input"
-                type="text"
-                name="email"
-                value={ email }
-                readOnly
-              />
-            </label>
+      <form onSubmit={ handleForm } className="profile form page-content">
+        <label htmlFor="name">
+          Name:
+          <input
+            data-testid="profile-name-input"
+            type="text"
+            name="name"
+            value={ userName }
+            onChange={ (e) => {
+              setUserName(e.target.value);
+            } }
+          />
+        </label>
+        <label htmlFor="email">
+          Email:
+          <input
+            data-testid="profile-email-input"
+            type="text"
+            name="email"
+            value={ email }
+            readOnly
+          />
+        </label>
 
-            <button data-testid="profile-save-btn" type="submit" disabled={ userName === name }>
-              Salvar
-            </button>
-            <span>{ message }</span>
-          </form>
-        </div>
-      </div>
-    </>
+        <button data-testid="profile-save-btn" type="submit" disabled={ userName === name }>
+          Salvar
+        </button>
+        <span>{ message }</span>
+      </form>
+      <img src={ Beer } alt="Duff beer" className="duff-beer" />
+    </div>
   );
 }
 

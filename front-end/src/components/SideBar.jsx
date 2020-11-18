@@ -1,33 +1,38 @@
 import React from 'react';
-export default function SideBar({ userRole }) {
+
+export default function SideBar({ userRole, active }) {
   return (
-    <nav>
+    <nav className={ `side-container ${active && 'appear'}` }>
       {userRole === 'client' && (
-        <div className="side-menu-container" visible='true'>
-          <a href="/products" data-testid="side-menu-item-products">
-            Produtos
-          </a>
-          <a href="/orders" data-testid="side-menu-item-my-orders">
-            meus pedidos
-          </a>
-          <a href="/profile" data-testid="side-menu-item-my-profile">
-            meu perfil"
-          </a>
+        <div className={`${active && 'side-menu-container'} side-bar`}>
+          <div>
+            <a href="/products" data-testid="side-menu-item-products">
+              Produtos
+            </a>
+            <a href="/orders" data-testid="side-menu-item-my-orders">
+              Meus pedidos
+            </a>
+            <a href="/profile" data-testid="side-menu-item-my-profile">
+              Meu perfil
+            </a>
+          </div>
           <a href="/login" data-testid="side-menu-item-logout">
-            sair
+            Sair
           </a>
         </div>
       )}
       {userRole === 'administrator' && (
-        <div class="admin-side-bar-container" visible='true'>
-          <a href="/admin/orders" data-testid="side-menu-item-orders">
-            Meus pedidos
-          </a>
-          <a href="/admin/profile" data-testid="side-menu-item-profile">
-            Meu perfil
-          </a>
+        <div className="admin-side-bar-container side-bar" visible>
+          <div>
+            <a href="/admin/orders" data-testid="side-menu-item-orders">
+              Meus pedidos
+            </a>
+            <a href="/admin/profile" data-testid="side-menu-item-profile">
+              Meu perfil
+            </a>
+          </div>
           <a href="/login" data-testid="side-menu-item-logout">
-            sair
+            Sair
           </a>
         </div>
       )}

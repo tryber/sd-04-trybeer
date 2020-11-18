@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
 import {
   UserProfile,
   FormPage,
@@ -8,8 +7,9 @@ import {
   Checkout,
   AdminOrders,
   AdminOrderDetails,
+  AdminProfile,
 } from './pages';
-
+import { Switch, Route, Redirect } from 'react-router-dom';
 import LoginForm from './components/forms/LoginForm';
 import RegisterForm from './components/forms/RegisterForm';
 
@@ -17,9 +17,7 @@ function App() {
   return (
     <Switch>
       <Route exact path="/">
-        <FormPage>
-          <LoginForm />
-        </FormPage>
+        <Redirect to="/login" />
       </Route>
       <Route path="/login">
         <FormPage>
@@ -45,6 +43,9 @@ function App() {
       </Route>
       <Route path="/admin/orders/:id">
         <AdminOrderDetails />
+      </Route>
+      <Route path="/admin/profile">
+        <AdminProfile />
       </Route>
     </Switch>
   );

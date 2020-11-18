@@ -37,7 +37,7 @@ const RegisterForm = () => {
 
     const { data: { token } } = response;
     localStorage.user = JSON.stringify({
-      name, email, token, role,
+      name, email, token, role: definedRole,
     });
 
     return setForm({ error: null, redirect: definedRole });

@@ -5,16 +5,16 @@ import Loading from '../components/Loading';
 import { getProducts } from '../services/TrybeerApi';
 
 function Products() {
-  const [list, setList] = useState({});
+  const [list, setList] = useState(false);
 
   useEffect(() => {
     getProducts().then(({ data }) => setList(data));
   }, []);
-
+  
   return (
-    <div>
+    <div className="page">
       <Header>TryBeer</Header>
-      {list.length === 0 ? <Loading /> : <ListProducts list={list} />}
+      {list ? <ListProducts list={list} /> :  <Loading /> }
     </div>
   );
 }
