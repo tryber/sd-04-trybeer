@@ -6,13 +6,9 @@ import BeerContext from '../context/appBeerContext';
 const Client = () => {
   const [cartUpdate, setCartUpdate] = useState(true);
   const [valorTotal, setValorTotal] = useState();
-  const { products, setData, isloading } = useContext(BeerContext);
+  const { products, isloading } = useContext(BeerContext);
   const DOIS = 2;
   const ZERO = 0;
-
-  useEffect(() => {
-    setData();
-  }, []);
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart'));
@@ -64,7 +60,6 @@ const Client = () => {
       <footer>
         <button type="button" disabled={ !valorTotal } data-testid="checkout-bottom-btn">
           <Link to="/checkout">
-            {console.log(valorTotal)}
             <span data-testid="checkout-bottom-btn-value">
               { `Ver Carrinho R$ ${valorTotal
                 ? valorTotal.toFixed(DOIS).replace('.', ',') : ZERO.toFixed(DOIS).replace('.', ',')}` }

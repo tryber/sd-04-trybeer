@@ -12,29 +12,26 @@ const Provider = ({ children }) => {
 
   const history = useHistory();
 
-  const setData = () => {
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+
     apiProducts.getProducts().then((response) => {
       setProducts(response.data);
       setIsLoading(false);
     });
-  };
-
-  useEffect(() => {
-    const user = localStorage.getItem('user');
 
     if (!user) history.push('/login');
     if (localStorage.getItem('cart')) {
       const data = localStorage.getItem('cart');
       setCart(JSON.parse(data));
     }
-  }, []);
+  }, [history]);
 
   const contextValue = {
     products,
     setProducts,
     cart,
     setCart,
-    setData,
     isloading,
     setIsLoading,
   };
