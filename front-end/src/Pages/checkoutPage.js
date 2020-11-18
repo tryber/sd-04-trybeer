@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { Button, Field, Label, Input } from "rbx";
-import { Redirect } from "react-router";
+import React, { useEffect, useState } from 'react';
+import {
+  Button, Field, Label, Input,
+} from 'rbx';
+import { Redirect } from 'react-router';
 
 const CheckoutPage = () => {
-  const [user,setUser] = useState({})
-  const [cart,setCart] = useState({})
-  useEffect(()=>{
+  const [auth, setAuth] = useState({});
+  const [cart, setCart] = useState({});
+  useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     const products = JSON.parse(localStorage.getItem('products'));
-    console.log(user);
-    console.log(products);
-    setUser(user)
-    setCart(products)
-  },[]);
+    setAuth(user);
+    setCart(products);
+  }, []);
 
   return (
     <div>
-      {user === null ? (
+      {auth === null ? (
         <div>
-          <Redirect to='/login' />
+          <Redirect to="/login" />
         </div>
       ) : (
         <div>
           <h2>Cliente - Checkout</h2>
           <h2>Produtos</h2>
-          {cart === null ? (<h2>Não há produtos no carrinho</h2>) : (<h2>Cart</h2>)}
+          {cart === null ? <h2>Não há produtos no carrinho</h2> : <h2>Cart</h2>}
 
           <p data-testid="order-total-value">Total:</p>
           <h2>Endereço</h2>

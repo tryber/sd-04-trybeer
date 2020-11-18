@@ -1,11 +1,10 @@
 import React from 'react';
 import TopMenu from '../Components/Menu/TopMenu';
 
-const Client = () => (
+const ClientProfile = () => (
   <div>
     <TopMenu title="Meu perfil" />
-    <h1>Client</h1>
   </div>
 );
 
-export default Client;
+export default ClientProfile;
