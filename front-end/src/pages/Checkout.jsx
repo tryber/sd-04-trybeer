@@ -9,7 +9,7 @@ import Menu from '../components/Menu';
 
 import { updateTotalCheckout, updateCart } from '../actions';
 
-const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
+const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
   const [userLS, setUserLS] = useState(null);
 
   // dados para registrar a venda
@@ -34,12 +34,19 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
   const [redirect, setRedirect] = useState(false);
   const [redirectToLogin, setRedirectToLogin] = useState(false);
 
+  const saveCart = () => {
+    const cartLS = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalLS = JSON.parse(localStorage.getItem('total'));
+    return cartLS ? saveCartLS(cartLS, totalLS) : null;
+  };
+
   useEffect(() => {
     if (!localStorage.getItem('user')) {
       return setRedirectToLogin(true);
     }
     const userData = JSON.parse(localStorage.getItem('user'));
     setUserLS(userData);
+    saveCart();
   }, []);
 
   // requisição para pegar o id do usuário no banco
@@ -58,11 +65,11 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
 
   useEffect(() => {
     setPrice(total);
-    if (total === 0) {
-      setMessageCart('Não há produtos no carrinho');
+    if (cart.length === 0) {
+      return setMessageCart('Não há produtos no carrinho');
     }
-    // setMessageCart('');
-  }, [total]);
+    setMessageCart('');
+  }, [cart, total]);
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -100,8 +107,8 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     registerSale();
-    localStorage.removeItem('total');
     localStorage.removeItem('cart');
+    localStorage.removeItem('total');
   };
 
   if (redirect) return <Redirect to="/products" />;
@@ -115,6 +122,7 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
       {cart &&
         cart.map((item, index) => (
           <div key={item.name}>
+            {console.log(item)}
             <p data-testid={`${index}-product-name`}>{item.name}</p>
             <p
               data-testid={`${index}-product-unit-price`}

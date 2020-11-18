@@ -97,16 +97,16 @@ app.post('/sales', async (req, res) => {
       street,
       houseNumber,
       date,
-      status
+      status,
     );
 
     const saleId = order.getAutoIncrementValue();
 
     for (let i = 0; i < productId.length; i++) {
-      await salesProductsModel.registerSalesProducts(
+      salesProductsModel.registerSalesProducts(
         saleId,
         productId[i],
-        quantity[i]
+        quantity[i],
       );
     }
 
