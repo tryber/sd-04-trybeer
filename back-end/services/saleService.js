@@ -34,7 +34,19 @@ const getSalesId = async (emailParam) => {
   return salesUser;
 };
 
+const orderDetail = async (orderId) => {
+  // chamada da consulta do Vitao para retornar ID, DATE, PRICE
+  const [sale] = await saleModel.getAllSalesBy(orderId, 'id', [
+    'id',
+    'total_price',
+    'sale_date',
+  ]);
+  const products = await saleModel.getDetailsSale(orderId);
+  return { products, sale };
+};
+
 module.exports = {
   postNewSale,
+  orderDetail,
   getSalesId,
 };

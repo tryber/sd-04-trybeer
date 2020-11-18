@@ -31,6 +31,8 @@ app.get('/products', controllers.products.getAllProducts);
 
 app.put('/profile', controllers.user.userUpdate);
 
+app.get('/orders/:id', controllers.sale.getDetailsSales);
+
 app.get('/admin/orders', controllers.sale.getSales);
 
 app.use((err, _req, res, _next) => {

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Header } from '../components/Header';
 import { useHistory, Redirect } from 'react-router-dom';
 import { postOrder } from '../services/TrybeerApi';
+import { removeAllCart } from '../redux/actions';
 
 const Checkout = () => {
   const user = JSON.parse(localStorage.getItem('user') || null)
@@ -13,6 +15,7 @@ const Checkout = () => {
   const [message, setMessage] = useState(null);
   const numberZero = 0;
   const time = 2000;
+  const dispatch = useDispatch();
 
   const removeItemCart = (index) => {
     cart.splice(index, 1);
@@ -24,7 +27,10 @@ const Checkout = () => {
   
   const requestApi = async () => {
     const response = await postOrder(nameAdress, numberAdress, cart, user, totalPrice);
-    if (response.data.message) return setMessage(response.data.message);
+    if (response.data.message) {
+      dispatch(removeAllCart());
+      return setMessage(response.data.message);
+    };
   }
 
   useEffect(() => {

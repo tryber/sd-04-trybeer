@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import OrderDetail from './pages/OrderDetail';
 import {
   UserProfile,
   FormPage,
@@ -26,6 +27,9 @@ function App() {
       </Route>
       <Route path="/profile">
         <UserProfile />
+      </Route>
+      <Route path="/orders/:id">
+        <OrderDetail />
       </Route>
       <Route path="/register">
         <FormPage>

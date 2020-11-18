@@ -28,8 +28,15 @@ const getSales = async (_req, res) => {
   return res.status(200).json(allSales);
 };
 
+const getDetailsSales = async (req, res) => {
+  const { id } = req.params;
+  const result = await saleService.orderDetail(id);
+  res.status(200).json(result);
+};
+
 module.exports = {
   saleRegister,
   getSales,
+  getDetailsSales,
   getAllUserSales,
 };
