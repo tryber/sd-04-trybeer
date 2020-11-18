@@ -19,11 +19,12 @@ function Register() {
       signName: '',
       signEmail: '',
       signPassword: '',
-      role: false,
+      signRole: false,
     },
     validationSchema,
     onSubmit: (values) => {
-      const redirect = values.role === false ? '/products' : '/admin/orders';
+      console.log('Values: ', values);
+      const redirect = values.signRole ? '/admin/orders' : '/products';
       history.push(redirect);
     },
   });
@@ -68,11 +69,11 @@ function Register() {
         <FormErrorMessage>{ formik.errors.signPassword }</FormErrorMessage>
       </FormControl>
 
-      <Checkbox variantColor="green" name="signRole" data-testid="signup-seller">
+      <Checkbox variantColor="green" name="signRole" data-testid="signup-seller" id="signRole" onChange={ formik.handleChange }>
         Quero vender
       </Checkbox>
 
-      <Button variantColor="green" type="submit" id="signup-btn" data-testid="signup-btn" disabled={ formik.isSubmitting  }>
+      <Button variantColor="green" type="submit" id="signup-btn" data-testid="signup-btn" disabled={ formik.isSubmitting || formik.errors.signName || formik.errors.signEmail || formik.errors.signPassword }>
         Cadastrar
       </Button>
     </form>
