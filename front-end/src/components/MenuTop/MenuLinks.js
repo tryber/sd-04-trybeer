@@ -12,10 +12,13 @@ const MenuLinks = (props) => {
             Produtos
           </LinkBtn>
           <LinkBtn route="/login">
-            Produtos
+            Meus pedidos
           </LinkBtn>
           <LinkBtn route="/login">
-            Produtos
+            Meu Perfil
+          </LinkBtn>
+          <LinkBtn route="/login">
+            Meu Perfil
           </LinkBtn>
         </>
       ) : (
