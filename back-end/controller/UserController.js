@@ -6,7 +6,6 @@ const createJWT = require('../authentication/createJWT');
 
 const userLogin = async (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body)
 
   try {
     const user = await userMiddlewares.validateUserByEmail(email, password);

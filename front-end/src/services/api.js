@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getLS } from '../helpers/index';
 
 const apiTrybeer = axios.create({
   baseURL: 'http://localhost:3001',
@@ -18,7 +19,8 @@ const registerApi = async (name, email, password, role) => {
   return result;
 };
 
-const getProducts = () => apiTrybeer.get('/products');
+const getProducts = () =>
+  apiTrybeer.get('/products', { headers: { authorization: getLS('user').token } });
 
 export default {
   loginApi,

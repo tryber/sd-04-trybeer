@@ -8,10 +8,11 @@ const tokenValidator = async (req, res, next) => {
   const token = req.headers.authorization;
 
   if (!token) return res.status(401).json({ message: 'missing auth token' });
+
   try {
     const tokenValid = jwt.verify(token, secret);
 
-    const user = await userModel.findUserByEmail(tokenValid.email);
+    const user = await userModel.searchUserByEmail(tokenValid.email);
 
     if (!user) return res.status(401).json({ message: 'Erro ao procurar usuário' });
 
