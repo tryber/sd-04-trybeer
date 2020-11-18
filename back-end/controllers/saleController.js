@@ -23,7 +23,7 @@ const getSales = async (_req, res) => {
 
 const getDetailsSales = async (req, res) => {
   const { id } = req.params;
-  const result = await salesService.orderDetail(id);
+  const result = await saleService.orderDetail(id);
   res.status(200).json(result);
 };
 

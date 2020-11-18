@@ -24,11 +24,11 @@ const postNewSale = async (id, addressName, addressNumber, cart, totalPrice) => 
 
 const orderDetail = async (orderId) => {
   // chamada da consulta do Vitao para retornar ID, DATE, PRICE
-  const products = await salesModel.getDetailsSale(orderId);
+  const products = await saleModel.getDetailsSale(orderId);
   return products;
 };
 
 module.exports = {
   postNewSale,
-  orderDetail
+  orderDetail,
 };
