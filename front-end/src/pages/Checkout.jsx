@@ -55,6 +55,7 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
       })
       .then((res) => {
         setUserId(res.data[0]);
+        localStorage.setItem('userID', userId);
       })
       .catch((error) => console.log(error));
   }
@@ -88,8 +89,7 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
         date,
         status,
       })
-      .then((res) => {
-        console.log(res);
+      .then((_res) => {
         setMessageSuccess('Compra realizada com sucesso!');
         setTimeout(() => setRedirect(true), 2000);
       })

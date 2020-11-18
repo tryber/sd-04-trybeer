@@ -29,4 +29,22 @@ const registerSale = async (
     .execute());
 };
 
-module.exports = { registerSale };
+const getSalesByUserId = async (userId) => {
+  const sales = await connection().then((db) => db
+    .getTable('sales')
+    .select(['id', 'total_price', 'sale_date'])
+    .where('user_id = :userId')
+    .bind('userId', userId)
+    .execute()
+    .then((results) => results.fetchAll()));
+
+  if (!sales) return null;
+
+  return sales.map(([id, price, date]) => ({
+    id,
+    price,
+    date,
+  }));
+};
+
+module.exports = { registerSale, getSalesByUserId };

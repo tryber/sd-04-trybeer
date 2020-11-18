@@ -63,7 +63,6 @@ app.get('/products', async (_req, res) => {
 });
 
 app.post('/sales', async (req, res) => {
-  console.log(req.body);
   const { userId, price, street, houseNumber, date, status } = req.body;
   await salesModel.registerSale(
     userId,
@@ -74,6 +73,12 @@ app.post('/sales', async (req, res) => {
     status,
   );
   return res.status(200).json({ message: 'sale registered successfully' });
+});
+
+app.get('/sales', async (req, res) => {
+  const { userId } = req.query;
+  const sales = await salesModel.getSalesByUserId(userId);
+  return res.status(200).json(sales);
 });
 
 app.listen(3001, () => console.log('Listening on 3001'));
