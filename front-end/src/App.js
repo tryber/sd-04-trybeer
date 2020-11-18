@@ -24,7 +24,7 @@ function App() {
         <UserProfile />
       </Route>
       {/* <Route path="/orders/:id"> */}
-      <Route path="/orders/teste">
+      <Route path="/orders/:id">
         <OrderDetail />
       </Route>
       <Route path="/register">
