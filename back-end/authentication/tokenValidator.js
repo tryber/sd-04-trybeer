@@ -7,7 +7,7 @@ const secret = 'Trybeer';
 const tokenValidator = async (req, res, next) => {
   const token = req.headers.authorization;
 
-  if (!token) return res.status(401).jsom({ message: 'missing auth token' });
+  if (!token) return res.status(401).json({ message: 'missing auth token' });
   try {
     const tokenValid = jwt.verify(token, secret);
 
@@ -20,6 +20,7 @@ const tokenValidator = async (req, res, next) => {
     req.user = user;
 
     req.body = { ...req.body, tokenValid };
+
     next();
   } catch (err) {
     console.error(err);
