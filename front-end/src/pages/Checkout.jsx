@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import styles from './Checkout.module.css';
 
+import { saveCart } from '../actions';
+
 import Menu from '../components/Menu';
 
 import { updateTotalCheckout, updateCart } from '../actions';
-import { Redirect } from 'react-router-dom';
 
-const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
+const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
   const [userLS, setUserLS] = useState(null);
 
   // dados para registrar a venda
@@ -26,10 +28,23 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
   const [messageSuccess, setMessageSuccess] = useState('');
 
   const [redirect, setRedirect] = useState(false);
+  const [redirectToLogin, setRedirectToLogin] = useState(false);
+
+  const saveCart = () => {
+    const cartLS = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalLS = JSON.parse(localStorage.getItem('total'));
+
+    console.log('recupera LS', cartLS);
+    return cartLS ? saveCartLS(cartLS, totalLS) : null;
+  };
 
   useEffect(() => {
+    if (!localStorage.getItem('user')) {
+      return setRedirectToLogin(true);
+    }
     const userData = JSON.parse(localStorage.getItem('user'));
     setUserLS(userData);
+    saveCart();
   }, []);
 
   // requisição para pegar o id do usuário no banco
@@ -50,7 +65,13 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
     if (total === 0) {
       setMessageCart('Não há produtos no carrinho');
     }
+    setMessageCart('');
   }, [total]);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('total', total);
+  }, [cart, total]);
 
   const removeProduct = (item) => {
     const totalProductValue = item.price * item.quantity;
@@ -71,7 +92,7 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
       .then((res) => {
         console.log(res);
         setMessageSuccess('Compra realizada com sucesso!');
-        setRedirect(true);
+        setTimeout(() => setRedirect(true), 2000);
       })
       .catch((error) => console.log(error));
   };
@@ -88,6 +109,8 @@ const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
 
   return (
     <section className={styles.mainSection}>
+    <div>
+      {redirectToLogin && <Redirect to="/login" />}
       <Menu title="Finalizar Pedido" />
       <div className={styles.mainDiv}>
         <div className={styles.checkoutDiv}>
@@ -169,6 +192,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   updateTotal: (payload) => dispatch(updateTotalCheckout(payload)),
   updateProducts: (payload) => dispatch(updateCart(payload)),
+  saveCartLS: (localstorage, total) => dispatch(saveCart(localstorage, total)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

@@ -7,7 +7,6 @@ import styles from './Products.module.css';
 import { incQuantity, decQuantity, saveCart } from '../actions';
 
 import Menu from '../components/Menu';
-// import ProductCards from '../components/ProductCards';
 
 const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const [products, setProducts] = useState([]);
@@ -15,13 +14,20 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const [userLogged, setUserLogged] = useState(false);
 
   const initialCart = JSON.parse(localStorage.getItem('cart')) || [];
+  const [redirectToLogin, setRedirectToLogin] = useState(false);
+  const saveCart = () => {
+    const cartLS = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalLS = JSON.parse(localStorage.getItem('total'));
 
-  const initialTotal = Number(localStorage.getItem('total')) || 0;
-
-  const [cartLS, setCartLS] = useState(initialCart);
-  const [totalLS, setTotalLS] = useState(initialTotal);
+    console.log('recupera LS', cartLS);
+    return cartLS ? saveCartLS(cartLS, totalLS) : null;
+  };
 
   useEffect(() => {
+    if (!localStorage.getItem('user')) {
+      return setRedirectToLogin(true);
+    }
+
     axios
       .get('http://localhost:3001/products')
       .then((res) => {
@@ -32,11 +38,12 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
     if (!user) {
       setUserLogged(true);
     }
+    saveCart();
   }, []);
 
   const quantity = (product) => {
     let qty;
-    let productInCart = cart.filter((item) => item.name === product.name);
+    const productInCart = cart.filter((item) => item.name === product.name);
 
     productInCart.length ? (qty = productInCart[0].quantity) : (qty = 0);
 
@@ -44,9 +51,22 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('total', total);
-  }, [cart, total]);
+  }, [total]);
+
+  const interval = () => {
+    setTimeout(() => {
+      console.log('interval');
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }, 500);
+  };
+
+  const stopDecreamet = (product) => {
+    const qty = quantity(product);
+    if (qty === 0 || !qty) return null;
+    decreaseQtd(product);
+    interval();
+  };
 
   return (
     <section className={styles.productsSection}>
@@ -103,6 +123,43 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
           ))}
       </div>
       <div className={styles.productsDiva}>
+    <div>
+      {redirectToLogin && <Redirect to="/login" />}
+      <Menu title="TryBeer" />
+      {products &&
+        products.map((product, index) => (
+          <div key={product.name}>
+            <p data-testid={`${index}-product-name`}>{product.name}</p>
+            <p
+              data-testid={`${index}-product-price`}
+            >{`R$ ${product.price.toFixed(2).replace('.', ',')}`}</p>
+            <img
+              data-testid={`${index}-product-img`}
+              alt=""
+              src={product.urlImage}
+              width="100px"
+            />
+            <button
+              type="button"
+              data-testid={`${index}-product-minus`}
+              onClick={() => stopDecreamet(product)}
+            >
+              -
+            </button>
+            <p data-testid={`${index}-product-qtd`}>{quantity(product)}</p>
+            <button
+              type="button"
+              data-testid={`${index}-product-plus`}
+              onClick={() => {
+                increaseQtd(product);
+                interval();
+              }}
+            >
+              +
+            </button>
+          </div>
+        ))}
+      <div>
         <Link to="/checkout">
           <button
             className={styles.verCarrinho}
@@ -117,6 +174,11 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
           className={styles.total}
           data-testid="checkout-bottom-btn-value"
         >{`R$ ${total.toFixed(2).replace('.', ',')}`}</p>
+        <p data-testid="checkout-bottom-btn-value">
+          {total === null
+            ? 'R$ 0,00'
+            : `R$ ${total.toFixed(2).replace('.', ',')}`}
+        </p>
       </div>
 
     </section>
@@ -131,7 +193,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   increaseQtd: (payload) => dispatch(incQuantity(payload)),
   decreaseQtd: (payload) => dispatch(decQuantity(payload)),
-  saveCartLS: (payload) => dispatch(saveCart(payload)),
+  saveCartLS: (localstorage, total) => dispatch(saveCart(localstorage, total)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

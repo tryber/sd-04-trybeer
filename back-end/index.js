@@ -64,8 +64,15 @@ app.get('/products', async (_req, res) => {
 
 app.post('/sales', async (req, res) => {
   console.log(req.body);
-  const { userId, price, street, number, date, status } = req.body;
-  await salesModel.registerSale(userId, price, street, number, date, status);
+  const { userId, price, street, houseNumber, date, status } = req.body;
+  await salesModel.registerSale(
+    userId,
+    price,
+    street,
+    houseNumber,
+    date,
+    status,
+  );
   return res.status(200).json({ message: 'sale registered successfully' });
 });
 
