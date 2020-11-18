@@ -15,8 +15,6 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const saveCart = () => {
     const cartLS = JSON.parse(localStorage.getItem('cart')) || [];
     const totalLS = JSON.parse(localStorage.getItem('total'));
-
-    console.log('recupera LS', cartLS);
     return cartLS ? saveCartLS(cartLS, totalLS) : null;
   };
 
@@ -37,28 +35,21 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const quantity = (product) => {
     let qty;
     const productInCart = cart.filter((item) => item.name === product.name);
-
     productInCart.length ? (qty = productInCart[0].quantity) : (qty = 0);
-
     return qty;
   };
 
   useEffect(() => {
     localStorage.setItem('total', total);
-  }, [total]);
-
-  const interval = () => {
-    setTimeout(() => {
-      console.log('interval');
+    if (cart !== []) {
       localStorage.setItem('cart', JSON.stringify(cart));
-    }, 500);
-  };
+    }
+  }, [cart, total]);
 
   const stopDecreamet = (product) => {
     const qty = quantity(product);
     if (qty === 0 || !qty) return null;
     decreaseQtd(product);
-    interval();
   };
 
   return (
@@ -89,10 +80,7 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
             <button
               type="button"
               data-testid={`${index}-product-plus`}
-              onClick={() => {
-                increaseQtd(product);
-                interval();
-              }}
+              onClick={() => increaseQtd(product)}
             >
               +
             </button>
