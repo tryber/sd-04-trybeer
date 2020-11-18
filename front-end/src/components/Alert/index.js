@@ -35,3 +35,15 @@ const Alert = (props) => {
 };
 
 export default Alert;
+
+Alert.propTypes = {
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  message: PropTypes.string,
+};
+
+Alert.defaultProps = {
+  isOpen: false,
+  onClose: () => null,
+  message: 'Error',
+};
