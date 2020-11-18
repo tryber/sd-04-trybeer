@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import ProviderTrybeer from './context';
 
 ReactDOM.render(
-  <BrowserRouter>
+  <ProviderTrybeer>
     <App />
-  </BrowserRouter>,
+  </ProviderTrybeer>,
   document.getElementById('root'),
 );
