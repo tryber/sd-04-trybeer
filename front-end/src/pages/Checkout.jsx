@@ -109,7 +109,6 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
 
   return (
     <section className={styles.mainSection}>
-    <div>
       {redirectToLogin && <Redirect to="/login" />}
       <Menu title="Finalizar Pedido" />
       <div className={styles.mainDiv}>

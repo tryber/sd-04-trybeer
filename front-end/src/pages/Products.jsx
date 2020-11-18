@@ -123,42 +123,42 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
           ))}
       </div>
       <div className={styles.productsDiva}>
-    <div>
-      {redirectToLogin && <Redirect to="/login" />}
-      <Menu title="TryBeer" />
-      {products &&
-        products.map((product, index) => (
-          <div key={product.name}>
-            <p data-testid={`${index}-product-name`}>{product.name}</p>
-            <p
-              data-testid={`${index}-product-price`}
-            >{`R$ ${product.price.toFixed(2).replace('.', ',')}`}</p>
-            <img
-              data-testid={`${index}-product-img`}
-              alt=""
-              src={product.urlImage}
-              width="100px"
-            />
-            <button
-              type="button"
-              data-testid={`${index}-product-minus`}
-              onClick={() => stopDecreamet(product)}
-            >
-              -
-            </button>
-            <p data-testid={`${index}-product-qtd`}>{quantity(product)}</p>
-            <button
-              type="button"
-              data-testid={`${index}-product-plus`}
-              onClick={() => {
-                increaseQtd(product);
-                interval();
-              }}
-            >
-              +
-            </button>
-          </div>
-        ))}
+        {redirectToLogin && <Redirect to="/login" />}
+        <Menu title="TryBeer" />
+        {products &&
+          products.map((product, index) => (
+            <div key={product.name}>
+              <p data-testid={`${index}-product-name`}>{product.name}</p>
+              <p
+                data-testid={`${index}-product-price`}
+              >{`R$ ${product.price.toFixed(2).replace('.', ',')}`}</p>
+              <img
+                data-testid={`${index}-product-img`}
+                alt=""
+                src={product.urlImage}
+                width="100px"
+              />
+              <button
+                type="button"
+                data-testid={`${index}-product-minus`}
+                onClick={() => stopDecreamet(product)}
+              >
+                -
+              </button>
+              <p data-testid={`${index}-product-qtd`}>{quantity(product)}</p>
+              <button
+                type="button"
+                data-testid={`${index}-product-plus`}
+                onClick={() => {
+                  increaseQtd(product);
+                  interval();
+                }}
+              >
+                +
+              </button>
+            </div>
+          ))}
+      </div>
       <div>
         <Link to="/checkout">
           <button
@@ -180,7 +180,6 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
             : `R$ ${total.toFixed(2).replace('.', ',')}`}
         </p>
       </div>
-
     </section>
   );
 };
