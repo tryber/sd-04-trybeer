@@ -15,8 +15,6 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
   const saveCart = () => {
     const cartLS = JSON.parse(localStorage.getItem('cart')) || [];
     const totalLS = JSON.parse(localStorage.getItem('total'));
-
-    console.log('recupera LS', cartLS);
     return cartLS ? saveCartLS(cartLS, totalLS) : null;
   };
 

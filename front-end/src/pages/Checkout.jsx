@@ -9,7 +9,7 @@ import Menu from '../components/Menu';
 
 import { updateTotalCheckout, updateCart } from '../actions';
 
-const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
+const Checkout = ({ cart, total, updateTotal, updateProducts }) => {
   const [userLS, setUserLS] = useState(null);
 
   // dados para registrar a venda
@@ -21,7 +21,12 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
     new Date().toISOString().slice(0, 19).replace('T', ' '),
   );
   const [status, setStatus] = useState('ok');
-  ///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////
+
+  // dados para o insert na tabela sales_products
+  const [productId, setProductId] = useState();
+  const [quantity, setQuantity] = useState();
+  ///////////////////////////////////////////////////////
 
   const [messageCart, setMessageCart] = useState('');
   const [messageSuccess, setMessageSuccess] = useState('');
@@ -29,25 +34,15 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
   const [redirect, setRedirect] = useState(false);
   const [redirectToLogin, setRedirectToLogin] = useState(false);
 
-  const saveCart = () => {
-    const cartLS = JSON.parse(localStorage.getItem('cart')) || [];
-    const totalLS = JSON.parse(localStorage.getItem('total'));
-
-    console.log('recupera LS', cartLS);
-    return cartLS ? saveCartLS(cartLS, totalLS) : null;
-  };
-
   useEffect(() => {
     if (!localStorage.getItem('user')) {
       return setRedirectToLogin(true);
     }
     const userData = JSON.parse(localStorage.getItem('user'));
     setUserLS(userData);
-    saveCart();
   }, []);
 
   // requisição para pegar o id do usuário no banco
-
   if (userLS) {
     axios
       .get('http://localhost:3001/users', {
@@ -59,18 +54,22 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
       })
       .catch((error) => console.log(error));
   }
+  //////////////////////////////////////////////////
 
   useEffect(() => {
     setPrice(total);
     if (total === 0) {
       setMessageCart('Não há produtos no carrinho');
     }
-    setMessageCart('');
+    // setMessageCart('');
   }, [total]);
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('total', total);
+
+    setProductId(cart.map((item) => item.id));
+    setQuantity(cart.map((item) => item.quantity));
   }, [cart, total]);
 
   const removeProduct = (item) => {
@@ -88,6 +87,8 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
         houseNumber,
         date,
         status,
+        productId,
+        quantity,
       })
       .then((_res) => {
         setMessageSuccess('Compra realizada com sucesso!');
@@ -98,10 +99,9 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(date);
-
     registerSale();
+    localStorage.removeItem('total');
+    localStorage.removeItem('cart');
   };
 
   if (redirect) return <Redirect to="/products" />;
