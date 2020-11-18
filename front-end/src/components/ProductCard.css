@@ -30,4 +30,17 @@
 .beer-card span {
   font-weight: 900;
   font-size: 1.5rem;
+  margin-top: 5px;
+}
+
+.bottom button {
+  background-color: transparent;
+  border: 0;
+  width: 40px;
+  font-size: 30px;
+}
+
+.bottom button:hover {
+  color: blue;
+  border: 0;
 }
