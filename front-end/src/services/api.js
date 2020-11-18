@@ -30,12 +30,8 @@ const registerUserAPI = async (name, email, password, role) => {
 const loginAPI = (email, password) => api.post('/login', { email, password });
 
 const productsAPI = async () => {
-  try {
-    const { data } = await api.get('/products');
-    return data;
-  } catch (err) {
-    return console.error('productsAPI', err);
-  }
+  const { data } = await api.get('/products');
+  return data;
 };
 const updateUserAPI = (name, email) => (api.put('/user/update', { name, email }));
 

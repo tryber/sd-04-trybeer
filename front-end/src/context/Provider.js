@@ -11,7 +11,7 @@ const Provider = ({ children }) => {
     setCart,
   };
 
-  return <Context.Provider value={states}>{children}</Context.Provider>;
+  return <Context.Provider value={ states }>{children}</Context.Provider>;
 };
 
 Provider.propTypes = {
