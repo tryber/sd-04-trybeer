@@ -1,14 +1,17 @@
 import * as yup from 'yup';
 
-let schema = yup.object().shape({
+const minName = 12;
+const minPassword = 6;
+
+const schema = yup.object().shape({
   // nome - deve conter, no mínimo, 12 letras, sem números ou caracteres especiais;
   signName: yup
     .string()
-    .min(12, 'O nome deve conter pelo menos 12 letras')
+    .min(minName, 'O nome deve conter pelo menos 12 letras')
     .matches(/^([a-zA-Z ])*$/gmi, 'O Nome deve conter somente letras')
     .required('É necessário inserir um nome'),
 
-  // email - deve conter um email válido. Um email válido possui o formato <nome>@<domínio>;  
+  // email - deve conter um email válido. Um email válido possui o formato <nome>@<domínio>;
   signEmail: yup
     .string()
     .email('O email deve ter o formato nome@domínio.com')
@@ -17,7 +20,7 @@ let schema = yup.object().shape({
   // senha - composta por, no mínimo, 6 números;
   signPassword: yup
     .string()
-    .min(6, 'A senha deve conter pelo menos 6 números')
+    .min(minPassword, 'A senha deve conter pelo menos 6 números')
     .required('É necessário inserir uma senha'),
 });
 
