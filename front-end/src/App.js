@@ -6,6 +6,7 @@ import UserProfile from './components/UserProfile/index';
 import AdminProfile from './components/AdminProfile/index';
 import ClientProducts from './components/screens/ClientProducts/ClientProducts';
 import ClientCheckout from './components/screens/ClientCheckout/ClientCheckout';
+import PrivateRoute from './components/Auth';
 
 const App = () => (
   <BrowserRouter>
@@ -16,7 +17,7 @@ const App = () => (
       <Route path="/login" component={ Login } />
       <Route exact path="/" component={ Login } />
       <Route path="/profile" component={ UserProfile } />
-      <Route path="/admin/profile" component={ AdminProfile } />
+      <PrivateRoute path="/admin/profile" component={ AdminProfile } />
     </Switch>
   </BrowserRouter>
 );
