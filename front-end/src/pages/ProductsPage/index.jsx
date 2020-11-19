@@ -36,7 +36,6 @@ const Products = () => {
       isInitialMount.current = false;
     } else {
       setLS('cart', cart);
-      console.log(cart);
     }
   });
 

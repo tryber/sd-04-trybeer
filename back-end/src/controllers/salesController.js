@@ -1,5 +1,4 @@
 const { salesModel } = require('../models');
-// const salesModel = require('../models/salesModel');
 const { getCurrentDate } = require('../utils/date');
 
 const getAllSalesController = async (req, res) => {
