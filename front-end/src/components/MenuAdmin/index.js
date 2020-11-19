@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Center, Box, Flex, Spacer, Text,
+  Center, Flex, Spacer, Text,
 } from '@chakra-ui/react';
 
 import LinkBtn from '../LinkBtn';
