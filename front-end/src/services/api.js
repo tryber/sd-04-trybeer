@@ -10,17 +10,21 @@ const headers = {
 };
 
 const registerUserAPI = async (name, email, password, role) => {
-  const result = await api.post(
-    '/user',
-    {
-      name,
-      email,
-      password,
-      role,
-    },
-    headers,
-  );
-  return result;
+  try {
+    const result = await api.post(
+      '/user',
+      {
+        name,
+        email,
+        password,
+        role,
+      },
+      headers
+    );
+    return result;
+  } catch (err) {
+    return err.response;
+  }
 };
 
 const loginAPI = (email, password) => api.post('/login', { email, password });
@@ -35,28 +39,24 @@ const getSalesTb = async () => {
   }
 };
 
-const insertSaleAPI = async (
-  userId,
-  totalPrice,
-  deliveryAddr,
-  deliveryNumber,
-) => api.post(
-  '/sales',
-  {
-    userId,
-    totalPrice,
-    deliveryAddr,
-    deliveryNumber,
-  },
-  headers,
-);
+const insertSaleAPI = async (userId, totalPrice, deliveryAddr, deliveryNumber) =>
+  api.post(
+    '/sales',
+    {
+      userId,
+      totalPrice,
+      deliveryAddr,
+      deliveryNumber,
+    },
+    headers
+  );
 
 const productsAPI = async () => {
   const { data } = await api.get('/products');
   return data;
 };
 
-const updateUserAPI = (name, email) => (api.put('/user/update', { name, email }));
+const updateUserAPI = (name, email) => api.put('/user/update', { name, email });
 
 export default {
   registerUserAPI,

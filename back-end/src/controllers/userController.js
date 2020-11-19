@@ -1,9 +1,6 @@
 const { userModel } = require('../models');
 const authentication = require('../auth/authentication');
-const {
-  ERR_EMAIL_NOT_FOUND,
-  ERR_INVALID_PASSWORD,
-} = require('../utils/errorTypes');
+const { ERR_EMAIL_NOT_FOUND, ERR_INVALID_PASSWORD } = require('../utils/errorTypes');
 
 const updateUserController = async (req, res) => {
   try {
@@ -26,10 +23,7 @@ const loginController = async (req, res) => {
     return res.status(200).json(userInfo);
   } catch (err) {
     console.log(err);
-    if (
-      err.message === ERR_EMAIL_NOT_FOUND
-      || err.message === ERR_INVALID_PASSWORD
-    ) {
+    if (err.message === ERR_EMAIL_NOT_FOUND || err.message === ERR_INVALID_PASSWORD) {
       return res.status(401).json({ message: 'Incorrect email or password' });
     }
   }
@@ -39,6 +33,7 @@ const createUserController = async (req, res) => {
   try {
     const data = req.body;
     const result = await userModel.getUserByEmail(data.email);
+
     if (result) {
       if (result.email === data.email) {
         return res.status(403).json({ message: 'E-mail already in database.' });
