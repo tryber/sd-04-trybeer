@@ -19,14 +19,14 @@ const AdminProfile = () => {
             data-testid="profile-name"
             id="exampleInputName1"
           >
-          { name }
+            { name }
           </span>
         </div>
         <div className="form-group">
           <span
             data-testid="profile-email"
           >
-          { email }
+            { email }
           </span>
         </div>
       </form>
