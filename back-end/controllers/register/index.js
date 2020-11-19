@@ -8,15 +8,25 @@ const register = async (req, res) => {
     // signRole - false -> 'client'
     const role = signRole ? 'administrator' : 'client';
 
-    // Verifica se existe usuário com o mesmo email já existe
-    const user = await getByEmail(signEmail);
-    if (user) {
-      res.status(200).json({ message: 'E-mail already in database.' });
+    // Verifica se existe usuário com o mesmo email
+    const user = await getByEmail(signEmail)
+      .then((data) => {
+        // console.log('Data: ', data);
+        return data;
+      })
+      .catch((e) => {
+        // console.log('Erro: ', e);
+        return e;
+      });
+    // console.log('User: ', user);
+
+    if (user.email) {
+      return res.status(200).json({ message: 'E-mail already in database.' });
     }
 
     await add(signName, signEmail, signPassword, role);
-    const newUser = await getByEmail(signEmail);
-    res.status(201).json(newUser);
+    // const newUser = await getByEmail(signEmail);
+    return res.status(201).json({ message: 'Usuario criado com sucesso' });
   } catch (_error) {
     console.log(_error.message);
     res.status(501).json({ message: 'Falha ao cadastrar usuário' });
