@@ -44,6 +44,7 @@ function checkStorage(id, zero, setQuantity) {
       return null;
     });
   }
+  return null;
 }
 
 export default function ProductCard(data) {
@@ -60,7 +61,7 @@ export default function ProductCard(data) {
   // roda quando o card eh montado, checa localstorage
   // checa se o item do card ja esta no localstorage e atribui a quantidade
   useEffect(() => {
-    checkStorage(zero, id);
+    checkStorage(id, zero, setQuantity);
   }, [id]);
 
   // roda toda vez que o valor do "quantity" for alterado
