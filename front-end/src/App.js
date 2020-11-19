@@ -1,10 +1,10 @@
 import React from 'react';
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loadFromLocalStorage } from './services/localStorage';
@@ -27,7 +27,7 @@ function App() {
     const userData = loadFromLocalStorage('user');
 
     if (userData != null) {
-      const decoded = jwt_decode(userData.token);
+      const decoded = jwtDecode(userData.token);
       const now = Date.now().valueOf() / numDivisionDate; // inspiration from web Stackflow
       if (typeof decoded.exp !== 'undefined' && decoded.exp > now) {
         const user = {
