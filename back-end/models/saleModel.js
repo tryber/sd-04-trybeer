@@ -69,10 +69,20 @@ const getDetailsSale = async (id) => {
   return result;
 };
 
+const setStatusAsDelivered = async (id) => connection()
+  .then((db) => db
+    .getTable('sales')
+    .update()
+    .set('status', 'Entregue')
+    .where('id = :id')
+    .bind('id', id)
+    .execute());
+
 module.exports = {
   insertNewSale,
   insertProductSale,
   getSales,
   getDetailsSale,
   getAllSalesBy,
+  setStatusAsDelivered,
 };

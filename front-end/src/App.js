@@ -45,11 +45,11 @@ function App() {
       <Route path="/products">
         <Products />
       </Route>
-      <Route path="/admin/orders">
-        <AdminOrders />
-      </Route>
       <Route path="/admin/orders/:id">
         <AdminOrderDetails />
+      </Route>
+      <Route path="/admin/orders">
+        <AdminOrders />
       </Route>
       <Route path="/admin/profile">
         <AdminProfile />
