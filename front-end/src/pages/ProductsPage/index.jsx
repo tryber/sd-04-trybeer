@@ -15,13 +15,20 @@ const Products = () => {
   const isInitialMount = React.useRef(true);
 
   useEffect(() => {
-    (async () => {
-      const products = await api.productsAPI();
-      const { token } = getLS('user') || {};
-      if (!token) setLogin(false);
+    // (async () => {
+    //   const products = await api.productsAPI();
+    //   const { token } = getLS('user') || {};
+    //   if (!token) setLogin(false);
+    //   setData(products);
+    //   (() => (getLS('cart') ? setCart(getLS('cart')) : setCart([])))();
+    // })();
+
+    api.productsAPI().then((products) => {
       setData(products);
-      (() => (getLS('cart') ? setCart(getLS('cart')) : setCart([])))();
-    })();
+    })
+    const { token } = getLS('user') || {};
+    if (!token) setLogin(false);
+    (() => (getLS('cart') ? setCart(getLS('cart')) : setCart([])))();
   }, [setCart]);
 
   React.useEffect(() => {
