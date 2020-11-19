@@ -37,12 +37,12 @@ const searchUserByEmail = async (emailInput) => {
 const nameUpdate = async (name, newName) => {
   await connection()
     .then((db) => db
-    .getTable('users')
-    .update()
-    .set('name', newName)
-    .where('name = :nameBind')
-    .bind('nameBind', name)
-    .execute());
+      .getTable('users')
+      .update()
+      .set('name', newName)
+      .where('name = :nameBind')
+      .bind('nameBind', name)
+      .execute());
 };
 
 module.exports = {

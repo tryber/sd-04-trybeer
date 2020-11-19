@@ -19,7 +19,6 @@ const UserProfile = () => {
     user.name = api.data;
 
     return localStorage.setItem('user', JSON.stringify(user));
-
   };
   return (
     <div>
