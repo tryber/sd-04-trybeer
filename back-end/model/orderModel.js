@@ -6,18 +6,18 @@ const createOrder = async (
   deliveryAddress,
   deliveryNumber,
   saleDate,
-  status = "Pendente"
-) => {
-  return connection().then((db) =>
+  status = 'Pendente',
+) => 
+  connection().then((db) =>
     db
-      .getTable("sales")
+      .getTable('sales')
       .insert([
-        "user_id",
-        "total_price",
-        "delivery_address",
-        "delivery_number",
-        "sale_date",
-        "status",
+        'user_id',
+        'total_price',
+        'delivery_address',
+        'delivery_number',
+        'sale_date',
+        'status',
       ])
       .values(
         userId,
@@ -25,11 +25,10 @@ const createOrder = async (
         deliveryAddress,
         deliveryNumber,
         saleDate,
-        status
+        status,
       )
-      .execute()
+      .execute(),
   );
-};
 
 module.exports = {
   createOrder,
