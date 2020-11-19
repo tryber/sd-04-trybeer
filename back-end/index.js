@@ -35,6 +35,8 @@ app.get('/orders/:id', controllers.sale.getDetailsSales);
 
 app.get('/admin/orders', controllers.sale.getSales);
 
+app.put('/admin/orders/:id', controllers.sale.setStatusAsDelivered);
+
 app.use((err, _req, res, _next) => {
   res.status(405).json({ err: err.message });
 });

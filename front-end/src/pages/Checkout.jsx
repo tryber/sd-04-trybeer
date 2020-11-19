@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Header } from '../components/Header';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { postOrder } from '../services/TrybeerApi';
 import { removeAllCart } from '../redux/actions';
 

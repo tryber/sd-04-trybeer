@@ -31,7 +31,14 @@ const getSales = async (_req, res) => {
 const getDetailsSales = async (req, res) => {
   const { id } = req.params;
   const result = await saleService.orderDetail(id);
+  console.log('result from service', result);
   res.status(200).json(result);
+};
+
+const setStatusAsDelivered = async (req, res) => {
+  const { id } = req.params;
+  return saleModel.setStatusAsDelivered(id)
+    .then(() => res.status(200));
 };
 
 module.exports = {
@@ -39,4 +46,5 @@ module.exports = {
   getSales,
   getDetailsSales,
   getAllUserSales,
+  setStatusAsDelivered,
 };

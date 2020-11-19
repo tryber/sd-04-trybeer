@@ -40,6 +40,7 @@ const orderDetail = async (orderId) => {
     'id',
     'total_price',
     'sale_date',
+    'status',
   ]);
   const products = await saleModel.getDetailsSale(orderId);
   return { products, sale };
