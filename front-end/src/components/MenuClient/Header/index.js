@@ -5,7 +5,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
-
+// Helper Component
 const Header = (props) => {
   const { children } = props;
   return (
