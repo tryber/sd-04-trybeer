@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, React } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import FormRegister from '../../components/FormRegister';
@@ -14,7 +13,6 @@ const Register = () => {
   useEffect(() => {
     if (isLoggedIn) {
       saveToLocalStorage('user', { token, ...userData });
-      console.log(userData);
       userData.role === 'client' ? history.push('/products') : history.push('/admin/orders');
     }
   }, [isLoggedIn]);
@@ -22,8 +20,8 @@ const Register = () => {
   return (
     <div>
       <FormRegister />
-      {errors.length > 0
-        ? errors.map((error) => <span key={error.code}>{error.message}</span>)
+      {(errors.length > 0)
+        ? errors.map((error) => <span key={ error.code }>{ error.message }</span>)
         : null}
     </div>
   );

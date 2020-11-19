@@ -14,9 +14,9 @@ class UserService {
     this.http.interceptors.response.use(this.handleSuccess, this.handleError);
   }
 
-  handleSuccess = (response) => {
+  handleSuccess(response) {
     return response;
-  };
+  }
 
   handleError = (error) => {
     let errorMsg;

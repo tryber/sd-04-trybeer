@@ -11,10 +11,16 @@ function AdminProfile() {
     <div>
       <Header />
       <div>
-        Nome: <span data-testid="profile-name">{name}</span>
+        Nome:
+        <span data-testid="profile-name">
+          {name}
+        </span>
       </div>
       <div>
-        Email: <span data-testid="profile-email">{email}</span>
+        Email:
+        <span data-testid="profile-email">
+          {email}
+        </span>
       </div>
     </div>
   );
