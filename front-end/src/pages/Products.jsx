@@ -23,6 +23,17 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
       return setRedirectToLogin(true);
     }
 
+    if (localStorage.getItem('user')) {
+      axios
+        .get('http://localhost:3001/users', {
+          params: { email: JSON.parse(localStorage.getItem('user')).email },
+        })
+        .then((res) => {
+          localStorage.setItem('userID', res.data[0]);
+        })
+        .catch((error) => console.log(error));
+    }
+
     axios
       .get('http://localhost:3001/products')
       .then((res) => {

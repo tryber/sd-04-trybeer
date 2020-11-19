@@ -21,7 +21,12 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
     new Date().toISOString().slice(0, 19).replace('T', ' '),
   );
   const [status, setStatus] = useState('ok');
-  ///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////
+
+  // dados para o insert na tabela sales_products
+  const [productId, setProductId] = useState();
+  const [quantity, setQuantity] = useState();
+  ///////////////////////////////////////////////////////
 
   const [messageCart, setMessageCart] = useState('');
   const [messageSuccess, setMessageSuccess] = useState('');
@@ -45,7 +50,6 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
   }, []);
 
   // requisição para pegar o id do usuário no banco
-
   if (userLS) {
     axios
       .get('http://localhost:3001/users', {
@@ -53,9 +57,11 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
       })
       .then((res) => {
         setUserId(res.data[0]);
+        localStorage.setItem('userID', userId);
       })
       .catch((error) => console.log(error));
   }
+  //////////////////////////////////////////////////
 
   useEffect(() => {
     setPrice(total);
@@ -68,6 +74,9 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('total', total);
+
+    setProductId(cart.map((item) => item.id));
+    setQuantity(cart.map((item) => item.quantity));
   }, [cart, total]);
 
   const removeProduct = (item) => {
@@ -85,9 +94,10 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
         houseNumber,
         date,
         status,
+        productId,
+        quantity,
       })
-      .then((res) => {
-        console.log(res);
+      .then((_res) => {
         setMessageSuccess('Compra realizada com sucesso!');
         setTimeout(() => setRedirect(true), 2000);
       })
