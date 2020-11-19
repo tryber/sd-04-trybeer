@@ -7,7 +7,7 @@ const config = {
   host: process.env.HOSTNAME,
   port: 33060,
   socketPath: 'var/run/mysqld/mysqld.sock',
-  schema: 'Trybeer'
+  schema: 'Trybeer',
 };
 
 let schema;
