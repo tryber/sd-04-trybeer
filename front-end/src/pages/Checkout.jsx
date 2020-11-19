@@ -122,7 +122,6 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
       {cart &&
         cart.map((item, index) => (
           <div key={item.name}>
-            {console.log(item)}
             <p data-testid={`${index}-product-name`}>{item.name}</p>
             <p
               data-testid={`${index}-product-unit-price`}
