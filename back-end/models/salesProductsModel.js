@@ -8,22 +8,21 @@ const registerSalesProducts = async (saleId, productId, quantity) => {
     .execute());
 };
 
-// const getOrderById = async (id) => {
-//   const order = await connection().then((db) => db
-//     .getTable('sales')
-//     .select(['id', 'total_price', 'sale_date'])
-//     .where('id = :id')
-//     .bind('id', id)
-//     .execute()
-//     .then((results) => results.fetchAll()));
+const getSaleById = async (saleId) => {
+  const session = await connection();
+  const result = await session
+    .sql(`SELECT P.name, P.price, S.total_price, S.sale_date, SP.quantity, SP.sale_id
+      FROM products AS P
+      INNER JOIN sales_products AS SP
+      ON P.id = SP.product_id
+      INNER JOIN sales AS S
+      ON S.id = SP.sale_id
+      WHERE SP.sale_id = ${saleId};`)
+    .execute()
+    .then((results) => results.fetchAll());
 
-//   if (!order) return null;
+  if (!result.length) return null;
+  return result;
+};
 
-//   return order.map(([id, price, date]) => ({
-//     id,
-//     price,
-//     date,
-//   }));
-// }
-
-module.exports = { registerSalesProducts };
+module.exports = { registerSalesProducts, getSaleById };

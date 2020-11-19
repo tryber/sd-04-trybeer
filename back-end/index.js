@@ -128,4 +128,15 @@ app.get('/sales', async (req, res) => {
   }
 });
 
+app.get('/details', async (req, res) => {
+  try {
+    const { saleId } = req.query;
+    console.log(saleId);
+    const orderDetails = await salesProductsModel.getSaleById(saleId);
+    return res.status(200).json(orderDetails);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+});
+
 app.listen(3001, () => console.log('Listening on 3001'));
