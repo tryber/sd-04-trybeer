@@ -127,6 +127,14 @@ img {
   text-decoration: underline;
 }
 
+.insideSection {
+  align-items: center;
+  background-image: url('./assets/imgs/cans.jpg');
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 @media (max-width: 40rem) {
   .generalSection {
     justify-content: center;
