@@ -14,12 +14,9 @@ const isAuthenticated = () => {
 const PrivateRoute = ({ component: Component }) => (
   <Route
     render={ () =>
-      isAuthenticated() ? (
-        <Component />
-      ) : <Redirect to={ { pathname: '/login' } } />
+      (isAuthenticated() ? (<Component />) : <Redirect to={ { pathname: '/login' } } />)
     }
-  />
-);
+  />);
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,

@@ -24,7 +24,7 @@ const UserProfile = () => {
               type="text"
               className="form-control"
               id="disabledInput"
-              placeholder= { name }
+              placeholder={ name }
             />
           </label>
 

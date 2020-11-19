@@ -17,7 +17,7 @@ const AdminProfile = () => {
       <Header title="Admin - Perfil" />
       <SideBar userType="admin" />
 
-      <form >
+      <form>
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">
             Name
