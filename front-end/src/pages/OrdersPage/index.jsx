@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import Menu from '../../components/Menu';
-import OrderCard from '../../components/OrderCard/OrderCard';
+import OrderCard from '../../components/OrderCard';
 import api from '../../services/api';
 import { getLS } from '../../utils';
-import './index.css'; 
-
+import styles from  './index.module.css';
 
 const Orders = () => {
-  const [ loading, setLoading ] = useState(false);
-  const [ saless, setSales ] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [sales, setSales] = useState([]);
 
   useEffect(() => {
     setLoading(true);
-    api.getSalesTb().then((data) => setSales(data.data.sales));
+    api.getSalesTb().then(data => setSales(data.data.sales));
     setLoading(false);
   }, []);
 
@@ -22,17 +21,20 @@ const Orders = () => {
   return loading ? <h1>Carregando...</h1> : (
     <div>
       <Menu nomeTela="Meus Pedidos" />
-      <div className="page-container">
+      <div className={styles.containerOrders}>
         <h3>Sua cesta</h3>
-        <div className="products">
-          {saless ? saless.map((order, index) => <OrderCard
-            id={order.id}
-            totalPrice={order.totalPrice}
-            saleDate={order.saleDate}
-            index={index}
-            key={index}
-            />
-          ) : ''}
+        <div className={styles.products}>
+          {sales
+            ? sales.map((order, index) => (
+                <OrderCard
+                  id={order.id}
+                  totalPrice={order.totalPrice}
+                  saleDate={order.saleDate}
+                  index={index}
+                  key={index}
+                />
+              ))
+            : ''}
         </div>
       </div>
     </div>

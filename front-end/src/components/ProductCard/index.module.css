@@ -1,11 +1,4 @@
-.container-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 100px;
-}
-
-.card-container {
+.cardContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -17,12 +10,12 @@
   padding: 15px;
 }
 
-.card-img {
+.cardImg {
   max-width: 160px;
   max-height: 200px;
 }
 
-.button-container {
+.buttonContainer {
   display: flex;
   justify-content: space-around;
   width: 100%;

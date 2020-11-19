@@ -1,4 +1,4 @@
-.btn-burger {
+.btnBurger {
   position: absolute;
   top: 2rem;
   left: 2rem;
@@ -14,11 +14,11 @@
   z-index: 10;  
 }
 
-.btn-burger:focus {
+.btnBurger:focus {
   outline: none;
 }
 
-.div-burger {
+.divBurger {
   width: 2rem;
   height: 0.25rem;
   background: #ffffff;

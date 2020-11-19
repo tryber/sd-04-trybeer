@@ -1,11 +1,11 @@
-.page-container {
+.containerOrders {
   display: flex;
   justify-content: center;
   align-items: stretch;
   height: 100vh;
   flex-direction: column;
   width: 50vw;
-  margin: 0 auto;
+  margin: 200px auto 50px;
 }
 
 .products {
