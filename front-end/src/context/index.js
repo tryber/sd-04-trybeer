@@ -1,4 +1,3 @@
-/* eslint-disable no-magic-numbers */
 import PropTypes from 'prop-types';
 import React, { createContext, useState } from 'react';
 
@@ -12,9 +11,9 @@ const ProductProvider = ({ children }) => {
 
   function totalValue() {
     const storage = JSON.parse(localStorage.cartItens);
-    if (storage.length > 0) {
+    if (storage.length > zero) {
       const valor = storage.map((ele) => ele.price * ele.quantity);
-      const final = valor.reduce((acc, numero) => acc + numero, 0);
+      const final = valor.reduce((acc, numero) => acc + numero, zero);
       return final.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' });
     }
     return zero.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' });
