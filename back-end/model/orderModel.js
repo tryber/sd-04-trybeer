@@ -1,11 +1,11 @@
-const connection = require("./connection");
+const connection = require('./connection');
 
 const createOrder = async (
-  user_id,
-  total_price,
-  delivery_address,
-  delivery_number,
-  sale_date,
+  userId,
+  totalPrice,
+  deliveryAddress,
+  deliveryNumber,
+  saleDate,
   status = "Pendente"
 ) => {
   return connection().then((db) =>
@@ -20,11 +20,11 @@ const createOrder = async (
         "status",
       ])
       .values(
-        user_id,
-        total_price,
-        delivery_address,
-        delivery_number,
-        sale_date,
+        userId,
+        totalPrice,
+        deliveryAddress,
+        deliveryNumber,
+        saleDate,
         status
       )
       .execute()

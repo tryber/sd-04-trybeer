@@ -19,7 +19,7 @@ app.use('/images', express.static('images'));
 app.post('/register', userController.userRegister);
 app.use('/login', userRouter);
 app.use('/products', productRouter);
-app.use('/order', orderRouter)
+app.use('/order', orderRouter);
 
 app.use('/profile', profileRouter);
 
