@@ -7,26 +7,25 @@ import SideBar from '../SideBar';
 
 const UserProfile = () => {
   const user = JSON.parse(localStorage.getItem('user'));
-  let { name, email } = user;
+  const { name, email } = user;
   const [newName, setNewName] = useState(name);
   const disableButton = newName === name;
 
   const newUserName = async (e) => {
     e.preventDefault();
-    
+
     const api = await API.userNameUpdateApi(name, email, newName);
 
     user.name = api.data;
-  
-    return localStorage.setItem('user', JSON.stringify(user));
-    
-  };
 
+    return localStorage.setItem('user', JSON.stringify(user));
+
+  };
   return (
     <div>
       <Header title="Meu perfil" />
       <SideBar userType="client" />
-      <form onSubmit={newUserName}>
+      <form onSubmit={ newUserName }>
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">
             Name
