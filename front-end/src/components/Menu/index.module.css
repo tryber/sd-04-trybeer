@@ -12,7 +12,7 @@
   z-index: 2;
 }
 
-.top-title {
+.topTitle {
   color: #ffffff;
   font-size: 30px;
   max-height: 5rem;
@@ -21,3 +21,8 @@
   top: 0;
   z-index: 3;
 }
+
+.side-menu-container {
+  background-color: white;
+}
+

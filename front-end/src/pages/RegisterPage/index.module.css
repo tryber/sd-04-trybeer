@@ -1,12 +1,21 @@
-.page-register {
-  background: #E5E5E5;
+.pageRegister {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  width: 50vw;
+  margin: 0 auto;
 }
 
-.form-registe {
-  left: 400px;
+.formRegister {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.nome {
+.name {
   font-family: Roboto;
   font-size: 24px;
   font-style: normal;
@@ -20,7 +29,7 @@
   width: 65px;
 }
 
-.nome-imput {
+.nameInput {
   background: #FFFFFF;
   border: 1px solid #000000;
   box-sizing: border-box;
@@ -45,7 +54,7 @@
   width: 60px;
 }
 
-.email-imput {
+.emailInput {
   background: #FFFFFF;
   border: 1px solid #000000;
   box-sizing: border-box;
@@ -56,7 +65,7 @@
   width: 335px;
 }
 
-.senha {
+.password {
   color: #000000;
   font-family: Roboto;
   font-size: 24px;
@@ -70,7 +79,7 @@
   width: 67px;
 }
 
-.senha-input {
+.passwordInput {
   background: #FFFFFF;
   border: 1px solid #000000;
   box-sizing: border-box;
@@ -81,7 +90,7 @@
   width: 335px;  
 }
 
-.box-in {
+.checkboxInput {
   border: 1px solid #000000;
   height: 26px;
   left: 34px;
@@ -90,7 +99,7 @@
   width: 23px;
 }
 
-.quero-vender {
+.wantToSell {
   color: #000000;
   font-family: Roboto;
   font-size: 24px;
@@ -104,7 +113,7 @@
   width: 142px;
 }
 
-.cadastrar-input {
+.registerInput {
   background: #1CD118;
   color: #000000;
   font-family: Roboto;
@@ -119,7 +128,7 @@
   width: 332px;
 }
 
-.cadastrar-input:disabled {
+.registerInput:disabled {
   background-color: grey;
   color:white;
   font-family: Roboto;

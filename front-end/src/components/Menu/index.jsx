@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import useOnClickOutside from '../../hooks';
 import Burger from '../Burger';
 import StyledMenu from './style';
-import './index.css';
+import styles from './index.module.css'
 
 const Menu = ({ nomeTela }) => {
   const [open, setOpen] = useState(false);
@@ -12,9 +12,9 @@ const Menu = ({ nomeTela }) => {
   useOnClickOutside(node, () => setOpen(false)); 
 
   return (
-    <header className="header" ref={ node }>
+    <header className={styles.header} ref={ node }>
       <Burger open={ open } setOpen={ setOpen } />
-      <StyledMenu open={ open } className="nav-bar side-menu-container">
+      <StyledMenu open={ open } className="side-menu-container">
         <Link to="/products" className="nav-link" data-testid="side-menu-item-products">
           Produtos
         </Link>
@@ -28,7 +28,7 @@ const Menu = ({ nomeTela }) => {
           Sair
         </Link>
       </StyledMenu>
-      <h1 className="top-title" data-testid="top-title">
+      <h1 className={styles.topTitle} data-testid="top-title">
         { nomeTela }
       </h1>
     </header>

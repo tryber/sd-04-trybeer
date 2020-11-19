@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-// método post para que as info sejam passados como json
-const headers = {
-  'Content-Type': 'application/json',
-};
-
 const api = axios.create({
   baseURL: 'http://localhost:3001',
 });
+
+// método para que as info sejam passados como json
+const headers = {
+  'Content-Type': 'application/json',
+};
 
 const registerUserAPI = async (name, email, password, role) => {
   try {
@@ -29,32 +29,40 @@ const registerUserAPI = async (name, email, password, role) => {
 
 const loginAPI = (email, password) => api.post('/login', { email, password });
 
-const insertSaleAPI = async (
-  userId,
-  totalPrice,
-  deliveryAddr,
-  deliveryNumber,
-) => api.post(
-  '/sales',
-  {
-    userId,
-    totalPrice,
-    deliveryAddr,
-    deliveryNumber,
-  },
-  headers,
-);
+const getSalesTb = async () => {
+  try {
+    const result = await api.get('/sales', headers);
+    if (!result) throw Error;
+    return result;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+const insertSaleAPI = async (userId, totalPrice, deliveryAddr, deliveryNumber) => {
+  await api.post(
+    '/sales',
+    {
+      userId,
+      totalPrice,
+      deliveryAddr,
+      deliveryNumber,
+    },
+    headers,
+  );
+};
 
 const productsAPI = async () => {
   const { data } = await api.get('/products');
   return data;
 };
 
-const updateUserAPI = (name, email) => (api.put('/user/update', { name, email }));
+const updateUserAPI = (name, email) => api.put('/user/update', { name, email });
 
 export default {
   registerUserAPI,
   loginAPI,
+  getSalesTb,
   insertSaleAPI,
   productsAPI,
   updateUserAPI,

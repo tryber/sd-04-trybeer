@@ -1,4 +1,11 @@
-.footer-cart {
+.containerCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.footerCart {
   display: flex;
   justify-content: space-between;
   bottom: 0;

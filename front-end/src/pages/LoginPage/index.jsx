@@ -3,8 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import InputForm from '../../components/InputForm';
 import { setLS } from '../../utils';
-import './index.css';
 import Menu from '../../components/Menu';
+import styles from './index.module.css';
 
 const Login = () => {
   const [form, setForm] = React.useState({ email: '', password: '' });
@@ -44,31 +44,33 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container container-general">
+    <div className={styles.loginContainer}>
       <Menu nomeTela="TryBeer" />
-      <form onSubmit={handleSubmit} className="login-form">
-        <InputForm
-          type="email"
-          name="email"
-          value={form.email}
-          label="Email"
-          handleChange={handleChange}
-          dataTestId="email-input"
-          className="login-input"
-        />
-        <InputForm
-          type="password"
-          name="password"
-          value={form.password}
-          label="Password"
-          handleChange={handleChange}
-          dataTestId="password-input"
-          className="login-input"
-        />
+      <form onSubmit={handleSubmit} className={styles.loginForm}>
+        <div className={styles.fieldsContainer}>
+          <InputForm
+            type="email"
+            name="email"
+            value={form.email}
+            label="Email"
+            handleChange={handleChange}
+            dataTestId="email-input"
+            className={styles.loginInput}
+          />
+          <InputForm
+            type="password"
+            name="password"
+            value={form.password}
+            label="Password"
+            handleChange={handleChange}
+            dataTestId="password-input"
+            className={styles.loginInput}
+          />
+        </div>
         <button
           type="submit"
           data-testid="signin-btn"
-          className="submit-btn"
+          className={styles.submitBtn}
           disabled={
             !(validateEmail(form.email) && validatePassword(form.password))
           }
@@ -78,7 +80,7 @@ const Login = () => {
         <Link
           to="/register"
           data-testid="no-account-btn"
-          className="no-account-btn"
+          className={styles.noAccountBtn}
         >
           Ainda não tenho conta
         </Link>

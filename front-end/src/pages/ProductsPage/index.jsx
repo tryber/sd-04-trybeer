@@ -1,13 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
-import api from '../../services/api';
-
-import Card from '../../components/Card';
-import Menu from '../../components/Menu';
-import './index.css';
-
-import { getLS, setLS } from '../../utils';
 import { Link, Redirect } from 'react-router-dom';
+import api from '../../services/api';
+import Card from '../../components/ProductCard';
+import Menu from '../../components/Menu';
+import { getLS, setLS } from '../../utils';
 import { Context } from '../../context/Provider';
+import styles from './index.module.css';
+
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -16,13 +15,20 @@ const Products = () => {
   const isInitialMount = React.useRef(true);
 
   useEffect(() => {
-    (async () => {
-      const products = await api.productsAPI();
-      const { token } = getLS('user') || {};
-      if (!token) setLogin(false);
+    // (async () => {
+    //   const products = await api.productsAPI();
+    //   const { token } = getLS('user') || {};
+    //   if (!token) setLogin(false);
+    //   setData(products);
+    //   (() => (getLS('cart') ? setCart(getLS('cart')) : setCart([])))();
+    // })();
+
+    api.productsAPI().then((products) => {
       setData(products);
-      (() => (getLS('cart') ? setCart(getLS('cart')) : setCart([])))();
-    })();
+    })
+    const { token } = getLS('user') || {};
+    if (!token) setLogin(false);
+    (() => (getLS('cart') ? setCart(getLS('cart')) : setCart([])))();
   }, [setCart]);
 
   React.useEffect(() => {
@@ -30,7 +36,6 @@ const Products = () => {
       isInitialMount.current = false;
     } else {
       setLS('cart', cart);
-      console.log(cart);
     }
   });
 
@@ -40,7 +45,7 @@ const Products = () => {
   return (
     <>
       <Menu nomeTela="TryBeer" />
-      <div className="container-general container-cards">
+      <div className={`${styles.containerCards} container-general`}>
         {data.map(({ urlImage, id, name, price }, index) => (
           <Card
             index={index}
@@ -52,7 +57,7 @@ const Products = () => {
           />
         ))}
       </div>
-      <footer className="footer-cart">
+      <footer className={styles.footerCart}>
         <span data-testid="checkout-bottom-btn-value">
           {`Total: R$ ${cart
             .reduce((acc, cur) => {
