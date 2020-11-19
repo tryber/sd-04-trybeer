@@ -1,14 +1,16 @@
-import React, { useState }  from 'react';
+import React, { useContext }  from 'react';
 import Header from '../Header';
 import ProviderTrybeer, {TrybeerContext}  from '../../context/index'
 
 
 const UserOrder = () => {
-  const {product} = ProviderTrybeer(TrybeerContext)
+  const {product} = useContext(TrybeerContext)
+  /* const {product} = ProviderTrybeer(TrybeerContext) */
+  console.log(product)
   return(
   <div>
     <Header />
-    {console.log(product)}
+    {/* {console.log(product)} */}
     <title data-testid="top-title">Meus Pedidos</title>
     <div data-testid="0-order-card-container">
       <p data-testid="0-order-number">Numero do pedido</p>
