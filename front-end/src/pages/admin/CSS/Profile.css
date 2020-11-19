@@ -1,0 +1,13 @@
+.bodyAdm {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profile-container {
+  margin: 6vh 0 0 8vw;
+}
+
+.infoText {
+  display: flex;
+  flex-direction: column;
+}
