@@ -36,7 +36,7 @@ const useEffectCustom = (setQttPdtsCart, setTotalPriceCart, setProducts, history
   useEffect(() => {
     (async () => {
       try {
-        // if (!getLS('user')) return history.push('/login');
+        if (!getLS('user')) return history.push('/login');
 
         const token = getLS('user').token;
 
