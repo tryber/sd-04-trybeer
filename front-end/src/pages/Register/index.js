@@ -89,7 +89,7 @@ function Register() {
             formik.errors.signPassword && formik.touched.signPassword
           }
         >
-          <FormLabel htmlFor="signPassword">Senha</FormLabel>
+          <FormLabel htmlFor="signPassword">Password</FormLabel>
           <Input
             type="password"
             name="signPassword"
@@ -101,15 +101,28 @@ function Register() {
           <FormErrorMessage>{ formik.errors.signPassword }</FormErrorMessage>
         </FormControl>
 
-        <Checkbox
+        <FormControl>
+          <label htmlFor="signRole">
+            <input
+              type="checkbox"
+              name="signRole"
+              data-testid="signup-seller"
+              id="signRole"
+              onChange={ formik.handleChange }
+            />
+            Quero Vender
+          </label>
+        </FormControl>
+        {/* <Checkbox
+          type="checkbox"
           variantColor="green"
           name="signRole"
           data-testid="signup-seller"
           id="signRole"
           onChange={ formik.handleChange }
         >
-          Quero vender
-        </Checkbox>
+          Quero Vender
+        </Checkbox> */}
 
         <Button
           variantColor="green"
