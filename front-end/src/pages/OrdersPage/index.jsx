@@ -22,7 +22,7 @@ const Orders = () => {
   ) : (
     <div>
       <Menu nomeTela="Meus Pedidos" />
-      <div className="page-container margin-top">
+      <div className="container-orders">
         <h3>Sua cesta</h3>
         <div className="products">
           {saless

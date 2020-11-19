@@ -19,7 +19,7 @@ const registerUserAPI = async (name, email, password, role) => {
         password,
         role,
       },
-      headers
+      headers,
     );
     return result;
   } catch (err) {
@@ -39,8 +39,8 @@ const getSalesTb = async () => {
   }
 };
 
-const insertSaleAPI = async (userId, totalPrice, deliveryAddr, deliveryNumber) =>
-  api.post(
+const insertSaleAPI = async (userId, totalPrice, deliveryAddr, deliveryNumber) => {
+  await api.post(
     '/sales',
     {
       userId,
@@ -48,8 +48,9 @@ const insertSaleAPI = async (userId, totalPrice, deliveryAddr, deliveryNumber) =
       deliveryAddr,
       deliveryNumber,
     },
-    headers
+    headers,
   );
+};
 
 const productsAPI = async () => {
   const { data } = await api.get('/products');

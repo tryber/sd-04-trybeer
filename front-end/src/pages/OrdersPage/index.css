@@ -1,14 +1,11 @@
-.page-container {
+.container-orders {
   display: flex;
   justify-content: center;
   align-items: stretch;
   height: 100vh;
   flex-direction: column;
   width: 50vw;
-}
-
-.margin-top {
-  margin: 50px auto 50px;
+  margin: 200px auto 50px;
 }
 
 .products {
