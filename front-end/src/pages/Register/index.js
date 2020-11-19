@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Button,
-  Checkbox,
   FormControl,
   FormLabel,
   FormErrorMessage,
@@ -100,7 +99,6 @@ function Register() {
           />
           <FormErrorMessage>{ formik.errors.signPassword }</FormErrorMessage>
         </FormControl>
-
         <FormControl>
           <label htmlFor="signRole">
             <input
@@ -113,16 +111,6 @@ function Register() {
             Quero Vender
           </label>
         </FormControl>
-        {/* <Checkbox
-          type="checkbox"
-          variantColor="green"
-          name="signRole"
-          data-testid="signup-seller"
-          id="signRole"
-          onChange={ formik.handleChange }
-        >
-          Quero Vender
-        </Checkbox> */}
 
         <Button
           variantColor="green"
