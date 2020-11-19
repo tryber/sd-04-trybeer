@@ -10,4 +10,6 @@ router.post('/register', userMiddlewares.isEmailAlreadyExists, userController.us
 
 router.get('/products', auth, productsController.readProducts);
 
+router.get('/orders', auth, productsController.readOrders);
+
 module.exports = router;
