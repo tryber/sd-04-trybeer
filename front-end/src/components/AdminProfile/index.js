@@ -11,7 +11,7 @@ const AdminProfile = () => {
   }
 
   const user = JSON.parse(localStorage.getItem('user'));
-  const { name, mail } = user;
+  const { name, email } = user;
   return (
     <div>
       <Header title="Admin - Perfil" />
@@ -41,20 +41,12 @@ const AdminProfile = () => {
               className="form-control"
               id="exampleInputEmail1.form-control"
               aria-describedby="emailHelp"
-              value={ mail }
+              value={ email }
               readOnly
             />
           </label>
 
         </div>
-        <button
-          data-testid="profile-save-btn"
-          type="button"
-          className="btn btn-primary"
-          onClick={ () => login() }
-        >
-          Login
-        </button>
       </form>
     </div>
   );

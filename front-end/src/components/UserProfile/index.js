@@ -7,7 +7,7 @@ import SideBar from '../SideBar';
 
 const UserProfile = () => {
   const user = JSON.parse(localStorage.getItem('user'));
-  const { name, mail } = user;
+  const { name, email } = user;
   const [newName, setNewName] = useState(name);
   const disableButton = newName === name;
   return (
@@ -38,7 +38,7 @@ const UserProfile = () => {
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              value={ mail }
+              value={ email }
               readOnly
             />
           </label>
