@@ -1,0 +1,27 @@
+.title {
+  align-items: center;
+  background-color: #24252a;
+  display: flex;
+  height: 80px;
+  position: fixed;
+  width: 100%;
+  flex-direction: column-reverse;
+  height: 80px;
+  position: fixed;
+  width: 100%;
+}
+
+h1 {
+  color: #fff;
+  text-shadow: 0 0 20px #ff005b;
+  text-transform: uppercase;
+}
+
+header {
+  position: fixed;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+}
