@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Header } from '../components/Header';
 import { useParams } from 'react-router-dom';
+import { Header } from '../components/Header';
 import { getSalesById, sendPutStatus } from '../services/TrybeerApi';
 import '../css/adminOrderDetails.css';
 
@@ -22,54 +22,53 @@ const AdminOrderDetails = () => {
   }, [setSaleStatus]);
 
   return (
-    <>
+    <div className="page">
       <Header>Trybeer</Header>
-      <br />
-      <br />
-
-      <h1>
-        <span data-testid="order-number">
-          {`Pedido ${saleInfo.id}`}
-        </span>
-        <span data-testid="order-status">
-          {`${saleStatus}`}
-        </span>
-      </h1>
-
-      {saleProduct.map(({ name, quantity, price }, index) => (
-        <div key={ name }>
-          <span data-testid={ `${index}-product-qtd` }>
-            {`${quantity} - `}
+      <div className="page-content">
+        <h1>
+          <span data-testid="order-number">
+            {`Pedido ${saleInfo.id}`}
           </span>
-          <span data-testid={ `${index}-product-name` }>
-            {`${name} - `}
+          <span data-testid="order-status">
+            {`${saleStatus}`}
           </span>
-          <span data-testid={ `${index}-product-total-value` }>
-            {`R$ ${(price * quantity).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
-          </span>
-          <span
-            className="product-unit-price"
-            data-testid={ `${index}-order-unit-price` }
-          >
-            { `(R$ ${price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}` }
-            )
-          </span>
-        </div>
-      ))}
+        </h1>
 
-      <h3 data-testid="order-total-value">
-        {`R$ ${(total_price).toString().replace(".", ",")}0`}
-      </h3>
+        {saleProduct.map(({ name, quantity, price }, index) => (
+          <div key={ name }>
+            <span data-testid={ `${index}-product-qtd` }>
+              {`${quantity} - `}
+            </span>
+            <span data-testid={ `${index}-product-name` }>
+              {`${name} - `}
+            </span>
+            <span data-testid={ `${index}-product-total-value` }>
+              {`R$ ${(price * quantity).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
+            </span>
+            <span
+              className="product-unit-price"
+              data-testid={ `${index}-order-unit-price` }
+            >
+              { `(R$ ${price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}` }
+              )
+            </span>
+          </div>
+        ))}
 
-      <button
-        type="button"
-        data-testid="mark-as-delivered-btn"
-        onClick={ () => sendPutStatus(id).then(setSaleStatus('Entregue'))}
-        className={ `sale-${saleStatus}-btn` }
-      >
-        Marcar como entregue
-      </button>
-    </>
+        <h3 data-testid="order-total-value">
+          {`R$ ${(total_price).toString().replace('.', ',')}0`}
+        </h3>
+
+        <button
+          type="button"
+          data-testid="mark-as-delivered-btn"
+          onClick={ () => sendPutStatus(id).then(setSaleStatus('Entregue')) }
+          className={ `sale-${saleStatus}-btn` }
+        >
+          Marcar como entregue
+        </button>
+      </div>
+    </div>
   );
 };
 
