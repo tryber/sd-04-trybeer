@@ -15,32 +15,17 @@ const AdminProfile = () => {
 
       <form>
         <div className="form-group">
-          <label htmlFor="exampleInputPassword1">
-            Name
-            <input
+          <span
               data-testid="profile-name"
-              type="text"
-              className="form-control"
-              id="disabledInput"
-              value={ name }
-              readOnly
-            />
-          </label>
-
+              id="exampleInputName1"
+            >{ name }
+          </span>
         </div>
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1.form-control">
-            Email
-            <input
+            <span
               data-testid="profile-email"
-              type="email"
-              className="form-control"
-              id="exampleInputEmail1.form-control"
-              aria-describedby="emailHelp"
-              value={ email }
-              readOnly
-            />
-          </label>
+            >{ email }
+          </span>
 
         </div>
       </form>

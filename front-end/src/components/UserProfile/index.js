@@ -9,6 +9,7 @@ const UserProfile = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const { name, email } = user;
   const [newName, setNewName] = useState(name);
+  const [clicked, setClicked] = useState('');
   const disableButton = newName === name;
 
   const newUserName = async (e) => {
@@ -19,6 +20,10 @@ const UserProfile = () => {
     user.name = api.data;
 
     return localStorage.setItem('user', JSON.stringify(user));
+  };
+
+  function setMessage() {
+    setClicked('Atualização concluída com sucesso');
   };
   return (
     <div>
@@ -59,9 +64,11 @@ const UserProfile = () => {
           type="submit"
           className="btn btn-primary"
           disabled={ disableButton }
+          onClick={ setMessage }
         >
           Salvar
         </button>
+        <p>{ clicked }</p>
       </form>
     </div>
   );
