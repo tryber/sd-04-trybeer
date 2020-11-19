@@ -9,9 +9,8 @@ const userLoginServ = async (userEmail, userPassword) => {
   if (user && userPassword === password) {
     const token = createToken(data);
     return { token, data };
-  } else {
-    throw Error('Login ou senha inválido');
   }
+  throw Error('Login ou senha inválido');
 };
 
 module.exports = { userLoginServ };

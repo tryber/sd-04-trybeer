@@ -68,7 +68,6 @@ const updateStatusMod = async (id, status) => {
   }
 };
 
-
 module.exports = {
   getAllSalesMod,
   postFinishSalesMod,

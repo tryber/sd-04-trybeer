@@ -1,10 +1,14 @@
 const joi = require('joi');
 
 const schema = joi.object({
-  name: joi.string().min(12).required(),
-  email: joi.string().email().required(),
-  password: joi.string().min(6).required(),
-  role: joi.string().valid('administrator', 'client').required(),
+  name: joi.string().min(12)
+    .required(),
+  email: joi.string().email()
+    .required(),
+  password: joi.string().min(6)
+    .required(),
+  role: joi.string().valid('administrator', 'client')
+    .required(),
 });
 
 const validateRegister = async (req, res, next) => {

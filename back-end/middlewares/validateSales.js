@@ -2,10 +2,15 @@ const joi = require('joi');
 
 const schema = {
   finishSales: joi.object({
-    email: joi.string().email().required(),
-    total: joi.string().required(),
-    address: joi.string().min(3).max(100).required(),
-    number: joi.number().required(),
+    email: joi.string().email()
+      .required(),
+    total: joi.string()
+      .required(),
+    address: joi.string().min(3)
+      .max(100)
+      .required(),
+    number: joi.number()
+      .required(),
   }),
   updateSalesStatusSchema: joi.object({
     status: joi.string().valid('Pendente', 'Entregue').required(),

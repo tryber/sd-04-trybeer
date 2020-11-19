@@ -2,8 +2,10 @@ const frisby = require('frisby');
 const joi = require('joi');
 
 const schemaLogin = joi.object({
-  email: joi.string().email().required(),
-  password: joi.string().min(6).required(),
+  email: joi.string().email()
+    .required(),
+  password: joi.string().min(6)
+    .required(),
 });
 
 const URL_LOGIN_ENDPOINT = 'http://localhost:3001/login';

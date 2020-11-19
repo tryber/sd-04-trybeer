@@ -16,7 +16,7 @@ const finishSales = rescue(async (req, res) => {
   for (let i = 0; i < products.length; i += 1) {
     const { productId, quantity } = products[i];
 
-    await salesProductsModel.postRegisterSalesProductsMod(newSale.saleId, productId, quantity);
+    salesProductsModel.postRegisterSalesProductsMod(newSale.saleId, productId, quantity);
   }
 
   res.status(200).json(newSale);

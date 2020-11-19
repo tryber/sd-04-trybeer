@@ -12,10 +12,14 @@ const joi = require('joi');
 // }
 
 const schemaRegisterUsers = joi.object({
-  name: joi.string().min(12).required(),
-  email: joi.string().email().required(),
-  password: joi.string().min(6).required(),
-  role: joi.string().valid('administrator', 'client').required(),
+  name: joi.string().min(12)
+    .required(),
+  email: joi.string().email()
+    .required(),
+  password: joi.string().min(6)
+    .required(),
+  role: joi.string().valid('administrator', 'client')
+    .required(),
 });
 
 const URL_REGISTER_USERS_ENDPOINT = 'http://localhost:3001/register';
@@ -49,15 +53,21 @@ describe('Test /register endpoint', () => {
     expect(name).toBe(error);
   });
 
-  // it('3 - It will be validated that it is not possible to register with a name with less than 12 letters.', async () => {});
+  // it('3 - It will be validated that it is not
+  // possible to register with a name with less than 12 letters.', async () => {});
 
-  // it('4 - It will be validated that it is not possible to register with a name with numbers.', async () => {});
+  // it('4 - It will be validated that it is not possible
+  // to register with a name with numbers.', async () => {});
 
-  // it('5 - It will be validated that it is not possible to login with an invalid email.', async () => {});
+  // it('5 - It will be validated that it is not possible to
+  // login with an invalid email.', async () => {});
 
-  // it('6 - It will be validated that it is not possible to login with an existing email.', async () => {});
+  // it('6 - It will be validated that it is not possible
+  // to login with an existing email.', async () => {});
 
-  // it('7 - It will be validated that it is not possible to login with a blank password.', async () => {});
+  // it('7 - It will be validated that it is not possible
+  // to login with a blank password.', async () => {});
 
-  // it('8 - It will be validated that it is not possible to login with a password with less than 6 characters.', async () => {});
+  // it('8 - It will be validated that it is not possible
+  // to login with a password with less than 6 characters.', async () => {});
 });

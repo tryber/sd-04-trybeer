@@ -1,8 +1,10 @@
 const joi = require('joi');
 
 const schema = joi.object({
-  name: joi.string().min(12).required(),
-  email: joi.string().email().required(),
+  name: joi.string().min(12)
+    .required(),
+  email: joi.string().email()
+    .required(),
 });
 
 const validateUpdate = async (req, res, next) => {

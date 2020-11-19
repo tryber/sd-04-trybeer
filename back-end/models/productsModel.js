@@ -8,11 +8,11 @@ const getAllProductMod = async () => {
       .select(['id', 'name', 'price', 'url_image'])
       .execute();
     const allProducts = await prodDB.fetchAll();
-    return allProducts.map(([id, name, price, url_image]) => ({
+    return allProducts.map(([id, name, price, urlImage]) => ({
       id,
       name,
       price,
-      url_image,
+      urlImage,
     }));
   } catch (error) {
     return error;

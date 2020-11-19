@@ -9,7 +9,7 @@ const loginUsersCont = rescue(async (req, res) => {
   return res.status(200).json(result);
 });
 
-const registerUsersCont = rescue(async (req, res, next) => {
+const registerUsersCont = rescue(async (req, res) => {
   const { name, email, password, role } = req.body;
 
   const { id } = await usersModel.getUserByEmailMod(email);
