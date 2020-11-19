@@ -15,20 +15,15 @@ const Products = () => {
   const [userIsLogged, setUserIsLogged] = useState(true);
 
   useEffect(() => {
-    API.getProducts()
-      .then((result) => setProducts(result.data))
-      .catch((err) => console.error(err));
-
-    console.log('Hello Trybeer');
+    API.getProducts().then((result) => setProducts(result.data));
 
     if (localStorage.getItem('carts')) {
       let cartProducts = JSON.parse(localStorage.getItem('carts'));
-      console.log(cartProducts);
     }
     localStorage.getItem('user') ? setUserIsLogged(true) : setUserIsLogged(false);
   }, []);
 
-  console.log(products.map((result) => result));
+  // console.log(products.map((result) => result));
 
   if (!userIsLogged) return <Redirect to="/login" />;
 

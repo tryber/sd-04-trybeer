@@ -3,14 +3,12 @@ const connection = require('./connection');
 const registerUser = async (name, email, password, role) => {
   const result = await connection()
     .then((db) =>
-      db
-        .getTable('users')
+      db.getTable('users')
         .insert(['name', 'email', 'password', 'role'])
         .values([name, email, password, role])
         .execute(),
-    )
-    .catch((err) => {
-      throw err;
+    ).catch((err) => {
+        throw err;
     });
   return result;
 };
@@ -18,8 +16,7 @@ const registerUser = async (name, email, password, role) => {
 const searchUserByEmail = async (emailInput) => {
   const result = await connection()
     .then((db) =>
-      db
-        .getTable('users')
+      db.getTable('users')
         .select([])
         .where('email = :email')
         .bind('email', emailInput)
@@ -29,9 +26,7 @@ const searchUserByEmail = async (emailInput) => {
           if (!results) return null;
           const [id, name, email, password, role] = results;
           return { id, name, email, password, role };
-        }),
-    )
-    .catch((err) => {
+        })).catch((err) => {
       console.log('catch linha 30', err);
       throw err;
     });

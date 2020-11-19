@@ -7,9 +7,11 @@ const ProviderTrybeer = ({ children }) => {
   const [user, setUser] = useState({});
   const [products, setProducts] = useState([]);
 
-  const context = { user, setUser, products, setProducts };
+  const context = {
+    user, setUser, products, setProducts
+  };
 
-  return <TrybeerContext.Provider value={context}>{children}</TrybeerContext.Provider>;
+  return <TrybeerContext.Provider value={ context }>{children}</TrybeerContext.Provider>;
 };
 
 ProviderTrybeer.propTypes = {
