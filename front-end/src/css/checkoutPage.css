@@ -1,0 +1,36 @@
+.cart-products {
+  display: flex;
+  border: 1px solid black;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.cart-qtd {
+  width: 35px;
+}
+
+.cart-name {
+  flex: 2.5;
+}
+
+.cart-total {
+  flex: 1;
+}
+
+.cart-price {
+  display: flex;
+  align-items: center;
+}
+
+.cart-price > button {
+  width: 45px;
+  height: 35px;
+}
+
+.order-total-value {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
