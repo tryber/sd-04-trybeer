@@ -1,12 +1,16 @@
-import React, { useReducer, useState, useEffect, useRef } from 'react';
+import React, {
+  useReducer, useState, useEffect, useRef,
+} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { validateLogin } from '../../services/validate';
 import { postLogin } from '../../services/TrybeerApi';
+import { logout } from '../../images';
 
 function LoginForm() {
   const history = useHistory();
   const [message, setMessage] = useState('');
   const [canLogin, setCanLogin] = useState(false);
+  const [IsLoggingOut, setIsLoggingOut] = useState(false);
   const [form, setForm] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     { email: '', password: '' },
@@ -28,7 +32,7 @@ function LoginForm() {
     }
   };
 
-  const update = useRef(false); 
+  const update = useRef(false);
   useEffect(() => {
     if (update.current) {
       const { error } = validateLogin(form.email, form.password);
@@ -39,10 +43,12 @@ function LoginForm() {
       setMessage();
       return setCanLogin(true);
     }
-    else {
+    console.log('local ',localStorage.user);
+    if (localStorage.user) {
+      setIsLoggingOut(true);
       localStorage.user = '';
-      update.current = true;
     }
+    update.current = true;
   }, [form]);
   return (
     <form onSubmit={ handleSubmit } className="form">
@@ -71,6 +77,7 @@ function LoginForm() {
       <button type="submit" data-testid="signin-btn" disabled={ !canLogin }>ENTRAR</button>
       <Link to="/register" data-testid="no-account-btn">Ainda não tenho conta</Link>
       <span>{ message }</span>
+      {IsLoggingOut && <img src={ logout } alt="Homer Sad" className="homer-sad" /> }
     </form>
   );
 }
