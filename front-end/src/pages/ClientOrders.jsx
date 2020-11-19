@@ -38,7 +38,9 @@ const ClientOrders = () => {
                 data-testid={`${index}-order-number`}
               >{`Pedido ${order.id}`}</p>
               <p data-testid={`${index}-order-date`}>
-                {new Date(order.date).toLocaleDateString().slice(0, 5)}
+                {new Date(order.date)
+                  .toLocaleDateString('pt-BR', { timeZone: 'UTC' })
+                  .slice(0, 5)}
               </p>
               <p data-testid={`${index}-order-total-value`}>
                 {`R$ ${order.price.toFixed(2).replace('.', ',')}`}
