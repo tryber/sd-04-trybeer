@@ -24,9 +24,20 @@ const registerApi = async (name, email, password, role) => {
 
 const getProducts = (token) => apiTrybeer.get('/products', { headers: { authorization: token } });
 
+const userNameUpdateApi = async (name, email, newName) => {
+  const result = await apiTrybeer.put('/profile', {
+    name,
+    email,
+    newName,
+  });
+
+  return result;
+};
+
 export default {
   loginApi,
   registerApi,
   // getUserByEmail,
   getProducts,
+  userNameUpdateApi,
 };

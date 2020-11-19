@@ -6,9 +6,6 @@ import SideBar from '../SideBar';
 import './style.css';
 
 const AdminProfile = () => {
-  function login() {
-    window.location.href = 'http://localhost:3000/';
-  }
 
   const user = JSON.parse(localStorage.getItem('user'));
   const { name, email } = user;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import API from '../../services/api';
 import Header from '../Header/index';
 
 import './style.css';
@@ -7,14 +7,26 @@ import SideBar from '../SideBar';
 
 const UserProfile = () => {
   const user = JSON.parse(localStorage.getItem('user'));
-  const { name, email } = user;
+  let { name, email } = user;
   const [newName, setNewName] = useState(name);
   const disableButton = newName === name;
+
+  const newUserName = async (e) => {
+    e.preventDefault();
+    
+    const api = await API.userNameUpdateApi(name, email, newName);
+
+    user.name = api.data;
+  
+    return localStorage.setItem('user', JSON.stringify(user));
+    
+  };
+
   return (
     <div>
       <Header title="Meu perfil" />
       <SideBar userType="client" />
-      <form action="/profile" method="POST">
+      <form onSubmit={newUserName}>
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">
             Name
@@ -56,10 +68,5 @@ const UserProfile = () => {
     </div>
   );
 };
-
-// UserProfile.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   mail: PropTypes.string.isRequired,
-// };
 
 export default UserProfile;
