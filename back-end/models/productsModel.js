@@ -9,8 +9,6 @@ const read = async () => {
     .map(([id, name, price, urlImg]) => ({ id, name, price, urlImg }));
 };
 
-
-
 // IIFE para testes, ignorem!!!
 // (async () => console.log(await read()))();
 
