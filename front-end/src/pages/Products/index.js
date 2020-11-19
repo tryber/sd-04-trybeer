@@ -1,7 +1,8 @@
 import React from 'react';
+import MenuClient from '../../components/MenuClient';
 
 const Products = () => (
-  <p>This is the orders page</p>
+  <MenuClient />
 );
 export default Products;
 
