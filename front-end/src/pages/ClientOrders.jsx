@@ -3,6 +3,8 @@ import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import styles from './Orders.module.css';
+
 import Menu from '../components/Menu';
 
 const ClientOrders = () => {
@@ -28,28 +30,30 @@ const ClientOrders = () => {
   }, []);
 
   return (
-    <div>
+    <section className="insideSection">
       <Menu title="Meus Pedidos" />
-      {redirectToLogin && <Redirect to="/login" />}
-      {orders &&
-        orders.map((order, index) => (
-          <div key={order.id} data-testid={`${index}-order-card-container`}>
-            <Link to={`/orders/${order.id}`}>
-              <p
-                data-testid={`${index}-order-number`}
-              >{`Pedido ${order.id}`}</p>
-              <p data-testid={`${index}-order-date`}>
-                {new Date(order.date)
-                  .toLocaleDateString('pt-BR', { timeZone: 'UTC' })
-                  .slice(0, 5)}
-              </p>
-              <p data-testid={`${index}-order-total-value`}>
-                {`R$ ${order.price.toFixed(2).replace('.', ',')}`}
-              </p>
+      <div className={styles.ordersDiv}>
+        {redirectToLogin && <Redirect to="/login" />}
+        {orders &&
+          orders.map((order, index) => (
+            <Link className={styles.orderLink} to={`/orders/${order.id}`}>
+              <div className={styles.orderDiv} key={order.id} data-testid={`${index}-order-card-container`}>
+                <p
+                  data-testid={`${index}-order-number`}
+                >{`Pedido ${order.id}`}</p>
+                <p data-testid={`${index}-order-date`}>
+                  {new Date(order.date)
+                    .toLocaleDateString('pt-BR', { timeZone: 'UTC' })
+                    .slice(0, 5)}
+                </p>
+                <p data-testid={`${index}-order-total-value`}>
+                  {`R$ ${order.price.toFixed(2).replace('.', ',')}`}
+                </p>
+              </div>
             </Link>
-          </div>
-        ))}
-    </div>
+          ))}
+      </div>
+    </section>
   );
 };
 
