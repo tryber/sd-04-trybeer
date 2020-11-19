@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Header from '../Header/index';
 
 import './style.css';
 import SideBar from '../SideBar';
 
-const UserProfile = ({ name, mail }) => {
+const UserProfile = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const name = user.name;
+  const mail = user.email;
   const [newName, setNewName] = useState(name);
   const disableButton = newName === name;
   return (
@@ -22,7 +25,7 @@ const UserProfile = ({ name, mail }) => {
               type="text"
               className="form-control"
               id="disabledInput"
-              placeholder="Name"
+              placeholder= { name }
             />
           </label>
 
@@ -36,7 +39,7 @@ const UserProfile = ({ name, mail }) => {
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder={ mail }
+              value={ mail }
               readOnly
             />
           </label>
@@ -55,9 +58,9 @@ const UserProfile = ({ name, mail }) => {
   );
 };
 
-UserProfile.propTypes = {
-  name: PropTypes.string.isRequired,
-  mail: PropTypes.string.isRequired,
-};
+// UserProfile.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   mail: PropTypes.string.isRequired,
+// };
 
 export default UserProfile;
