@@ -25,7 +25,16 @@ const registerUser = async (name, email, password, role) => {
     .execute());
 };
 
+const editProfile = async (email, name) => connection()
+  .then((db) => db.getTable('users')
+    .update()
+    .set('name', name)
+    .where('email = :email')
+    .bind('email', email)
+    .execute());
+
 module.exports = {
   findByEmail,
+  editProfile,
   registerUser,
 };
