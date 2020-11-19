@@ -16,7 +16,7 @@ const App = () => (
       <Route path="/login" component={ Login } />
       <Route exact path="/" component={ Login } />
       <Route path="/profile" component={ UserProfile } />
-      <Route path="/admin/orders" component={ AdminProfile } />
+      <Route path="/admin/profile" component={ AdminProfile } />
     </Switch>
   </BrowserRouter>
 );

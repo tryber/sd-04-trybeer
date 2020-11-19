@@ -1,20 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Header from '../Header/index';
 import SideBar from '../SideBar';
 
 import './style.css';
 
-const AdminProfile = ({ name, mail }) => {
+const AdminProfile = () => {
   function login() {
     window.location.href = 'http://localhost:3000/';
   }
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  const name = user.name;
+  const mail = user.email;
   return (
     <div>
       <Header title="Admin - Perfil" />
       <SideBar userType="admin" />
 
-      <form action="/profile" method="POST">
+      <form >
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">
             Name
@@ -30,13 +34,13 @@ const AdminProfile = ({ name, mail }) => {
 
         </div>
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">
+          <label htmlFor="exampleInputEmail1.form-control">
             Email
             <input
               data-testid="profile-email"
               type="email"
               className="form-control"
-              id="exampleInputEmail1"
+              id="exampleInputEmail1.form-control"
               aria-describedby="emailHelp"
               value={ mail }
               readOnly
@@ -57,9 +61,9 @@ const AdminProfile = ({ name, mail }) => {
   );
 };
 
-AdminProfile.propTypes = {
-  name: PropTypes.string.isRequired,
-  mail: PropTypes.string.isRequired,
-};
+// AdminProfile.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   mail: PropTypes.string.isRequired,
+// };
 
 export default AdminProfile;
