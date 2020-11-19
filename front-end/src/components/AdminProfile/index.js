@@ -16,17 +16,20 @@ const AdminProfile = () => {
       <form>
         <div className="form-group">
           <span
-              data-testid="profile-name"
-              id="exampleInputName1"
-            >{ name }
+            data-testid="profile-name"
+            id="exampleInputName1"
+            >{
+            name
+            }
           </span>
         </div>
         <div className="form-group">
-            <span
-              data-testid="profile-email"
-            >{ email }
+          <span
+            data-testid="profile-email"
+          >{
+          email
+          }
           </span>
-
         </div>
       </form>
     </div>

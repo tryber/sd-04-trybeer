@@ -24,7 +24,7 @@ const UserProfile = () => {
 
   function setMessage() {
     setClicked('Atualização concluída com sucesso');
-  };
+  }
   return (
     <div>
       <Header title="Meu perfil" />
