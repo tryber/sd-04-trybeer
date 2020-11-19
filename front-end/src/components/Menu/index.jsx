@@ -14,7 +14,7 @@ const Menu = ({ nomeTela }) => {
   return (
     <header className={styles.header} ref={ node }>
       <Burger open={ open } setOpen={ setOpen } />
-      <StyledMenu open={ open } className="nav-bar side-menu-container">
+      <StyledMenu open={ open } className="side-menu-container">
         <Link to="/products" className="nav-link" data-testid="side-menu-item-products">
           Produtos
         </Link>
