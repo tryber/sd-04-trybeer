@@ -11,8 +11,7 @@ const AdminProfile = () => {
   }
 
   const user = JSON.parse(localStorage.getItem('user'));
-  const name = user.name;
-  const mail = user.email;
+  const { name, mail } = user;
   return (
     <div>
       <Header title="Admin - Perfil" />

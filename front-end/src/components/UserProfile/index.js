@@ -7,8 +7,7 @@ import SideBar from '../SideBar';
 
 const UserProfile = () => {
   const user = JSON.parse(localStorage.getItem('user'));
-  const name = user.name;
-  const mail = user.email;
+  const { name, mail } = user;
   const [newName, setNewName] = useState(name);
   const disableButton = newName === name;
   return (
