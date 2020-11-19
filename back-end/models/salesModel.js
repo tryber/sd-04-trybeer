@@ -7,8 +7,7 @@ const registerSale = async (
   deliveryNumber,
   saleDate,
   status,
-) => connection().then((db) => db
-  .getTable('sales')
+) => connection().then((db) => db.getTable('sales')
   .insert([
     'user_id',
     'total_price',
@@ -45,4 +44,29 @@ const getSalesByUserId = async (userId) => {
   }));
 };
 
-module.exports = { registerSale, getSalesByUserId };
+const getAllSales = async () => {
+  const sales = await connection().then((db) => db
+    .getTable('sales').select([
+      'id',
+      'total_price',
+      'sale_date',
+      'delivery_address',
+      'delivery_number',
+      'status',
+    ])
+    .execute()
+    .then((results) => results.fetchAll()));
+
+  if (!sales) return null;
+
+  return sales.map(([id, price, date, address, number, status]) => ({
+    id,
+    price,
+    date,
+    address,
+    number,
+    status,
+  }));
+};
+
+module.exports = { registerSale, getSalesByUserId, getAllSales };

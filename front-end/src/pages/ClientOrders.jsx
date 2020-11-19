@@ -22,6 +22,7 @@ const ClientOrders = () => {
       })
       .then((res) => {
         setOrders(res.data);
+        console.log(res.data);
       })
       .catch((error) => console.log(error));
   }, []);

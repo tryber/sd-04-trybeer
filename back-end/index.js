@@ -128,6 +128,15 @@ app.get('/sales', async (req, res) => {
   }
 });
 
+app.get('/sales/all', async (req, res) => {
+  try {
+    const sales = await salesModel.getAllSales();
+    return res.status(200).json(sales);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+});
+
 app.get('/details', async (req, res) => {
   try {
     const { saleId } = req.query;
