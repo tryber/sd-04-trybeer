@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import MenuClient from '../../components/MenuClient';
 
 import ProductCard from '../../components/ProductCard';
 import { listProducts } from '../../api';
@@ -21,7 +22,7 @@ function Products() {
 
   return (
     <div>
-      <p>This is the products page</p>
+      <MenuClient />
       {products ? products.map((e) => <ProductCard data={ e } key={ e.id } />) : <p>loading</p>}
       <Link to="/checkout">
         <button type="button" data-testid="checkout-bottom-btn">

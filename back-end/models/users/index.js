@@ -34,4 +34,12 @@ const getByEmail = (UserEmail) => connection()
   .then(([id, name, email, password, role]) => ({ id, name, email, password, role }))
   .catch((e) => e);
 
-module.exports = { getAll, getById, getByEmail };
+// Adiciona ou registra usuário no banco de dados
+const add = (name, email, password, role) => connection()
+  .then((db) => db.getTable('users')
+    .insert(['name', 'email', 'password', 'role'])
+    .values(name, email, password, role)
+    .execute())
+  .catch((e) => e);
+
+module.exports = { getAll, getById, getByEmail, add };
