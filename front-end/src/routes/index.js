@@ -2,14 +2,14 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import {
-  Checkout, Home, Login, NotFound, Orders, OrdersDetails, Products, Profile, Register,
+  Checkout, Login, NotFound, Orders, OrdersDetails, Products, Profile, Register,
 } from '../pages';
 
 const Routes = () => (
   <BrowserRouter>
     <ChakraProvider>
       <Switch>
-        <Home exact path="/" />
+        <Login exact path="/" />
         <Checkout path="/checkout" />
         <Login path="/login" />
         <Orders exact path="/orders" />
