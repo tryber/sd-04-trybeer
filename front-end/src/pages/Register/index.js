@@ -28,7 +28,6 @@ function Register() {
     },
     validationSchema,
     onSubmit: async (values) => {
-      // console.log('Values: ', values);
       const {
         signName, signEmail, signPassword, signRole,
       } = values;

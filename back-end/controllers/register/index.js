@@ -11,14 +11,11 @@ const register = async (req, res) => {
     // Verifica se existe usuário com o mesmo email
     const user = await getByEmail(signEmail)
       .then((data) => {
-        // console.log('Data: ', data);
         return data;
       })
       .catch((e) => {
-        // console.log('Erro: ', e);
         return e;
       });
-    // console.log('User: ', user);
 
     if (user.email) {
       return res.status(200).json({ message: 'E-mail already in database.' });
