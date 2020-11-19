@@ -18,7 +18,7 @@ const Orders = () => {
   }, []);
 
 
-  if(!getLS('user')) return <Redirect to='/' />
+  if(!getLS('user')) return <Redirect to='/login' />
   return loading ? <h1>Carregando...</h1> : (
     <div>
       <Menu nomeTela="Meus Pedidos" />
