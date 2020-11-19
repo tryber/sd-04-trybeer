@@ -1,0 +1,36 @@
+const connection = require("./connection");
+
+const createOrder = async (
+  user_id,
+  total_price,
+  delivery_address,
+  delivery_number,
+  sale_date,
+  status = "Pendente"
+) => {
+  return connection().then((db) =>
+    db
+      .getTable("sales")
+      .insert([
+        "user_id",
+        "total_price",
+        "delivery_address",
+        "delivery_number",
+        "sale_date",
+        "status",
+      ])
+      .values(
+        user_id,
+        total_price,
+        delivery_address,
+        delivery_number,
+        sale_date,
+        status
+      )
+      .execute()
+  );
+};
+
+module.exports = {
+  createOrder,
+};

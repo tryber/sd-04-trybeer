@@ -4,6 +4,7 @@ const cors = require('cors');
 const userRouter = require('./routers/userRouters');
 const productRouter = require('./routers/productRouters');
 const userController = require('./controllers/userController');
+const orderRouter = require('./routers/salesRouters');
 
 const app = express();
 const port = 3001;
@@ -17,5 +18,6 @@ app.use('/images', express.static('images'));
 app.post('/register', userController.userRegister);
 app.use('/login', userRouter);
 app.use('/products', productRouter);
+app.use('/order', orderRouter)
 
 app.listen(port, () => console.log('API rodando na porta 3001!'));
