@@ -2,6 +2,7 @@ const { Router } = require('express');
 const userController = require('./controllers/userController');
 const productController = require('./controllers/productController');
 const checkEmailInDatabase = require('./middlewares/checkEmailInDatabase');
+const { validateJWT } = require('./middlewares/auth');
 
 const routes = Router();
 
@@ -15,6 +16,6 @@ routes.post(
   userController.registerUserController,
 );
 routes.get('/profile', userController.getUserByEmail);
-routes.get('/products', productController.findAllProductsController);
+routes.get('/products', validateJWT, productController.findAllProductsController);
 
 module.exports = routes;

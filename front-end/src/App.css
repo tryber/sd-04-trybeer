@@ -36,6 +36,32 @@
   margin: auto;
 }
 
+.ver-carrinho {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.ver-carrinho button {
+  background-color: greenyellow;
+  padding: 6px;
+  width: 200px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ver-carrinho:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+link {
+  text-decoration: none;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
