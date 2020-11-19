@@ -4,16 +4,11 @@
   flex-direction: column;
 }
 
-.profile.form {
-  flex: 1; 
-}
-
 .profile.page-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 
 .profile.page-content > span {

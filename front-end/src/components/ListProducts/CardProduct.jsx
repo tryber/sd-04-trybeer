@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux';
 import { addToCart, removeFromCart, updateQuantity } from '../../redux/actions';
 
 function CardProduct(props) {
-  const { name, price, url_image: img, quantity, index } = props;
+  const {
+    name, price, url_image: img, quantity, index,
+  } = props;
   const priceArrendodado = price.toLocaleString('pt-br', {
     style: 'currency',
     currency: 'BRL',
@@ -17,28 +19,35 @@ function CardProduct(props) {
     else dispatch(updateQuantity({ ...props, number }));
   };
   return (
-    <div>
-      <button
-        data-testid={`${index}-product-plus`}
-        onClick={() => handleCart(1)}
-      >
-        +
-      </button>
-      <span data-testid={`${index}-product-qtd`}>{quantity || 0}</span>
-      <button
-        data-testid={`${index}-product-minus`}
-        onClick={() => handleCart(-1)}
-      >
-        -
-      </button>
+    <div className="product-card">
       <img
-        data-testid={`${index}-product-img`}
-        src={img}
-        alt={name}
-        width="20"
+        data-testid={ `${index}-product-img` }
+        src={ img }
+        alt={ name }
       />
-      <span data-testid={`${index}-product-name`}>{name}</span>
-      <span data-testid={`${index}-product-price`}>R$ {priceArrendodado}</span>
+      <span data-testid={ `${index}-product-name` }>{name}</span>
+      <div>
+        <div className="product-quantity">
+          <button
+            data-testid={ `${index}-product-minus` }
+            onClick={ () => handleCart(-1) }
+            type="button"
+          >
+            -
+          </button>
+          <span data-testid={ `${index}-product-qtd` }>{quantity || 0}</span>
+          <button
+            data-testid={ `${index}-product-plus` }
+            onClick={ () => handleCart(1) }
+            type="button"
+          >
+            +
+          </button>
+        </div>
+        <span data-testid={ `${index}-product-price` } className="product-price">
+          {priceArrendodado}
+        </span>
+      </div>
     </div>
   );
 }

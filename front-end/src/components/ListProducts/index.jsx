@@ -1,7 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CardProduct from './CardProduct';
-import { useSelector } from 'react-redux';
+import '../../css/listProducts.css';
 
 export const ListProducts = ({ list }) => {
   const cart = useSelector((state) => state.cart);
@@ -10,17 +11,24 @@ export const ListProducts = ({ list }) => {
     .reduce((acc, curr) => curr.quantity * curr.price + acc, 0)
     .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 
-  const _onClick = (e) => {
+  const onClick = (e) => {
     if (e.target.innerHTML.indexOf('0,00') !== -1) return e.preventDefault();
     return false;
   };
   return (
-    <div className="page-content">
-      {carrinho.map((info, index) => (
-        <CardProduct key={info[0]} {...info[1]} index={index} />
-      ))}
-      <button disabled={Object.keys(cart).length === 0} data-testid="checkout-bottom-btn">
-        <Link to="/checkout" onClick={(e) => _onClick(e)}>
+    <div className="page-content products-page">
+      <div className="products-list">
+        {carrinho.map((info, index) => (
+          <CardProduct key={ info[0] } { ...info[1] } index={ index } />
+        ))}
+      </div>
+      <button
+        disabled={ Object.keys(cart).length === 0 }
+        data-testid="checkout-bottom-btn"
+        type="button"
+        className="cart-button"
+      >
+        <Link to="/checkout" onClick={ onClick }>
           <p data-testid="checkout-bottom-btn-value">{`Ver Carrinho: ${total}`}</p>
         </Link>
       </button>
