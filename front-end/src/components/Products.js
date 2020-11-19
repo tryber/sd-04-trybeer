@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
+import API from '../services/api';
 import { Link } from 'react-router-dom';
 
-import API from '../services/api';
 import { Redirect } from 'react-router-dom';
 import { TrybeerContext } from '../context';
 
 const Products = () => {
   const { products, setProducts } = useContext(TrybeerContext);
 
-  const [productQuantity, setProductQuantity] = useState(0);
+  const qtdInit = 0
+  const [productQuantity, setProductQuantity] = useState(qtdInit);
 
   const [buttonDisable, setButtonDisable] = useState(true);
 
@@ -17,9 +18,9 @@ const Products = () => {
   useEffect(() => {
     API.getProducts().then((result) => setProducts(result.data));
 
-    if (localStorage.getItem('carts')) {
-      let cartProducts = JSON.parse(localStorage.getItem('carts'));
-    }
+    // if (localStorage.getItem('carts')) {
+    //   let cartProducts = JSON.parse(localStorage.getItem('carts'));
+    // }
     localStorage.getItem('user') ? setUserIsLogged(true) : setUserIsLogged(false);
   }, []);
 
@@ -30,11 +31,12 @@ const Products = () => {
   const addProduct = () => {
     setProductQuantity(productQuantity + 1);
     setButtonDisable(false);
+    return;
   };
 
   const removeProduct = () => {
     if (productQuantity === 0) return setButtonDisable(true);
-    setProductQuantity(productQuantity - 1);
+    return setProductQuantity(productQuantity - 1);
   };
 
   return (
@@ -47,7 +49,7 @@ const Products = () => {
               {product.name}
             </h4>
             <h5 data-testid={`${index}-product-price`} className="card-content mx-auto">
-              {product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+              { product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
             </h5>
             <img
               className="mx-auto m-2"

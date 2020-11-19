@@ -8,7 +8,7 @@ const ProviderTrybeer = ({ children }) => {
   const [products, setProducts] = useState([]);
 
   const context = {
-    user, setUser, products, setProducts
+    user, setUser, products, setProducts,
   };
 
   return <TrybeerContext.Provider value={ context }>{children}</TrybeerContext.Provider>;

@@ -7,7 +7,8 @@ const registerUser = async (name, email, password, role) => {
         .insert(['name', 'email', 'password', 'role'])
         .values([name, email, password, role])
         .execute(),
-    ).catch((err) => {
+    )
+    .catch((err) => {
         throw err;
     });
   return result;
@@ -15,21 +16,21 @@ const registerUser = async (name, email, password, role) => {
 
 const searchUserByEmail = async (emailInput) => {
   const result = await connection()
-    .then((db) =>
-      db.getTable('users')
-        .select([])
-        .where('email = :email')
-        .bind('email', emailInput)
-        .execute()
-        .then((results) => results.fetchOne())
-        .then((results) => {
-          if (!results) return null;
-          const [id, name, email, password, role] = results;
-          return { id, name, email, password, role };
-        })).catch((err) => {
-      console.log('catch linha 30', err);
-      throw err;
-    });
+    .then((db) => db.getTable('users')
+      .select([])
+      .where('email = :email')
+      .bind('email', emailInput)
+      .execute()
+      .then((results) => results.fetchOne())
+      .then((results) => {
+        if (!results) return null;
+        const [id, name, email, password, role] = results;
+        return { id, name, email, password, role };
+      }))
+      .catch((err) => {
+        console.log('catch linha 30', err);
+        throw err;
+      });
   return result;
 };
 
