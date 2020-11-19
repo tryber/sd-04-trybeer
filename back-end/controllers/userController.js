@@ -14,10 +14,8 @@ const userLogin = (req, res) => {
 
 const userProfile = async (req, res) => {
   try {
-    const { email } = req.body;
-    const user = await userModel.findByEmail(email);
-    const { password: _, ...userData } = user;
-    res.status(200).json(userData);
+    const { user } = req;
+    res.status(200).json(user);
   } catch {
     res.status(400).json('Email inexistente');
   }
@@ -25,8 +23,8 @@ const userProfile = async (req, res) => {
 
 const editProfile = async (req, res) => {
   try {
-    const { id, name } = req.body;
-    await userModel.editProfile(id, name);
+    const { email, name } = req.body;
+    await userModel.editProfile(email, name);
     res.status(200).json('Atualização concluída com sucesso');
   } catch (error) {
     console.log(error);

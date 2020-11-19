@@ -10,7 +10,6 @@ const Profile = () => {
   const [auth, setAuth] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [id, setId] = useState();
   const [disabled, isDisabled] = useState(true);
   const [message, setMessage] = useState('');
 
@@ -21,7 +20,7 @@ const Profile = () => {
 
   const editProfile = (e) => {
     e.preventDefault();
-    api.changeProfile(id, name).then((response) => {
+    api.changeProfile(email, name).then((response) => {
       setMessage(response.data);
       const user = JSON.parse(localStorage.getItem('user'));
       user.name = name;
@@ -33,10 +32,12 @@ const Profile = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user === null) setAuth(false);
     else {
-      api.profile(user.email).then(({ data }) => {
-        setName(data.name);
-        setEmail(data.email);
-        setId(data.id);
+      api.profile(user.token).then(({ data }) => {
+        if (data === 'jwt malformed') setAuth(false);
+        else {
+          setName(data.name);
+          setEmail(data.email);
+        }
       });
     }
   }, []);
