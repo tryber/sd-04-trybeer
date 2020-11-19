@@ -1,24 +1,24 @@
-.login-container {
+.loginContainer {
   align-items: center;
   display: flex;
   height: 100vh;
   justify-content: center;
 }
 
-.input-label {
+.inputLabel {
   display: block;
   font-size: 1.1rem;
   margin-bottom: 5px;
 }
 
-.login-input {
+.loginInput {
   box-sizing: border-box;
   margin-bottom: 1.5rem;
   padding: 10px 0px;
   width: 100%;
 }
 
-.submit-btn {
+.submitBtn {
   background-color: #1cd118;
   border: none;
   cursor: pointer;
@@ -29,15 +29,15 @@
   width: 100%;
 }
 
-.submit-btn:hover {
+.submitBtn:hover {
   background-color: #18b816;
 }
 
-.submit-btn:disabled {
+.submitBtn:disabled {
   cursor: initial;
 }
 
-.no-account-btn {
+.noAccountBtn {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
@@ -49,11 +49,11 @@
   width: 15rem;
 }
 
-.no-account-btn:hover {
+.noAccountBtn:hover {
   background-color: rgb(233, 233, 233);
 }
 
-.login-form {
+.loginForm {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -61,6 +61,6 @@
   width: 50vw;
 }
 
-.fields-container {
+.fieldsContainer {
   width: 100%;
 }

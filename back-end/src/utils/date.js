@@ -10,7 +10,7 @@ const getCurrentDate = () => `${new Date()
   hour: '2-digit',
   minute: '2-digit',
   second: '2-digit',
-})}`;
+}).replace(/\:/g, '-')}`;
 
 module.exports = {
   getCurrentDate,

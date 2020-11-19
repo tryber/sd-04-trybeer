@@ -1,6 +1,7 @@
 import React from 'react';
 import { bool, func } from 'prop-types';
-import './index.css';
+// import './index.css';
+import styles from './index.module.css'
 
 const Burger = ({ open, setOpen }) => (
   <button
@@ -8,11 +9,11 @@ const Burger = ({ open, setOpen }) => (
     open={ open }
     onClick={ () => setOpen(!open) }
     data-testid="top-hamburguer"
-    className="btn-burger"
+    className={styles.btnBurger}
   >
-    <div className="div-burger" />
-    <div className="div-burger" />
-    <div className="div-burger" />
+    <div className={styles.divBurger} />
+    <div className={styles.divBurger} />
+    <div className={styles.divBurger} />
   </button>
 );
 

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Context } from '../../context/Provider';
-import './index.css';
+import styles from './index.module.css';
 
 const Card = ({ img, name, price, index, id }) => {
   const { cart, setCart } = useContext(Context);
@@ -40,11 +40,11 @@ const Card = ({ img, name, price, index, id }) => {
   };
 
   return (
-    <div className="card-container">
+    <div className={styles.cardContainer}>
       <img
         src={img}
         alt={name}
-        className="card-img"
+        className={styles.cardImg}
         data-testid={`${index}-product-img`}
       />
       <span data-testid={`${index}-product-name`}>{name}</span>
@@ -54,7 +54,7 @@ const Card = ({ img, name, price, index, id }) => {
           currency: 'BRL',
         })}`}
       </span>
-      <div className="button-container">
+      <div className={styles.buttonContainer}>
         <button
           data-testid={`${index}-product-minus`}
           onClick={() => decrementCounterHandler(id)}

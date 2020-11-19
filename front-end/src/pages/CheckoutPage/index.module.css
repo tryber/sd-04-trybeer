@@ -1,4 +1,4 @@
-.page-container {
+.pageContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,13 +8,13 @@
   margin: 0 auto;
 }
 
-.cart-list {
+.cartList {
   list-style: none;
   width: 100%;
   padding: 0;
 }
 
-.cart-item {
+.cartItem {
   display: flex;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
   border-radius: 0.2rem;
@@ -25,25 +25,25 @@
   width: 100%;
 }
 
-.cart-item-right-container,
-.cart-item-left-container {
+.cartItemRightContainer,
+.cartItemLeftContainer {
   display: flex;
   align-items: center;
 }
-.dash-space {
+.dashSpace {
   margin: 0px 0.5rem;
 }
 
-.cart-item-price {
+.cartItemPrice {
   font-weight: 700;
   margin-left: 1rem;
 }
 
-.cart-item-name {
+.cartItemName {
   font-weight: 700;
 }
 
-.remove-item-btn {
+.removeItemBtn {
   border-style: none;
   background-color: #4e4848;
   color: white;
@@ -54,25 +54,25 @@
   cursor: pointer;
 }
 
-.remove-item-btn:hover {
+.removeItemBtn:hover {
   background-color: #413b3b;
 }
 
-.cart-total {
+.cartTotal {
   text-align: right;
 }
 
-.unitary-price {
+.unitaryPrice {
   font-size: 0.7rem;
 }
 
-.address-inputs {
+.addressInputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 1rem;
 }
 
-.address-input {
+.addressInput {
   border-radius: 0.2rem;
   border: 1px solid black;
   padding: 0.3rem;
@@ -85,11 +85,11 @@
   width: 100%;
 }
 
-.input-label {
+.inputLabel {
   font-size: 0.8rem;
 }
 
-.checkout-finish-btn {
+.checkoutFinishBtn {
   width: 100%;
   margin-top: 1rem;
   border: none;
@@ -102,11 +102,11 @@
   cursor: pointer;
 }
 
-.checkout-finish-btn:hover {
+.checkoutFinishBtn:hover {
   background-color: #413b3b;
 }
 
-.checkout-finish-btn:disabled {
+.checkoutFinishBtn:disabled {
   background-color: #a7a7a7;
 }
 
@@ -121,7 +121,7 @@
   }
 }
 
-.finish-notification {
+.finishNotification {
   position: fixed;
   background-color: #4e4848;
   color: white;
@@ -134,31 +134,31 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .page-container {
+  .pageContainer {
     width: 90%;
   }
 
-  .cart-item {
+  .cartItem {
     flex-direction: column;
   }
 
-  .cart-item-right-container {
+  .cartItemRightContainer {
     margin-top: 0.8rem;
     width: 100%;
     justify-content: center;
   }
 
-  .address-inputs {
+  .addressInputs {
     grid-template-columns: 1fr;
   }
 
-  .fields-container:last-child {
+  .fieldsContainer:last-child {
     margin-top: 0.8rem;
   }
 }
 
 @media only screen and (max-width: 1000px) {
-  .page-container {
+  .pageContainer {
     width: 90%;
   }
 }
