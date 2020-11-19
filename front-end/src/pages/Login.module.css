@@ -20,8 +20,8 @@
 @keyframes neon {
   0%,
   100% {
-    text-shadow: 0 0 1vw #fa1c16, 0 0 3vw #fa1c16, 0 0 7vw #fa1c16,
-      0 0 7vw #fa1c16, 0 0 0.4vw #fed128, 0.2vw 0.2vw 0.1vw #806914;
+    text-shadow: 0 0 1vw #fa1c16, 0 0 1vw #fa1c16, 0 0 1vw #fa1c16,
+      0 0 4vw #fa1c16, 0 0 0.4vw #fed128, 0.2vw 0.2vw 0.1vw #806914;
     color: #fed128;
   }
   50% {

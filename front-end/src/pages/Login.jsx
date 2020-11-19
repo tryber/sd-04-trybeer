@@ -78,7 +78,7 @@ const Login = () => {
         <source src={beer} type="video/mp4" />
       </video>
       <div className="generalDiv">
-        <h1 className={styles.trybeer}>QueryBeer</h1>
+        <h1 className={styles.trybeer}>TryBeer</h1>
         <form className="generalForm" onSubmit={(e) => handleSubmit(e)}>
           <label className="generalLabel" htmlFor="email">
             Email
