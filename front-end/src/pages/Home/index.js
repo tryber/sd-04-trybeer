@@ -1,7 +1,6 @@
 import React from 'react';
-import Menu from '../../components/MenuTop';
 
 const Home = () => (
-  <Menu />
+  <p>Home</p>
 );
 export default Home;
