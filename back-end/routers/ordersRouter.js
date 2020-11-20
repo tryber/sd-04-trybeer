@@ -5,8 +5,6 @@ const validateToken = require('../auth/validateToken');
 
 const router = express.Router();
 
-router.post('/', validateToken, productController.getOrderByUserIdController );
-
-//router.put('/', userController.editProfile);
+router.post('/', validateToken, productController.getOrderByUserIdController);
 
 module.exports = router;

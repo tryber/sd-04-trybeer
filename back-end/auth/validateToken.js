@@ -6,8 +6,6 @@ const SECRET = 'trybe2020';
 const validateToken = async (req, res, next) => {
   try {
     const { token } = req.body;
-    console.log("entrou aqui");
-    console.log(token);
     if (!token) {
       return res.status(200).json('missing auth token');
     }
