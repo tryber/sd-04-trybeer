@@ -44,7 +44,7 @@ function Products() {
           >
             Ver Carrinho
             <span data-testid="checkout-bottom-btn-value">
-              {total &&
+              {(total || total === 0) &&
                 `R$ ${total.toFixed(2).toLocaleString().replace('.', ',')}`}
             </span>
           </button>
