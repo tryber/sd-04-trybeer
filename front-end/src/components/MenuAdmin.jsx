@@ -1,15 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import styles from './Menu.module.css';
+
+
 const MenuAdmin = () => {
   const cleanLocal = () => {
     localStorage.clear();
   };
 
   return (
-    <header>
-      <h1>TryBeer</h1>
-      <div class="admin-side-bar-container">
+    <header className={styles.menuHeader}>
+    <h1 className={styles.title}>TryBeer</h1>
+    <div className={`admin-side-bar-container ${styles.menuNav}`}>
         <Link to="/admin/orders">
           <button data-testid="side-menu-item-orders" type="button">
             Pedidos

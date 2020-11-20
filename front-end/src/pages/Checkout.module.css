@@ -1,0 +1,149 @@
+.mainDiv {
+  align-items: flex-start;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 204, 0);
+  display: flex;
+  justify-content: center;
+  min-height: 86vh;
+  width: 80%;
+}
+
+.checkoutDiv {
+  border-radius: 10px;
+  border: 2px dotted rgb(30, 30, 30);
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: space-evenly;
+  margin: 2rem 0;
+  padding: 1rem 5rem;
+  width: 85%;
+}
+
+.productTitle {
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
+  margin-bottom: 2rem;
+  text-decoration: underline;
+}
+
+.productDiv {
+  align-items: center;
+  background-color: rgb(255, 204, 0);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  height: 50px;
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+  width: 100%;
+}
+
+.productDiv p {
+  font-size: 1.5rem;
+}
+
+.productDiv button {
+  background: none;
+  border: none;
+  color: rgb(155, 0, 0);
+  cursor: pointer;
+  font-size: 1.7rem;
+  font-weight: 900;
+}
+
+.total {
+  align-self: flex-end;
+  display: flex;
+  font-size: 3rem;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.checkoutForm {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.checkoutForm label {
+  font-family: 'Alice', serif;
+  font-size: 2rem;
+  letter-spacing: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.checkoutForm input {
+  border-radius: 10px;
+  border: 2px solid rgb(255, 204, 0);
+  font-size: 1.3rem;
+  height: 40px;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  width: 100%;
+}
+
+.checkoutForm button {
+  background-color: rgb(87, 192, 0);
+  border-radius: 10px;
+  border: none;
+  color: rgb(29, 29, 29);
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 900;
+  height: 45px;
+  letter-spacing: 0.2rem;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.checkoutForm button:hover {
+  background-color: rgb(119, 255, 7);
+}
+
+.checkoutForm button:disabled {
+  opacity: 0.5;
+}
+
+.success {
+  color: rgb(87, 192, 0);
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 40rem) {
+  .mainDiv {
+    width: 100%;
+  }
+  .checkoutDiv {
+    border: none;
+    padding: 1rem 0.5rem;
+    width: 95%;
+  }
+  .productDiv {
+    align-self: center;
+    /* margin: 1rem 0; */
+    grid-template-columns: 3fr 2fr 0.5fr 1fr 1fr;
+    padding-left: 0.5rem;
+  }
+  .productDiv p {
+    font-size: 1rem;
+  }
+  .productDiv button {
+    font-size: 1.2rem;
+  }
+  .checkoutForm {
+    align-items: center;
+    width: 100%;
+  }
+  .checkoutForm input {
+    width: 90%;
+  }
+  .checkoutForm label {
+    align-self: flex-start;
+    margin-left: 30px;
+  }
+}

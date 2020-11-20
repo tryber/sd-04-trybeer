@@ -1,38 +1,175 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Pacifico&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  font-family: 'Alice', serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0px;
+  box-sizing: border-box;
+  padding: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+ul,
+li {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+button:focus,
+input:focus,
+a:focus {
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* CSS DO LOGIN E REGISTER, MAJORITARIAMENTE */
+.generalSection {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: flex-start;
+}
+
+.generalDiv {
+  align-items: center;
+  background-image: url('./assets/imgs/bricks.jpg');
+  background-size: contain;
+  border-radius: 10px;
+  border: 1px solid rgb(204, 163, 0);
   display: flex;
   flex-direction: column;
+  height: 90vh;
+  justify-content: space-around;
+  margin-left: 10rem;
+  width: 40%;
+}
+
+.generalForm {
   align-items: center;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 1rem;
+  width: 60%;
 }
 
-.App-link {
-  color: #61dafb;
+.generalLabel {
+  align-self: flex-start;
+  color: rgb(255, 205, 1);
+  font-size: 2rem;
+  letter-spacing: 0.2rem;
+  margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.generalInput {
+  background-color: rgb(255, 240, 181);
+  border-radius: 10px;
+  border: none;
+  font-size: 1.5rem;
+  height: 40px;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.generalInput:focus {
+  border: 2px solid rgb(255, 205, 1);
+  outline: none;
+}
+
+.generalSubmit {
+  background-color: rgb(255, 153, 0);
+  border-radius: 10px;
+  border: none;
+  font-family: 'Alice', serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  height: 45px;
+  letter-spacing: 0.3rem;
+  transition: all 0.3s;
+  width: 50%;
+}
+
+.generalSubmit:hover {
+  background-color: rgb(255, 168, 55);
+  cursor: pointer;
+}
+
+.generalSubmit:disabled {
+  opacity: 0.6;
+}
+
+.generalRegister {
+  background: none;
+  border: none;
+  color: rgb(255, 153, 0);
+  cursor: pointer;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  margin-top: 2rem;
+  text-decoration: underline;
+}
+
+.insideSection {
+  align-items: center;
+  background-image: url('./assets/imgs/cans.jpg');
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.insideDivRow,
+.insideDivCol {
+  align-items: center;
+  background-color: white;
+  border: 1px solid rgb(255, 204, 0);
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  justify-content: flex-start;
+  min-height: 86vh;
+  width: 80%;
+}
+
+.insideDivCol {
+  flex-direction: column;
+}
+
+@media (max-width: 40rem) {
+  .generalSection {
+    justify-content: center;
   }
-  to {
-    transform: rotate(360deg);
+  .generalDiv {
+    height: 100%;
+    margin: 0;
+    width: 100%;
+  }
+  .insideDivRow,
+  .insideDivCol {
+    width: 100%;
+  }
+  .generalForm {
+    width: 80%;
+  }
+  video {
+    display: none;
   }
 }

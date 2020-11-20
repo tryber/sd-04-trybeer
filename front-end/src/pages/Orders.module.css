@@ -1,0 +1,99 @@
+.orderLink {
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 0.5vw rgb(150, 150, 150);
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+  padding: 2rem;
+  text-decoration: none;
+  transition: all 0.3s;
+  width: 70%;
+}
+
+.insideDiv {
+  align-items: center;
+  background-color: white;
+  border: 1px solid rgb(255, 204, 0);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 86vh;
+  width: 80%;
+}
+
+.orderLinkAdmin {
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 0.5vw rgb(150, 150, 150);
+  display: flex;
+  justify-content: center;
+  margin: 2rem 1rem;
+  min-height: 130px;
+  padding: 1rem;
+  text-decoration: none;
+  transition: all 0.3s;
+  width: 30%;
+  color: rgb(30, 30, 30);
+}
+
+.orderLinkAdminS {
+  width: 100%;
+  display: flex;
+  min-height: 100px;
+  flex-direction: column;
+}
+
+.orderLinkAdminS p {
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  margin: 0.5rem;
+  text-decoration: none;
+}
+
+.orderLinkAdminS p:first-child {
+  text-decoration: underline;
+}
+
+.orderLink:hover,
+.orderLinkAdmin:hover {
+  box-shadow: 0 0 0.7vw rgb(150, 150, 150);
+  transform: scale(1.02);
+}
+
+.orderDiv {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.orderDiv p {
+  color: rgb(30, 30, 30);
+  font-size: 2.2rem;
+}
+
+@media (max-width: 40rem) {
+  .orderLink {
+    width: 90%;
+  }
+  .orderLinkAdmin {
+    width: 40%;
+    margin: 1rem;
+  }
+  .orderDiv {
+    width: 100%;
+  }
+  .orderDiv p {
+    font-size: 2rem;
+  }
+  .insideDiv {
+    width: 100%;
+  }
+  .orderLinkAdmin p {
+    font-size: 1rem;
+    text-align: center;
+  }
+}

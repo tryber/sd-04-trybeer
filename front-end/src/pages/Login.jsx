@@ -3,6 +3,9 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import beer from '../assets/video/video.mp4';
+import styles from './Login.module.css';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,38 +62,67 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <label htmlFor="email">Email</label>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          data-testid="email-input"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          data-testid="password-input"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          type="submit"
-          data-testid="signin-btn"
-          disabled={!validEmail(email) || password.length < 6}
-        >
-          ENTRAR
-        </button>
-      </form>
-      <Link to="/register">
-        <button type="button" data-testid="no-account-btn">
-          Ainda não tenho conta
-        </button>
-      </Link>
-    </div>
+    <section className="generalSection">
+      <video
+        autoPlay
+        muted
+        loop
+        style={{
+          position: 'absolute',
+          width: '100%',
+          objectFit: 'cover',
+          zIndex: '-1',
+          height: '100vh',
+        }}
+      >
+        <source src={beer} type="video/mp4" />
+      </video>
+      <div className="generalDiv">
+        <h1 className={styles.trybeer}>TryBeer</h1>
+        <form onSubmit={(e) => handleSubmit(e)} className="generalForm">
+          <label className="generalLabel" htmlFor="email">
+            Email
+          </label>
+
+          <input
+            className="generalInput"
+            type="email"
+            name="email"
+            id="email"
+            data-testid="email-input"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label className="generalLabel" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="generalInput"
+            type="password"
+            name="password"
+            id="password"
+            data-testid="password-input"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            className="generalSubmit"
+            type="submit"
+            data-testid="signin-btn"
+            disabled={!validEmail(email) || password.length < 6}
+          >
+            ENTRAR
+          </button>
+        </form>
+        <Link to="/register">
+          <button
+            className="generalRegister"
+            type="button"
+            data-testid="no-account-btn"
+          >
+            Ainda não tenho conta
+          </button>
+        </Link>
+      </div>
+    </section>
   );
 };
 export default connect(null, null)(Login);

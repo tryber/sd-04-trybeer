@@ -1,0 +1,165 @@
+.menuHeader {
+  align-items: center;
+  background-image: url('../assets/imgs/bricks1.jpg');
+  background-size: contain;
+  border-bottom: 3px solid rgb(255, 204, 0);
+  display: flex;
+  height: 130px;
+  justify-content: space-between;
+  padding: 0 8rem;
+  width: 100%;
+}
+
+.menuNav {
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuNav button {
+  font-size: 2.3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: 0.2rem;
+  color: rgb(225, 204, 0);
+  text-shadow: 0 0 1rem #fa0a36;
+  transition: all 0.3s;
+}
+
+.menuNav button:hover:after {
+  width: 4rem;
+}
+
+.menuNav button:after {
+  background: currentColor;
+  border-radius: 2px;
+  content: '';
+  display: block;
+  height: 2px;
+
+  width: 0rem;
+  transition: all 0.3s;
+}
+
+.title {
+  animation: neon 1s ease-in infinite;
+  color: rgb(225, 204, 0);
+  font-family: 'Pacifico', cursive;
+  font-size: 4rem;
+  letter-spacing: 0.3rem;
+  line-height: 9vw;
+  margin-bottom: 15px;
+  text-decoration: underline;
+  text-shadow: 0 0 2vw #ff002f;
+}
+
+.hamburguer {
+  align-items: center;
+  background-color: rgb(255, 204, 0);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 3vw #ff002f;
+  cursor: pointer;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  transition: all 0.3s;
+  width: 150px;
+}
+
+.hamburguer:hover {
+  box-shadow: 0 0 3vw #ff6782;
+}
+
+.hamburguer:after {
+  background: currentColor;
+  border-radius: 2px;
+  box-shadow: 0 6px currentColor, 0 -6px currentColor;
+  content: '';
+  display: block;
+  height: 2.5px;
+  width: 2rem;
+}
+
+.menuContainer {
+  align-items: center;
+  background-image: url('../assets/imgs/yellowbricks.jpg');
+  background-size: contain;
+  border-bottom: 2px solid rgb(30, 30, 30);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 10rem;
+  width: 100%;
+}
+
+.menuBtn {
+  background: none;
+  border: none;
+  color: rgb(30, 30, 30);
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.3rem;
+  transition: all 0.3s;
+}
+
+.menuBtn:hover:after {
+  width: 4rem;
+}
+
+.menuBtn:after {
+  background: currentColor;
+  border-radius: 2px;
+  content: '';
+  display: block;
+  height: 3px;
+  width: 0rem;
+  transition: all 0.3s;
+}
+
+@media (max-width: 40rem) {
+  .menuHeader {
+    padding: 0 2rem;
+  }
+  .title {
+    font-size: 2rem;
+    margin: 0;
+  }
+  .hamburguer {
+    height: 40px;
+    width: 60px;
+  }
+  .hamburguer:after {
+    width: 1.5rem;
+  }
+  .menuContainer {
+    padding: 1rem 2rem;
+  }
+  .menuBtn {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+  }
+  .menuNav button {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  .menuNav {
+    width: 45%;
+  }
+  .menuBtn:hover:after {
+    width: 2rem;
+  }
+  .menuBtn:after {
+    height: 2px;
+  }
+  .menuNav button:after {
+    height: 1px;
+  }
+  .menuNav button:hover:after {
+    width: 1rem;
+  }
+}
