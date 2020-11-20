@@ -2,14 +2,14 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useOnClickOutside from '../../../hooks';
-import Burger from '../../Burger';
+import Burger from '..';
 import StyledMenu from '../style';
 import styles from '../index.module.css'
 
 const MenuAdmin = () => {
   const [open, setOpen] = useState(false);
   const node = useRef();
-  useOnClickOutside(node, () => setOpen(false)); 
+  useOnClickOutside(node, () => setOpen(false));
 
   return (
     <header className={styles.header} ref={ node }>
@@ -30,6 +30,10 @@ const MenuAdmin = () => {
       </h1>
     </header>
   );
+};
+
+MenuAdmin.propTypes = {
+  nomeTela: PropTypes.string.isRequired,
 };
 
 export default MenuAdmin;
