@@ -16,7 +16,6 @@ app.use(cors());
 app.post('/login', login);
 app.get('/products', productController.getAll);
 
-app.get('/profile', validateJWT, getUser);
-app.post('/profile', userUpdate);
+app.put('/profile', userUpdate);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
