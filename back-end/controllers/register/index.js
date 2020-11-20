@@ -21,7 +21,7 @@ const register = async (req, res) => {
     const newUser = await getByEmail(signEmail);
     const { password: _, ...userWithoutPassword } = newUser;
     const token = createToken(userWithoutPassword);
-  
+
     return res.status(201).json(token);
   } catch (_error) {
     console.log(_error.message);
