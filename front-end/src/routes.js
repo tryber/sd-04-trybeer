@@ -34,7 +34,7 @@ const routes = () => (
       <Route path="/register" component={ Register } />
       <Route path="/profile" component={ ProfileClient } />
       <Route path="/checkout" component={ Checkout } />
-      <Route path="/orders" component={ OrdersClient } />
+      <Route exact path="/orders" component={ OrdersClient } />
       <Route exact path="/orders/:id" component={ Details } />
       <Route exact path="/admin/orders" component={ OrdersAdm } />
       <Route exact path="/admin/profile" component={ ProfileAdm } />
