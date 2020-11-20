@@ -1,10 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TopBar from '../components/ClientBar.jsx';
+import { useHistory, useParams } from 'react-router-dom';
+import api from '../services/api.js';
+import './Details.css';
 
-const Details = () => (
-  <div>
-    <TopBar title={'Detalhes do Pedido'} isAdm={false} />
-  </div>
-);
+function Details() {
+  const [order, setOrder] = useState();
+  const params = useParams();
+  const history = useHistory();
+
+  useState(() => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    api.get(`/orders/${params.id}`, { headers: { Authorization: token } })
+      .then(response => setOrder(response.data))
+      .catch(() => history.push('/login'));
+  }, [params.id]);
+
+  if (!order) return <div>Carregando...</div>
+
+  return (
+    <div>
+      <TopBar title={'Detalhes do Pedido'} isAdm={false} />
+      <div className="container">
+        <div className="header">
+          <p data-testid="order-number">Pedido {order[0].saleID}</p>
+          <p data-testid="order-date">
+            {new Date(order[0].saleDate)
+              .toLocaleDateString('pt-BR', { timeZone: 'UTC' }).slice(0, 5)}
+          </p>
+        </div>
+        <div>
+          {order.map((p, index) => (
+            <div>
+              <div>
+                <div className="products">
+                  <span data-testid={`${index}-product-qtd`}>{p.quantity}</span>
+                  <span data-testid={`${index}-product-name`}>{p.product}</span>
+                  <span data-testid={`${index}-product-total-value`}>
+                    {`R$ ${(p.price * p.quantity).toFixed(2).toString().replace('.', ',')}`}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="total">
+          <h6 data-testid="order-total-value">
+            Total: {`R$ ${order[0].totalPrice.toFixed(2).toString().replace('.', ',')}`}
+          </h6>
+        </div>
+      </div>
+    </div >
+  )
+
+};
 
 export default Details;

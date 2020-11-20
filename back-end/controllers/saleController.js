@@ -9,18 +9,18 @@ const findAllSalesController = async (_req, res) => {
   }
 };
 
-const findSaleByIdController = async (req, res) => {
+const findSalesBySaleId = async (req, res) => {
   try {
-    const { saleId } = req.body;
-    const sale = await saleService.findSaleByIdService(saleId);
-
-    return res.status(200).json(sale);
-  } catch (_e) {
-    return res.status(500).json({ message: 'internal error' });
+    const { id } = req.params;
+    const sales = await saleService.findSalesBySaleId(id);
+    return res.status(200).json(sales);
+  } catch (err) {
+    console.error(err);
+    return res.status(404).json({ message: 'No sale found' });
   }
 };
 
 module.exports = {
   findAllSalesController,
-  findSaleByIdController,
+  findSalesBySaleId,
 };

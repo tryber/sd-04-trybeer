@@ -12,13 +12,13 @@ const findAllSalesService = async () => {
   return allSales;
 };
 
-const findSaleByIdService = async (saleId) => {
-  const sale = await saleModel.findSaleById(saleId);
-  return sale;
+const findSalesBySaleId = async (id) => {
+  const sales = await saleModel.findOrderBySaleId(id);
+  return sales;
 };
 
 module.exports = {
   registerSaleService,
   findAllSalesService,
-  findSaleByIdService,
+  findSalesBySaleId,
 };
