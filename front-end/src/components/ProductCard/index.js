@@ -99,7 +99,7 @@ export default function ProductCard(data) {
       <div>
         <button
           type="button"
-          disabled={ quantity === zero }
+          // disabled={ quantity === zero }
           data-testid={ `${id - 1}-product-minus` }
           onClick={ () => subButton(quantity, zero, setQuantity) }
         >
