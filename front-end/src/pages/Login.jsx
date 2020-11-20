@@ -79,7 +79,7 @@ const Login = () => {
       </video>
       <div className="generalDiv">
         <h1 className={styles.trybeer}>TryBeer</h1>
-        <form className="generalForm" onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={(e) => handleSubmit(e)} className="generalForm">
           <label className="generalLabel" htmlFor="email">
             Email
           </label>
