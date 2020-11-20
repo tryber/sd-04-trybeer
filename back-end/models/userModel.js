@@ -1,13 +1,14 @@
 const connection = require('./connection');
 
-const getUserByEmail = async (email) => {
+const getUserByEmail = async (email, password) => {
   try {
-    connection()
+    return connection()
       .then((db) => db
         .getTable('users')
         .select(['id', 'name', 'email', 'password', 'role'])
-        .where('email = :email')
+        .where('email =:email AND password =:password')
         .bind('email', email)
+        .bind('password', password)
         .execute())
       .then((result) => result.fetchOne())
       .then(([id, name, userEmail, password, role] = []) => (

@@ -1,6 +1,15 @@
 const rescue = require('express-rescue');
 const { userService } = require('../services');
 
+const loginUser = async (req, res) => {
+  try {
+    const response = await userService.login(req.body);
+    return res.status(200).json(response);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const registerUser = async (req, res) => {
   try {
     const newUser = await userService.createUser(req.body);
@@ -23,6 +32,7 @@ const updateUser = rescue(async (req, res, next) => {
 });
 
 module.exports = {
+  loginUser,
   updateUser,
   registerUser,
 };

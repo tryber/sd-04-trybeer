@@ -29,10 +29,11 @@ form {
   padding: 16px;
 }
 
-.login-label {
+.login-label, .login-label input {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 #emailInput,
