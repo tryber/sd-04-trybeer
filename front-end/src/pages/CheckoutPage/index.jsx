@@ -151,7 +151,7 @@ const Checkout = () => {
           </div>
           <button
             type="submit"
-            className={styles.checkoutFinishBtn}
+            className="buttonMain"
             data-testid="checkout-finish-btn"
             disabled={!cart.length || !form.street || !form.houseNumber}
           >

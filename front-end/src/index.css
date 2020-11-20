@@ -25,11 +25,16 @@ html, body {
   margin-top: 100px;
 }
 
+a {
+  text-decoration: none;
+}
+
 input {
   box-sizing: border-box;
   margin-bottom: 1.5rem;
   padding: 10px;
   width: 100%;
+  border-radius: 0.2rem;
 }
 
 .buttonMain {
@@ -54,6 +59,13 @@ input {
 
 .buttonMain:disabled {
   cursor: initial;
+  opacity: 0.5;
+  transform: scale(1);
+}
+
+.buttonMain:disabled:hover {
+  transform: scale(1);
+  background-color: #E85D04;
 }
 
 .inputLabel {

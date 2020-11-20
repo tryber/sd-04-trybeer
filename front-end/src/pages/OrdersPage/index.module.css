@@ -1,14 +1,13 @@
 .containerOrders {
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
   height: 100vh;
   flex-direction: column;
-  width: 50vw;
-  margin: 200px auto 50px;
+  width: 100vw;
+  margin: 0 auto 50px;
 }
 
 .products {
-  width: 50%;
+  width: 100%;
 }
-

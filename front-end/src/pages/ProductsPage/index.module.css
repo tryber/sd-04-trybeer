@@ -43,3 +43,10 @@
   opacity: 0.5;
 }
 
+.buttonCart:disabled:hover {
+  color: white;
+  background-color: transparent;
+  opacity: 0.5;
+  border: 1px solid white;
+}
+
