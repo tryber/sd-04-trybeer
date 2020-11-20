@@ -1,4 +1,4 @@
-const { userModel } = require('../models/');
+const { userModel } = require('../models');
 
 const createUser = async ({ userName, emailUser, password, isSeller }) => {
   const emailInDatabase = await userModel.getUserByEmail(emailUser);

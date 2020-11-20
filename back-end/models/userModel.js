@@ -1,6 +1,6 @@
 const connection = require('./connection');
 
-const getUserByEmail = async (email, password) => {
+const getUserByEmail = async (email, pass) => {
   try {
     return connection()
       .then((db) => db
@@ -8,7 +8,7 @@ const getUserByEmail = async (email, password) => {
         .select(['id', 'name', 'email', 'password', 'role'])
         .where('email =:email AND password =:password')
         .bind('email', email)
-        .bind('password', password)
+        .bind('password', pass)
         .execute())
       .then((result) => result.fetchOne())
       .then(([id, name, userEmail, password, role] = []) => (
