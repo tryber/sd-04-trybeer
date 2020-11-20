@@ -3,12 +3,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const { login } = require('./controllers/login');
-<<<<<<< HEAD
 const productController = require('./controllers/products');
-const { validateJWT } = require('./middlewares/validateJWT');
-=======
+// const { validateJWT } = require('./middlewares/validateJWT');
 const { register } = require('./controllers/register');
->>>>>>> main-g7-final
 
 const app = express();
 const port = 3001;
