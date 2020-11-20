@@ -1,19 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import useOnClickOutside from '../../../hooks';
-import Burger from '../../Burger';
-import StyledMenu from '../style';
-import styles from '../index.module.css';
+import styles from './index.module.css';
 
-const MenuAdmin = () => {
-  const [open, setOpen] = useState(false);
-  const node = useRef();
-  useOnClickOutside(node, () => setOpen(false));
-
+const index = () => {
   return (
-    <header className={styles.header} ref={node}>
-      <Burger open={open} setOpen={setOpen} />
-      <StyledMenu open={open} className="admin-side-menu-container">
+    <header className={styles.header}>
+      <nav className={styles.navbar}>
         <Link
           to="/admin/orders"
           className="nav-link"
@@ -35,10 +27,10 @@ const MenuAdmin = () => {
         >
           Sair
         </Link>
-      </StyledMenu>
+      </nav>
       <h1 className={styles.topTitle}>TryBeer</h1>
     </header>
   );
 };
 
-export default MenuAdmin;
+export default index;
