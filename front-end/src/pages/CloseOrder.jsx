@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import TopBar from '../components/ClientBar.jsx';
 import { AppContext } from '../context/AppContext';
 
-const CloseOrder = () => {
+function CloseOrder() {
   const { cart, setCart, total, setTotal } = useContext(AppContext);
   const { orderMessage, setOrderMessage } = useContext(AppContext);
 
@@ -18,6 +18,11 @@ const CloseOrder = () => {
     if (localStorage.getItem('cart')) {
       setCart(JSON.parse(localStorage.getItem('cart')));
       setTotal(JSON.parse(localStorage.getItem('totalPrice')));
+    }
+    const loginInStorage = JSON.parse(localStorage.getItem('user'));
+
+    if (!loginInStorage) {
+      history.push('/login');
     }
   }, []);
 
@@ -54,120 +59,139 @@ const CloseOrder = () => {
 
   const history = useHistory();
 
-  const doneOrder = (history, frase, seOMessage) => {
+  function doneOrder(history, frase, seOMessage) {
     /* let orderMessageItem = document.querySelector('#orderMessage');
     orderMessage.innerHTML = frase; */
     seOMessage(frase);
     const orderDate = new Date();
+    //setTotal(JSON.parse(localStorage.getItem('totalPrice')))
     setData(orderDate);
     history.push('/products');
-  };
+  }
 
   return (
     <div>
       <TopBar title={'Finalizar Pedido'} isAdm={false} />
-
-      <h1>Produtos</h1>
-      <p>{message}</p>
-      <p id="orderMessage">{orderMessage}</p>
-      <ul ref={orderRef} id="list" className="list-group">
-        {cart.map(({ name, quantity, price }, index) => {
-          return (
-            <li
-              name="itemList"
-              id={name}
-              key={name}
-              className="list-group-item list-group-item-action list-group-item-primary"
-              index={index}
-            >
-              <div className="container">
-                <div className="row">
-                  <div
-                    data-testid={`${index}-product-qtd-input`}
-                    className="col"
-                  >
-                    {quantity}
-                  </div>
-                  <div data-testid={`${index}-product-name`} className="col-6">
-                    {name}
-                  </div>
-                  <div
-                    data-testid={`${index}-product-unit-price`}
-                    className="col"
-                  >
-                    {`(R$ ${price.toFixed(2).toString().replace('.', ',')} un)`}
-                  </div>
-                  <div
-                    data-testid={`${index}-product-total-value`}
-                    className="col"
-                  >
-                    {`R$ ${(price * quantity)
-                      .toFixed(2)
-                      .toString()
-                      .replace('.', ',')}`}
-                  </div>
-
-                  <input type="hidden" name="total" value={total} />
-                  <input type="hidden" name="products" value={cart} />
-                  <input type="hidden" name="date" value={data} />
-
-                  <div
-                    onClick={(e) => removeItemFromArray(name)}
-                    className="col"
-                  >
-                    <button
-                      data-testid={`${index}-removal-button`}
-                      className="btn btn-danger"
+      <div className="container">
+        <h1>Produtos</h1>
+        <h3>{message}</h3>
+        <p id="orderMessage">{orderMessage}</p>
+        <ul ref={orderRef} id="list" className="list-group">
+          {cart.map(({ name, quantity, price }, index) => {
+            return (
+              <li
+                name="itemList"
+                id={name}
+                key={name}
+                className="list-group-item list-group-item-action list-group-item-primary"
+                index={index}
+              >
+                <div className="container">
+                  <div className="row">
+                    <div
+                      data-testid={`${index}-product-qtd-input`}
+                      className="col"
                     >
-                      X
-                    </button>
+                      {quantity}
+                    </div>
+                    <div
+                      data-testid={`${index}-product-name`}
+                      className="col-6"
+                    >
+                      {name}
+                    </div>
+                    <div
+                      data-testid={`${index}-product-unit-price`}
+                      className="col"
+                    >
+                      {`(R$ ${price
+                        .toFixed(2)
+                        .toString()
+                        .replace('.', ',')} un)`}
+                    </div>
+                    <div
+                      data-testid={`${index}-product-total-value`}
+                      className="col"
+                    >
+                      {`R$ ${(price * quantity)
+                        .toFixed(2)
+                        .toString()
+                        .replace('.', ',')}`}
+                    </div>
+
+                    <input type="hidden" name="total" value={total} />
+                    <input type="hidden" name="products" value={cart} />
+                    <input type="hidden" name="date" value={data} />
+
+                    <div
+                      onClick={(e) => removeItemFromArray(name)}
+                      className="col"
+                    >
+                      <button
+                        data-testid={`${index}-removal-button`}
+                        className="btn btn-danger"
+                      >
+                        X
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-      <p data-testid="order-total-value" id="itemTotal"></p>
-      <div className="col-md-6 offset-md-6">
-        <form method="POST" action="">
-          <h2>Endereço</h2>
-          <label htmlFor="rua">Rua:</label>
-          <input
-            onChange={(e) => setEndereco(e.target.value)}
-            id="inputEnd"
-            name="adrress"
-            data-testid="checkout-street-input"
-            type="text"
-            className="input-group-prepend"
-          />
+              </li>
+            );
+          })}
+        </ul>
+        <br />
+        <h4 data-testid="order-total-value" id="itemTotal"></h4>
+      </div>
+
+      <hr />
+
+      <div className="container">
+        <div className="col-lg-8 col-offset-6 centered">
+          <form method="POST" action="">
+            <h2>Endereço</h2>
+            <label htmlFor="rua">Rua:</label>
+            <input
+              onChange={(e) => setEndereco(e.target.value)}
+              id="inputEnd"
+              name="adrress"
+              data-testid="checkout-street-input"
+              type="text"
+              className="form-control"
+            />
+            <br />
+            <label htmlFor="numeroCasa" className="">
+              Número da casa:
+            </label>
+            <input
+              name="number"
+              onChange={(e) => setNumero(e.target.value)}
+              data-testid="checkout-house-number-input"
+              type="text"
+              className="form-control"
+            />
+          </form>
           <br />
-          <label htmlFor="numeroCasa" className="input-group-prepend">
-            Número da casa:
-          </label>
-          <input
-            name="number"
-            onChange={(e) => setNumero(e.target.value)}
-            data-testid="checkout-house-number-input"
-            type="text"
-          />
-        </form>
-        <br />
-        <br />
-        <button
-          id="inputNum"
-          data-testid="checkout-finish-btn"
-          className="btn btn-success"
-          disabled={!endereco || !numero || !cart.length > 0}
-          onClick={() =>
-            doneOrder(history, 'Compra realizada com sucesso!', setOrderMessage)
-          }
-        >
-          Finalizar compra
-        </button>
+          <br />
+          <button
+            id="inputNum"
+            data-testid="checkout-finish-btn"
+            className="btn btn-success"
+            disabled={!endereco || !numero || !cart.length > 0}
+            onClick={() =>
+              doneOrder(
+                history,
+                'Compra realizada com sucesso!',
+                setOrderMessage
+              )
+            }
+          >
+            Finalizar compra
+          </button>
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default CloseOrder;

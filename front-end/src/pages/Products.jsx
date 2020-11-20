@@ -8,9 +8,14 @@ import { Link, Redirect, useHistory } from 'react-router-dom';
 import { isPropertySignature } from 'typescript';
 
 function Products() {
-  const { products, setProducts, setCart, total, orderMessage } = useContext(
-    AppContext
-  );
+  const {
+    products,
+    setProducts,
+    setCart,
+    total,
+    setTotal,
+    orderMessage,
+  } = useContext(AppContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -29,6 +34,7 @@ function Products() {
   return (
     <div>
       <TopBar title={'TryBeer'} isAdm={false} />
+      <h3>{orderMessage}</h3>
       <div className="ver-carrinho">
         <Link to="/checkout" style={{ textDecoration: 'none' }}>
           <button
@@ -38,7 +44,8 @@ function Products() {
           >
             Ver Carrinho
             <span data-testid="checkout-bottom-btn-value">
-              {`R$ ${total.toFixed(2).toLocaleString().replace('.', ',')}`}
+              {total &&
+                `R$ ${total.toFixed(2).toLocaleString().replace('.', ',')}`}
             </span>
           </button>
         </Link>
