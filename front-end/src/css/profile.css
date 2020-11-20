@@ -1,0 +1,31 @@
+.profile.page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile.page-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile.page-content > span {
+  margin: 15px;
+}
+
+.duff-beer {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .duff-beer {
+    display: initial;
+    position: absolute;
+    width: 20%;
+    bottom: 50px;
+    right: 50px;
+    transform: rotate(15deg);
+  }
+}

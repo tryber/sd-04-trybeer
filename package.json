@@ -7,8 +7,12 @@
     "start": "npm run install-back && npm run install-front && npm run start-back && npm run start-front",
     "install-back": "npm --prefix back-end/ install",
     "start-back": "npm --prefix back-end/ run start&",
+    "start-wback": "npm --prefix back-end/ run start:watch&",
     "install-front": "npm --prefix front-end/ install",
     "start-front": "npm --prefix front-end/ run start&",
+    "lint": "npm --prefix front-end/ run lint && npm --prefix back-end/ run lint",
+    "lint-front": "npm --prefix front-end/ run lint",
+    "lint-back": "npm --prefix back-end/ run lint",
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:open": "cypress open"
   },
@@ -28,6 +32,7 @@
     "sequelize": "^6.3.4"
   },
   "devDependencies": {
+    "redux-devtools-extension": "^2.13.8",
     "cypress": "^5.0.0",
     "cypress-multi-reporters": "^1.2.3",
     "dotenv": "^8.2.0",
