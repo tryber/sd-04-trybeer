@@ -1,3 +1,4 @@
+const { createToken } = require('../../middlewares/createJWT');
 const { add, getByEmail } = require('../../models/users');
 
 const register = async (req, res) => {
@@ -16,8 +17,12 @@ const register = async (req, res) => {
     }
 
     await add(signName, signEmail, signPassword, role);
-    // const newUser = await getByEmail(signEmail);
-    return res.status(201).json({ message: 'Usuario criado com sucesso' });
+
+    const newUser = await getByEmail(signEmail);
+    const { password: _, ...userWithoutPassword } = newUser;
+    const token = createToken(userWithoutPassword);
+  
+    return res.status(201).json(token);
   } catch (_error) {
     console.log(_error.message);
     res.status(501).json({ message: 'Falha ao cadastrar usuário' });
