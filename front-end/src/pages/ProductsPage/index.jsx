@@ -70,11 +70,11 @@ const Products = () => {
             })}`}
         </span>
         {cart.length === 0 ? (
-          <button disabled type="button" data-testid="checkout-bottom-btn">
+          <button disabled className={styles.buttonCart} type="button" data-testid="checkout-bottom-btn">
             Ver Carrinho
           </button>
         ) : (
-          <button type="button" data-testid="checkout-bottom-btn">
+          <button className={styles.buttonCart} type="button" data-testid="checkout-bottom-btn">
             <Link to="/checkout">Ver Carrinho</Link>
           </button>
         )}

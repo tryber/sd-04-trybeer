@@ -6,12 +6,40 @@
 }
 
 .footerCart {
+  color: white;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   bottom: 0;
   position: fixed;
   width: 100%;
-  background: rgb(202, 196, 196);
+  background: #E85D04;
   margin: 50px auto 0;
   padding: 20px;
+  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.2);
 }
+
+.buttonCart {
+  outline: none;
+  font-size: 14px;
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.buttonCart a {
+  color: white;
+  text-decoration: none
+}
+
+.buttonCart:hover {
+  border: 1px solid #F23202;
+  background-color: #F23202;
+}
+
+.buttonCart:disabled {
+  color: white;
+  opacity: 0.5;
+}
+
