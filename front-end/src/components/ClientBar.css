@@ -106,7 +106,7 @@
   flex-direction: column;
   height: 100vh;
   justify-content: space-between;
-  position: absolute;
+  position: static;
   text-align: center;
   width: 15vw;
 }
