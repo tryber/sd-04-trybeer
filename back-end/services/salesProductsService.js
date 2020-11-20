@@ -4,7 +4,7 @@ const registerSalesProductsService = async (saleId, productId, quantity) => {
   const newRegistered = await salesProductsModel.registerSalesProducts(
     saleId,
     productId,
-    quantity
+    quantity,
   );
 
   return newRegistered;

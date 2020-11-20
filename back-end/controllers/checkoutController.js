@@ -25,4 +25,4 @@ const checkoutController = async (req, res) => {
   }
 };
 
-module.exports = checkoutController
+module.exports = checkoutController;

@@ -22,6 +22,7 @@ routes.get('/products', validateJWT, productController.findAllProductsController
 routes.post(
   '/checkout',
   findUserIdByEmail,
-  checkoutController);
+  checkoutController,
+);
 
 module.exports = routes;
