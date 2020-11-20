@@ -35,7 +35,6 @@ const getSalesId = async (emailParam) => {
 };
 
 const orderDetail = async (orderId) => {
-  // chamada da consulta do Vitao para retornar ID, DATE, PRICE
   const [sale] = await saleModel.getAllSalesBy(orderId, 'id', [
     'id',
     'total_price',
