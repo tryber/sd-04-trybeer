@@ -1,10 +1,6 @@
 import React, { useState, useRef } from 'react';
 import {
-  Field,
-  Label,
-  Input,
-  Button,
-  Notification,
+  Field, Label, Input, Button, Notification,
 } from 'rbx';
 import SimpleReactValidator from 'simple-react-validator';
 import { useHistory } from 'react-router';
@@ -22,11 +18,7 @@ const Registro = () => {
   const bool = true;
 
   const simpleValidator = useRef(new SimpleReactValidator());
-  const {
-    errorName,
-    errorEmail,
-    errorPassword,
-  } = simpleValidator.current.fields;
+  const { errorName, errorEmail, errorPassword } = simpleValidator.current.fields;
 
   // https://stackoverflow.com/questions/56356900/way-to-determine-checkbox-checked-in-react-usestate
   const handleChecked = () => {
@@ -36,28 +28,31 @@ const Registro = () => {
 
   const registraUsuario = (e) => {
     e.preventDefault();
-    api.register(name, email, password, role).then(() => {
-      if (role === 'admin') {
-        history.push('/admin/orders');
-      } else {
-        history.push('/products');
-      }
-    }).catch(() => {
-      setMessage('E-mail already in database.');
-    });
+    api
+      .register(name, email, password, role)
+      .then(() => {
+        if (role === 'admin') {
+          history.push('/admin/orders');
+        } else {
+          history.push('/products');
+        }
+      })
+      .catch(() => {
+        setMessage('E-mail already in database.');
+      });
   };
 
   return (
-    <div>
-      <h2>Registro</h2>
+    <div className="registro-content">
+      <h2 className="lr-title">Registro</h2>
       {message ? (
         <Notification color="danger" size="small">
-          { message }
+          {message}
         </Notification>
       ) : (
         ''
       )}
-      <form onSubmit={ registraUsuario }>
+      <form className="form-content" onSubmit={ registraUsuario }>
         <Field>
           <Label>Nome</Label>
           <Input
@@ -68,11 +63,7 @@ const Registro = () => {
             onChange={ (e) => setName(e.target.value) }
             onBlur={ simpleValidator.current.showMessageFor('errorName') }
           />
-          { simpleValidator.current.message(
-            'errorName',
-            name,
-            'required|min:11|alpha_space',
-          ) }
+          {simpleValidator.current.message('errorName', name, 'required|min:11|alpha_space')}
         </Field>
         <Field>
           <Label>Email</Label>
@@ -84,11 +75,7 @@ const Registro = () => {
             onChange={ (e) => setEmail(e.target.value) }
             onBlur={ simpleValidator.current.showMessageFor('errorEmail') }
           />
-          {simpleValidator.current.message(
-            'errorEmail',
-            email,
-            'required|email',
-          )}
+          {simpleValidator.current.message('errorEmail', email, 'required|email')}
         </Field>
         <Field>
           <Label>Password</Label>
@@ -100,11 +87,7 @@ const Registro = () => {
             onChange={ (e) => setPassword(e.target.value) }
             onBlur={ simpleValidator.current.showMessageFor('errorPassword') }
           />
-          {simpleValidator.current.message(
-            'errorPassword',
-            password,
-            'required|min:5',
-          )}
+          {simpleValidator.current.message('errorPassword', password, 'required|min:5')}
         </Field>
         <Field>
           <Label>
