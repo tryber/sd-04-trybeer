@@ -11,6 +11,4 @@ const findUserIdByEmail = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  findUserIdByEmail,
-};
+module.exports = findUserIdByEmail;
