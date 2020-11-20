@@ -19,4 +19,8 @@ const api = axios.create({
   baseURL: 'http//localhost:3001',
 });
 
+export const userUpdate = async (name) => axios
+  .put(`${url}/profile`, { name })
+  .catch(({ response }) => response);
+
 export const listProducts = () => (api.get('/products'));
