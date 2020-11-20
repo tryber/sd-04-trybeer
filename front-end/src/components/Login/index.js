@@ -19,7 +19,7 @@ const Login = () => {
   // {
   //   "name": "Taylor Swift",
   //   "email": "taylorswift@email.com",
-  //   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4(...)",
+  //   "token": "eyJhb",
   //   "role": "client"
   // }
 
@@ -30,7 +30,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { data } = await api.post('/login', { email, password });
-    
     if (data.role === 'administrator') {
       saveUserData(data);
       history.push('/admin/orders');

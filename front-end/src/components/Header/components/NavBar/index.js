@@ -42,17 +42,21 @@ const NavBar = ({
           </Link>
         </li>
         <li>
-          <button data-testid="side-menu-item-logout" onClick={() => {
-            localStorage.removeItem('user');
-            history.push('/login');
-          }}>
+          <button
+            data-testid="side-menu-item-logout"
+            type="button"
+            onClick={ () => {
+              localStorage.removeItem('user');
+              history.push('/login');
+            } }
+          >
             Sair
           </button>
         </li>
       </ul>
     </button>
   );
-}
+};
 
 NavBar.propTypes = {
   navStyle: PropTypes.shape({
