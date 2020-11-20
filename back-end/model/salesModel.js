@@ -15,7 +15,7 @@ const getSalesById = async (idInput) => {
     .sql(SALEPRODUTQUERY)
     .execute()
     .then((results) => results.fetchAll())
-    .then((salesInfo) =>  salesInfo
+    .then((salesInfo) => salesInfo
       .map(([name, price, totalSale, saleDate, quantity, saleId, totalSaleProduct]) => ({
         name,
         price,

@@ -11,6 +11,7 @@ import Registro from './Pages/registro';
 import Products from './Pages/products';
 import Profile from './Pages/clientProfile';
 import ClientOrders from './Pages/clientOrders';
+import OrdersDetail from './Pages/ordersDetail';
 
 import './App.css';
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/register" component={ Registro } />
           <Route path="/products" component={ Products } />
           <Route path="/profile" component={ Profile } />
+          <Route path="/orders/:id" component={ OrdersDetail } />
           <Route path="/orders" component={ ClientOrders } />
         </Switch>
       </Provider>
