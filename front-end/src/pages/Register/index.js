@@ -7,6 +7,7 @@ import {
   FormErrorMessage,
   Input,
 } from '@chakra-ui/react';
+import jwtDecode from 'jwt-decode';
 import { useFormik } from 'formik';
 import { postRegister } from '../../api';
 import validationSchema from './validateRegister';
@@ -39,8 +40,8 @@ function Register() {
         formik.resetForm();
         return null;
       }
-
-      const redirect = values.signRole ? '/admin/orders' : '/products';
+      if (!localStorage.user) localStorage.user = JSON.stringify(signUp.data);
+      const redirect = jwtDecode(signUp.data).role === 'client' ? '/products' : '/admin/orders';
       return history.push(redirect);
     },
   });
