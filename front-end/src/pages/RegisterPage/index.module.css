@@ -9,136 +9,47 @@
 }
 
 .formRegister {
-  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 150px;
 }
 
-.name {
+.labelInput {
+  align-items: flex-start;
   font-family: Roboto;
   font-size: 24px;
   font-style: normal;
   font-weight: normal;
   color: #000000;
   height: 28px;
-  left: 25px;
   line-height: 28px;
-  position: absolute;
-  top: 67px;
   width: 65px;
 }
 
-.nameInput {
+.inputRegister {
   background: #FFFFFF;
   border: 1px solid #000000;
   box-sizing: border-box;
-  height: 70px;
-  left: 22px;
-  position: absolute;
-  top: 107px;
   width: 335px;
-}
-
-.email {
-  color: #000000;
-  font-family: Roboto;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: normal;
-  height: 28px;
-  left: 22px;
-  line-height: 28px;
-  position: absolute;
-  top: 189px;
-  width: 60px;
-}
-
-.emailInput {
-  background: #FFFFFF;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  height: 70px;
-  left: 19px;
-  position: absolute;
-  top: 229px;
-  width: 335px;
-}
-
-.password {
-  color: #000000;
-  font-family: Roboto;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: normal;
-  height: 28px;
-  left: 19px;
-  line-height: 28px;
-  position: absolute;
-  top: 311px; 
-  width: 67px;
-}
-
-.passwordInput {
-  background: #FFFFFF;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  height: 70px;
-  left: 19px;
-  position: absolute;
-  top: 351px;
-  width: 335px;  
 }
 
 .checkboxInput {
   border: 1px solid #000000;
   height: 26px;
-  left: 34px;
-  position: absolute;
-  top: 461px;
   width: 23px;
+  margin-right: 10px;
 }
 
 .wantToSell {
+  display: flex;
+  justify-content: center;
   color: #000000;
   font-family: Roboto;
-  font-size: 24px;
+  font-size: 1.2rem;
   font-style: normal;
   font-weight: normal;
   height: 28px;
-  left: 79px;
   line-height: 28px;
-  position: absolute;
-  top: 460px;
-  width: 142px;
-}
-
-.registerInput {
-  background: #1CD118;
-  color: #000000;
-  font-family: Roboto;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: normal;
-  height: 59px;
-  left: 19px;
-  line-height: 33px;
-  position: absolute;
-  top: 595px;
-  width: 332px;
-}
-
-.registerInput:disabled {
-  background-color: grey;
-  color:white;
-  font-family: Roboto;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: normal;
-  height: 59px;
-  left: 19px;
-  line-height: 33px;
-  position: absolute;
-  top: 595px;
-  width: 332px;
+  margin-bottom: 25px;
 }

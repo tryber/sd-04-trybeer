@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import { setLS } from '../../utils';
 import styles from './index.module.css';
+import Menu from '../../components/Menu';
 
 const createUserAPI = async (name, email, password, role) => {
   return await api
@@ -55,12 +56,13 @@ const Register = () => {
 
   return (
     <div className={styles.pageRegister}>
+      <Menu nomeTela="Cadastre-se" />
       <form className={styles.formRegister} method="POST" onSubmit={handleSubmit}>
-        <label className={styles.name} htmlFor="name">
+        <label className="inputLabel" htmlFor="name">
           Nome
         </label>
         <input
-          className={styles.nameInput}
+          className={styles.inputRegister}
           data-testid="signup-name"
           type="text"
           name="name"
@@ -71,9 +73,9 @@ const Register = () => {
           value={name}
           required
         />
-        <label className={styles.email}>Email</label>
+        <label className="inputLabel">Email</label>
         <input
-          className={styles.emailInput}
+          className={styles.inputRegister}
           data-testid="signup-email"
           type="email"
           name="email"
@@ -82,11 +84,11 @@ const Register = () => {
           value={email}
           required
         />
-        <label className={styles.password} htmlFor="password">
+        <label className="inputLabel" htmlFor="password">
           Password
         </label>
         <input
-          className={styles.passwordInput}
+          className={styles.inputRegister}
           data-testid="signup-password"
           type="password"
           name="password"
@@ -95,19 +97,21 @@ const Register = () => {
           value={password}
           required
         />
+        <label className={styles.wantToSell}>
+          <input
+            className={styles.checkboxInput}
+            data-testid="signup-seller"
+            type="checkbox"
+            name="seller"
+            id="seller"
+            onChange={e => handleBox(e.target.checked)}
+            value={box}
+          />
+          <span>Quero Vender</span>
+        </label>
+        {erro && <span>{erro}</span>}  
         <input
-          className={styles.checkboxInput}
-          data-testid="signup-seller"
-          type="checkbox"
-          name="seller"
-          id="seller"
-          onChange={e => handleBox(e.target.checked)}
-          value={box}
-        />
-        <label className={styles.wantToSell}>Quero Vender</label>
-        {erro && <span>{erro}</span>}
-        <input
-          className={styles.registerInput}
+          className="buttonMain"
           type="submit"
           value="Cadastrar"
           disabled={!(checkEmail(email) && checkName(name) && checkSenha(password))}

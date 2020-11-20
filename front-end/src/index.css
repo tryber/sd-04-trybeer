@@ -24,3 +24,40 @@ html, body {
 .container-general {
   margin-top: 100px;
 }
+
+input {
+  box-sizing: border-box;
+  margin-bottom: 1.5rem;
+  padding: 10px;
+  width: 100%;
+}
+
+.buttonMain {
+  text-transform: uppercase;
+  color: white;
+  background-color: #E85D04;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  padding: 10px 0px;
+  transition: 0.5s;
+  width: 100%;
+  transform: scale(0.9);
+}
+
+.buttonMain:hover {
+  background-color: #FAA307;
+  transition: transform 0.5s linear;
+  transform: scale(1);
+}
+
+.buttonMain:disabled {
+  cursor: initial;
+}
+
+.inputLabel {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
