@@ -11,8 +11,8 @@ const MyOrdereds = () => (
       <SideMenuAdmin />
     </aside>
     <section className="admin-orders-loader">
-    {/* Rodar um map() depois */}
-    <OrderedsCard testid={ 1 } />
+      {/* Rodar um map() depois */}
+      <OrderedsCard testid={ 1 } />
     </section>
   </article>
 );

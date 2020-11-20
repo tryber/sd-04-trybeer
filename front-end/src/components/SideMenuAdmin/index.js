@@ -33,10 +33,12 @@ function SideMenuAdmin() {
       >
         Perfil
       </button>
-      <button data-testid="side-menu-item-logout"
-      type="button"
-      className="admin-side-button botao-sair"
-      onClick={ () => test(history, null) }>
+      <button
+        data-testid="side-menu-item-logout"
+        type="button"
+        className="admin-side-button botao-sair"
+        onClick={ () => test(history, null) }
+      >
         Sair
       </button>
     </div>
