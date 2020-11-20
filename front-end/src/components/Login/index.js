@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { EMAIL_PATTERN, PASS_LENGTH } from '../../validation';
 
 import userIcon from '../../assets/user.png';
 
 import './style.css';
+import api from '../../services/api';
 
 const checkEmail = (email) => EMAIL_PATTERN.test(email);
 const checkPass = (password) => password !== ' ' && password.length >= PASS_LENGTH;
 
 const Login = () => {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { data } = await api.post('/login', { email, password });
+    if (data.role === 'administrator') {
+      history.push('/admin/orders');
+    } else {
+      history.push('/products');
+    }
   };
 
   return (
