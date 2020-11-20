@@ -9,7 +9,7 @@ import Login from './Pages/login';
 import Admin from './Pages/adminOrders';
 import AdminProfile from './Pages/adminProfile';
 import Registro from './Pages/registro';
-import Client from './Pages/clientPage';
+import Product from './Pages/products';
 import Profile from './Pages/clientProfile';
 import ClientOrders from './Pages/clientOrders';
 
@@ -21,12 +21,12 @@ function App() {
       <Provider>
         <Switch>
           <Route path="/login" component={ Login } />
-          <Route path="/admin/orders" component={ Admin } />
-          <Route path="/admin/profile" component={ AdminProfile } />
           <Route path="/register" component={ Registro } />
-          <Route path="/products" component={ Client } />
-          <Route path="/profile" component={ Profile } />
+          <Route path="/products" component={ Product } />
           <Route path="/orders" component={ ClientOrders } />
+          <Route path="/profile" component={ Profile } />
+          <Route path="/admin/orders" component={ Admin } />
+          <Route exact path="/admin/profile" component={ AdminProfile } />
         </Switch>
       </Provider>
     </Container>
