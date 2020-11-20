@@ -10,6 +10,8 @@ function Products() {
   const { cartValue } = useContext(ProductContext);
   const [products, setProducts] = useState([]);
   const history = useHistory();
+  const storage = localStorage.cartItens ? JSON.parse(localStorage.cartItens) : null;
+  const zero = 0;
 
   useEffect(() => {
     if (!localStorage.user) history.push('/login');
@@ -25,7 +27,11 @@ function Products() {
       <MenuClient />
       {products ? products.map((e) => <ProductCard data={ e } key={ e.id } />) : <p>loading</p>}
       <Link to="/checkout">
-        <button type="button" data-testid="checkout-bottom-btn">
+        <button
+          type="button"
+          data-testid="checkout-bottom-btn"
+          disabled={ storage.length <= zero }
+        >
           Ver carrinho
         </button>
       </Link>
