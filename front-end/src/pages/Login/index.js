@@ -34,6 +34,9 @@ const Login = () => {
         formik.resetForm();
         return null;
       }
+
+      // salvando os dados do usuario no localstorage
+      if (!localStorage.user) localStorage.user = JSON.stringify(result.data);
       const redirect = result.data.role === 'client' ? '/products' : '/admin/orders';
       return history.push(redirect);
     },
