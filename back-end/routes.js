@@ -16,13 +16,13 @@ routes.put('/profile', userController.saveEditController);
 routes.post(
   '/register',
   checkEmailInDatabase,
-  userController.registerUserController
+  userController.registerUserController,
 );
 routes.get('/profile', userController.getUserByEmail);
 routes.get(
   '/products',
   validateJWT,
-  productController.findAllProductsController
+  productController.findAllProductsController,
 );
 routes.get('/orders/:id', validateJWT, saleController.findSalesBySaleId);
 routes.post('/checkout', findUserIdByEmail, checkoutController);
