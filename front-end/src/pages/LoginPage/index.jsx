@@ -70,7 +70,7 @@ const Login = () => {
         <button
           type="submit"
           data-testid="signin-btn"
-          className={styles.submitBtn}
+          className="buttonMain"
           disabled={
             !(validateEmail(form.email) && validatePassword(form.password))
           }

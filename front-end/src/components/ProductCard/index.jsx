@@ -59,6 +59,7 @@ const Card = ({ img, name, price, index, id }) => {
           data-testid={`${index}-product-minus`}
           onClick={() => decrementCounterHandler(id)}
           type="button"
+          className={styles.buttonQnt}
         >
           -
         </button>
@@ -71,6 +72,7 @@ const Card = ({ img, name, price, index, id }) => {
           data-testid={`${index}-product-plus`}
           onClick={() => incrementCounterHandler(name, price, id)}
           type="button"
+          className={styles.buttonQnt}
         >
           +
         </button>
