@@ -1,45 +1,67 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
+import { EMAIL_PATTERN, PASS_LENGTH } from '../../validation';
 
 import userIcon from '../../assets/user.png';
 
 import './style.css';
+import api from '../../services/api';
+
+const checkEmail = (email) => EMAIL_PATTERN.test(email);
+const checkPass = (password) => password !== ' ' && password.length >= PASS_LENGTH;
 
 const Login = () => {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { data } = await api.post('/login', { email, password });
+    if (data.role === 'administrator') {
+      history.push('/admin/orders');
+    } else {
+      history.push('/products');
+    }
+  };
+
   return (
     <div className="main-container-form">
       <img src={ userIcon } alt="Login" />
-      <form>
-        <label htmlFor="emailInput">Email</label>
-        <input
-          type="text"
-          id="emailInput"
-          name="email"
-          value={ email }
-          onChange={ (e) => setEmail(e.target.value) }
-          data-testid="email-input"
-        />
+      <form onSubmit={ handleSubmit }>
+        <label className="login-label" htmlFor="emailInput">
+          Email
+          <input
+            type="text"
+            id="emailInput"
+            onChange={ (e) => setEmail(e.target.value) }
+            data-testid="email-input"
+          />
+        </label>
 
-        <label htmlFor="passwordInput">Senha</label>
-        <input
-          type="password"
-          id="passwordInput"
-          name="password"
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
-          data-testid="password-input"
-        />
+        <label className="login-label" htmlFor="passwordInput">
+          Password
+          <input
+            type="password"
+            id="passwordInput"
+            onChange={ (e) => setPassword(e.target.value) }
+            data-testid="password-input"
+          />
+        </label>
 
         <div className="buttons">
-          <button type="submit" data-testid="signin-btn">
-            Entrar
+          <button
+            type="submit"
+            data-testid="signin-btn"
+            disabled={ !checkEmail(email) || !checkPass(password) }
+          >
+            ENTRAR
           </button>
         </div>
       </form>
-      <Link to="/" data-testid="no-account-btn">
-        Ainda nao tenho conta
+      <Link to="/register" data-testid="no-account-btn">
+        Ainda não tenho conta
       </Link>
     </div>
   );
