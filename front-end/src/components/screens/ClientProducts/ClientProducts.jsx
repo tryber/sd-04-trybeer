@@ -43,6 +43,7 @@ const useEffectCustom = (setQttPdtsCart, setTotalPriceCart, setProducts, history
         const products = await api.getProducts(token);
 
         setQttPdtsCart(initQttPdtsCart(products.data, setTotalPriceCart));
+        
         setProducts(products.data);
       } catch (e) {
         // console.log({ error: e.message })

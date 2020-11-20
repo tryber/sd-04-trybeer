@@ -8,12 +8,27 @@ const readOrder = async (id) => {
     .bind('user_id', id)
     .execute();
 
-  return orders.fetchAll().map(([idSale, saleDate, totalPrice, userId]) => ({
-    idSale,
-    saleDate,
-    totalPrice,
-    userId,
-  }));
+  return orders
+    .fetchAll()
+    .map(
+      ([
+        idSale,
+        idUser,
+        totalPrice,
+        deliveryAddress,
+        deliveryNumber,
+        saleDate,
+        status,
+      ]) => ({
+        idSale,
+        idUser,
+        totalPrice,
+        deliveryAddress,
+        deliveryNumber,
+        saleDate,
+        status,
+      })
+    );
 };
 
 /*   const readOrder = async (id) => {

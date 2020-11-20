@@ -9,9 +9,12 @@ const readProducts = async (_, res) => {
 
 const readOrders = async (req, res) => {
   const { id } = req.user;
+  console.log(id)
   const orders = await orderModel.readOrder(id);
 
-  res.status(200).json({ orders });
+  console.log(orders)
+
+  res.status(200).json( orders );
 };
 
 module.exports = {
