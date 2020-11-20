@@ -78,7 +78,6 @@ const Login = () => {
           <FormErrorMessage>{formik.errors.loginPassword}</FormErrorMessage>
         </FormControl>
         <Button
-          variantColor="green"
           type="submit"
           data-testid="signin-btn"
           disabled={
@@ -90,7 +89,6 @@ const Login = () => {
           ENTRAR
         </Button>
         <Button
-          variantColor="blue"
           type="submit"
           data-testid="no-account-btn"
           disabled={ formik.isSubmitting }

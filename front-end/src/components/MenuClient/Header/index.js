@@ -24,9 +24,9 @@ const Header = (props) => {
 export default Header;
 
 Header.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.object, // eslint-disable-line
 };
 
 Header.defaultProps = {
-  children: 'TryBeer',
+  children: {},
 };
