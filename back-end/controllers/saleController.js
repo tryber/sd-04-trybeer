@@ -14,7 +14,7 @@ const saleRegister = async (req, res) => {
   const { id } = user;
 
   const sale = await saleService.postNewSale(id, nameAdress, numberAdress, cart, totalPrice);
-
+  console.log(sale);
   return res.status(200).json(sale);
 };
 

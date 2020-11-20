@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { postOrder } from '../services/TrybeerApi';
 import { removeAllCart } from '../redux/actions';
+import { happy } from '../images';
 import '../css/checkoutPage.css';
 
 const Checkout = () => {
@@ -45,9 +46,9 @@ const Checkout = () => {
       <div className="page-content checkout">
         <h2>Produtos</h2>
         <div className="checkout-list">
-          {cart.length < 1 && <h2>Não há produtos no carrinho</h2>}
+          { cart.length < 1 && <h2>Não há produtos no carrinho</h2> }
 
-          {cart.map(({ price, name, quantity }, index) => (
+          { cart.map(({ price, name, quantity }, index) => (
             <div className="cart-product" key={ name }>
               <div className="cart-name" data-testid={ `${index}-product-name` }>{ name }</div>
               <div className="cart-qtd" data-testid={ `${index}-product-qtd-input` }>{ quantity }</div>
@@ -55,7 +56,7 @@ const Checkout = () => {
                 { `(${price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} un)` }
               </div>
               <div className="cart-total" data-testid={ `${index}-product-total-value` }>
-                {`${(quantity * price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`}
+                { `${(quantity * price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}` }
                 <button
                   type="submit"
                   value="Submit"
@@ -66,7 +67,7 @@ const Checkout = () => {
                 </button>
               </div>
             </div>
-          ))}
+          )) }
         </div>
         <div data-testid="order-total-value" className="order-total-value">
           { `Total: ${totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}` }
@@ -107,7 +108,11 @@ const Checkout = () => {
             Finalizar Pedido
           </button>
         </div>
-        { message && <p>{message}</p>}
+        {message && 
+          <div className="success-message">
+            { message }
+            <img src={ happy } alt="Homer happy" />
+          </div>}
       </div>
     </div>
   );
