@@ -76,7 +76,7 @@ function LoginForm() {
       </label>
       <button type="submit" data-testid="signin-btn" disabled={ !canLogin }>ENTRAR</button>
       <Link to="/register" data-testid="no-account-btn">Ainda não tenho conta</Link>
-      <span>{ message }</span>
+      <span data-testid="message-login">{ message }</span>
       {IsLoggingOut && <img src={ logout } alt="Homer Sad" className="homer-sad" /> }
     </form>
   );
