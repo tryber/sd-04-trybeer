@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Route, Redirect } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Route, Redirect } from 'react-router-dom';
 
 const isAuthenticated = () => {
-  let user = "";
-  user = JSON.parse(localStorage.getItem("user"));
+  let user = '';
+  user = JSON.parse(localStorage.getItem('user'));
   if (user === null) {
     return false;
   }
@@ -13,17 +13,18 @@ const isAuthenticated = () => {
 
 const PrivateRoute = ({ component: Component }) => (
   <Route
-    render={(props) => {
+    render={ (props) => {
       if (isAuthenticated() === true) {
         return <Component />;
       }
-      return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
-    }}
+      return <Redirect to={ { pathname: '/login', state: { from: props.location } } } />;
+    } }
   />
 );
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default PrivateRoute;
