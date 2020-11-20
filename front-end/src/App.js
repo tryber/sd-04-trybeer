@@ -11,7 +11,7 @@ import PrivateRoute from './components/Auth';
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/checkout" component={ ClientCheckout } />
+      <PrivateRoute path="/checkout" component={ ClientCheckout } />
       <Route path="/products" component={ ClientProducts } />
       <Route path="/register" component={ UserRegister } />
       <Route path="/login" component={ Login } />
