@@ -16,12 +16,26 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // {
+  //   "name": "Taylor Swift",
+  //   "email": "taylorswift@email.com",
+  //   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4(...)",
+  //   "role": "client"
+  // }
+
+  const saveUserData = (userData) => {
+    localStorage.setItem('user', JSON.stringify(userData));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { data } = await api.post('/login', { email, password });
+    
     if (data.role === 'administrator') {
+      saveUserData(data);
       history.push('/admin/orders');
     } else {
+      saveUserData(data);
       history.push('/products');
     }
   };
