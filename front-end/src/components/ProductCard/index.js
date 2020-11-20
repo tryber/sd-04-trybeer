@@ -35,9 +35,13 @@ function updateStorage(id, quantity) {
   localStorage.cartItens = JSON.stringify(newArray);
 }
 
+function subButton(quantity, zero, setQuantity) {
+ return quantity !== zero ? setQuantity(quantity - 1) : null;
+}
+
 // funcao que checa se tem item no storage e atualiza a quantidade
 function checkStorage(id, zero, setQuantity) {
-  const storage = JSON.parse(localStorage.cartItens);
+  const storage = localStorage.cartItens ? JSON.parse(localStorage.cartItens) : null;
   if (storage.length > zero) {
     storage.forEach((e) => {
       if (e.id === id) setQuantity(e.quantity);
@@ -97,7 +101,7 @@ export default function ProductCard(data) {
           type="button"
           disabled={ quantity === zero }
           data-testid={ `${id - 1}-product-minus` }
-          onClick={ () => setQuantity(quantity - 1) }
+          onClick={ () => subButton(quantity, zero, setQuantity) }
         >
           -
         </button>

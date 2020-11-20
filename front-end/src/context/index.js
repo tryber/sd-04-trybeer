@@ -10,7 +10,7 @@ const ProductProvider = ({ children }) => {
   const [cartValue, setCartValue] = useState(zero.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' }));
 
   function totalValue() {
-    const storage = JSON.parse(localStorage.cartItens);
+    const storage = localStorage.cartItens ? JSON.parse(localStorage.cartItens) : null;
     if (storage.length > zero) {
       const valor = storage.map((ele) => ele.price * ele.quantity);
       const final = valor.reduce((acc, numero) => acc + numero, zero);

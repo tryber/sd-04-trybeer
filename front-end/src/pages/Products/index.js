@@ -30,9 +30,9 @@ function Products() {
         <button
           type="button"
           data-testid="checkout-bottom-btn"
-          disabled={ storage.length <= zero }
+          // disabled={ storage.length <= zero }
         >
-          Ver carrinho
+          Ver Carrinho
         </button>
       </Link>
       <span data-testid="checkout-bottom-btn-value">{cartValue}</span>
