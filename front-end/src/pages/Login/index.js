@@ -8,6 +8,7 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
+import jwtDecode from 'jwt-decode';
 
 import { userLogin } from '../../api';
 import validationSchema from './validateLogin';
@@ -34,7 +35,8 @@ const Login = () => {
         formik.resetForm();
         return null;
       }
-      const redirect = result.data.role === 'client' ? '/products' : '/admin/orders';
+      if (!localStorage.user) localStorage.user = JSON.stringify(result.data);
+      const redirect = jwtDecode(result.data).role === 'client' ? '/products' : '/admin/orders';
       return history.push(redirect);
     },
   });
