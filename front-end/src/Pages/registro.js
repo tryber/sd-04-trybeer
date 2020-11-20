@@ -23,7 +23,7 @@ const Registro = () => {
   // https://stackoverflow.com/questions/56356900/way-to-determine-checkbox-checked-in-react-usestate
   const handleChecked = () => {
     setChecked(!checked);
-    setRole('admin');
+    setRole('administrator');
   };
 
   const registraUsuario = (e) => {
@@ -31,7 +31,7 @@ const Registro = () => {
     api
       .register(name, email, password, role)
       .then(() => {
-        if (role === 'admin') {
+        if (role === 'administrator') {
           history.push('/admin/orders');
         } else {
           history.push('/products');

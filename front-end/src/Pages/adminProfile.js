@@ -6,7 +6,7 @@ import './styleClientPage.css';
 
 function AdminProfile() {
   const data = JSON.parse(localStorage.getItem('user'));
-  if (!data || data.role !== 'admin') return <Redirect to="/login" />;
+  if (!data || data.role !== 'administrator') return <Redirect to="/login" />;
   return (
     <div>
       <AdminTopMenu title="Admin - Perfil" />
