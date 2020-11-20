@@ -31,7 +31,7 @@ const login = async (email, password) => {
   if (password.length < 6) return { message: 'Senha inválida' };
 
   return { email };
-}
+};
 
 module.exports = {
   createUser,
