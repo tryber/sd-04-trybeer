@@ -26,11 +26,11 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className={`${styles.profileContainer} container-general`}>
+    <div className={styles.profileContainer}>
       <Menu nomeTela="Meu perfil" />
       <form onSubmit={handleSubmit} className={styles.profileForm}>
         <div className={styles.profileFieldsContainer}>
-          <label htmlFor="name" className={styles.inputLabel}>Nome:</label>
+          <label htmlFor="name" className="inputLabel">Nome:</label>
           <input
             data-testid="profile-name-input"
             type="text"
@@ -41,7 +41,7 @@ const ProfilePage = () => {
           />
         </div>
         <div className={styles.profileFieldsContainer}>
-          <label htmlFor="email" className={styles.inputLabel}>Email:</label>
+          <label htmlFor="email" className="inputLabel">Email:</label>
           <input
             data-testid="profile-email-input"
             type="text"
@@ -54,7 +54,7 @@ const ProfilePage = () => {
           <button
             data-testid="profile-save-btn"
             type="submit"
-            className={styles.submitBtn}
+            className="buttonMain"
             disabled={checkNameChange()}
           >
             Salvar
