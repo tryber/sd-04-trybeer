@@ -9,7 +9,7 @@ import TopBar from '../components/ClientBar.jsx';
 
 const Page = () => (
   <div>
-    <TopBar title={'Detalhes do Pedido'} isAdm={false} />
+    <TopBar title={'Trybeer'} isAdm={true} />
   </div>
 );
 

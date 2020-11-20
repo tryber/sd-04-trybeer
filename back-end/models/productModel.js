@@ -6,11 +6,11 @@ const findAllProducts = async () => {
     const table = await db.getTable('products');
     const results = await table.select([]).execute();
     const products = await results.fetchAll();
-    return products.map(([id, name, price, url_image]) => ({
+    return products.map(([id, name, price, urlImage]) => ({
       id,
       name,
       price,
-      url_image,
+      urlImage,
     }));
   } catch (err) {
     console.error(err);
@@ -26,9 +26,9 @@ const findProductById = async (productId) => {
       .where('id = :id')
       .bind('id', productId)
       .execute();
-    const [id, name, price, url_image] = await result.fetchOne();
+    const [id, name, price, urlImage] = await result.fetchOne();
     return {
-      id, name, price, url_image,
+      id, name, price, urlImage,
     };
   } catch (err) {
     console.error(err);
@@ -45,8 +45,8 @@ const findProductsByName = async (productName) => {
       .bind('name', `%${productName}%`)
       .execute();
     const results = allTable.fetchAll();
-    const products = results.map(([id, name, price, url_image]) => ({
-      id, name, price, url_image,
+    const products = results.map(([id, name, price, urlImage]) => ({
+      id, name, price, urlImage,
     }));
     return products;
   } catch (err) {
