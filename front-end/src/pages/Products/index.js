@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Header from '../../components/Header';
 import ProductsCard from '../../components/ProductsCard';
 import Rodape from '../../components/Rodape';
 
@@ -7,7 +8,7 @@ import './styles.css';
 
 const Products = () => (
   <div className="products-page">
-    <div>Aqui vai um header...</div>
+    <Header />
     {/* Esse testid por enquanto vai ser 1, mas o ideal é que seja passado */}
     {/* um index de uma função map(() => {}) */}
     {/* Rodar um map() depois */}

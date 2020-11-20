@@ -29,7 +29,12 @@
   width: 100%;
 }
 
-.side-menu-container-list-container a {
+.side-menu-container-list-container button {
+  background-color: transparent;
+}
+
+.side-menu-container-list-container a,
+.side-menu-container-list-container button {
   align-items: center;
   color: #e5e5e5;
   display: flex;
@@ -42,7 +47,8 @@
   width: 100%;
 }
 
-.side-menu-container-list-container a:hover {
+.side-menu-container-list-container a:hover,
+.side-menu-container-list-container button:hover {
   color: #4f4f55;
   cursor: pointer;
 }
