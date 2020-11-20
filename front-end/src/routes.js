@@ -8,6 +8,7 @@ import Register from './pages/Register/index';
 import ClientProfile from './pages/ClientProfile/index';
 import LoginPage from './pages/LoginPage';
 import ProductDetails from './pages/ProductDetails';
+import MyOrdersADM from './pages/MyOrdersADM';
 
 const Routes = () => (
   <Provider>
@@ -19,6 +20,7 @@ const Routes = () => (
       <Route path="/profile" component={ ClientProfile } />
       <Route path="/orders" exact component={ MyOrdereds } />
       <Route path="/orders/:orderNumber" exact component={ ProductDetails } />
+      <Route path="/admin/orders" component={ MyOrdersADM } />
     </Switch>
   </Provider>
 );

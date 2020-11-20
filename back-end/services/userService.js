@@ -30,10 +30,6 @@ const login = async ({ email, password }) => {
 };
 
 module.exports = {
-<<<<<<< HEAD
-  updateUser,
-=======
->>>>>>> 16a8dd99647ef401e8a1b651baf943fefdabc4ac
   createUser,
   login,
   updateUser,

@@ -1,0 +1,66 @@
+.admin-side-button {
+  font-family: Roboto;
+  font-size: 36px;
+  margin: 3px;
+  width: 250px;
+}
+
+.app-side-title {
+  color: white;
+  display: flex;
+  font-family: Roboto;
+  font-size: 36px;
+  justify-content: center;
+  padding: 15px;
+}
+
+.botao-sair {
+  margin-top: 300px;
+}
+
+.side-menu-container{
+    position: fixed;
+    width: 280px;
+    max-width: 70%;
+    margin-top: 0;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 200;
+    background-color: #100F0F;
+    padding: 32px 16px;
+    box-sizing: border-box; 
+    transition: transform 0.3s ease-out;
+}
+
+.nav__link{
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 1rem;
+  padding: .5rem 0 .5rem 1.5rem;
+}
+
+.nav__link{
+  display: block;
+	width: 200px;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	font-size: 1.2rem;
+	color: #fff;
+	font-family: 'Roboto', sans-serif;
+	margin: 1rem 0;
+	cursor: pointer;
+  transition: .5s;
+}
+
+.nav__link:hover{
+  color: black;
+  background-position: right;
+}
+
+.active::before{
+  background-color: white;
+}
