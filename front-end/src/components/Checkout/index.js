@@ -1,19 +1,24 @@
 import React from 'react';
 import Header from '../Header';
 import SideBar from '../SideBar';
+import productNameDefinition from '../screens/productName';
+
+const productsData = JSON.parse(localStorage.getItem('qttPdtsCart'));
+const totalPrice = JSON.parse(localStorage.getItem('totalPriceCart'));
+let productName = productNameDefinition(id);
 
 const Checkout = () => {
   return (
     <div>
       <Header title='Finalizar Pedido' />
       <SideBar userType='client' />
-      <ul class='list-group'>
-        <li class='list-group-item d-flex justify-content-between align-items-center'>
-          <span class='badge badge-primary badge-pill'>14</span>
+      <ul className='list-group'>
+        <li className='list-group-item d-flex justify-content-between align-items-center'>
+          <span className='badge badge-primary badge-pill'>14</span>
           Cras justo odio
-          <span class='badge badge-primary badge-pill'>14</span>
-          <span class='badge badge-primary badge-pill'>14</span>
-          <span class='badge badge-pill badge-light'>Light</span>
+          <span className='badge badge-primary badge-pill'>14</span>
+          <span className='badge badge-primary badge-pill'>14</span>
+          <span className='badge badge-pill badge-light'>Light</span>
         </li>
       </ul>
       <form>
