@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { EMAIL_PATTERN, PASS_LENGTH } from '../../validation';
 
@@ -11,7 +11,6 @@ const checkEmail = (email) => EMAIL_PATTERN.test(email);
 const checkPass = (password) => password !== ' ' && password.length >= PASS_LENGTH;
 
 const Login = () => {
-  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -23,21 +22,25 @@ const Login = () => {
     <div className="main-container-form">
       <img src={ userIcon } alt="Login" />
       <form onSubmit={ handleSubmit }>
-        <label htmlFor="emailInput">Email</label>
-        <input
-          type="text"
-          id="emailInput"
-          onChange={ (e) => setEmail(e.target.value) }
-          data-testid="email-input"
-        />
+        <label className="login-label" htmlFor="emailInput">
+          Email
+          <input
+            type="text"
+            id="emailInput"
+            onChange={ (e) => setEmail(e.target.value) }
+            data-testid="email-input"
+          />
+        </label>
 
-        <label htmlFor="passwordInput">Password</label>
-        <input
-          type="password"
-          id="passwordInput"
-          onChange={ (e) => setPassword(e.target.value) }
-          data-testid="password-input"
-        />
+        <label className="login-label" htmlFor="passwordInput">
+          Password
+          <input
+            type="password"
+            id="passwordInput"
+            onChange={ (e) => setPassword(e.target.value) }
+            data-testid="password-input"
+          />
+        </label>
 
         <div className="buttons">
           <button

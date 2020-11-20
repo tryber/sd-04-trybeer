@@ -1,66 +1,17 @@
-nav,
-ul,
-li,
-a,
-header,
-div,
-img,side-menu-item-logout
-button {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  min-width: 320px;
-}
-
-header {
-  background-color: #0f0f0f;
-}
-
-.menu-hamburger-btn {
-  background-color: #0f0f0f;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  height: 24px;
-  justify-content: space-between;
-  outline: none;
-  width: 30px;
-}
-
-.menu-hamburger-btn:hover {
-  cursor: pointer;
-}
-
-.menu-hamburger-btn div {
-  background-color: #e5e5e5;
-  height: 4px;
-  transition: all 0.4s linear;
-  width: 30px;
-}
-
-.header-container {
-  align-items: center;
-  display: flex;
-  height: 100px;
-  justify-content: space-between;
-  margin: 0 auto;
-  padding: 0 23px;
-}
-
-/* .side-menu-container {
+.side-menu-container {
   animation-duration: 0.4s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
+  display: flex;
   background-color: rgba(0, 0, 0, 0.493);
   height: calc(100vh - 100px);
   position: absolute;
   top: 100px;
+  /* top: 68px; */
   width: 100%;
-} */
+}
 
-/* .side-menu-container-list-container {
+.side-menu-container-list-container {
   align-items: center;
   background-color: #0f0f0f;
   display: flex;
@@ -69,9 +20,9 @@ header {
   height: 100%;
   justify-content: space-around;
   width: 50%;
-} */
+}
 
-/* .side-menu-container-list-container li {
+.side-menu-container-list-container li {
   height: calc(100%  / 4);
   list-style: none;
   margin: 0;
@@ -95,6 +46,14 @@ header {
   color: #4f4f55;
   cursor: pointer;
 }
+
+.side-menu-item-products {}
+
+.side-menu-item-my-orders {}
+
+.side-menu-item-my-profile {}
+
+.side-menu-item-logout {}
 
 @keyframes displayNav {
   from {
@@ -120,4 +79,4 @@ header {
     border-radius: 0;
     width: 100%;
   }
-} */
+}

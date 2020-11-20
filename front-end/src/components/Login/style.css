@@ -29,6 +29,12 @@ form {
   padding: 16px;
 }
 
+.login-label {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
 #emailInput,
 #passwordInput {
   border: none;
