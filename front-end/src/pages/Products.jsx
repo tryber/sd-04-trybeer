@@ -71,6 +71,8 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
       {redirectToLogin && <Redirect to="/login" />}
       <Menu title="TryBeer" />
       <div className={styles.productsDiv}>
+        {/* <div className="insideDivCol"> */}
+
         {products &&
           products.map((product, index) => (
             <div key={product.name} className={styles.productsCard}>
@@ -82,40 +84,37 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
                   width="100px"
                 />
               </div>
-              <div className={styles.info}>
-                <div className={styles.infos}>
-                  <p
-                    className={styles.name}
-                    data-testid={`${index}-product-name`}
-                  >
-                    {product.name}
-                  </p>
-                  <p
-                    className={styles.price}
-                    data-testid={`${index}-product-price`}
-                  >{`R$ ${product.price.toFixed(2).replace('.', ',')}`}</p>
-                </div>
-                <div className={styles.btns}>
-                  <button
-                    type="button"
-                    data-testid={`${index}-product-minus`}
-                    onClick={() => stopDecreamet(product)}
-                  >
-                    -
-                  </button>
-                  <p data-testid={`${index}-product-qtd`}>
-                    {quantity(product)}
-                  </p>
-                  <button
-                    type="button"
-                    data-testid={`${index}-product-plus`}
-                    onClick={() => increaseQtd(product)}
-                  >
-                    +
-                  </button>
-                </div>
+              <div className={styles.infos}>
+                <p
+                  className={styles.name}
+                  data-testid={`${index}-product-name`}
+                >
+                  {product.name}
+                </p>
+                <p
+                  className={styles.price}
+                  data-testid={`${index}-product-price`}
+                >{`R$ ${product.price.toFixed(2).replace('.', ',')}`}</p>
+              </div>
+              <div className={styles.btns}>
+                <button
+                  type="button"
+                  data-testid={`${index}-product-minus`}
+                  onClick={() => stopDecreamet(product)}
+                >
+                  -
+                </button>
+                <p data-testid={`${index}-product-qtd`}>{quantity(product)}</p>
+                <button
+                  type="button"
+                  data-testid={`${index}-product-plus`}
+                  onClick={() => increaseQtd(product)}
+                >
+                  +
+                </button>
               </div>
             </div>
+            // </div>
           ))}
       </div>
       <div className={styles.productsDiva}>

@@ -32,7 +32,7 @@ const ClientOrders = () => {
   return (
     <section className="insideSection">
       <Menu title="Meus Pedidos" />
-      <div className={styles.ordersDiv}>
+      <div className="insideDivCol">
         {redirectToLogin && <Redirect to="/login" />}
         {orders &&
           orders.map((order, index) => (

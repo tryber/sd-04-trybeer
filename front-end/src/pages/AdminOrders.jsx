@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import styles from './Orders.module.css';
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -25,31 +26,37 @@ const AdminOrders = () => {
   }, []);
 
   return (
-    <div>
+    <section className="insideSection">
       <MenuAdmin title="Meus Pedidos" />
-      {redirectToLogin && <Redirect to="/login" />}
-      {orders &&
-        orders.map((order, index) => (
-          <div key={order.id} data-testid={`${index}-order-card-container`}>
-            <Link to={`/admin/orders/${order.id}`}>
-              <p
-                data-testid={`${index}-order-number`}
-              >{`Pedido ${order.id}`}</p>
+      <div className={styles.insideDiv}>
+        {redirectToLogin && <Redirect to="/login" />}
+        {orders &&
+          orders.map((order, index) => (
+            <Link   className={styles.orderLinkAdmin} to={`/admin/orders/${order.id}`}>
+              <div
+                className={styles.orderLinkAdminS}
+                key={order.id}
+                data-testid={`${index}-order-card-container`}
+              >
+                <p
+                  data-testid={`${index}-order-number`}
+                >{`Pedido ${order.id}`}</p>
 
-              <p
-                data-testid={`${index}-order-address`}
-              >{`${order.address}, ${order.number}`}</p>
+                <p
+                  data-testid={`${index}-order-address`}
+                >{`${order.address}, ${order.number}`}</p>
 
-              <p data-testid={`${index}-order-total-value`}>
-                {`R$ ${order.price.toFixed(2).replace('.', ',')}`}
-              </p>
-              <p
-                data-testid={`${index}-order-status`}
-              >{`Pendente ${order.status}`}</p>
+                <p data-testid={`${index}-order-total-value`}>
+                  {`R$ ${order.price.toFixed(2).replace('.', ',')}`}
+                </p>
+                <p
+                  data-testid={`${index}-order-status`}
+                >{`Pendente ${order.status}`}</p>
+              </div>
             </Link>
-          </div>
-        ))}
-    </div>
+          ))}
+      </div>
+    </section>
   );
 };
 

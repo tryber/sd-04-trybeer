@@ -183,8 +183,9 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
             >
               Finalizar Pedido
             </button>
+            {messageSuccess && <h3 className={styles.success}>{messageSuccess}</h3>}
           </form>
-          {messageSuccess && <h3>{messageSuccess}</h3>}
+    
         </div>
       </div>
     </section>

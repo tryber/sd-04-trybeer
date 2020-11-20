@@ -125,7 +125,8 @@
     padding: 0 2rem;
   }
   .title {
-    font-size: 3rem;
+    font-size: 2rem;
+    margin: 0;
   }
   .hamburguer {
     height: 40px;

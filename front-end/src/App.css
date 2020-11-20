@@ -85,6 +85,7 @@ img {
   font-size: 1.5rem;
   height: 40px;
   margin-bottom: 2.5rem;
+  letter-spacing: 0.1rem;
   text-align: center;
   width: 100%;
 }
@@ -135,6 +136,23 @@ img {
   justify-content: center;
 }
 
+.insideDivRow,
+.insideDivCol {
+  align-items: center;
+  background-color: white;
+  border: 1px solid rgb(255, 204, 0);
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  justify-content: flex-start;
+  min-height: 86vh;
+  width: 80%;
+}
+
+.insideDivCol {
+  flex-direction: column;
+}
+
 @media (max-width: 40rem) {
   .generalSection {
     justify-content: center;
@@ -142,6 +160,10 @@ img {
   .generalDiv {
     height: 100%;
     margin: 0;
+    width: 100%;
+  }
+  .insideDivRow,
+  .insideDivCol {
     width: 100%;
   }
   .generalForm {

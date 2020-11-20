@@ -1,8 +1,7 @@
 .mainDiv {
   align-items: flex-start;
   background-color: rgb(255, 255, 255);
-  border-left: 1px solid rgb(255, 204, 0);
-  border-right: 1px solid rgb(255, 204, 0);
+  border: 1px solid rgb(255, 204, 0);
   display: flex;
   justify-content: center;
   min-height: 86vh;
@@ -30,13 +29,13 @@
 
 .productDiv {
   align-items: center;
-  background-color: rgb(255, 255, 130);
+  background-color: rgb(255, 204, 0);
   border-radius: 10px;
-  border: 2px solid rgb(30, 30, 30);
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
   height: 50px;
-  justify-content: space-around;
   margin-bottom: 2rem;
+  padding-left: 1.5rem;
   width: 100%;
 }
 
@@ -77,7 +76,7 @@
 
 .checkoutForm input {
   border-radius: 10px;
-  border: 2px solid rgb(30, 30, 30);
+  border: 2px solid rgb(255, 204, 0);
   font-size: 1.3rem;
   height: 40px;
   margin-bottom: 1rem;
@@ -107,6 +106,14 @@
   opacity: 0.5;
 }
 
+.success {
+  color: rgb(87, 192, 0);
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
 @media (max-width: 40rem) {
   .mainDiv {
     width: 100%;
@@ -118,8 +125,9 @@
   }
   .productDiv {
     align-self: center;
-    margin: 1rem 0;
-    padding: 0;
+    /* margin: 1rem 0; */
+    grid-template-columns: 3fr 2fr 0.5fr 1fr 1fr;
+    padding-left: 0.5rem;
   }
   .productDiv p {
     font-size: 1rem;

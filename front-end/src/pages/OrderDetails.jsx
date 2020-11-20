@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import styles from './Details.module.css';
 import Menu from '../components/Menu';
 
 const OrderDetails = () => {
@@ -25,40 +26,46 @@ const OrderDetails = () => {
   }, []);
 
   return (
-    <div>
+    <section className="insideSection">
       <Menu title="Detalhes de Pedido" />
-      {redirectToLogin && <Redirect to="/login" />}
-      {orderDetails.length && (
-        <div>
-          <p data-testid="order-number">{`Pedido ${orderDetails[0].saleID}`}</p>
-          <p data-testid="order-date">
-            {new Date(orderDetails[0].saleDate)
-              .toLocaleDateString('pt-BR', { timeZone: 'UTC' })
-              .slice(0, 5)}
-          </p>
-          <p data-testid="order-total-value">{`Total: R$ ${orderDetails[0].totalPrice
-            .toFixed(2)
-            .replace('.', ',')}`}</p>
+      <div className="insideDivCol">
+        <div className={styles.detailDiv}>
+          {redirectToLogin && <Redirect to="/login" />}
+          {orderDetails.length && (
+            <div className={styles.details}>
+              <p data-testid="order-number">{`Pedido ${orderDetails[0].saleID}`}</p>
+              <p data-testid="order-date">
+                {new Date(orderDetails[0].saleDate)
+                  .toLocaleDateString('pt-BR', { timeZone: 'UTC' })
+                  .slice(0, 5)}
+              </p>
+              <p data-testid="order-total-value">{`Total: R$ ${orderDetails[0].totalPrice
+                .toFixed(2)
+                .replace('.', ',')}`}</p>
+            </div>
+          )}
+          {orderDetails && (
+            <ol className={styles.list}>
+              {orderDetails.map((order, index) => (
+                <li key={order.productName}>
+                  <p data-testid={`${index}-product-name`}>
+                    {order.productName}
+                  </p>
+                  <p data-testid={`${index}-product-qtd`}>
+                    {order.productQuantity}
+                  </p>
+                  <p data-testid={`${index}-product-total-value`}>
+                    {`R$ ${(order.productPrice * order.productQuantity)
+                      .toFixed(2)
+                      .replace('.', ',')}`}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          )}
         </div>
-      )}
-      {orderDetails && (
-        <ol>
-          {orderDetails.map((order, index) => (
-            <li key={order.productName}>
-              <p data-testid={`${index}-product-name`}>{order.productName}</p>
-              <p data-testid={`${index}-product-qtd`}>
-                {order.productQuantity}
-              </p>
-              <p data-testid={`${index}-product-total-value`}>
-                {`R$ ${(order.productPrice * order.productQuantity)
-                  .toFixed(2)
-                  .replace('.', ',')}`}
-              </p>
-            </li>
-          ))}
-        </ol>
-      )}
-    </div>
+      </div>
+    </section>
   );
 };
 
