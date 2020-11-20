@@ -36,7 +36,7 @@ function updateStorage(id, quantity) {
 }
 
 function subButton(quantity, zero, setQuantity) {
- return quantity !== zero ? setQuantity(quantity - 1) : null;
+  return quantity !== zero ? setQuantity(quantity - 1) : null;
 }
 
 // funcao que checa se tem item no storage e atualiza a quantidade
