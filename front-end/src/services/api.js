@@ -31,5 +31,5 @@ export default {
   registerApi,
   // getUserByEmail,
   getProducts,
-  getOrders
+  getOrders,
 };

@@ -27,7 +27,7 @@ const readOrder = async (id) => {
         deliveryNumber,
         saleDate,
         status,
-      })
+      }),
     );
 };
 

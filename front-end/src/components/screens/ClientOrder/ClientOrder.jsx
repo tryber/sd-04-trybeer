@@ -16,7 +16,7 @@ const ClientOrder = () => {
         console.log(e);
       }
     })();
-  }, [setPedidos]);
+  }, []);
 
   return (
     <div>
