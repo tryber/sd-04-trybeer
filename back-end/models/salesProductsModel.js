@@ -17,7 +17,7 @@ const findAllSalesProducts = async () => {
   }
 };
 
-const registerSalesProducts = async (saleId, productId, quantity) => {
+const registerSalesProducts = async (saleId, productId, quantity ) => {
   try {
     const db = await connection();
     const table = await db.getTable('sales_products');
