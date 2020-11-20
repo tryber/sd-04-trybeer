@@ -37,7 +37,6 @@ const Login = () => {
 
     setErrorMsg('');
 
-    console.log(api)
     if (api.data.user.role === 'client') return history.push('/products');
 
     return history.push('/admin/orders');
