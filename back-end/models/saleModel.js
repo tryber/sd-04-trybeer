@@ -79,7 +79,7 @@ const findOrderBySaleId = async (saleId) => {
       WHERE SP.sale_id = ${saleId};`,
     )
     .execute()
-    .then((results) => results.fetchAll())
+    .then((results) => results.fetchAll());
 
   if (!result.length) return null;
 
@@ -100,7 +100,6 @@ const findOrderBySaleId = async (saleId) => {
       saleID,
     }),
   );
-
 };
 
 module.exports = {

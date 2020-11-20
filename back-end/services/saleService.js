@@ -20,5 +20,5 @@ const findSalesBySaleId = async (id) => {
 module.exports = {
   registerSaleService,
   findAllSalesService,
-  findSalesBySaleId
+  findSalesBySaleId,
 };

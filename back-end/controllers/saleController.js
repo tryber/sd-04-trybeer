@@ -18,7 +18,7 @@ const findSalesBySaleId = async (req, res) => {
     console.error(err);
     return res.status(404).json({ message: 'No sale found' });
   }
-}
+};
 
 module.exports = {
   findAllSalesController,
