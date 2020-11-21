@@ -7,6 +7,8 @@ import ProductsPage from './pages/ProductsPage';
 import OrdersPage from './pages/OrdersPage';
 import ProfilePage from './pages/ProfilePage';
 import CheckoutPage from './pages/CheckoutPage';
+import AdminProfile from './pages/AdminProfile';
+import AdminOrders from './pages/AdminOrders';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route exact path="/orders" component={ OrdersPage } />
         <Route exact path="/profile" component={ ProfilePage } />
         <Route exact path="/checkout" component={ CheckoutPage } />
+        <Route exact path="/admin/profile" component={ AdminProfile } />
+        <Route exact path="/admin/orders" component={ AdminOrders } />
       </Switch>
     </Router>
   );
