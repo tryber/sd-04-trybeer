@@ -1,29 +1,24 @@
 import React, { useState } from 'react';
+
 import Header from '../../components/Header';
 // import Footer from '../../components/Rodape';
+import { MIN_NAME_LENGTH } from '../../validation';
+
+import api from '../../services/api';
+
 import cheersIcon from '../../assets/beer.svg';
+
 import './styles.css';
 
 const ClientProfile = () => {
   const [userEmail] = useState('');
   const [userName, setUserName] = useState('');
-  const [inputUserName] = useState('');
-  const [disableButton, setDisableButton] = useState(true);
   const [message] = useState('');
 
-  // const [userEmail, /* setUserEmail */] = useState('');
-  // const [userName, setUserName] = useState('');
-  // const [inputUserName, /* setInputUserName */] = useState('');
-  // const [disableButton, setDisableButton] = useState(true);
-  // const [message, /* setMessage */] = useState('');
-  // useEffect(() => {
-  //   const { email, name } = JSON.parse(localStorage.getItem('user'));
-  //   setUserEmail(email);
-  //   setUserName(name);
-  //   setInputUserName(name);
-  // }, []);
-
-  const minNameLenght = 12;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await api.put('/', { userName });
+  };
 
   return (
     <div className="container">
@@ -31,7 +26,7 @@ const ClientProfile = () => {
       <div className="square">
         <h1 className="pageTitle">Perfil do Cliente</h1>
         <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
-        <form method="POST" action="/profile" className="form">
+        <form onSubmit={handleSubmit} className="form">
           <div className="form-group">
             <label htmlFor="name" className="label-text">
               Nome
@@ -40,15 +35,8 @@ const ClientProfile = () => {
                 placeholder="Nome Completo"
                 type="text"
                 data-testid="profile-name-input"
-                name="name"
                 value={ userName }
-                onChange={ (e) => {
-                  setUserName(e.target.value);
-                  setDisableButton(
-                    !(e.target.value.length >= minNameLenght)
-                    && !(e.target.value !== inputUserName),
-                  );
-                } }
+                onChange={ (e) => setUserName(e.target.value) }
                 required
               />
             </label>
@@ -69,8 +57,9 @@ const ClientProfile = () => {
           </div>
           <div className="div_btn">
             <button
-              disabled={ disableButton }
-              type="button"
+              disabled={ userName.length < MIN_NAME_LENGTH || userName === ' ' }
+              // disabled={ (userName.length <= minNameLenght) && !(userName !== inputUserName) }
+              type="submit"
               data-testid="profile-save-btn"
               className="save-button"
             // onClick={() => getUser(userName, userEmail, setMessage)}
