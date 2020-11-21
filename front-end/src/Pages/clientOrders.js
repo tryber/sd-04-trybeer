@@ -36,9 +36,9 @@ const ClientOrders = () => {
               Pedido&nbsp;
               {order.id}
             </p>
-            <p data-testid={ `${index}-order-date` }>{formatDate(order.sale_date)}</p>
+            <p data-testid={ `${index}-order-date` }>{formatDate(order.saleDate)}</p>
             <p data-testid={ `${index}-order-total-value` }>
-              {`R$ ${order.total_price.toFixed(DOIS).replace('.', ',')}`}
+              {`R$ ${order.totalPrice.toFixed(DOIS).replace('.', ',')}`}
             </p>
           </Link>
         </div>
