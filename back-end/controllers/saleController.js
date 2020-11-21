@@ -27,7 +27,7 @@ const findOrderByUseridController = async (req, res) => {
     return res.status(200).json(order);
   } catch (err) {
     console.error(err);
-    return res.status(404).json({ message: 'No Orders Found '});
+    return res.status(404).json({ message: 'No Orders Found' });
   }
 };
 
