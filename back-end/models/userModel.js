@@ -36,19 +36,6 @@ const getUserByEmailAndPassword = async (email, pass) => {
       .execute();
     const result = await query.fetchOne();
     console.log(result);
-      // .then((db) => db
-      //   .getTable('users')
-      //   .select(['id', 'name', 'email', 'password', 'role'])
-      //   .where('email =:email AND password =:password')
-      //   .bind('email', email)
-      //   .bind('password', pass)
-      //   .execute())
-      // .then((result) => result.fetchOne())
-      // .then(([id, name, userEmail, password, role] = []) => (
-      //   id
-      //     ? { id, name, email: userEmail, password, role }
-      //     : 'usuário não encontrado'
-      // ));
   } catch (error) {
     console.log(error.message);
   }

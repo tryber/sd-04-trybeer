@@ -30,7 +30,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await api.post('/login', { email, password });
-    console.log(response);
     if (response.data.role === 'administrator') {
       saveUserData(response.data);
       history.push('/admin/orders');

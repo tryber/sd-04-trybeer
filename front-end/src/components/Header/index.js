@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import BurguerMenuBtn from './components/BurguerMenuBtn';
 import NavBar from './components/NavBar';
@@ -59,6 +60,10 @@ const Header = ({ title }) => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
 };
 
 export default Header;

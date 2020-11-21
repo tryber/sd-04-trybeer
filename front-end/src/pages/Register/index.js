@@ -33,11 +33,10 @@ const Register = () => {
         password,
         isSeller,
       });
-      console.log(result);
       if (result.data.message) {
         setMessage(result.data.message);
       } else {
-        checkRole(result.data.role)
+        checkRole(result.data.role);
       }
     } catch (error) {
       // alert(error.message);

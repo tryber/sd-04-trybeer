@@ -19,14 +19,13 @@ const ClientProfile = () => {
   useEffect(() => {
     const { name, userEmail: email } = JSON.parse(localStorage.getItem('user'));
     setUserName(name);
-    setInitialName(name)
+    setInitialName(name);
     setUserEmail(email);
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { data } = await api.put('/updateUser', { userName, userEmail });
-    console.log(data);
     if (typeof data === 'string') {
       setMessage(data);
     }
@@ -38,7 +37,7 @@ const ClientProfile = () => {
       <div className="square">
         <h1 className="pageTitle">Perfil do Cliente</h1>
         <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
-        <form onSubmit={handleSubmit} className="form">
+        <form onSubmit={ handleSubmit } className="form">
           <div className="form-group">
             <label htmlFor="name" className="label-text">
               Nome
