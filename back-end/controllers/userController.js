@@ -3,7 +3,6 @@ const userService = require('../services/userService');
 
 const userLogin = rescue(async (req, res) => {
   const { email, password } = req.body;
-  console.log(req);
   const user = await userService.findUserByEmail(email, password);
 
   if (user.err) {
@@ -50,7 +49,7 @@ const registerUserController = async (req, res) => {
       name,
       email,
       password,
-      checkbox,
+      checkbox
     );
     return res.status(201).json(newUser);
   } catch (_err) {

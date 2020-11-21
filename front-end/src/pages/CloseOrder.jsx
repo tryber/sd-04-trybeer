@@ -2,14 +2,16 @@ import { useHistory } from 'react-router-dom';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import TopBar from '../components/ClientBar.jsx';
 import { AppContext } from '../context/AppContext';
+import api from '../services/api.js';
 
 function CloseOrder() {
   const { cart, setCart, total, setTotal } = useContext(AppContext);
   const { orderMessage, setOrderMessage } = useContext(AppContext);
 
   const [message, setMessage] = useState('');
-  const [endereco, setEndereco] = useState(null);
-  const [numero, setNumero] = useState('');
+  const [address, setAddress] = useState(null);
+  const [number, setNumber] = useState('');
+  const [email, setEmail] = useState('');
   const [data, setData] = useState(null);
 
   const orderRef = useRef(null);
@@ -18,8 +20,11 @@ function CloseOrder() {
     if (localStorage.getItem('cart')) {
       setCart(JSON.parse(localStorage.getItem('cart')));
       setTotal(JSON.parse(localStorage.getItem('totalPrice')));
+      const loginInStorage = JSON.parse(localStorage.getItem('user'));
+      setEmail(loginInStorage.email);
     }
     const loginInStorage = JSON.parse(localStorage.getItem('user'));
+    setEmail(loginInStorage.email);
 
     if (!loginInStorage) {
       history.push('/login');
@@ -29,6 +34,26 @@ function CloseOrder() {
   useEffect(() => {
     makeTotalValue(cart);
   }, [total]);
+
+  const postData = async (email, total, address, number, date, products) => {
+    console.log(
+      'AQUI JAZ OS DADOS',
+      email,
+      total,
+      address,
+      number,
+      date,
+      products
+    );
+    await api.post('/checkout', {
+      email,
+      total,
+      address,
+      number,
+      date,
+      products,
+    });
+  };
 
   const makeTotalValue = (cart) => {
     let totalPrice = document.getElementById('itemTotal');
@@ -60,12 +85,10 @@ function CloseOrder() {
   const history = useHistory();
 
   function doneOrder(history, frase, seOMessage) {
-    /* let orderMessageItem = document.querySelector('#orderMessage');
-    orderMessage.innerHTML = frase; */
     seOMessage(frase);
     const orderDate = new Date();
-    //setTotal(JSON.parse(localStorage.getItem('totalPrice')))
     setData(orderDate);
+    postData(email, total, address, number, orderDate, cart);
     history.push('/products');
   }
 
@@ -152,7 +175,7 @@ function CloseOrder() {
             <h2>Endereço</h2>
             <label htmlFor="rua">Rua:</label>
             <input
-              onChange={(e) => setEndereco(e.target.value)}
+              onChange={(e) => setAddress(e.target.value)}
               id="inputEnd"
               name="adrress"
               data-testid="checkout-street-input"
@@ -160,12 +183,12 @@ function CloseOrder() {
               className="form-control"
             />
             <br />
-            <label htmlFor="numeroCasa" className="">
+            <label htmlFor="numberCasa" className="">
               Número da casa:
             </label>
             <input
               name="number"
-              onChange={(e) => setNumero(e.target.value)}
+              onChange={(e) => setNumber(e.target.value)}
               data-testid="checkout-house-number-input"
               type="text"
               className="form-control"
@@ -177,7 +200,7 @@ function CloseOrder() {
             id="inputNum"
             data-testid="checkout-finish-btn"
             className="btn btn-success"
-            disabled={!endereco || !numero || !cart.length > 0}
+            disabled={!address || !number || !cart.length > 0}
             onClick={() =>
               doneOrder(
                 history,
