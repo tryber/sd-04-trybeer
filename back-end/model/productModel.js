@@ -13,15 +13,15 @@ const getAllProducts = async () => connection()
     urlImage,
   })));
 
-const getOrderByUserId = async (userId) => connection().then((db) => db
+const getOrderByUserId = async (idUser) => connection().then((db) => db
   .getTable('sales')
   .select()
   .where('user_id = :user_id')
-  .bind('user_id', userId)
+  .bind('user_id', idUser)
   .execute())
   .then((results) => results.fetchAll())
   .then((order) => order.map(([
-    id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status
+    id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status,
   ]) => ({
     id,
     userId,
