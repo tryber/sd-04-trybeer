@@ -28,7 +28,7 @@ const navDisplayTrue = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, n
   }, TIME);
 };
 
-const Header = () => {
+const Header = ({ title }) => {
   const [navDisplay, setNavDisplay] = useState(false);
   const [navStyle, setNavStyle] = useState({});
   const [transitionMenuHambuger, setTransitionMenuHambuger] = useState({});
@@ -45,7 +45,7 @@ const Header = () => {
           navDisplayFalse={ navDisplayFalse }
           navDisplayTrue={ navDisplayTrue }
         />
-        <h1 data-testid="top-title">TryBeer</h1>
+        <h1 data-testid="top-title">{ title }</h1>
         {navDisplay && (
           <NavBar
             navStyle={ navStyle }

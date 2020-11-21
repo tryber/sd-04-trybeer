@@ -27,8 +27,8 @@ const ClientProfile = () => {
 
   return (
     <div className="container">
+      <Header title="Meu perfil" />
       <div className="square">
-        <Header title="Perfil do cliente" />
         <h1 className="pageTitle">Perfil do Cliente</h1>
         <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
         <form method="POST" action="/profile" className="form">
