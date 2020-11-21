@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from '../../components/Header';
 // import Footer from '../../components/Rodape';
-import { MIN_NAME_LENGTH } from '../../validation';
+import { updateProfileValidation } from '../../validation';
 
 import api from '../../services/api';
 
@@ -11,13 +11,25 @@ import cheersIcon from '../../assets/beer.svg';
 import './styles.css';
 
 const ClientProfile = () => {
-  const [userEmail] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
-  const [message] = useState('');
+  const [message, setMessage] = useState('');
+  const [intialName, setInitialName] = useState(userName);
+
+  useEffect(() => {
+    const { name, userEmail: email } = JSON.parse(localStorage.getItem('user'));
+    setUserName(name);
+    setInitialName(name)
+    setUserEmail(email);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await api.put('/', { userName });
+    const { data } = await api.put('/updateUser', { userName, userEmail });
+    console.log(data);
+    if (typeof data === 'string') {
+      setMessage(data);
+    }
   };
 
   return (
@@ -49,7 +61,6 @@ const ClientProfile = () => {
                 className="input-field"
                 placeholder="Email"
                 type="text"
-                name="email"
                 value={ userEmail }
                 readOnly
               />
@@ -57,19 +68,16 @@ const ClientProfile = () => {
           </div>
           <div className="div_btn">
             <button
-              disabled={ userName.length < MIN_NAME_LENGTH || userName === ' ' }
-              // disabled={ (userName.length <= minNameLenght) && !(userName !== inputUserName) }
+              disabled={ updateProfileValidation(userName) || intialName === userName }
               type="submit"
               data-testid="profile-save-btn"
               className="save-button"
-            // onClick={() => getUser(userName, userEmail, setMessage)}
             >
               Salvar
             </button>
-            <span>{message}</span>
           </div>
         </form>
-        {/* <Footer className="footer" /> */}
+        <span>{message}</span>
       </div>
     </div>
   );
