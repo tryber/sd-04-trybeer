@@ -5,16 +5,25 @@ import TopBar from '../components/ClientBar.jsx';
 import api from '../services/api';
 import '../App.css';
 import { Link, Redirect, useHistory } from 'react-router-dom';
+import { isPropertySignature } from 'typescript';
 
 function Products() {
-  const { products, setProducts, setCart, total } = useContext(AppContext);
+  const {
+    products,
+    setProducts,
+    setCart,
+    total,
+    setTotal,
+    orderMessage,
+  } = useContext(AppContext);
   const history = useHistory();
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token'));
 
-    api.get('/products', { headers: { Authorization: token } })
-      .then(response => setProducts(response.data))
+    api
+      .get('/products', { headers: { Authorization: token } })
+      .then((response) => setProducts(response.data))
       .catch(() => history.push('/login'));
 
     if (localStorage.getItem('cart')) {
@@ -25,19 +34,18 @@ function Products() {
   return (
     <div>
       <TopBar title={'TryBeer'} isAdm={false} />
-
+      <h3>{orderMessage}</h3>
       <div className="ver-carrinho">
-        <Link to="/checkout" style={{ textDecoration: "none" }}>
+        <Link to="/checkout" style={{ textDecoration: 'none' }}>
           <button
             data-testid="checkout-bottom-btn"
             onClick={() => <Redirect to="/checkout" />}
             disabled={total === 0}
           >
             Ver Carrinho
-            <span
-              data-testid="checkout-bottom-btn-value"
-            >
-              {`R$ ${total.toFixed(2).toLocaleString().replace('.', ',')}`}
+            <span data-testid="checkout-bottom-btn-value">
+              {(total || total === 0) &&
+                `R$ ${total.toFixed(2).toLocaleString().replace('.', ',')}`}
             </span>
           </button>
         </Link>
@@ -55,10 +63,9 @@ function Products() {
             quantity={0}
           />
         ))}
-
       </div>
     </div>
-  )
-};
+  );
+}
 
 export default Products;
