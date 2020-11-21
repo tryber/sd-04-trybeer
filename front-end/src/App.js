@@ -19,6 +19,7 @@ const App = () => (
       <Route path="/profile" component={ UserProfile } />
       <Route path="/orders" component={ ClientOrder } />
       <Route path="/admin/orders" component={ AdminProfile } />
+      <Route path="/admin/profile" component={ AdminProfile } />
     </Switch>
   </BrowserRouter>
 );
