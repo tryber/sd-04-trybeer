@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 import { getLS } from '../../utils';
 import styles from './index.module.css';
-
 import Menu from '../../components/Menu';
 
 const ProfilePage = () => {
@@ -15,7 +14,7 @@ const ProfilePage = () => {
     setName(getLS('name'));
   }, []);
 
-  const checkNameChange = () => getLS('name') === name ? true : false;
+  const checkNameChange = () => (getLS('name') === name ? true : false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +29,9 @@ const ProfilePage = () => {
       <Menu nomeTela="Meu perfil" />
       <form onSubmit={handleSubmit} className={styles.profileForm}>
         <div className={styles.profileFieldsContainer}>
-          <label htmlFor="name" className="inputLabel">Nome:</label>
+          <label htmlFor="name" className="inputLabel">
+            Nome:
+          </label>
           <input
             data-testid="profile-name-input"
             type="text"
@@ -41,7 +42,9 @@ const ProfilePage = () => {
           />
         </div>
         <div className={styles.profileFieldsContainer}>
-          <label htmlFor="email" className="inputLabel">Email:</label>
+          <label htmlFor="email" className="inputLabel">
+            Email:
+          </label>
           <input
             data-testid="profile-email-input"
             type="text"

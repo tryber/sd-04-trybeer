@@ -1,13 +1,12 @@
 import React from 'react';
 import { bool, func } from 'prop-types';
-// import './index.css';
-import styles from './index.module.css'
+import styles from './index.module.css';
 
 const Burger = ({ open, setOpen }) => (
   <button
     type="button"
-    open={ open }
-    onClick={ () => setOpen(!open) }
+    open={open}
+    onClick={() => setOpen(!open)}
     data-testid="top-hamburguer"
     className={styles.btnBurger}
   >
