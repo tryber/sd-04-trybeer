@@ -20,7 +20,7 @@ const Checkout = ({ cart, total, updateTotal, updateProducts, saveCartLS }) => {
   const [date, setDate] = useState(
     new Date().toISOString().slice(0, 19).replace('T', ' '),
   );
-  const [status, setStatus] = useState('ok');
+  const [status, setStatus] = useState('Pendente');
   ///////////////////////////////////////////////////////////
 
   // dados para o insert na tabela sales_products

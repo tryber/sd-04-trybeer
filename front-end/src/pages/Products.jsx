@@ -57,7 +57,7 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
     }
   }, [cart, total]);
 
-  const stopDecreamet = (product) => {
+  const stopDecrement = (product) => {
     const qty = quantity(product);
     if (qty === 0 || !qty) return null;
     decreaseQtd(product);
@@ -83,7 +83,7 @@ const Products = ({ cart, increaseQtd, decreaseQtd, total, saveCartLS }) => {
             <button
               type="button"
               data-testid={`${index}-product-minus`}
-              onClick={() => stopDecreamet(product)}
+              onClick={() => stopDecrement(product)}
             >
               -
             </button>

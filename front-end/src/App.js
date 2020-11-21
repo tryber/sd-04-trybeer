@@ -10,7 +10,7 @@ import ClientOrders from './pages/ClientOrders';
 import OrderDetails from './pages/OrderDetails';
 import AdminProfile from './pages/AdminProfile';
 import AdminOrders from './pages/AdminOrders';
-import AdminOrdersDetail from './pages/AdminOrdersDetail';
+import AdminOrdersDetails from './pages/AdminOrdersDetails';
 
 function App() {
   return (
@@ -23,8 +23,7 @@ function App() {
       <Route exact path="/checkout" component={ Checkout } />
       <Route exact path="/orders" component={ ClientOrders } />
       <Route exact path="/orders/:id" component={ OrderDetails } />
-      <Route exact path="/admin/orders/:id" component={ AdminOrdersDetail } />
-
+      <Route exact path="/admin/orders/:id" component={ AdminOrdersDetails } />
       <Route path="/" component={ Login } />
     </Switch>
   );

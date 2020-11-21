@@ -30,7 +30,7 @@ const Menu = ({ title }) => {
           </button>
         </Link>
         <hr />
-        <Link to="login">
+        <Link to="/login">
           <button
             data-testid="side-menu-item-logout"
             type="button"
