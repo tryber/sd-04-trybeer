@@ -19,12 +19,13 @@ routes.post(
   userController.registerUserController,
 );
 routes.get('/profile', userController.getUserByEmail);
-routes.get('/products', validateJWT, productController.findAllProductsController);
-routes.get('/orders/:id', validateJWT, saleController.findSalesBySaleId);
-routes.post(
-  '/checkout',
-  findUserIdByEmail,
-  checkoutController,
+routes.get(
+  '/products',
+  validateJWT,
+  productController.findAllProductsController,
 );
+routes.get('/orders/:id', validateJWT, saleController.findSalesBySaleId);
+routes.post('/checkout', findUserIdByEmail, checkoutController);
+routes.post('/checkout', findUserIdByEmail, checkoutController);
 
 module.exports = routes;
