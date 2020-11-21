@@ -4,7 +4,7 @@ const PASS_LENGTH = 6;
 
 const LENGTH = 12;
 const registerValidation = (name, email, pass) => (
-  name.length < LENGTH || pass === '' || !NAME_PATTERN.test(name) || !EMAIL_PATTERN.test(email)
+  name.length < LENGTH || pass === ' ' || !NAME_PATTERN.test(name) || !EMAIL_PATTERN.test(email)
 );
 
 module.exports = {
