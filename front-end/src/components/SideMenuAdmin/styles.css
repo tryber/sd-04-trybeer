@@ -1,3 +1,7 @@
+button:hover {
+  background-color: #fca311ff;
+}
+
 .admin-side-button {
   font-family: Roboto;
   font-size: 36px;
