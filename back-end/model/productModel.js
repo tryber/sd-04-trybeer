@@ -13,11 +13,11 @@ const getAllProducts = async () => connection()
     urlImage,
   })));
 
-const getOrderByUserId = async (userId) => connection().then((db) => db
+const getOrderByUserId = async (idInput) => connection().then((db) => db
   .getTable('sales')
   .select()
   .where('user_id = :user_id')
-  .bind('user_id', userId)
+  .bind('user_id', idInput)
   .execute())
   .then((results) => results.fetchAll())
   .then((order) => order
@@ -28,7 +28,7 @@ const getOrderByUserId = async (userId) => connection().then((db) => db
       deliveryAddress,
       deliveryNumber,
       saleDate,
-      status
+      status,
     })));
 
 module.exports = {
