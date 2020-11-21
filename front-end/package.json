@@ -16,21 +16,23 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
+    "react-loader-spinner": "^3.1.14",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
     "simple-react-validator": "^1.5.1"
   },
   "devDependencies": {
-    "mocha": "^7.0.1",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
+    "eslint": "^7.13.0",
     "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.0",
     "eslint-plugin-react": "^7.20.0",
-    "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-react-hooks": "^2.3.0",
+    "mocha": "^7.0.1",
     "typescript": ">=2.8.0"
   },
   "scripts": {

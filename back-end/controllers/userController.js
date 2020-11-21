@@ -12,6 +12,25 @@ const userLogin = (req, res) => {
   }
 };
 
+const userProfile = async (req, res) => {
+  try {
+    const { user } = req;
+    res.status(200).json(user);
+  } catch {
+    res.status(400).json('Email inexistente');
+  }
+};
+
+const editProfile = async (req, res) => {
+  try {
+    const { email, name } = req.body;
+    await userModel.editProfile(email, name);
+    res.status(200).json('Atualização concluída com sucesso');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const userRegister = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
@@ -26,5 +45,7 @@ const userRegister = async (req, res) => {
 
 module.exports = {
   userLogin,
+  userProfile,
+  editProfile,
   userRegister,
 };
