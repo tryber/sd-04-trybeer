@@ -1,9 +1,5 @@
 import React from 'react';
 
-const OrdersDetail = () => {
-  return (
-    <div>Details</div>
-  );
-};
+const OrdersDetail = () => <div>Details</div>;
 
 export default OrdersDetail;
