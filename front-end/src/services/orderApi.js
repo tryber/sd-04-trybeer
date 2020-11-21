@@ -9,7 +9,7 @@ const sendOrder = (email, total, address, number, cart) => api.post('/checkout',
   total,
   address,
   number,
-  cart
+  cart,
 });
 const getOrderById = (id) => (api.get(`/orders/${id}`));
 

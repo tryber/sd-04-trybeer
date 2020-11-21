@@ -36,8 +36,7 @@ const insertSaleProduct = async (saleId, cart) => {
       .values(saleId, item.id, item.quantidade)
       .execute())));
   return result;
-}
-
+};
 
 const getSalesById = async (idInput) => {
   const SALEPRODUTQUERY = `SELECT P.name, P.price, S.total_price, S.sale_date, SP.quantity, SP.sale_id,

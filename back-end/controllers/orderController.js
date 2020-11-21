@@ -6,9 +6,11 @@ const generateOrder = async (req, res) => {
     const { email, total, address, number, cart } = req.body;
 
     const user = await userModel.findByEmail(email);
-    const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const date = new Date().toISOString()
+      .slice(0, 19)
+      .replace('T', ' ');
     const result = await orderModel.createOrder(user.id, total, address, number, date);
-    //codigo linha 10 e 12 added para funcionar o requisito 08
+    // codigo linha 10 e 12 added para funcionar o requisito 08
     await orderModel.insertSaleProduct(result.getAutoIncrementValue(), cart);
 
     res.status(200).json({ message: 'Pedido registrado' });
