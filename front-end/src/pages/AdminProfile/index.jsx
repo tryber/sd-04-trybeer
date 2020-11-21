@@ -1,7 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Menu from '../../components/AdminMenu';
-import { getLS } from '../../utils/index'
+import { getLS } from '../../utils/index';
+import styles from './index.module.css';
 
 
 function AdminProfile() {
@@ -11,9 +12,8 @@ function AdminProfile() {
   if(user === null || user.role !== "administrator") return <Redirect to='/login' />;
   return (
     <div>
-    {console.log('user', user)}
       <Menu />
-      <div style={ { display: 'flex', flexDirection: 'column', marginTop: '150px' } }>
+      <div className={styles.pageContainer}>
           <h2>Perfil</h2>
           <p data-testid="profile-name">Nome: {user.name}</p>
           <h3 data-testid="profile-email">Email: {user.email}</h3>
