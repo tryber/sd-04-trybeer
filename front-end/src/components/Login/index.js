@@ -29,12 +29,12 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data } = await api.post('/login', { email, password });
-    if (data.role === 'administrator') {
-      saveUserData(data);
+    const response = await api.post('/login', { email, password });
+    if (response.data.role === 'administrator') {
+      saveUserData(response.data);
       history.push('/admin/orders');
     } else {
-      saveUserData(data);
+      saveUserData(response.data);
       history.push('/products');
     }
   };
