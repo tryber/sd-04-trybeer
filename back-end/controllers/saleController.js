@@ -20,7 +20,19 @@ const findSalesBySaleId = async (req, res) => {
   }
 };
 
+const findOrderByUseridController = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const order = await saleService.findOrderByUserIdService(id);
+    return res.status(200).json(order);
+  } catch (err) {
+    console.error(err);
+    return res.status(404).json({ message: 'No Orders Found '});
+  }
+};
+
 module.exports = {
   findAllSalesController,
   findSalesBySaleId,
+  findOrderByUseridController,
 };

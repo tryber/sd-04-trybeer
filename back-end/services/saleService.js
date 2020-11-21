@@ -17,8 +17,14 @@ const findSalesBySaleId = async (id) => {
   return sales;
 };
 
+const findOrderByUserIdService = async (userId) => {
+  const order = await saleModel.findOrderByUserId(userId);
+  return order;
+};
+
 module.exports = {
   registerSaleService,
   findAllSalesService,
   findSalesBySaleId,
+  findOrderByUserIdService,
 };
