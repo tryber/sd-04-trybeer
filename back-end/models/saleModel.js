@@ -75,9 +75,9 @@ const findOrderByUserId = async (uid) => {
       .where('id = :id')
       .bind('id', uid)
       .execute();
-    const [id, userId, totalPrice, deliveryAddress,
-      deliveryNumber, saleDate, status] = await result.fetchOne();
-    return {
+    const orders = await result.fetchAll();
+    return orders.map(([id, userId, totalPrice, deliveryAddress,
+      deliveryNumber, saleDate, status]) => ({
       id,
       userId,
       totalPrice,
@@ -85,7 +85,7 @@ const findOrderByUserId = async (uid) => {
       deliveryNumber,
       saleDate,
       status,
-    };
+    }));
   } catch (err) {
     console.error(err);
     return null;

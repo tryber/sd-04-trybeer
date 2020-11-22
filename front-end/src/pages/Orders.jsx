@@ -13,10 +13,10 @@ function Orders() {
 
     api
       .get('/orders', { headers: { Authorization: token } })
-      .then((response) => setOrders([response.data]))
+      .then((response) => setOrders(response.data))
       .catch(() => history.push('/login'));
   }, []);
-  console.log(JSON.stringify(orders));
+  console.log('orders: ' + JSON.stringify(orders));
 
   return (
   <div>
