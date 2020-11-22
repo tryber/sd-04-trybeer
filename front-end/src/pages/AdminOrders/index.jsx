@@ -14,10 +14,6 @@ const AdminOrders = () => {
     })();
   }, []);
 
-  React.useEffect(() => {
-    console.log(ordersData);
-  }, [ordersData]);
-
   return (
     <div className={styles.pageContainer}>
       <Menu />
@@ -32,8 +28,8 @@ const AdminOrders = () => {
                 { id, status, totalPrice, deliveryAddress, deliveryNumber },
                 index,
               ) => (
-                <Link to={`/admin/orders/${id}`}>
-                  <li key={id} className={styles.orderItem}>
+                <Link to={`/admin/orders/${id}`} key={id}>
+                  <li className={styles.orderItem}>
                     <div
                       className={styles.orderNumber}
                       data-testid={`${index}-order-number`}

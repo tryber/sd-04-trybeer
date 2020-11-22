@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import api from '../../services/api';
 import { getLS } from '../../utils';
 import styles from './index.module.css';
@@ -25,6 +26,7 @@ const ProfilePage = () => {
     await api.updateUserAPI(name, email);
   };
 
+  if (!email) return <Redirect to="/login" />;
   return (
     <div className={styles.profileContainer}>
       <Menu nomeTela="Meu perfil" />

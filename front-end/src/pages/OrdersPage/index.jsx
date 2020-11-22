@@ -16,7 +16,7 @@ const Orders = () => {
     setLoading(false);
   }, []);
 
-  if (!getLS('user')) return <Redirect to="/login" />;
+  if (!getLS('user').email) return <Redirect to="/login" />;
   return loading ? (
     <h1>Carregando...</h1>
   ) : (

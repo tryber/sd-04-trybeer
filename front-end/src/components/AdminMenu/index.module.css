@@ -32,8 +32,9 @@
   text-align: left;
   left: 0;
   padding: 2rem;
-  top: 2rem;
+  top: 0rem;
   transition: transform 0.3s ease-in-out;
+  width: 15rem;
 }
 
 .navbar a {
@@ -49,4 +50,8 @@
 }
 .navbar a:hover {
   color: #ffffff;
+}
+
+.navLink:hover {
+  background-color: #faa307;
 }

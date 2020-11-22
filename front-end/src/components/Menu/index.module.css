@@ -31,10 +31,6 @@
   background-color: white;
 }
 
-.navLink {
-  width: 100%;
-}
-
 .navLink:hover {
   background-color: #faa307;
 }

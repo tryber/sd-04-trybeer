@@ -4,19 +4,18 @@ import Menu from '../../components/AdminMenu';
 import { getLS } from '../../utils/index';
 import styles from './index.module.css';
 
-
 function AdminProfile() {
   const user = getLS('user');
-  // const history = useHistory();
 
-  if(user === null || user.role !== "administrator") return <Redirect to='/login' />;
+  if (user === null || user.role !== 'administrator')
+    return <Redirect to="/login" />;
   return (
     <div>
       <Menu />
       <div className={styles.pageContainer}>
-          <h2>Perfil</h2>
-          <p data-testid="profile-name">Nome: {user.name}</p>
-          <h3 data-testid="profile-email">Email: {user.email}</h3>
+        <h2>Perfil</h2>
+        <p data-testid="profile-name">Nome: {user.name}</p>
+        <p data-testid="profile-email">Email: {user.email}</p>
       </div>
     </div>
   );

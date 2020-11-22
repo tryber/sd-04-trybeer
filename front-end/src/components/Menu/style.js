@@ -13,6 +13,7 @@ const StyledMenu = styled.nav`
   left: 0;
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
+  width: 15rem;
 
   a {
     font-size: 16px;

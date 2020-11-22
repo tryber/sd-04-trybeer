@@ -8,21 +8,21 @@ const index = () => {
       <nav className={styles.navbar}>
         <Link
           to="/admin/orders"
-          className="nav-link"
+          className={styles.navLink}
           data-testid="side-menu-item-orders"
         >
           Pedidos
         </Link>
         <Link
           to="/admin/profile"
-          className="nav-link"
+          className={styles.navLink}
           data-testid="side-menu-item-profile"
         >
           Perfil
         </Link>
         <Link
           to="/login"
-          className="nav-link"
+          className={styles.navLink}
           data-testid="side-menu-item-logout"
         >
           Sair
