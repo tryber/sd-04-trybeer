@@ -24,7 +24,6 @@ function CloseOrder() {
       setEmail(loginInStorage.email);
     }
     const loginInStorage = JSON.parse(localStorage.getItem('user'));
-    setEmail(loginInStorage.email);
 
     if (!loginInStorage) {
       history.push('/login');
@@ -94,76 +93,78 @@ function CloseOrder() {
   return (
     <div>
       <TopBar title={'Finalizar Pedido'} isAdm={false} />
-      <div className="container col">
-        <h1>Produtos</h1>
-        <h3>{message}</h3>
-        <p id="orderMessage">{orderMessage}</p>
-        <ul ref={orderRef} id="list" className="list-group">
-          {cart.map(({ name, quantity, price }, index) => {
-            return (
-              <li
-                name="itemList"
-                id={name}
-                key={name}
-                className="list-group-item list-group-item-action list-group-item-primary"
-                index={index}
-              >
-                <div className="container">
-                  <div className="row">
-                    <div
-                      data-testid={`${index}-product-qtd-input`}
-                      className="col"
-                    >
-                      {quantity}
-                    </div>
-                    <div
-                      data-testid={`${index}-product-name`}
-                      className="col-6"
-                    >
-                      {name}
-                    </div>
-                    <div
-                      data-testid={`${index}-product-unit-price`}
-                      className="col"
-                    >
-                      {`(R$ ${price
-                        .toFixed(2)
-                        .toString()
-                        .replace('.', ',')} un)`}
-                    </div>
-                    <div
-                      data-testid={`${index}-product-total-value`}
-                      className="col"
-                    >
-                      {`R$ ${(price * quantity)
-                        .toFixed(2)
-                        .toString()
-                        .replace('.', ',')}`}
-                    </div>
-
-                    <input type="hidden" name="total" value={total} />
-                    <input type="hidden" name="products" value={cart} />
-                    <input type="hidden" name="date" value={data} />
-
-                    <div
-                      onClick={(e) => removeItemFromArray(name)}
-                      className="col"
-                    >
-                      <button
-                        data-testid={`${index}-removal-button`}
-                        className="btn btn-danger"
+      <div className="container">
+        <div className="col-lg-15">
+          <h1>Produtos</h1>
+          <h3>{message}</h3>
+          <p id="orderMessage">{orderMessage}</p>
+          <ul ref={orderRef} id="list" className="list-group">
+            {cart.map(({ name, quantity, price }, index) => {
+              return (
+                <li
+                  name="itemList"
+                  id={name}
+                  key={name}
+                  className="list-group-item list-group-item-action list-group-item-primary"
+                  index={index}
+                >
+                  <div className="">
+                    <div className="row">
+                      <div
+                        data-testid={`${index}-product-qtd-input`}
+                        className="col"
                       >
-                        X
-                      </button>
+                        {quantity}
+                      </div>
+                      <div
+                        data-testid={`${index}-product-name`}
+                        className="col-6"
+                      >
+                        {name}
+                      </div>
+                      <div
+                        data-testid={`${index}-product-unit-price`}
+                        className="col"
+                      >
+                        {`(R$ ${price
+                          .toFixed(2)
+                          .toString()
+                          .replace('.', ',')} un)`}
+                      </div>
+                      <div
+                        data-testid={`${index}-product-total-value`}
+                        className="col"
+                      >
+                        {`R$ ${(price * quantity)
+                          .toFixed(2)
+                          .toString()
+                          .replace('.', ',')}`}
+                      </div>
+
+                      <input type="hidden" name="total" value={total} />
+                      <input type="hidden" name="products" value={cart} />
+                      <input type="hidden" name="date" value={data} />
+
+                      <div
+                        onClick={(e) => removeItemFromArray(name)}
+                        className="col"
+                      >
+                        <button
+                          data-testid={`${index}-removal-button`}
+                          className="btn btn-danger"
+                        >
+                          X
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-        <br />
-        <h4 data-testid="order-total-value" id="itemTotal"></h4>
+                </li>
+              );
+            })}
+          </ul>
+          <br />
+          <h4 data-testid="order-total-value" id="itemTotal"></h4>
+        </div>
       </div>
 
       <hr />
