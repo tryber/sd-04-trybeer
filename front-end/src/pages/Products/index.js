@@ -19,7 +19,7 @@ const Products = () => {
 
   useEffect(() => {
     const productList = JSON.parse(localStorage.getItem('products'));
-    console.log(productList);
+    // console.log(productList);
     const fetchProducts = async () => {
       if (productList && productList.length) {
         setProducts([...productList]);
@@ -34,18 +34,20 @@ const Products = () => {
     <div className="products-page">
       <Header title="TryBeer" />
       <div className="product-cards-container">
-        {products.map(({ id, name, price, url_image, quantity }, index) => (
+        { products.map(({
+          id, name, price, urlImage, quantity,
+        }, index) => (
           <ProductsCard
-            key={id}
-            id={id}
-            testid={index}
-            name={name}
-            price={price}
-            img={url_image}
-            qtd={quantity}
-            setProducts={setProducts}
+            key={ id }
+            id={ id }
+            testid={ index }
+            name={ name }
+            price={ price }
+            img={ urlImage }
+            qtd={ quantity }
+            setProducts={ setProducts }
           />
-        ))}
+        )) }
       </div>
       <Rodape />
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import { registerValidation } from '../../validation';
+import { registerValidation, setLocalStorage } from '../../validation';
 import api from '../../services/api';
 
 import TrybeerLogo from '../../imgs/logo.png';
@@ -16,13 +16,14 @@ const Register = () => {
   const [isSeller, setIsSeller] = useState(false);
   const [message, setMessage] = useState('');
 
-  const checkRole = async (role) => {
-    history.push(role === 'administrator' ? '/admin/orders' : '/products');
-    // if (role === 'administrator') {
-    //   history.push('/admin/orders');
-    // } else {
-    //   history.push('/products');
-    // }
+  const checkRole = async ({ name, email, role }) => {
+    // history.push(role === 'administrator' ? '/admin/orders' : '/products');
+    setLocalStorage({ name, email, role });
+    if (role === 'administrator') {
+      history.push('/admin/orders');
+    } else {
+      history.push('/products');
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -37,7 +38,7 @@ const Register = () => {
       if (result.data.message) {
         setMessage(result.data.message);
       } else {
-        checkRole(result.data.role);
+        checkRole(result.data);
       }
     } catch (error) {
       // alert(error.message);

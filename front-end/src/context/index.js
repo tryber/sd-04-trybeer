@@ -12,8 +12,9 @@ const TrybeerContextProvider = ({ children }) => {
   // Você define o que será seu estado nessa variável
   // Eu defini que fosse um booleano, mas pode ser um array, um objeto, um objeto de objetos...
   // um array de objetos, ou a estrutura de dados que você precisar e achar melhor pra trabalhar.
+  const VALOR_INICIAL_CARRINHO = 0;
   const [meuEstado, setMeuEstado] = useState(false);
-  const [totalCarrinho, seTotalCarrinho] = useState(0);
+  const [totalCarrinho, seTotalCarrinho] = useState(VALOR_INICIAL_CARRINHO);
 
   const contextValue = {
     meuEstado, // uma variável de estado

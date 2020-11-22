@@ -13,11 +13,16 @@ const registerValidation = (name, email, pass) => (
 
 const updateProfileValidation = (name) => name.length < MIN_NAME_LENGTH || name === ' ';
 
+const setLocalStorage = (userData) => {
+  localStorage.setItem('user', JSON.stringify(userData));
+};
+
 module.exports = {
   NAME_PATTERN,
   EMAIL_PATTERN,
   MIN_NAME_LENGTH,
   PASS_LENGTH,
   registerValidation,
+  setLocalStorage,
   updateProfileValidation,
 };

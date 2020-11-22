@@ -1,6 +1,6 @@
 const connection = require('./connection');
 
-const getAllPrdoucts = async (email) => {
+const getAllPrdoucts = async () => {
   try {
     const db = await connection();
     const query = await db
@@ -8,9 +8,9 @@ const getAllPrdoucts = async (email) => {
       .select(['id', 'name', 'price', 'url_image'])
       .execute();
     const result = await query.fetchAll();
-    return result.map(([id, name, price, url_image]) => ({ id, name, price, url_image, quantity: 0 }));
-    // const [id, name, userEmail, password, role] = result;
-    // return { id, name, userEmail, password, role };
+    return result.map(([id, name, price, urlImage]) => ({
+      id, name, price, urlImage, quantity: 0,
+    }));
   } catch (error) {
     console.log(error.message);
   }
