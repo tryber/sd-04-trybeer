@@ -45,7 +45,7 @@ const ProfilePage = () => {
             label="Nome"
             value={email}
             type="text"
-            dataTestId="profile-name-input"
+            dataTestId="profile-email-input"
             readOnly
           />
         </div>
