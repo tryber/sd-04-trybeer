@@ -28,21 +28,23 @@ const ClientOrders = () => {
   if (auth === false) return <Redirect to="/login" />;
   return (
     <div>
-      <TopMenu title="Meus Pedidos" />
-      {orders.map((order, index) => (
-        <div key={ order.id } data-testid={ `${index}-order-card-container` }>
-          <Link to={ `/orders/${order.id}` }>
-            <p data-testid={ `${index}-order-number` }>
-              Pedido&nbsp;
-              {order.id}
-            </p>
-            <p data-testid={ `${index}-order-date` }>{formatDate(order.sale_date)}</p>
-            <p data-testid={ `${index}-order-total-value` }>
-              {`R$ ${order.total_price.toFixed(DOIS).replace('.', ',')}`}
-            </p>
-          </Link>
-        </div>
-      ))}
+      <TopMenu title="Meus Pedidos" className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" />
+      <main role="main" className="">
+        {orders.map((order, index) => (
+          <div key={ order.id } data-testid={ `${index}-order-card-container` }>
+            <Link to={ `/orders/${order.id}` }>
+              <p data-testid={ `${index}-order-number` }>
+                Pedido&nbsp;
+                {order.id}
+              </p>
+              <p data-testid={ `${index}-order-date` }>{formatDate(order.saleDate)}</p>
+              <p data-testid={ `${index}-order-total-value` }>
+                {`R$ ${order.totalPrice.toFixed(DOIS).replace('.', ',')}`}
+              </p>
+            </Link>
+          </div>
+        ))}
+      </main>
     </div>
   );
 };
