@@ -24,15 +24,15 @@ const Checkout = () => {
       totalPrice.toLocaleString('pt-br', {
         style: 'currency',
         currency: 'BRL',
-      })
+      });
     );
   }, [totalPrice]);
 
   function updateList(id) {
     productList = productsData.filter(
-      (item) => item.id !== id && item.totalPrice !== 0
+      (item) => item.id !== id && item.totalPrice !== 0;
     );
-    let totalP = productList.reduce((acc, value) => acc + value.totalPrice, 0);
+    const totalP = productList.reduce((acc, value) => acc + value.totalPrice, 0);
     setTotal(totalP);
     localStorage.setItem('qttPdtsCart', JSON.stringify(productList));
     localStorage.setItem('totalPriceCart', JSON.stringify(totalP));
@@ -47,21 +47,21 @@ const Checkout = () => {
         return (
           <li
             key={ item.id }
-            data-testid={ `${ item.id - 1 }-product-price` }
-            className='list-group-item d-flex justify-content-between align-items-center'
+            data-testid={ `${item.id - 1}-product-price` }
+            className="list-group-item d-flex justify-content-between align-items-center"
           >
             <span
-              data-testid={ `${ item.id - 1 }-product-qtd-input` }
-              className='badge badge-primary badge-pill'
+              data-testid={ `${item.id - 1}-product-qtd-input` }
+              className="badge badge-primary badge-pill"
             >
               { item.qtt }
             </span>
-            <span data-testid={ `${ item.id - 1 }-product-name` }>
+            <span data-testid={ `${item.id - 1}-product-name` }>
               { productNameDefinition(item.id) }
             </span>
             <span
-              data-testid={ `${ item.id - 1 }-product-total-value` }
-              className='badge badge-primary badge-pill'
+              data-testid={ `${item.id - 1}-product-total-value` }
+              className="badge badge-primary badge-pill"
             >
               { item.totalPrice.toLocaleString('pt-br', {
                 style: 'currency',
@@ -69,8 +69,8 @@ const Checkout = () => {
               }) }
             </span>
             <span
-              data-testid={ `${ item.id - 1 }-product-unit-price` }
-              className='badge badge-primary badge-pill'
+              data-testid={ `${item.id - 1}-product-unit-price` }
+              className="badge badge-primary badge-pill"
             >
               { item.price.toLocaleString('pt-br', {
                 style: 'currency',
@@ -78,9 +78,10 @@ const Checkout = () => {
               }) }
             </span>
             <button
+              type="button"
               onClick={ () => updateList(item.id) }
-              data-testid={ `${ item.id - 1 }-removal-button` }
-              className='badge badge-pill badge-light'
+              data-testid={ `${item.id - 1}-removal-button` }
+              className="badge badge-pill badge-light"
             >
               X
             </button>
@@ -92,38 +93,40 @@ const Checkout = () => {
   }
   return (
     <div>
-      <Header title='Finalizar Pedido' />
-      <SideBar userType='client' />
+      <Header title="Finalizar Pedido" />
+      <SideBar userType="client" />
       <h2>Produtos</h2>
-      <ul className='list-group'>{ productList }</ul>
-      <span data-testid='order-total-value'>{ `Total: ${ total }` }</span>
+      <ul className="list-group">{ productList }</ul>
+      <span data-testid="order-total-value">{ `Total: ${total}` }</span>
       <form>
-        <div className='form-group'>
+        <div className="form-group">
           <p>Endereço</p>
-          <label htmlFor='inputAddress'>Rua:</label>
+          <label htmlFor="inputAddress">Rua:
           <input
-            data-testid='checkout-street-input'
-            type='text'
-            className='form-control'
-            id='inputAddress'
-            placeholder='P. Sherman'
+            data-testid="checkout-street-input"
+            type="text"
+            className="form-control"
+            id="inputAddress"
+            placeholder="P. Sherman"
           />
+          </label>
         </div>
-        <div className='form-group'>
-          <label htmlFor='inputAddress2'>Número da casa:</label>
+        <div className="form-group">
+          <label htmlFor="inputAddress2">Número da casa:
           <input
-            data-testid='checkout-house-number-input'
-            type='number'
-            className='form-control'
-            id='inputAddress2'
-            placeholder='42'
+            data-testid="checkout-house-number-input"
+            type="number"
+            className="form-control"
+            id="inputAddress2"
+            placeholder="42"
           />
+          </label>
         </div>
 
         <button
-          data-testid='checkout-finish-btn'
-          type='submit'
-          className='btn btn-primary'
+          data-testid="checkout-finish-btn"
+          type="submit"
+          className="btn btn-primary"
         >
           Finalizar Pedido
         </button>
