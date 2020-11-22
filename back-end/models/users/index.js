@@ -35,7 +35,7 @@ const getByEmail = (UserEmail) => connection()
   .catch((e) => e);
 
 // Como estamos mandando o name e id separados, adicionei o param 'id'
-const updateUser = (id, name) => {
+const update = (id, name) => {
   const table = connection().then((db) => db.getTable('users'));
 
   table.update()
@@ -45,4 +45,4 @@ const updateUser = (id, name) => {
     .execute();
 };
 
-module.exports = { getAll, getById, getByEmail, updateUser };
+module.exports = { getAll, getById, getByEmail, update };

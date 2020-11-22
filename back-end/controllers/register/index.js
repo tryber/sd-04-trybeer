@@ -1,6 +1,6 @@
 const { add, getByEmail } = require('../../models/users');
 
-const register = async (req, res) => {
+const createUser = async (req, res) => {
   try {
     const { signName, signEmail, signPassword, signRole } = req.body;
     // signRole é boolean
@@ -24,4 +24,4 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = { register };
+module.exports = { default: createUser };

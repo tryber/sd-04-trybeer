@@ -1,7 +1,7 @@
 const { createToken } = require('../../middlewares/createJWT');
 const { getByEmail } = require('../../models/users');
 
-const login = async (req, res) => {
+const loginUser = async (req, res) => {
   const { email, password } = req.body;
   console.log('ok');
 
@@ -22,4 +22,4 @@ const login = async (req, res) => {
   return res.status(200).json(token);
 };
 
-module.exports = { login };
+module.exports = { default: loginUser };

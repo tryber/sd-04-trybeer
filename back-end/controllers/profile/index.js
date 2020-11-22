@@ -1,14 +1,14 @@
-const { updateUser } = require('../../models/users');
+const { update } = require('../../models/users');
 
-const userUpdate = async (req, res) => {
+const updateUser = async (req, res) => {
   // const { id } = req.user; -> O id deverá vir do body
   const { id, name } = req.body;
   try {
-    await updateUser(id, name);
+    await update(id, name);
     res.status(200).json({ message: 'Usuário atualizado com sucesso' });
   } catch {
     res.status(500).json({ message: 'Falha ao atualizar o usuário' });
   }
 };
 
-module.exports = { userUpdate };
+module.exports = { default: updateUser };

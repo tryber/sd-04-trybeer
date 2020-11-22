@@ -1,21 +1,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { login } = require('./controllers/login');
-const { register } = require('./controllers/register');
+const { loginUser } = require('./controllers/login');
+const { createUser } = require('./controllers/register');
+const { readProducts } = require('./controllers/products');
+const { updateUser } = require('./controllers/profile');
 
 const app = express();
 const port = 3001;
-
-const productController = require('./controllers/products');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-app.post('/login', login);
-app.get('/products', productController.getAll);
-
-app.post('/register', register);
+// Single use routes
+app.get('/products', readProducts);
+app.post('/login', loginUser);
+app.post('/register', createUser);
+app.put('/profile', updateUser);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
