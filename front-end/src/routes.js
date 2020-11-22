@@ -9,6 +9,7 @@ import ClientProfile from './pages/ClientProfile/index';
 import LoginPage from './pages/LoginPage';
 import ProductDetails from './pages/ProductDetails';
 import MyOrdersADM from './pages/MyOrdersADM';
+import PrivateRoute from './PrivateRoute';
 
 const Routes = () => (
   <Provider>
@@ -16,7 +17,7 @@ const Routes = () => (
       <Route path="/" exact component={ LoginPage } />
       <Route path="/login" component={ LoginPage } />
       <Route path="/register" component={ Register } />
-      <Route path="/products" component={ Produtcs } />
+      <PrivateRoute path="/products" component={ Produtcs } />
       <Route path="/profile" component={ ClientProfile } />
       <Route path="/orders" exact component={ MyOrdereds } />
       <Route path="/orders/:orderNumber" exact component={ ProductDetails } />

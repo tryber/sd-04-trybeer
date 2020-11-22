@@ -12,14 +12,6 @@ const getUserByEmail = async (email) => {
     const result = await query.fetchOne();
     const [id, name, userEmail, password, role] = result;
     return { id, name, userEmail, password, role };
-    // return connection()
-    //   .then((db) => db
-    //     .getTable('users')
-    //     .select(['id', 'name', 'email', 'password', 'role'])
-    //     .where('email = :email')
-    //     .bind('email', email)
-    //     .execute())
-    //   .then((result) => result.fetchOne())
   } catch (error) {
     console.log(error.message);
   }
