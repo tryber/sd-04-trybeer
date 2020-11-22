@@ -1,9 +1,20 @@
 .container {
-  justify-content: center;
-  align-items: center;
   display: flex;
-  width: 100vw;
+  flex-direction: column;
+  width: 100%;
   height: 100vh;
+}
+
+.square {
+  align-items: center;
+  align-self: center;
+  border-radius: 7px;
+  box-shadow: 1px 1px 40px 6px #414141;
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  justify-content: center;
+  width: 300px;
 }
 
 .pageTitle {
@@ -17,6 +28,9 @@
 }
 
 .form-group {
+  align-items: center;
+  display: flex;
+  justify-content: center;
   margin: 15px 0;
 }
 
@@ -75,17 +89,6 @@
 .save-button:disabled {
   background-color: #e5e5e5;
   color: #383737;
-}
-
-.square {
-  align-items: center;
-  border-radius: 7px;
-  box-shadow: 1px 1px 40px 6px #414141;
-  display: flex;
-  flex-direction: column;
-  height: 85vh;
-  justify-content: center;
-  width: 300px;
 }
 
 @media screen and (min-width: 650px) {

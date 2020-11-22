@@ -1,37 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import Header from '../../components/Header';
 // import Footer from '../../components/Rodape';
+import { updateProfileValidation } from '../../validation';
+
+import api from '../../services/api';
+
 import cheersIcon from '../../assets/beer.svg';
+
 import './styles.css';
 
 const ClientProfile = () => {
-  const [userEmail] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
-  const [inputUserName] = useState('');
-  const [disableButton, setDisableButton] = useState(true);
-  const [message] = useState('');
+  const [message, setMessage] = useState('');
+  const [intialName, setInitialName] = useState(userName);
 
-  // const [userEmail, /* setUserEmail */] = useState('');
-  // const [userName, setUserName] = useState('');
-  // const [inputUserName, /* setInputUserName */] = useState('');
-  // const [disableButton, setDisableButton] = useState(true);
-  // const [message, /* setMessage */] = useState('');
-  // useEffect(() => {
-  //   const { email, name } = JSON.parse(localStorage.getItem('user'));
-  //   setUserEmail(email);
-  //   setUserName(name);
-  //   setInputUserName(name);
-  // }, []);
+  useEffect(() => {
+    const { name, userEmail: email } = JSON.parse(localStorage.getItem('user'));
+    setUserName(name);
+    setInitialName(name);
+    setUserEmail(email);
+  }, []);
 
-  const minNameLenght = 12;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { data } = await api.put('/updateUser', { userName, userEmail });
+    if (typeof data === 'string') {
+      setMessage(data);
+    }
+  };
 
   return (
     <div className="container">
+      <Header title="Meu perfil" />
       <div className="square">
-        <Header title="Perfil do cliente" />
         <h1 className="pageTitle">Perfil do Cliente</h1>
         <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
-        <form method="POST" action="/profile" className="form">
+        <form onSubmit={ handleSubmit } className="form">
           <div className="form-group">
             <label htmlFor="name" className="label-text">
               Nome
@@ -40,15 +46,8 @@ const ClientProfile = () => {
                 placeholder="Nome Completo"
                 type="text"
                 data-testid="profile-name-input"
-                name="name"
                 value={ userName }
-                onChange={ (e) => {
-                  setUserName(e.target.value);
-                  setDisableButton(
-                    !(e.target.value.length >= minNameLenght)
-                    && !(e.target.value !== inputUserName),
-                  );
-                } }
+                onChange={ (e) => setUserName(e.target.value) }
                 required
               />
             </label>
@@ -61,7 +60,6 @@ const ClientProfile = () => {
                 className="input-field"
                 placeholder="Email"
                 type="text"
-                name="email"
                 value={ userEmail }
                 readOnly
               />
@@ -69,18 +67,16 @@ const ClientProfile = () => {
           </div>
           <div className="div_btn">
             <button
-              disabled={ disableButton }
-              type="button"
+              disabled={ updateProfileValidation(userName) || intialName === userName }
+              type="submit"
               data-testid="profile-save-btn"
               className="save-button"
-            // onClick={() => getUser(userName, userEmail, setMessage)}
             >
               Salvar
             </button>
-            <span>{message}</span>
           </div>
         </form>
-        {/* <Footer className="footer" /> */}
+        <span>{message}</span>
       </div>
     </div>
   );
