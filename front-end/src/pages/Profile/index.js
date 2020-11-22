@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Formik } from 'formik';
-import { Button } from '@chakra-ui/react';
+import { Button, FormLabel, Input } from '@chakra-ui/react';
 import jwtDecode from 'jwt-decode';
 
 import { userUpdate } from '../../api';
@@ -43,10 +43,11 @@ const Profile = () => {
         } }
       >
         {({
-          isSubmitting, handleSubmit, handleChange, handleBlur, values, errors,
+          isSubmitting, handleSubmit, handleChange, handleBlur, values,
         }) => (
           <form onSubmit={ handleSubmit }>
-            <input
+            <FormLabel htmlFor="profileName">Nome</FormLabel>
+            <Input
               type="text"
               onChange={ (e) => { handleChange(e); setHasChanged(false); } }
               onBlur={ handleBlur }
@@ -54,16 +55,14 @@ const Profile = () => {
               data-testid="profile-name"
               name="profileName"
             />
-            <br />
-            <input
+            <FormLabel htmlFor="profileEmail">E-mail</FormLabel>
+            <Input
               type="text"
               value={ values.profileEmail }
               data-testid="profile-email"
               disabled
               name="profileEmail"
             />
-            <br />
-            {errors.name && <div id="feedback">{errors.name}</div>}
             <Button type="submit" disabled={ hasChanged || isSubmitting }>Submit</Button>
           </form>
         )}
