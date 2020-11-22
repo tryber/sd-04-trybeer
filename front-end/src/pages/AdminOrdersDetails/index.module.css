@@ -1,0 +1,10 @@
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  width: 90vw;
+  margin-left: 15rem;
+  padding: 0 10rem;
+}

@@ -14,21 +14,34 @@ const getAllSalesController = async (_req, res) => {
 const insertSale = async (req, res) => {
   try {
     const { userId, totalPrice, deliveryAddr, deliveryNumber } = req.body;
-    await salesModel.insertSale(
+    const result = await salesModel.insertSale2(
       userId,
       totalPrice,
       deliveryAddr,
       deliveryNumber,
       getCurrentDate(),
     );
-    res.status(201).json({ message: 'Sale successfully created' });
+    // res.status(201).json({ message: 'Sale successfully created' });
+    res.status(201).json({ result });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Internal server error' });
   }
 };
 
+const getSaleById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const sale = await salesModel.getSaleById(id);
+    res.status(200).json(sale);
+  } catch (err) {
+    console.error(err);
+    res.status(404).json({ message: 'Sale not found' });
+  }
+};
+
 module.exports = {
   getAllSalesController,
   insertSale,
+  getSaleById,
 };
