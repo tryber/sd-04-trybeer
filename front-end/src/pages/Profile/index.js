@@ -22,8 +22,8 @@ const Profile = () => {
         profileEmail: user.email,
       } }
 
-      onSubmit={ async (values) => {
-        await userLogin(values.loginEmail, values.loginPassword
+      onSubmit={ async (/* values */) => {
+        // await userLogin(values.loginEmail, values.loginPassword
       } }
     >
       {({
@@ -34,7 +34,7 @@ const Profile = () => {
             type="text"
             onChange={ handleChange }
             onBlur={ handleBlur }
-            value={ values.name }
+            value={ values.profileName }
             data-testid="profile-name"
             disabled={ isAdmin }
             name="profileName"
@@ -42,11 +42,9 @@ const Profile = () => {
           <br />
           <input
             type="text"
-            onChange={ handleChange }
-            onBlur={ handleBlur }
-            value={ values.email }
+            value={ values.profileEmail }
             data-testid="profile-email"
-            disabled={ isAdmin }
+            disabled
             name="profileEmail"
           />
           <br />
