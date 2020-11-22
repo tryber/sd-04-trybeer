@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../Header';
 import SideBar from '../SideBar';
 import productNameDefinition from '../screens/productName';
@@ -8,59 +8,95 @@ const totalPrice = JSON.parse(localStorage.getItem('totalPriceCart'));
 
 let productList = '';
 
-if (productsData === null || totalPrice === 0) {
-  productList = <p>Não há produtos no carrinho</p>;
-} else {
-  productList = productsData.map((item) => {
-    if (item.totalPrice !== 0) {
-      return (
-        <li
-          key={ item.id }
-          data-testid={ `${ item.id - 1 }-product-price` }
-          className='list-group-item d-flex justify-content-between align-items-center'
-        >
-          <span
-            data-testid={ `${ item.id - 1}-product-qtd-input` }
-            className='badge badge-primary badge-pill'>{ item.qtt }
-          </span>
-          <span
-            data-testid={ `${ item.id - 1}-product-name` }>
-            { productNameDefinition(item.id) }
-          </span>
-          <span
-            data-testid={ `${ item.id - 1}-product-total-value` }
-            className='badge badge-primary badge-pill'>
-            { `R$ ${ item.totalPrice }` }
-          </span>
-          <span
-            data-testid={ `${ item.id - 1}-product-unit-price` }
-            className='badge badge-primary badge-pill'>{ `R$ ${ item.price }` }
-          </span>
-          <button
-          data-testid={ `${ item.id - 1}-removal-button` }
-          onClick={ removeIt }
-          className='badge badge-pill badge-light'>
-            X
-          </button>
-        </li>
-      );
-    }
-    return true;
-  });
-}
-
-function removeIt(e) {
-  e.target.remove();
-}
-
 const Checkout = () => {
+  const [total, setTotal] = useState(0);
+  const [list, setList] = useState(productsData);
+  // useEffect(() => {
+  //   const totalPrice = localStorage.getItem('totalPriceCart');
+  //   setTotal(totalPrice);
+  // }, [totalPrice]);
+
+  useEffect(() => {
+    // const productsData = JSON.parse(localStorage.getItem('qttPdtsCart')) || [
+    //   {},
+    // ];
+    setTotal(
+      totalPrice.toLocaleString('pt-br', {
+        style: 'currency',
+        currency: 'BRL',
+      })
+    );
+  }, [totalPrice]);
+
+  function updateList(id) {
+    productList = productsData.filter(
+      (item) => item.id !== id && item.totalPrice !== 0
+    );
+    let totalP = productList.reduce((acc, value) => acc + value.totalPrice, 0);
+    setTotal(totalP);
+    localStorage.setItem('qttPdtsCart', JSON.stringify(productList));
+    localStorage.setItem('totalPriceCart', JSON.stringify(totalP));
+    setList(productList);
+  }
+
+  if (totalPrice === 0) {
+    productList = <p>Não há produtos no carrinho</p>;
+  } else {
+    productList = list.map((item) => {
+      if (item.totalPrice !== 0) {
+        return (
+          <li
+            key={ item.id }
+            data-testid={ `${ item.id - 1 }-product-price` }
+            className='list-group-item d-flex justify-content-between align-items-center'
+          >
+            <span
+              data-testid={ `${ item.id - 1 }-product-qtd-input` }
+              className='badge badge-primary badge-pill'
+            >
+              { item.qtt }
+            </span>
+            <span data-testid={ `${ item.id - 1 }-product-name` }>
+              { productNameDefinition(item.id) }
+            </span>
+            <span
+              data-testid={ `${ item.id - 1 }-product-total-value` }
+              className='badge badge-primary badge-pill'
+            >
+              { item.totalPrice.toLocaleString('pt-br', {
+                style: 'currency',
+                currency: 'BRL',
+              }) }
+            </span>
+            <span
+              data-testid={ `${ item.id - 1 }-product-unit-price` }
+              className='badge badge-primary badge-pill'
+            >
+              { item.price.toLocaleString('pt-br', {
+                style: 'currency',
+                currency: 'BRL',
+              }) }
+            </span>
+            <button
+              onClick={ () => updateList(item.id) }
+              data-testid={ `${ item.id - 1 }-removal-button` }
+              className='badge badge-pill badge-light'
+            >
+              X
+            </button>
+          </li>
+        );
+      }
+      return true;
+    });
+  }
   return (
     <div>
       <Header title='Finalizar Pedido' />
       <SideBar userType='client' />
       <h2>Produtos</h2>
       <ul className='list-group'>{ productList }</ul>
-      <span data-testid='order-total-value'>{ `Total: R$ ${ totalPrice }` }</span>
+      <span data-testid='order-total-value'>{ `Total: ${ total }` }</span>
       <form>
         <div className='form-group'>
           <p>Endereço</p>
@@ -84,7 +120,11 @@ const Checkout = () => {
           />
         </div>
 
-        <button data-testid='checkout-finish-btn' type='submit' className='btn btn-primary'>
+        <button
+          data-testid='checkout-finish-btn'
+          type='submit'
+          className='btn btn-primary'
+        >
           Finalizar Pedido
         </button>
       </form>
