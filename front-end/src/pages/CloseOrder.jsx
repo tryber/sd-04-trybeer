@@ -36,15 +36,14 @@ function CloseOrder() {
   }, [total]);
 
   const postData = async (email, total, address, number, date, products) => {
-    console.log(
-      'AQUI JAZ OS DADOS',
+    console.log('AQUI JAZ OS DADOS', {
       email,
       total,
       address,
       number,
       date,
-      products
-    );
+      products,
+    });
     await api.post('/checkout', {
       email,
       total,
@@ -95,7 +94,7 @@ function CloseOrder() {
   return (
     <div>
       <TopBar title={'Finalizar Pedido'} isAdm={false} />
-      <div className="container">
+      <div className="container col">
         <h1>Produtos</h1>
         <h3>{message}</h3>
         <p id="orderMessage">{orderMessage}</p>
