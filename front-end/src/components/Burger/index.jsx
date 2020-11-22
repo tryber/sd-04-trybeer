@@ -10,9 +10,21 @@ const Burger = ({ open, setOpen }) => (
     data-testid="top-hamburguer"
     className={styles.btnBurger}
   >
-    <div className={styles.divBurger} />
-    <div className={styles.divBurger} />
-    <div className={styles.divBurger} />
+    <div
+      className={`${styles.divBurger} ${
+        open ? styles.divBurgerTopActive : styles.divBurgerTop
+      }`}
+    />
+    <div
+      className={`${styles.divBurger} ${
+        open ? styles.divBurgerMiddleActive : styles.divBurgerMiddle
+      }`}
+    />
+    <div
+      className={`${styles.divBurger} ${
+        open ? styles.divBurgerBottomActive : styles.divBurgerBottom
+      }`}
+    />
   </button>
 );
 

@@ -11,7 +11,8 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10;  
+  z-index: 10;
+  align-items: center;
 }
 
 .btnBurger:focus {
@@ -26,4 +27,16 @@
   transition: all 0.3s linear;
   position: relative;
   transform-origin: 1px;
+}
+
+.divBurgerTopActive {
+  transform: rotate(45deg);
+}
+
+.divBurgerBottomActive {
+  transform: rotate(-45deg);
+}
+
+.divBurgerMiddleActive {
+  opacity: 0;
 }

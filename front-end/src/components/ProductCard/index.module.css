@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 10px;
-  width: 230px; 
+  width: 230px;
   height: 300px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 0.2rem;
@@ -24,17 +24,18 @@
 }
 
 .buttonQnt {
-  font-size: 16px;
-  width: 25px;
-  height: 25px;
-  color: #E85D04;
-  outline: none;
   background-color: transparent;
-  border: 1px solid #E85D04;
   border-radius: 3px;
+  border: 1px solid #e85d04;
+  color: #e85d04;
+  cursor: pointer;
+  font-size: 16px;
+  height: 25px;
+  outline: none;
+  width: 25px;
 }
 
 .buttonQnt:hover {
   color: white;
-  background-color: #E85D04;
+  background-color: #e85d04;
 }

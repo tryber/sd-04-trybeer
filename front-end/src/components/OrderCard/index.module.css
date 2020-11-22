@@ -12,6 +12,10 @@
   border-radius: 0.2rem;
 }
 
+.cartItem:hover {
+  border: 1px solid #e85d04;
+}
+
 .cartItemContainer {
   display: flex;
   align-items: center;
@@ -23,7 +27,7 @@
   display: flex;
   flex-direction: column;
 }
-      
+
 .cartItemLeftContainer {
   height: 120px;
   justify-content: flex-start;

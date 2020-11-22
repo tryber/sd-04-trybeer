@@ -3,6 +3,7 @@ import api from '../../services/api';
 import { getLS } from '../../utils';
 import styles from './index.module.css';
 import Menu from '../../components/Menu';
+import InputForm from '../../components/InputForm';
 
 const ProfilePage = () => {
   const [name, setName] = useState('');
@@ -10,11 +11,11 @@ const ProfilePage = () => {
   const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
-    setEmail(getLS('email'));
-    setName(getLS('name'));
+    setEmail(getLS('user').email);
+    setName(getLS('user').name);
   }, []);
 
-  const checkNameChange = () => (getLS('name') === name ? true : false);
+  const checkNameChange = () => (getLS('user').name === name ? true : false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,27 +30,20 @@ const ProfilePage = () => {
       <Menu nomeTela="Meu perfil" />
       <form onSubmit={handleSubmit} className={styles.profileForm}>
         <div className={styles.profileFieldsContainer}>
-          <label htmlFor="name" className="inputLabel">
-            Nome:
-          </label>
-          <input
-            data-testid="profile-name-input"
-            type="text"
-            name="nome"
+          <InputForm
+            name="name"
+            handleChange={({ target }) => setName(target.value)}
+            label="Nome"
             value={name}
-            className={styles.profileInput}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div className={styles.profileFieldsContainer}>
-          <label htmlFor="email" className="inputLabel">
-            Email:
-          </label>
-          <input
-            data-testid="profile-email-input"
             type="text"
+            dataTestId="profile-name-input"
+          />
+          <InputForm
+            name="Email"
+            label="Nome"
             value={email}
-            className={styles.profileInput}
+            type="text"
+            dataTestId="profile-name-input"
             readOnly
           />
         </div>

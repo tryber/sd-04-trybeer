@@ -5,13 +5,6 @@
   justify-content: center;
 }
 
-.profileInput {
-  box-sizing: border-box;
-  margin-bottom: 1.5rem;
-  padding: 10px 0px;
-  width: 100%;
-}
-
 .profileForm {
   align-items: center;
   display: flex;

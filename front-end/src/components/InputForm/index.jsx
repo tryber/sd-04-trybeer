@@ -9,6 +9,7 @@ const Input = ({
   value,
   type,
   className,
+  ...props
 }) => (
   <div className="fields-container">
     <label htmlFor={name} className="input-label">
@@ -22,6 +23,7 @@ const Input = ({
       onChange={handleChange}
       data-testid={dataTestId}
       className={className}
+      {...props}
     />
   </div>
 );
