@@ -26,7 +26,7 @@ const ProfilePage = () => {
     await api.updateUserAPI(name, email);
   };
 
-  if (!email) return <Redirect to="/login" />;
+  if (!getLS('user').email) return <Redirect to="/login" />;
   return (
     <div className={styles.profileContainer}>
       <Menu nomeTela="Meu perfil" />

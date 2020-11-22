@@ -10,9 +10,21 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 50vw;
+  width: 60vw;
 }
 
 .profileFieldsContainer {
   width: 100%;
+}
+
+@media (min-width: 800px) {
+  .profileForm {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  .profileForm {
+    width: 85vw;
+  }
 }

@@ -30,7 +30,7 @@ const Input = ({
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
   dataTestId: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
