@@ -1,5 +1,13 @@
 const connection = require('../dbConnection');
 
+// Adiciona ou registra usuário no banco de dados
+const add = (name, email, password, role) => connection()
+  .then((db) => db.getTable('users')
+    .insert(['name', 'email', 'password', 'role'])
+    .values(name, email, password, role)
+    .execute())
+  .catch((e) => e);
+
 const getAll = () => connection()
   .then((db) => db.getTable('users')
     .select()
@@ -45,4 +53,4 @@ const update = (id, name) => {
     .execute();
 };
 
-module.exports = { getAll, getById, getByEmail, update };
+module.exports = { add, getAll, getByEmail, getById, update };
