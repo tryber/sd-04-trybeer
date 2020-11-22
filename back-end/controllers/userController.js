@@ -13,7 +13,6 @@ const loginUser = async (req, res) => {
 const registerUser = async (req, res) => {
   try {
     const newUser = await userService.createUser(req.body);
-    // console.log(newUser);
     if (newUser.message) {
       return res.status(200).json(newUser);
     }
@@ -24,7 +23,6 @@ const registerUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  // console.log();
   try {
     const updated = await userService.updateUser(req.body);
     if (updated.message) {

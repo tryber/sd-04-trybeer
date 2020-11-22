@@ -17,11 +17,12 @@ const Register = () => {
   const [message, setMessage] = useState('');
 
   const checkRole = async (role) => {
-    if (role === 'administrator') {
-      history.push('/admin/orders');
-    } else {
-      history.push('/products');
-    }
+    history.push(role === 'administrator' ? '/admin/orders' : '/products');
+    // if (role === 'administrator') {
+    //   history.push('/admin/orders');
+    // } else {
+    //   history.push('/products');
+    // }
   };
 
   const handleSubmit = async (e) => {
