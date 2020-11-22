@@ -8,7 +8,7 @@ const getAllPrdoucts = async (email) => {
       .select(['id', 'name', 'price', 'url_image'])
       .execute();
     const result = await query.fetchAll();
-    return result.map(([id, name, price, url_image]) => ({ id, name, price, url_image }));
+    return result.map(([id, name, price, url_image]) => ({ id, name, price, url_image, quantity: 0 }));
     // const [id, name, userEmail, password, role] = result;
     // return { id, name, userEmail, password, role };
   } catch (error) {

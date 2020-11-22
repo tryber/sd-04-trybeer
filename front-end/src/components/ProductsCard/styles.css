@@ -1,7 +1,8 @@
 .card-body {
   align-items: center;
-  border: 1px solid black;
+  border: none;
   border-radius: 6px;
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, .8);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,10 +13,11 @@
 }
 
 .card-body img {
-  height: 50px;
+  border-radius: 0;
+  height: 70px;
   margin: 0;
   padding: 0;
-  width: 50px;
+  width: 60px;
 }
 
 .product-title {
@@ -32,4 +34,9 @@
   flex-direction: column;
   justify-content: center;
   width: inherit;
+}
+
+.product-card-panel button {
+  height: 35px;
+  width: 50%;
 }
