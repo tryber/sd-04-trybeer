@@ -1,16 +1,14 @@
 const { updateUser } = require('../../models/users');
 
 const userUpdate = async (req, res) => {
-  const { id } = req.user;
-  const { name } = req.body;
-  const user = { id, name }
+  // const { id } = req.user; -> O id deverá vir do body
+  const { id, name } = req.body;
   try {
-    await updateUser(user);
+    await updateUser(id, name);
     res.status(200).json({ message: 'Usuário atualizado com sucesso' });
   } catch {
     res.status(500).json({ message: 'Falha ao atualizar o usuário' });
   }
-
 };
 
 module.exports = { userUpdate };
