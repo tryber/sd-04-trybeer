@@ -7,12 +7,12 @@ const findAllSales = async () => {
     const table = await db.getTable('sales');
     const results = await table.select([]).execute();
     const sales = await results.fetchAll();
-    return sales.map(([id, userId, totalPrice, deliveryAdress,
+    return sales.map(([id, userId, totalPrice, deliveryAddress,
       deliveryNumber, saleDate, status = 'ordered']) => ({
       id,
       userId,
       totalPrice,
-      deliveryAdress,
+      deliveryAddress,
       deliveryNumber,
       saleDate,
       status,
@@ -31,13 +31,13 @@ const findSaleById = async (saleId) => {
       .where('id = :id')
       .bind('id', saleId)
       .execute();
-    const [id, userId, totalPrice, deliveryAdress,
+    const [id, userId, totalPrice, deliveryAddress,
       deliveryNumber, saleDate, status] = await result.fetchOne();
     return {
       id,
       userId,
       totalPrice,
-      deliveryAdress,
+      deliveryAddress,
       deliveryNumber,
       saleDate,
       status,
@@ -48,18 +48,19 @@ const findSaleById = async (saleId) => {
   }
 };
 
-const registerSale = async (userId, totalPrice, deliveryAdress,
-  deliveryNumber, saleDate) => {
+const registerSale = async (userId, totalPrice, deliveryAddress,
+  deliveryNumber, saleDate, status = 'ordered') => {
   try {
     const db = await connection();
     const table = await db.getTable('sales');
     const result = await table
-      .insert(['user_id', 'total_price', 'delivery_adress',
-        'delivery_number', 'sale_date'])
-      .values(userId, totalPrice, deliveryAdress,
-        deliveryNumber, saleDate)
+      .insert(['user_id', 'total_price', 'delivery_address',
+        'delivery_number', 'sale_date', 'status'])
+      .values(userId, totalPrice, deliveryAddress,
+        deliveryNumber, saleDate, status)
       .execute();
-    return result;
+    const saleId = result.getAutoIncrementValue();
+    return saleId;
   } catch (err) {
     console.error(err);
     return null;
