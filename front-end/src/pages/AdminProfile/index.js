@@ -25,7 +25,7 @@ const AdminProfile = () => {
   const [message, setMessage] = useState('');
   const [intialName, setInitialName] = useState(userName);
   const history = useHistory();
-  
+
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('user'));
 
@@ -35,7 +35,7 @@ const AdminProfile = () => {
     setUserName(name);
     setInitialName(name);
     setUserEmail(email);
-  }, []);
+  }, [history]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,7 +44,7 @@ const AdminProfile = () => {
       setMessage(data);
     }
   };
-  
+
   return (
     <div className="container">
       <Header title="Admin - Perfil" />
@@ -72,7 +72,7 @@ const AdminProfile = () => {
               <input
                 data-testid="profile-email"
                 className="input-field"
-                placeholder="Email"
+                placeholder={ userEmail }
                 type="text"
                 value={ userEmail }
                 readOnly

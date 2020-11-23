@@ -35,7 +35,7 @@ const ClientProfile = () => {
     setUserName(name);
     setInitialName(name);
     setUserEmail(email);
-  }, []);
+  }, [history]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
