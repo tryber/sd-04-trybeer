@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import API from '../services/api';
-import { Link } from 'react-router-dom';
 
-import { Redirect } from 'react-router-dom';
 import { TrybeerContext } from '../context';
 
 const Products = () => {
   const { products, setProducts } = useContext(TrybeerContext);
 
-  const qtdInit = 0
+  const qtdInit = 0;
   const [productQuantity, setProductQuantity] = useState(qtdInit);
 
   const [buttonDisable, setButtonDisable] = useState(true);
@@ -31,7 +30,6 @@ const Products = () => {
   const addProduct = () => {
     setProductQuantity(productQuantity + 1);
     setButtonDisable(false);
-    return;
   };
 
   const removeProduct = () => {
@@ -44,36 +42,36 @@ const Products = () => {
       <h3 data-testid="top-title">Página de produtos</h3>
       <div className="container d-flex flex-wrap">
         {products.map((product, index) => (
-          <div className="card w-50 mx-auto m-3" key={product.id}>
-            <h4 data-testid={`${index}-product-name`} className="card-title mx-auto">
+          <div className="card w-50 mx-auto m-3" key={ product.id }>
+            <h4 data-testid={ `${index}-product-name` } className="card-title mx-auto">
               {product.name}
             </h4>
-            <h5 data-testid={`${index}-product-price`} className="card-content mx-auto">
-              { product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
+            <h5 data-testid={ `${index}-product-price` } className="card-content mx-auto">
+              {product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
             </h5>
             <img
               className="mx-auto m-2"
               height="90px"
-              data-testid={`${index}-product-img`}
-              alt={product.name}
-              src={product.url_image}
+              data-testid={ `${index}-product-img` }
+              alt={ product.name }
+              src={ product.url_image }
             />
             <section className="mx-auto m-1 d-flex align-items-center justify-content-center">
               <button
-                data-testid={`${index}-product-plus`}
-                onClick={addProduct}
+                data-testid={ `${index}-product-plus` }
+                onClick={ addProduct }
                 className="btn btn-success"
                 type="button"
               >
                 +
               </button>
-              <h1 data-testid={`${index}-product-qtd`} className="card m-2">
+              <h1 data-testid={ `${index}-product-qtd` } className="card m-2">
                 {productQuantity}
               </h1>
               <button
-                data-testid={`${index}-product-minus`}
-                onClick={removeProduct}
-                disabled={buttonDisable}
+                data-testid={ `${index}-product-minus` }
+                onClick={ removeProduct }
+                disabled={ buttonDisable }
                 className="btn btn-danger"
                 type="button"
               >
@@ -89,7 +87,7 @@ const Products = () => {
         to="/checkout"
       >
         Ver Carrinho
-        <p data-testid="checkout-bottom-btn-value"></p>
+        <p data-testid="checkout-bottom-btn-value" />
       </Link>
     </div>
   );

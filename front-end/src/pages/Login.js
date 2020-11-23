@@ -35,9 +35,15 @@ const Login = () => {
     const { name, email, role } = await api.data.user;
     const { token } = api.data;
 
-    localStorage.setItem('user', JSON.stringify({
-      name, email, role, token
-    }));
+    localStorage.setItem(
+      'user',
+      JSON.stringify({
+        name,
+        email,
+        role,
+        token,
+      }),
+    );
 
     setErrorMsg('');
 
@@ -51,32 +57,30 @@ const Login = () => {
       <form onSubmit={ handleSubmit } className="m-3">
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="email">Email
-              <input
-                onChange={ (e) => setEmail(e.target.value) }
-                data-testid="email-input"
-                type="text"
-                name="email"
-                id="email"
-                required
-                className="form-control"
-              />
-            </label>
+            <label htmlFor="email">Email</label>
+            <input
+              onChange={ (e) => setEmail(e.target.value) }
+              data-testid="email-input"
+              type="text"
+              name="email"
+              id="email"
+              required
+              className="form-control"
+            />
           </div>
 
           <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="password">Password
-              <input
-                onChange={ (e) => setPassword(e.target.value) }
-                data-testid="password-input"
-                type="password"
-                name="password"
-                id="password"
-                minLength="6"
-                required
-                className="form-control"
-              />
-            </label>
+            <label htmlFor="password">Password</label>
+            <input
+              onChange={ (e) => setPassword(e.target.value) }
+              data-testid="password-input"
+              type="password"
+              name="password"
+              id="password"
+              minLength="6"
+              required
+              className="form-control"
+            />
           </div>
 
           <span className="mx-auto m-3 text-danger">{errorMsg.toUpperCase()}</span>
