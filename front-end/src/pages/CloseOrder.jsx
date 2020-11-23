@@ -82,10 +82,22 @@ function CloseOrder() {
 
   const history = useHistory();
 
+  const setStore = () => {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    const newCart = [];
+    cart.forEach((item) => {
+      const newItem = {...item, address: `${address}, ${number}`};
+      newCart.push(newItem);
+    });
+    localStorage.setItem('cart', JSON.stringify(newCart));
+    setCart(JSON.parse(localStorage.getItem('cart')));
+  };
+
   function doneOrder(history, frase, seOMessage) {
     seOMessage(frase);
     const orderDate = new Date();
     setData(orderDate);
+    setStore();
     postData(email, total, address, number, orderDate, cart);
     history.push('/products');
   }
@@ -199,7 +211,7 @@ function CloseOrder() {
           <button
             id="inputNum"
             data-testid="checkout-finish-btn"
-            className="btn btn-success"
+            className="btn btn-outline-success"
             disabled={!address || !number || !cart.length > 0}
             onClick={() =>
               doneOrder(
