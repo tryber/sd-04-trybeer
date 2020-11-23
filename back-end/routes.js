@@ -24,8 +24,8 @@ routes.get(
   validateJWT,
   productController.findAllProductsController,
 );
+routes.get('/orders', validateJWT, saleController.findAllSalesController);
 routes.get('/orders/:id', validateJWT, saleController.findSalesBySaleId);
-routes.post('/checkout', findUserIdByEmail, checkoutController);
 routes.post('/checkout', findUserIdByEmail, checkoutController);
 
 module.exports = routes;
