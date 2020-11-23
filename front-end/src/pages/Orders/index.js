@@ -1,6 +1,7 @@
 import React from 'react';
+import MenuAdmin from '../../components/MenuAdmin';
 
 const Orders = () => (
-  <p>This is the orders page</p>
+  <MenuAdmin />
 );
 export default Orders;
