@@ -21,7 +21,10 @@ const changeOpen = () => {
 
 const changeUrl = (history, url, clear) => {
   history.push(url);
-  if (clear) localStorage.clear();
+  if (clear) {
+    localStorage.setItem('token', '');
+    localStorage.setItem('user', '');
+  }
   ctrOpen = false;
 };
 

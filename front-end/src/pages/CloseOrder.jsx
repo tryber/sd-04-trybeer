@@ -2,14 +2,16 @@ import { useHistory } from 'react-router-dom';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import TopBar from '../components/ClientBar.jsx';
 import { AppContext } from '../context/AppContext';
+import api from '../services/api.js';
 
 function CloseOrder() {
   const { cart, setCart, total, setTotal } = useContext(AppContext);
   const { orderMessage, setOrderMessage } = useContext(AppContext);
 
   const [message, setMessage] = useState('');
-  const [endereco, setEndereco] = useState(null);
-  const [numero, setNumero] = useState('');
+  const [address, setAddress] = useState(null);
+  const [number, setNumber] = useState('');
+  const [email, setEmail] = useState('');
   const [data, setData] = useState(null);
 
   const orderRef = useRef(null);
@@ -18,6 +20,8 @@ function CloseOrder() {
     if (localStorage.getItem('cart')) {
       setCart(JSON.parse(localStorage.getItem('cart')));
       setTotal(JSON.parse(localStorage.getItem('totalPrice')));
+      const loginInStorage = JSON.parse(localStorage.getItem('user'));
+      setEmail(loginInStorage.email);
     }
     const loginInStorage = JSON.parse(localStorage.getItem('user'));
 
@@ -29,6 +33,25 @@ function CloseOrder() {
   useEffect(() => {
     makeTotalValue(cart);
   }, [total]);
+
+  const postData = async (email, total, address, number, date, products) => {
+    console.log('AQUI JAZ OS DADOS', {
+      email,
+      total,
+      address,
+      number,
+      date,
+      products,
+    });
+    await api.post('/checkout', {
+      email,
+      total,
+      address,
+      number,
+      date,
+      products,
+    });
+  };
 
   const makeTotalValue = (cart) => {
     let totalPrice = document.getElementById('itemTotal');
@@ -59,13 +82,23 @@ function CloseOrder() {
 
   const history = useHistory();
 
+  const setStore = () => {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    const newCart = [];
+    cart.forEach((item) => {
+      const newItem = {...item, address: `${address}, ${number}`};
+      newCart.push(newItem);
+    });
+    localStorage.setItem('cart', JSON.stringify(newCart));
+    setCart(JSON.parse(localStorage.getItem('cart')));
+  };
+
   function doneOrder(history, frase, seOMessage) {
-    /* let orderMessageItem = document.querySelector('#orderMessage');
-    orderMessage.innerHTML = frase; */
     seOMessage(frase);
     const orderDate = new Date();
-    //setTotal(JSON.parse(localStorage.getItem('totalPrice')))
     setData(orderDate);
+    setStore();
+    postData(email, total, address, number, orderDate, cart);
     history.push('/products');
   }
 
@@ -73,75 +106,77 @@ function CloseOrder() {
     <div>
       <TopBar title={'Finalizar Pedido'} isAdm={false} />
       <div className="container">
-        <h1>Produtos</h1>
-        <h3>{message}</h3>
-        <p id="orderMessage">{orderMessage}</p>
-        <ul ref={orderRef} id="list" className="list-group">
-          {cart.map(({ name, quantity, price }, index) => {
-            return (
-              <li
-                name="itemList"
-                id={name}
-                key={name}
-                className="list-group-item list-group-item-action list-group-item-primary"
-                index={index}
-              >
-                <div className="container">
-                  <div className="row">
-                    <div
-                      data-testid={`${index}-product-qtd-input`}
-                      className="col"
-                    >
-                      {quantity}
-                    </div>
-                    <div
-                      data-testid={`${index}-product-name`}
-                      className="col-6"
-                    >
-                      {name}
-                    </div>
-                    <div
-                      data-testid={`${index}-product-unit-price`}
-                      className="col"
-                    >
-                      {`(R$ ${price
-                        .toFixed(2)
-                        .toString()
-                        .replace('.', ',')} un)`}
-                    </div>
-                    <div
-                      data-testid={`${index}-product-total-value`}
-                      className="col"
-                    >
-                      {`R$ ${(price * quantity)
-                        .toFixed(2)
-                        .toString()
-                        .replace('.', ',')}`}
-                    </div>
-
-                    <input type="hidden" name="total" value={total} />
-                    <input type="hidden" name="products" value={cart} />
-                    <input type="hidden" name="date" value={data} />
-
-                    <div
-                      onClick={(e) => removeItemFromArray(name)}
-                      className="col"
-                    >
-                      <button
-                        data-testid={`${index}-removal-button`}
-                        className="btn btn-danger"
+        <div className="col-lg-15">
+          <h1>Produtos</h1>
+          <h3>{message}</h3>
+          <p id="orderMessage">{orderMessage}</p>
+          <ul ref={orderRef} id="list" className="list-group">
+            {cart.map(({ name, quantity, price }, index) => {
+              return (
+                <li
+                  name="itemList"
+                  id={name}
+                  key={name}
+                  className="list-group-item list-group-item-action list-group-item-primary"
+                  index={index}
+                >
+                  <div className="">
+                    <div className="row">
+                      <div
+                        data-testid={`${index}-product-qtd-input`}
+                        className="col"
                       >
-                        X
-                      </button>
+                        {quantity}
+                      </div>
+                      <div
+                        data-testid={`${index}-product-name`}
+                        className="col-6"
+                      >
+                        {name}
+                      </div>
+                      <div
+                        data-testid={`${index}-product-unit-price`}
+                        className="col"
+                      >
+                        {`(R$ ${price
+                          .toFixed(2)
+                          .toString()
+                          .replace('.', ',')} un)`}
+                      </div>
+                      <div
+                        data-testid={`${index}-product-total-value`}
+                        className="col"
+                      >
+                        {`R$ ${(price * quantity)
+                          .toFixed(2)
+                          .toString()
+                          .replace('.', ',')}`}
+                      </div>
+
+                      <input type="hidden" name="total" value={total} />
+                      <input type="hidden" name="products" value={cart} />
+                      <input type="hidden" name="date" value={data} />
+
+                      <div
+                        onClick={(e) => removeItemFromArray(name)}
+                        className="col"
+                      >
+                        <button
+                          data-testid={`${index}-removal-button`}
+                          className="btn btn-danger"
+                        >
+                          X
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-        <br />
-        <h4 data-testid="order-total-value" id="itemTotal"></h4>
+                </li>
+              );
+            })}
+          </ul>
+          <br />
+          <h4 data-testid="order-total-value" id="itemTotal"></h4>
+        </div>
       </div>
 
       <hr />
@@ -152,7 +187,7 @@ function CloseOrder() {
             <h2>Endereço</h2>
             <label htmlFor="rua">Rua:</label>
             <input
-              onChange={(e) => setEndereco(e.target.value)}
+              onChange={(e) => setAddress(e.target.value)}
               id="inputEnd"
               name="adrress"
               data-testid="checkout-street-input"
@@ -160,12 +195,12 @@ function CloseOrder() {
               className="form-control"
             />
             <br />
-            <label htmlFor="numeroCasa" className="">
+            <label htmlFor="numberCasa" className="">
               Número da casa:
             </label>
             <input
               name="number"
-              onChange={(e) => setNumero(e.target.value)}
+              onChange={(e) => setNumber(e.target.value)}
               data-testid="checkout-house-number-input"
               type="text"
               className="form-control"
@@ -176,8 +211,8 @@ function CloseOrder() {
           <button
             id="inputNum"
             data-testid="checkout-finish-btn"
-            className="btn btn-success"
-            disabled={!endereco || !numero || !cart.length > 0}
+            className="btn btn-outline-success"
+            disabled={!address || !number || !cart.length > 0}
             onClick={() =>
               doneOrder(
                 history,

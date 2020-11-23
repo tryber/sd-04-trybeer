@@ -21,8 +21,8 @@ function ProductCard({ index, id, name, price, urlImage, quantity }) {
 
     if (!isThereAProduct) {
       op === '+' ?
-        setCart([...cart, { ...prod, quantity: prod.quantity + 1 }]) :
-        setCart([...cart, { ...prod, quantity: prod.quantity - 1 }])
+        setCart([...cart, { ...prod, quantity: prod.quantity + 1, status: 'Pendente' }]) :
+        setCart([...cart, { ...prod, quantity: prod.quantity - 1, status: 'Pendente' }])
     } else {
       const i = cart.indexOf(isThereAProduct);
       op === '+' ?
@@ -45,7 +45,6 @@ function ProductCard({ index, id, name, price, urlImage, quantity }) {
       const newCart = cart.filter(item => item.quantity !== 0);
       setCart(newCart);
     }
-
   };
 
   return (
