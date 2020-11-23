@@ -13,4 +13,4 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routes.userRoutes, routes.productsRoutes);
 
-app.listen(port, () => console.log(`App listening on port ${ port }!`));
+app.listen(port, () => console.log(`App listening on port ${port}!`));

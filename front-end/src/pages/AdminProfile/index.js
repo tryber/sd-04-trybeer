@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import { updateProfileValidation } from '../../validation';
 import api from '../../services/api';
@@ -18,14 +19,16 @@ import './styles.css';
 //   }
 // };
 
-const AdminProfile = ({ history }) => {
+const AdminProfile = () => {
   const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [message, setMessage] = useState('');
   const [intialName, setInitialName] = useState(userName);
-
+  const history = useHistory();
+  
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('user'));
+
     if (data === null) history.push('/login');
 
     const { name, userEmail: email } = data || {};
@@ -41,7 +44,7 @@ const AdminProfile = ({ history }) => {
       setMessage(data);
     }
   };
-
+  
   return (
     <div className="container">
       <Header title="Admin - Perfil" />
