@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const { login } = require('./controllers/login');
-const { validateJWT } = require('./middlewares/validateJWT');
-const { getUser, userUpdate } = require('./controllers/profile');
+const { userUpdate } = require('./controllers/profile');
+const productController = require('./controllers/products');
 const { register } = require('./controllers/register');
 
 
