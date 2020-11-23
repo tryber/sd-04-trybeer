@@ -4,9 +4,20 @@ const salesProductsService = require('../services/salesProductsService');
 
 const checkoutController = async (req, res) => {
   const { email, total, address, number, date, products } = req.body;
-  console.log('aqui checkout CONTROLLER API', email, total, address, number, date, products);
+  console.log(
+    'aqui checkout CONTROLLER API',
+    email,
+    total,
+    address,
+    number,
+    date,
+    products,
+  );
   const id = req.user;
-  const convertedDate = new Date(date).toISOString().replace('T', ' ').replace('Z', '');
+  const convertedDate = new Date(date)
+    .toISOString()
+    .replace('T', ' ')
+    .replace('Z', '');
   try {
     const registeredSale = await saleService.registerSaleService(
       id,
