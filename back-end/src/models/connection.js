@@ -21,4 +21,4 @@ const connection = () => (schema
     })
     .catch((_err) => process.exit(1)));
 
-module.exports = connection;
+module.exports = { connection };
