@@ -34,7 +34,6 @@ const getByEmail = (UserEmail) => connection()
   .then(([id, name, email, password, role]) => ({ id, name, email, password, role }))
   .catch((e) => e);
 
-// Como estamos mandando o name e id separados, adicionei o param 'id'
 const updateUser = (id, name) => {
   const table = connection().then((db) => db.getTable('users'));
 

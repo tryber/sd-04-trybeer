@@ -1,7 +1,6 @@
 const { updateUser } = require('../../models/users');
 
 const userUpdate = async (req, res) => {
-  // const { id } = req.user; -> O id deverá vir do body
   const { id, name } = req.body;
   try {
     await updateUser(id, name);
