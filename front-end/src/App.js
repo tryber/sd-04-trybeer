@@ -12,6 +12,7 @@ import Client from './Pages/clientPage';
 import Checkout from './Pages/checkoutPage';
 import Profile from './Pages/clientProfile';
 import ClientOrders from './Pages/clientOrders';
+import OrdersDetails from './Pages/ordersDetail';
 
 import './App.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
@@ -28,6 +29,7 @@ function App() {
           <Route path="/profile" component={ Profile } />
           <Route path="/orders" component={ ClientOrders } />
           <Route path="/checkout" component={ Checkout } />
+          <Route path="/orders/:id" component={ OrdersDetails } />
         </Switch>
       </Provider>
     </Container>
