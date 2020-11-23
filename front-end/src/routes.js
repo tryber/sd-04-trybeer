@@ -19,11 +19,11 @@ const Routes = () => (
       <Route path="/login" component={ LoginPage } />
       <Route path="/register" component={ Register } />
       <PrivateRoute path="/products" component={ Produtcs } />
-      <Route path="/profile" component={ ClientProfile } />
+      <PrivateRoute path="/profile" component={ ClientProfile } />
       <Route path="/orders" exact component={ MyOrdereds } />
       <Route path="/orders/:orderNumber" exact component={ ProductDetails } />
       <Route path="/admin/orders" component={ MyOrdersADM } />
-      <Route path="/admin/profile" component={ AdminProfile } />
+      <PrivateRoute path="/admin/profile" component={ AdminProfile } />
     </Switch>
   </Provider>
 );
