@@ -11,6 +11,6 @@ const getAllProducts = async () => {
       id, name, price, urlImage,
     })));
   return productList;
-
+};
 
 module.exports = { getAllProducts };
