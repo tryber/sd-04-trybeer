@@ -42,7 +42,7 @@ const ProfilePage = () => {
           />
           <InputForm
             name="Email"
-            label="Nome"
+            label="Email"
             value={email}
             type="text"
             dataTestId="profile-email-input"

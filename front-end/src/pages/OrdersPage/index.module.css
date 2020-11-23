@@ -2,10 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: (100vh - 96px);
   flex-direction: column;
   width: 100vw;
   margin: 0 auto 50px;
+  padding-top: 10rem;
 }
 
 .products {

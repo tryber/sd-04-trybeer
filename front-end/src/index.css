@@ -65,7 +65,7 @@ input:focus {
 
 .buttonMain:hover {
   background-color: #faa307;
-  transition: transform 0.5s linear;
+  transition: transform 0.2s linear;
   transform: scale(1);
 }
 
