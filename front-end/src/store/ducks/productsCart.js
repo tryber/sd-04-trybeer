@@ -74,7 +74,6 @@ const cartReducer = (
       };
 
     case Types.LOAD_INIT_STATE:
-      console.log(product)
       return {
         ...state,
         cart: product,
