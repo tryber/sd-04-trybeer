@@ -1,34 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
-// import Footer from '../../components/Rodape';
 import cheersIcon from '../../assets/beer.svg';
 import './styles.css';
 
-const ClientProfile = () => {
-  const [userEmail] = useState('');
-  const [userName, setUserName] = useState('');
-  const [inputUserName] = useState('');
-  const [disableButton, setDisableButton] = useState(true);
-  const [message] = useState('');
 
-  // const [userEmail, /* setUserEmail */] = useState('');
-  // const [userName, setUserName] = useState('');
-  // const [inputUserName, /* setInputUserName */] = useState('');
-  // const [disableButton, setDisableButton] = useState(true);
-  // const [message, /* setMessage */] = useState('');
-  // useEffect(() => {
-  //   const { email, name } = JSON.parse(localStorage.getItem('user'));
-  //   setUserEmail(email);
-  //   setUserName(name);
-  //   setInputUserName(name);
-  // }, []);
+import api from '../../services/api';
+
+const getUser = async (name, email, setMessage) => {
+  try {
+    const { status } = await api.put(
+      { name, email },
+      { headers: { Authorization: JSON.parse(localStorage.getItem('user')).token } },
+    );
+    const statusOk = 200;
+    if (status === statusOk) { setMessage('Atualização concluída com sucesso') }
+  } catch (err) {
+    setMessage(err.message);
+  }
+};
+
+const ClientProfile = () => {
+  const [userEmail, setUserEmail] = useState('');
+  const [userName, setUserName] = useState('');
+  const [inputUserName, setInputUserName] = useState('');
+  const [disableButton, setDisableButton] = useState(true);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const { email, name } = JSON.parse(localStorage.getItem('user'));
+    setUserEmail(email);
+    setUserName(name);
+    setInputUserName(name);
+  }, []);
 
   const minNameLenght = 12;
 
   return (
     <div className="container">
+      <Header className="menu" />
       <div className="square">
-        <Header title="Perfil do cliente" />
         <h1 className="pageTitle">Perfil do Cliente</h1>
         <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
         <form method="POST" action="/profile" className="form">
@@ -73,34 +83,16 @@ const ClientProfile = () => {
               type="button"
               data-testid="profile-save-btn"
               className="save-button"
-            // onClick={() => getUser(userName, userEmail, setMessage)}
+            onClick={() => getUser(userName, userEmail, setMessage)}
             >
               Salvar
             </button>
             <span>{message}</span>
           </div>
         </form>
-        {/* <Footer className="footer" /> */}
       </div>
     </div>
   );
 };
 
 export default ClientProfile;
-
-// para por nos services?
-// import axios from 'axios';
-
-// const getUser = async (name, email, setMessage) => {
-//   try {
-//     const { status } = await axios.put(
-//       'http://localhost:3001/users',
-//       { name, email },
-//       { headers: { Authorization: JSON.parse(localStorage.getItem('user')).token } },
-//     );
-//     const statusOk = 200;
-//     if (status === statusOk) { setMessage('Atualização concluída com sucesso') }
-//   } catch (err) {
-//     setMessage(err.message);
-//   }
-// };
