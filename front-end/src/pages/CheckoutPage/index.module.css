@@ -2,10 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: (100vh - 96px);
   flex-direction: column;
   width: 50vw;
   margin: 0 auto;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
 }
 
 .cartList {
@@ -45,7 +47,7 @@
 
 .removeItemBtn {
   border-style: none;
-  background-color: #E85D04;
+  background-color: #e85d04;
   color: white;
   padding: 0.5rem;
   border-radius: 0.2rem;
@@ -55,7 +57,7 @@
 }
 
 .removeItemBtn:hover {
-  background-color: #FAA307;
+  background-color: #faa307;
 }
 
 .cartTotal {
@@ -103,7 +105,7 @@
 
 .finishNotification {
   position: fixed;
-  background-color:#FAA307;
+  background-color: #faa307;
   color: white;
   bottom: 1rem;
   padding: 0.5rem 2rem;
