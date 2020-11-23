@@ -7,6 +7,8 @@ const Orders = () => {
   const loginInStorage = JSON.parse(localStorage.getItem('cart'));
   let orderCount = 0;
 
+  if (!loginInStorage) return <SideBar title={'TryBeer'} isAdm={true} />;
+
   return (
     <div className="bodyAdm">
       <SideBar title={'TryBeer'} isAdm={true} />
