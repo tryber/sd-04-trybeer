@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+
 import './styles.css';
 
 const test = (history, pathName) => {
@@ -10,7 +12,7 @@ const test = (history, pathName) => {
   return history.push(`/${pathName}`);
 };
 
-function SideMenu({ sideMenuState }) {
+const SideMenu = ({ sideMenuState }) => {
   const history = useHistory();
   return (
     sideMenuState && (
@@ -18,6 +20,7 @@ function SideMenu({ sideMenuState }) {
         <div className="nav__list">
           <button
             className="nav__link"
+            type="button"
             data-testid="side-menu-item-products"
             onClick={ () => test(history, 'products') }
           >
@@ -25,6 +28,7 @@ function SideMenu({ sideMenuState }) {
           </button>
           <button
             className="nav__link"
+            type="button"
             data-testid="side-menu-item-my-orders"
             onClick={ () => test(history, 'orders') }
           >
@@ -32,6 +36,7 @@ function SideMenu({ sideMenuState }) {
           </button>
           <button
             className="nav__link"
+            type="button"
             data-testid="side-menu-item-my-profile"
             onClick={ () => test(history, 'profile') }
           >
@@ -39,6 +44,7 @@ function SideMenu({ sideMenuState }) {
           </button>
           <button
             className="nav__link"
+            type="button"
             data-testid="side-menu-item-logout"
             onClick={ () => test(history, null) }
           >
@@ -48,6 +54,10 @@ function SideMenu({ sideMenuState }) {
       </div>
     )
   );
-}
+};
+
+SideMenu.propTypes = {
+  sideMenuState: PropTypes.bool.isRequired,
+};
 
 export default SideMenu;

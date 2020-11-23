@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { /* useState */ } from 'react';
 import './TopHamburgerToggle.css';
 
 const topHamburgerToggle = () => (
-  <div className='TopHamburgerToggle'>
+  <div className="TopHamburgerToggle">
     <div />
     <div />
     <div />

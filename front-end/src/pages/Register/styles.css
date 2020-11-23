@@ -21,8 +21,14 @@ button:disabled {
 }
 
 .checkbox-text {
+  align-items: center;
+  display: flex;
   font-size: 20px;
   padding: 10px 5px;
+}
+
+.checkbox-text input {
+  margin-right: 15px;
 }
 
 .form-registro {
@@ -34,7 +40,10 @@ button:disabled {
 }
 
 .input-labels {
+  display: flex;
+  flex-direction: column;
   font-size: 23px;
+  margin-top: 5px;
 }
 
 .input-registro {

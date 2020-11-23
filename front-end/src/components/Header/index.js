@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import MenuHamburgerBtn from './MenuHamburgerBtn';
-import NavBar from './NavBar';
+import BurguerMenuBtn from './components/BurguerMenuBtn';
+import NavBar from './components/NavBar';
+
 import './style.css';
 
 const navDisplayFalse = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, navDisplay) => {
@@ -14,6 +15,7 @@ const navDisplayFalse = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, 
   setNavDisplay(!navDisplay);
 };
 
+const TIME = 400;
 const navDisplayTrue = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, navDisplay) => {
   setTransitionMenuHambuger({
     lineOne: 'translate(0px, 0px) rotate(0deg)',
@@ -23,7 +25,7 @@ const navDisplayTrue = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, n
   setNavStyle({ animationName: 'coverNav', left: '0%' });
   setTimeout(() => {
     setNavDisplay(!navDisplay);
-  }, 400);
+  }, TIME);
 };
 
 const Header = ({ title, dataTestid }) => {
@@ -34,28 +36,30 @@ const Header = ({ title, dataTestid }) => {
   return (
     <header>
       <div className="header-container">
-        <MenuHamburgerBtn
-          setNavDisplay={setNavDisplay}
-          navDisplay={navDisplay}
-          setNavStyle={setNavStyle}
-          transitionMenuHambuger={transitionMenuHambuger}
-          setTransitionMenuHambuger={setTransitionMenuHambuger}
+        <BurguerMenuBtn
+          setNav={setNavDisplay}
+          display={navDisplay}
+          navStyle={setNavStyle}
+          transition={transitionMenuHambuger}
+          setTransition={setTransitionMenuHambuger}
           navDisplayFalse={navDisplayFalse}
           navDisplayTrue={navDisplayTrue}
-          />
+        />
         <h1 data-testid={dataTestid}>{title}</h1>
-        {navDisplay && <NavBar
-          navStyle={navStyle}
-          setNavStyle={setNavStyle}
-          setTransitionMenuHambuger={setTransitionMenuHambuger}
-          setNavDisplay={setNavDisplay}
-          navDisplay={navDisplay}
-          navDisplayTrue={navDisplayTrue}
-        />}
-        </div>
+        {navDisplay && (
+          <NavBar
+            navStyle={navStyle}
+            setNavStyle={setNavStyle}
+            setTransitionMenuHambuger={setTransitionMenuHambuger}
+            setNavDisplay={setNavDisplay}
+            navDisplay={navDisplay}
+            navDisplayTrue={navDisplayTrue}
+          />
+        )}
+      </div>
     </header>
   );
-}
+};
 
 Header.propTypes = {
   title: PropTypes.string,

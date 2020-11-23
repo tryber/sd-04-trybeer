@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Products from './Products';
+import Products from './components/Products';
+import AdressForm from './components/AdressForm';
+import './style.css';
 
 const Checkout = () => {
 
@@ -24,8 +26,9 @@ const Checkout = () => {
 
 
   return (
-    <div>
+    <div className="checkout-container">
       <Products cartState={cartState} setCartState={setCartState} />
+      <AdressForm cartState={cartState} />
     </div>
   );
 };
