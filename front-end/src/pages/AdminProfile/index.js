@@ -18,7 +18,7 @@ import './styles.css';
 //   }
 // };
 
-const ClientProfile = ({ history }) => {
+const AdminProfile = ({ history }) => {
   const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [message, setMessage] = useState('');
@@ -27,6 +27,7 @@ const ClientProfile = ({ history }) => {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('user'));
     if (data === null) history.push('/login');
+
     const { name, userEmail: email } = data || {};
     setUserName(name);
     setInitialName(name);
@@ -43,9 +44,9 @@ const ClientProfile = ({ history }) => {
 
   return (
     <div className="container">
-      <Header title="Meu perfil" />
+      <Header title="Admin - Perfil" />
       <div className="square">
-        <h1 className="pageTitle">Perfil do Cliente</h1>
+        <h1 className="pageTitle">Perfil do Administrador</h1>
         <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
         <form onSubmit={ handleSubmit } className="form">
           <div className="form-group">
@@ -55,7 +56,7 @@ const ClientProfile = ({ history }) => {
                 className="input-field"
                 placeholder="Nome Completo"
                 type="text"
-                data-testid="profile-name-input"
+                data-testid="profile-name"
                 value={ userName }
                 onChange={ (e) => setUserName(e.target.value) }
                 required
@@ -66,7 +67,7 @@ const ClientProfile = ({ history }) => {
             <label htmlFor="email" className="label-text">
               Email
               <input
-                data-testid="profile-email-input"
+                data-testid="profile-email"
                 className="input-field"
                 placeholder="Email"
                 type="text"
@@ -92,4 +93,4 @@ const ClientProfile = ({ history }) => {
   );
 };
 
-export default ClientProfile;
+export default AdminProfile;

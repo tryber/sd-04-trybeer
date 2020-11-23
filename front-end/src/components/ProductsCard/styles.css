@@ -1,6 +1,42 @@
 .card-body {
-  border: 1px solid black;
+  align-items: center;
+  border: none;
   border-radius: 6px;
-  height: 200px;
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, .8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 230px;
+  margin-top: 50px;
+  text-align: center;
   width: 168px;
+}
+
+.card-body img {
+  border-radius: 0;
+  height: 70px;
+  margin: 0;
+  padding: 0;
+  width: 60px;
+}
+
+.product-title {
+  align-items: center;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  width: inherit;
+}
+
+.product-card-panel {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: inherit;
+}
+
+.product-card-panel button {
+  height: 35px;
+  width: 50%;
 }

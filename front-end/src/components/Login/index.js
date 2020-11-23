@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import { EMAIL_PATTERN, PASS_LENGTH } from '../../validation';
+import { EMAIL_PATTERN, PASS_LENGTH, setLocalStorage } from '../../validation';
 
 import userIcon from '../../assets/user.png';
 
@@ -16,12 +16,27 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // {
+  //   "name": "Taylor Swift",
+  //   "email": "taylorswift@email.com",
+  //   "token": "eyJhb",
+  //   "role": "client"
+  // }
+
+  // const saveUserData = (userData) => {
+  //   localStorage.setItem('user', JSON.stringify(userData));
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data } = await api.post('/login', { email, password });
-    if (data.role === 'administrator') {
+    const response = await api.post('/login', { email, password });
+    if (response.data.role === 'administrator') {
+      // saveUserData(response.data);
+      setLocalStorage(response.data);
       history.push('/admin/orders');
     } else {
+      // saveUserData(response.data);
+      setLocalStorage(response.data);
       history.push('/products');
     }
   };

@@ -5,9 +5,12 @@ import Produtcs from './pages/Products';
 import MyOrdereds from './pages/MyOrdereds';
 import { Provider } from './context';
 import Register from './pages/Register/index';
-import ClientProfile from './pages/ClientProfile/index';
+import ClientProfile from './pages/ClientProfile';
+import AdminProfile from './pages/AdminProfile';
 import LoginPage from './pages/LoginPage';
 import ProductDetails from './pages/ProductDetails';
+import MyOrdersADM from './pages/MyOrdersADM';
+import PrivateRoute from './PrivateRoute';
 
 const Routes = () => (
   <Provider>
@@ -15,10 +18,12 @@ const Routes = () => (
       <Route path="/" exact component={ LoginPage } />
       <Route path="/login" component={ LoginPage } />
       <Route path="/register" component={ Register } />
-      <Route path="/products" component={ Produtcs } />
+      <PrivateRoute path="/products" component={ Produtcs } />
       <Route path="/profile" component={ ClientProfile } />
       <Route path="/orders" exact component={ MyOrdereds } />
       <Route path="/orders/:orderNumber" exact component={ ProductDetails } />
+      <Route path="/admin/orders" component={ MyOrdersADM } />
+      <Route path="/admin/profile" component={ AdminProfile } />
     </Switch>
   </Provider>
 );
