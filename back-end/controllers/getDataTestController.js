@@ -9,7 +9,7 @@ const getDataTestController = async (req, res) => {
       address,
       number,
       date,
-      products
+      products,
     );
 
     return res
