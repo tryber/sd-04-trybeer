@@ -13,6 +13,7 @@ function CloseOrder() {
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
   const [data, setData] = useState(null);
+  const [status, setStatus] = useState(null);
 
   const orderRef = useRef(null);
 
@@ -86,6 +87,8 @@ function CloseOrder() {
     seOMessage(frase);
     const orderDate = new Date();
     setData(orderDate);
+    setStatus({ status: 'pendente' });
+    localStorage.setItem('status', JSON.stringify({ status: 'pendente' }));
     postData(email, total, address, number, orderDate, cart);
     history.push('/products');
   }
@@ -199,7 +202,7 @@ function CloseOrder() {
           <button
             id="inputNum"
             data-testid="checkout-finish-btn"
-            className="btn btn-success"
+            className="btn btn-outline-success"
             disabled={!address || !number || !cart.length > 0}
             onClick={() =>
               doneOrder(
