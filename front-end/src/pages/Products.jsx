@@ -25,7 +25,6 @@ function Products() {
       .get('/products', { headers: { Authorization: token } })
       .then((response) => setProducts(response.data))
       .catch(() => history.push('/login'));
-
     if (localStorage.getItem('cart')) {
       setCart(JSON.parse(localStorage.getItem('cart')));
     }

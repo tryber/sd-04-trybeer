@@ -4,15 +4,7 @@ import { useContext } from 'react';
 
 const AppContext = createContext();
 
-const list = [
-  { product: 'caipirinha', qty: 4, value: 10.0 },
-  { product: 'heineken', qty: 10, value: 15.0 },
-  { product: 'Conhaque', qty: 2, value: 12.5 },
-  { product: 'Hennesey', qty: 2, value: 50.0 },
-];
-
 const AppProvider = ({ children }) => {
-  const [orderList, setOrderList] = useState(list);
   const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [products, setProducts] = useState([]);
@@ -25,8 +17,6 @@ const AppProvider = ({ children }) => {
     setEmail,
     userName,
     setUserName,
-    orderList,
-    setOrderList,
     products,
     setProducts,
     cart,

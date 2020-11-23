@@ -67,6 +67,31 @@ const registerSale = async (userId, totalPrice, deliveryAddress,
   }
 };
 
+const findOrderByUserId = async (uid) => {
+  try {
+    const db = await connection();
+    const table = await db.getTable('sales');
+    const result = await table.select([])
+      .where('id = :id')
+      .bind('id', uid)
+      .execute();
+    const orders = await result.fetchAll();
+    return orders.map(([id, userId, totalPrice, deliveryAddress,
+      deliveryNumber, saleDate, status]) => ({
+      id,
+      userId,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      saleDate,
+      status,
+    }));
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
 const findOrderBySaleId = async (saleId) => {
   const db = await simpleConnection();
   const result = await db
@@ -108,4 +133,5 @@ module.exports = {
   findSaleById,
   registerSale,
   findOrderBySaleId,
+  findOrderByUserId,
 };

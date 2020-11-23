@@ -25,6 +25,7 @@ routes.get(
   validateJWT,
   productController.findAllProductsController,
 );
+routes.get('/orders/', validateJWT, saleController.findOrderByUseridController);
 routes.get('/orders/:id', validateJWT, saleController.findSalesBySaleId);
 routes.post('/checkout', findUserIdByEmail, checkoutController);
 //  routes.post('/checkout', getDataTestController);
