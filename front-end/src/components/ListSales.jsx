@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Lupa } from '../images';
+import '../css/orders.css';
 
 export default function ListSales(props) {
   const { id, total_price: totalPrice, sale_date: saleData, index } = props;
@@ -8,15 +10,24 @@ export default function ListSales(props) {
     currency: 'BRL',
   });
   const date = new Date(saleData).toLocaleDateString('pt-br', {
-    day:'numeric',
-    month:'numeric',
+    day: 'numeric',
+    month: 'numeric',
   });
   return (
-    <Link to={`/orders/${id}`}>
-      <div data-testid={`${index}-order-card-container`}>
-        <h3 data-testid={`${index}-order-number`}>Pedido {id}</h3>
-        <span data-testid={`${index}-order-date`}>{date}</span> <br />
-        <span data-testid={`${index}-order-total-value`}>{priceArrendodado}</span>
+    <Link to={`/orders/${id}`} className="linkRemove">
+      <div className="orderList" data-testid={`${index}-order-card-container`}>
+        <div className="listFlex">
+          <span className="elements" data-testid={`${index}-order-number`}>
+            Pedido{id}
+          </span>
+          <span className="elements" data-testid={`${index}-order-date`}>
+            {date}
+          </span>
+          <span className="elements" data-testid={`${index}-order-total-value`}>
+            {priceArrendodado}
+          </span>
+          <img src={ Lupa } alt="lupa"></img>
+        </div>
       </div>
     </Link>
   );
