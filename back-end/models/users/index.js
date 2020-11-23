@@ -53,4 +53,3 @@ const add = (name, email, password, role) => connection()
   .catch((e) => e);
 
 module.exports = { getAll, getById, getByEmail, add, updateUser };
-
