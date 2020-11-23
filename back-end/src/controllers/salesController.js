@@ -69,6 +69,5 @@ module.exports = {
   getAllSalesController,
   getSaleById,
   insertSale,
-  getSaleById,
   updateSaleStatus,
 };

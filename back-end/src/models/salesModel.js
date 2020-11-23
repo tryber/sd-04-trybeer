@@ -4,7 +4,8 @@ const connectionJoin = require('./simpleConnection');
 const getAllSales = async () => {
   try {
     const db = await connection();
-    const searchQuery = await db.getTable('sales').select([]).execute();
+    const searchQuery = await db.getTable('sales').select([])
+      .execute();
     const results = await searchQuery.fetchAll();
     const salesResults = results.map(
       ([

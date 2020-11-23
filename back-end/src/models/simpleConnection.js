@@ -15,9 +15,8 @@ let schema;
 const connectionJoin = () => {
   if (schema) {
     return Promise.resolve(schema);
-  } else {
-    schema = mysql.getSession(config).catch((_err) => process.exit(1));
   }
+  schema = mysql.getSession(config).catch((_err) => process.exit(1));
 };
 
 module.exports = connectionJoin;
