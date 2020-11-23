@@ -6,8 +6,8 @@ const getAllSalesController = async (_req, res) => {
     const data = await salesModel.getAllSales();
     if (!data.length) return new Error('Sales info not found');
     return res.status(200).json({ sales: data });
-  } catch (error) {
-    return res.status(500).json({ message: 'Internal server error' });
+  } catch (err) {
+    return res.status(500).json({ message: 'Internal server error', err });
   }
 };
 
@@ -42,7 +42,7 @@ const insertSale = async (req, res) => {
 
 const getSaleById = async (req, res) => {
   try {
-    const { saleId } = req.query;
+    const { id: saleId } = req.params;
 
     if (saleId) {
       const orderDetails = await salesModel.getSaleById(saleId);
@@ -54,9 +54,21 @@ const getSaleById = async (req, res) => {
   }
 };
 
+const updateSaleStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    await salesModel.updateSaleStatus(id, status);
+    res.status(200).json({ message: 'Sale updated succesfully' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 module.exports = {
   getAllSalesController,
   getSaleById,
   insertSale,
   getSaleById,
+  updateSaleStatus,
 };

@@ -54,6 +54,8 @@ const insertSaleAPI = async (
   totalPrice,
   deliveryAddr,
   deliveryNumber,
+  productId,
+  quantity,
 ) => {
   await api.post(
     '/sales',
@@ -62,6 +64,8 @@ const insertSaleAPI = async (
       totalPrice,
       deliveryAddr,
       deliveryNumber,
+      productId,
+      quantity,
     },
     headers,
   );
@@ -76,6 +80,8 @@ const updateUserAPI = (name, email) => api.put('/user/update', { name, email });
 
 const getSaleByIdAPI = (id) => api.get(`/sales/${id}`);
 
+const updateSaleStatusAPI = (id, status) => api.put(`/sales/${id}`, { status });
+
 export default {
   registerUserAPI,
   loginAPI,
@@ -85,4 +91,5 @@ export default {
   productsAPI,
   updateUserAPI,
   getSaleByIdAPI,
+  updateSaleStatusAPI,
 };

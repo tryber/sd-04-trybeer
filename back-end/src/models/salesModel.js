@@ -1,4 +1,5 @@
-const { connection, connectionJoin } = require('./connection');
+const { connection } = require('./connection');
+const connectionJoin = require('./simpleConnection');
 
 const getAllSales = async () => {
   try {
@@ -109,36 +110,15 @@ const getSaleById = async (saleId) => {
   );
 };
 
-const getSaleById = async (saleId) => {
+const updateSaleStatus = async (saleId, saleStatus) => {
   const conn = await connection();
-  const result = await conn
+  await conn
     .getTable('sales')
-    .select([])
+    .update()
+    .set('status', saleStatus)
     .where('id = :saleId')
     .bind('saleId', saleId)
     .execute();
-  const fetchedResult = await result.fetchAll();
-  const sale = fetchedResult.map(
-    ([
-      id,
-      userId,
-      totalPrice,
-      deliveryAddress,
-      deliveryNumber,
-      saleDate,
-      status,
-    ]) => ({
-      id,
-      userId,
-      totalPrice,
-      deliveryAddress,
-      deliveryNumber,
-      saleDate,
-      status,
-    }),
-  )[0];
-
-  return sale;
 };
 
 module.exports = {
@@ -146,4 +126,5 @@ module.exports = {
   getSaleById,
   insertSale,
   insertSalesProducts,
+  updateSaleStatus,
 };

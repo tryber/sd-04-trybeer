@@ -26,8 +26,8 @@ const Checkout = () => {
   React.useEffect(() => {
     return () => {
       clearTimeout(finishTimeout);
-    }
-  }, [])
+    };
+  }, []);
 
   const handleRemove = (productId) => {
     const filteredCart = cart.filter(({ id }) => id !== productId);
@@ -49,6 +49,8 @@ const Checkout = () => {
       }, 0),
       form.street,
       form.houseNumber,
+      cart.map((product) => product.id),
+      cart.map((product) => product.quantity),
     );
     setFinish('Compra realizada com sucesso!');
     setLS('cart', []);
@@ -88,10 +90,13 @@ const Checkout = () => {
                   </span>
                 </div>
                 <div className={styles.cartItemRightContainer}>
-                  <span className={styles.unitaryPrice} data-testid={`${index}-product-unit-price`}>{`(${price.toLocaleString(
-                    'pt-BR',
-                    { style: 'currency', currency: 'BRL' },
-                  )} un)`}</span>
+                  <span
+                    className={styles.unitaryPrice}
+                    data-testid={`${index}-product-unit-price`}
+                  >{`(${price.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })} un)`}</span>
                   <span
                     className={styles.cartItemPrice}
                     data-testid={`${index}-product-total-value`}

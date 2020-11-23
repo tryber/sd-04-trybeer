@@ -11,19 +11,20 @@ const config = {
 
 let schema;
 
-const connection = () => (schema
-  ? Promise.resolve(schema)
-  : mysql
-    .getSession(config)
-    .then((session) => {
-      schema = session.getSchema('Trybeer');
-      return schema;
-    })
-    .catch((_err) => process.exit(1)));
+const connection = () =>
+  schema
+    ? Promise.resolve(schema)
+    : mysql
+        .getSession(config)
+        .then((session) => {
+          schema = session.getSchema('Trybeer');
+          return schema;
+        })
+        .catch((_err) => process.exit(1));
 
 const connectionJoin = () => {
   if (schema) {
-    Promise.resolve(schema);
+    return Promise.resolve(schema);
   } else {
     schema = mysql
       .getSession(config)
