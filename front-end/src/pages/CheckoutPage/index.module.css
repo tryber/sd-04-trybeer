@@ -114,6 +114,7 @@
   border-radius: 0.2rem;
   transition: 1s ease;
   animation: finishNotification 0.3s;
+  z-index: 3;
 }
 
 @media only screen and (max-width: 600px) {
