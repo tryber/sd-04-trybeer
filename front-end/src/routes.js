@@ -40,7 +40,7 @@ const routes = () => (
       <Route exact path="/admin/profile" component={ ProfileAdm } />
       <Route exact path="/admin/orders/:id" component={ OrdersAdm } />
       <Route path="/test" component={ test } />
-      <Route path="/checkout" component={ Cart } />
+      
     </Switch>
   </Router>
 );
