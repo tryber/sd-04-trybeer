@@ -13,31 +13,12 @@
   flex-direction: column;
   justify-content: center;
   margin-top: 150px;
-}
-
-.labelInput {
-  align-items: flex-start;
-  font-family: Roboto;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: normal;
-  color: #000000;
-  height: 28px;
-  line-height: 28px;
-  width: 65px;
-}
-
-.inputRegister {
-  background: #FFFFFF;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  width: 335px;
+  width: 60vw;
 }
 
 .checkboxInput {
-  border: 1px solid #000000;
   height: 26px;
-  width: 23px;
+  width: 26px;
   margin-right: 10px;
 }
 
@@ -50,6 +31,12 @@
   font-style: normal;
   font-weight: normal;
   height: 28px;
-  line-height: 28px;
+  line-height: 29px;
   margin-bottom: 25px;
+}
+
+@media (min-width: 800px) {
+  .formRegister {
+    max-width: 350px;
+  }
 }

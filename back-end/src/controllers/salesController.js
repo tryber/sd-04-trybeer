@@ -13,14 +13,23 @@ const getAllSalesController = async (_req, res) => {
 
 const insertSale = async (req, res) => {
   try {
-    const { userId, totalPrice, deliveryAddr, deliveryNumber } = req.body;
-    await salesModel.insertSale(
+    const { userId, totalPrice, deliveryAddr, deliveryNumber, productId, quantity } = req.body;
+    const saleInserted = await salesModel.insertSale(
       userId,
       totalPrice,
       deliveryAddr,
       deliveryNumber,
       getCurrentDate(),
     );
+
+    for (let i = 0; i < productId.length; i++) {
+      salesModel.insertSalesProducts(
+        saleInserted,
+        productId[i],
+        quantity[i],
+      );
+    }
+
     res.status(201).json({ message: 'Sale successfully created' });
   } catch (err) {
     console.error(err);
@@ -28,7 +37,22 @@ const insertSale = async (req, res) => {
   }
 };
 
+const getSaleById = async (req, res) => {
+  try {
+    const { saleId } = req.query;
+
+    if (saleId) {
+      const orderDetails = await salesModel.getSaleById(saleId);
+      return res.status(200).json(orderDetails);
+    }
+    return res.status(404).json({ message: 'Not Found' });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
 module.exports = {
   getAllSalesController,
+  getSaleById,
   insertSale,
 };

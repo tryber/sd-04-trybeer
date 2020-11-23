@@ -39,6 +39,16 @@ const getSalesTb = async () => {
   }
 };
 
+const getSalesByIdAPI = async (id) => {
+  try {
+    const result = await api.get(`/sales/details/${id}`, headers);
+    if (!result) throw Error;
+    return result;
+  } catch (err) {
+    return err.response;
+  }
+};
+
 const insertSaleAPI = async (userId, totalPrice, deliveryAddr, deliveryNumber) => {
   await api.post(
     '/sales',
@@ -63,6 +73,7 @@ export default {
   registerUserAPI,
   loginAPI,
   getSalesTb,
+  getSalesByIdAPI,
   insertSaleAPI,
   productsAPI,
   updateUserAPI,

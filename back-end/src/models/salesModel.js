@@ -1,4 +1,4 @@
-const connection = require('./connection');
+const { connection, connectionJoin } = require('./connection');
 
 const getAllSales = async () => {
   try {
@@ -40,7 +40,7 @@ const insertSale = async (
   saleDate,
 ) => {
   const conn = await connection();
-  await conn
+  const insertedSale = await conn
     .getTable('sales')
     .insert([
       'user_id',
@@ -59,9 +59,72 @@ const insertSale = async (
       'pending',
     )
     .execute();
+
+  return insertedSale.getAutoIncrementValue();
+};
+
+const insertSalesProducts = async (
+  saleId,
+  productId,
+  quantity,
+) => {
+  const conn = await connection();
+  await conn
+    .getTable('sales_products')
+    .insert([
+      'sale_id',
+      'product_id',
+      'quantity',
+    ])
+    .values(
+      saleId,
+      productId,
+      quantity,
+    )
+    .execute();
+};
+
+const getSaleById = async (saleId) => {
+  const conn = await connectionJoin();
+  const response = await conn
+    .sql(
+      `SELECT Prod.name, Prod.price, S.total_price, S.sale_date, S.status, SProd.quantity, SProd.sale_id
+      FROM products AS Prod
+      INNER JOIN sales_products AS SProd
+      ON Prod.id = SProd.product_id
+      INNER JOIN sales AS S
+      ON S.id = SProd.sale_id
+      WHERE SProd.sale_id = ${saleId};`,
+    )
+    .execute();
+
+  const result = await response.fetchAll();
+
+  if (!result.length) return null;
+  return result.map(
+    ([
+      productName,
+      productPrice,
+      totalPrice,
+      saleDate,
+      status,
+      productQuantity,
+      saleID,
+    ]) => ({
+      productName,
+      productPrice,
+      totalPrice,
+      saleDate,
+      status,
+      productQuantity,
+      saleID,
+    }),
+  );
 };
 
 module.exports = {
   getAllSales,
+  getSaleById,
   insertSale,
+  insertSalesProducts,
 };

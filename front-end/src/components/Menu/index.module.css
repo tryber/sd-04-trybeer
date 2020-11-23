@@ -1,5 +1,6 @@
 .header {
   background: #e85d04;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   height: 2rem;
   justify-content: center;
@@ -28,4 +29,8 @@
 
 .admin-side-bar-container {
   background-color: white;
+}
+
+.navLink:hover {
+  background-color: #faa307;
 }

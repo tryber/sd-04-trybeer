@@ -17,28 +17,28 @@ const Menu = ({ nomeTela }) => {
       <StyledMenu open={open} className="side-menu-container">
         <Link
           to="/products"
-          className="nav-link"
+          className={styles.navLink}
           data-testid="side-menu-item-products"
         >
           Produtos
         </Link>
         <Link
           to="/orders"
-          className="nav-link"
+          className={styles.navLink}
           data-testid="side-menu-item-my-orders"
         >
           Meus pedidos
         </Link>
         <Link
           to="/profile"
-          className="nav-link"
+          className={styles.navLink}
           data-testid="side-menu-item-my-profile"
         >
           Meu Perfil
         </Link>
         <Link
           to="/login"
-          className="nav-link"
+          className={styles.navLink}
           data-testid="side-menu-item-logout"
         >
           Sair

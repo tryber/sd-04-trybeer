@@ -12,25 +12,26 @@
   border-radius: 0.2rem;
 }
 
+.cartItem:hover {
+  border: 1px solid #e85d04;
+}
+
 .cartItemContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   width: 100%;
 }
 
-.cartItemRightContainer {
-  display: flex;
-  flex-direction: column;
-}
-      
-.cartItemLeftContainer {
-  height: 120px;
-  justify-content: flex-start;
+.orderValue {
+  grid-column: 1;
+  vertical-align: text-top;
+  margin-top: 0;
 }
 
-.unitaryPrice {
-  font-size: 0.7rem;
+.orderDate {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: end;
 }
 
 @media (min-width: 800px) {
