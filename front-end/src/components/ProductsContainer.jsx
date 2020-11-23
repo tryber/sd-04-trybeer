@@ -56,6 +56,7 @@ const ProductsContainer = () => {
 
   let t = 0;
   let price = 0;
+
   return (
     <>
       <div className="cardsContainer">

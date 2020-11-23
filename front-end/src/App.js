@@ -13,6 +13,7 @@ import { login } from './store/ducks/user';
 import Register from './pages/Register/Register';
 import Products from './pages/Products/Products';
 import Checkout from './pages/Checkout/Checkout';
+import ClientOrders from './pages/ClientOrders/ClientOrders';
 import ClientProfile from './pages/ClientProfile/ClientProfile';
 import './App.css';
 import AdminProfile from './pages/AdminProfile';
@@ -31,6 +32,7 @@ function App() {
       const now = Date.now().valueOf() / numDivisionDate; // inspiration from web Stackflow
       if (typeof decoded.exp !== 'undefined' && decoded.exp > now) {
         const user = {
+          id: userData.id,
           name: userData.name,
           email: userData.email,
           role: userData.role,
@@ -48,6 +50,7 @@ function App() {
         <Route exact path="/" component={ Login } />
         <Route exact path="/login" component={ Login } />
         <Route exact path="/register" component={ Register } />
+        <Route exact path="/orders" component={ ClientOrders } />
         <Route
           exact
           path="/products"

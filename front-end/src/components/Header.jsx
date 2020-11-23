@@ -11,7 +11,7 @@ const Header = (props) => {
   const location = useLocation();
   let headTitle = 'TryBeer';
   const title = {
-    '/profile': 'Meu Perfil',
+    '/profile': 'Meu perfil',
     '/checkout': 'Cliente - Checkout',
     '/checkout': 'Finalizar Pedido',
   };

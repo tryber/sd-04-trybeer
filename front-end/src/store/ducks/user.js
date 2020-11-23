@@ -15,6 +15,7 @@ export const Types = {
 
 const initialState = {
   user: {
+    id: '',
     name: '',
     email: '',
     role: '',
@@ -66,7 +67,7 @@ export const hasErrored = (error) => ({
 
 export const userLogin = (email, password) => (dispatch) => {
   UserService.userLogin({ email, password })
-    .then((userLogin) => dispatch(login(userLogin.data)))
+    .then((userLoginData) => dispatch(login(userLoginData.data)))
     .catch((error) => dispatch(hasErrored(error)));
 };
 

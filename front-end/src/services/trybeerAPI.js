@@ -18,7 +18,7 @@ class UserService {
     return response;
   }
 
-  handleError = (error) => {
+  handleError(error) {
     let errorMsg;
     switch (error.response.status) {
       case 500:
@@ -26,20 +26,32 @@ class UserService {
           error: { message: 'E-mail already in database.', code: 500 },
         };
         break;
-
       default:
+        errorMsg = {
+          error: {
+            message: error.response.statusText,
+            code: error.response.status,
+          },
+        };
         break;
     }
 
     throw errorMsg;
-  };
+  }
 
   /** User login */
-  userLogin = async (body) => this.http.post('/login', body);
+  async userLogin(body) {
+    return this.http.post('/login', body);
+  }
 
   /** User signup */
-  userSignup = async (userData) => {
-    const { email, name, password, admin } = userData;
+  async userSignup(userData) {
+    const {
+      email,
+      name,
+      password,
+      admin,
+    } = userData;
 
     const body = {
       email,
@@ -49,11 +61,10 @@ class UserService {
     };
 
     return this.http.post('/register', body);
-  };
+  }
   /** User Name Update */
 
   async userNameUpdate(email, name) {
-    console.log('inside trybeerAPI userNameUpdate');
     const body = {
       email,
       name,
@@ -63,7 +74,33 @@ class UserService {
   }
 
   /** Get all products */
-  getProducts = async () => this.http.get('/products');
+  async getProducts() {
+    return this.http.get('/products');
+  }
+
+  /** Post one order */
+  async postOrder(payload, token) {
+    return this.http.post(
+      '/sales',
+
+      {
+        ...payload,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
+      },
+      {
+        body: {},
+      },
+    );
+  }
+
+  /** Get all orders */
+  async getOrders() {
+    return this.http.get('/orders');
+  }
 }
 
 export default new UserService();

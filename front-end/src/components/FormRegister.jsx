@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { userSignup } from '../store/ducks/user';
-import { useHistory, Redirect } from 'react-router-dom';
 
 const FormRegister = () => {
-  const history = useHistory();
-
   // Set all local Action/Reducers
   const [user, setUser] = useState({
     name: '',
@@ -32,8 +29,6 @@ const FormRegister = () => {
 
   const handleClick = () => {
     dispatch(userSignup(user));
-
-    history.push('/products');
   };
   // const handleClick = () => dispatch(userSignup(user))
 

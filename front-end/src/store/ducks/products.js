@@ -1,4 +1,3 @@
-// import { omit } from 'lodash';
 import UserService from '../../services/trybeerAPI';
 
 /** sideBarHide REDUX */

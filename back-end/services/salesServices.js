@@ -1,4 +1,4 @@
-const { usersModel, salesModel } = require('../models');
+const { salesModel } = require('../models');
 
 const allSalesSev = async () => {
   const sales = await salesModel.getAllSalesMod();
@@ -6,14 +6,15 @@ const allSalesSev = async () => {
   return sales;
 };
 
-const finishSalesServ = async (email, total, address, number, date) => {
-  const allUsers = await usersModel.getAllUsers();
-  const { id } = allUsers.find((elem) => elem.email === email);
-
+const finishSalesServ = async (id, total, address, number) => {
   const totalToInsert = total.replace(',', '.');
 
-  const checkout = await salesModel.postFinishSalesMod(id, totalToInsert, address, number, date);
+  const dateNow = new Date();
+  const date = `${dateNow.getFullYear()}-${
+    dateNow.getMonth() + 1
+  }-${dateNow.getDate()} - ${dateNow.getHours()}:${dateNow.getMinutes()}:${dateNow.getSeconds()}`;
 
+  const checkout = await salesModel.postFinishSalesMod(id, totalToInsert, address, number, date);
   const sales = await salesModel.getAllSalesMod();
 
   const newSale = await sales.filter((elem) => elem.userId === id);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import UserService  from '../services/trybeerAPI';
 import { userNameUpdate } from '../store/ducks/user';
+import './FormClientProfile.css';
 
 const FormClientProfile = () => {
   // Set all local Action/Reducers
@@ -13,8 +14,10 @@ const FormClientProfile = () => {
     name: userData.name,
   });
   const [inputsValid, setInputsValid] = useState(true);
+  const [displayMessage, setDisplayMessage] = useState(false);
 
   function handleClick() {
+    setDisplayMessage(true)
     dispatch(userNameUpdate(user.name, userData.email)); //async
   }
 
@@ -30,14 +33,14 @@ const FormClientProfile = () => {
   }, [user]);
 
   return (
-    <div>
+    <div className="profileFormContainer">
       <form className="formContainer">
         <input
-          name="name"
+          readOnly
+          name="email"
           type="text"
           data-testid="profile-email-input"
           value={userData.email}
-          readonly
         />
         <input
           name="name"
@@ -51,6 +54,7 @@ const FormClientProfile = () => {
       <button data-testid="profile-save-btn" onClick={handleClick} disabled={inputsValid}>
         Salvar
       </button>
+      {displayMessage && <h1>Atualização concluída com sucesso</h1>}
     </div>
   );
 };

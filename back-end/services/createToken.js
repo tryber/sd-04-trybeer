@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken');
 const secret = require('./secret');
 
-console.log('creatToken = ', secret);
-
 const createToken = (payload) => {
   const headers = {
     expiresIn: '1d',

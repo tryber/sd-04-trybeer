@@ -13,7 +13,7 @@ const Login = () => {
     if (isLoggedIn) {
       saveToLocalStorage('user', { token, ...userData });
 
-      userData.role === 'client' ? history.push('/products') : history.push('/admin/orders');
+      history.push(userData.role === 'client' ? '/products' : '/admin/orders');
     }
   }, [isLoggedIn]);
 

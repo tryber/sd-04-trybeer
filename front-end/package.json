@@ -12,6 +12,7 @@
     "joi": "^17.3.0",
     "jquery": "^1.9.1",
     "jwt-decode": "^3.1.1",
+    "lodash": "^4.17.20",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.11.0",

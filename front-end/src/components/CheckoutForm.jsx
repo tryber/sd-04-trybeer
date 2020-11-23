@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadInitCart } from '../store/ducks/productsCart';
+import { postOrder } from '../store/ducks/orders';
 import { useHistory } from 'react-router-dom';
 import { deleteFromLocalStorage } from '../services/localStorage';
 
@@ -10,22 +11,26 @@ const CheckoutForm = (props) => {
 
   const cart = useSelector((state) => state.cartReducer.cart);
 
+  const { user, session } = useSelector(
+    (state) => state.userReducer,
+  );
+
+  const postOrderSuccess = useSelector((state) => state.ordersReducer.postOrderSuccess);
+
   const [address, setAddress] = useState({
     street: '',
     number: '',
   });
 
-  const [messageCheckOk, setMessageCheckOk] = useState(false);
-
   function goToProducts() {
     history.push('/products');
   }
 
+
   const handleClick = () => {
-    // message ok or nok
-    setMessageCheckOk(true);
-    // Clear cart
-    dispatch(loadInitCart({}));
+    dispatch(loadInitCart({}))
+    dispatch(postOrder(cart, user.id, user.email,
+      props.total, address.street, address.number, session.token));
     deleteFromLocalStorage('cart');
     setTimeout(goToProducts, 1000);
   };
@@ -70,7 +75,7 @@ const CheckoutForm = (props) => {
       >
         Finalizar Pedido{' '}
       </button>
-      {messageCheckOk && <h2>Compra realizada com sucesso!</h2>}
+      {postOrderSuccess && <h2>Compra realizada com sucesso!</h2>}
     </div>
   );
 };

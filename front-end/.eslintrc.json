@@ -20,7 +20,7 @@
     "class-methods-use-this": ["off"],
     "complexity": ["off", 11],
     "no-magic-numbers": [
-      "error",
+      "off",
       {
         "ignore": [1],
         "ignoreArrayIndexes": true,
@@ -37,6 +37,7 @@
       }
     ],
     "no-param-reassign": ["off"],
+    "no-multi-assign": ["warn"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/default-props-match-prop-types": ["error", { "allowRequiredDefaults": false }],
     "react/destructuring-assignment": ["error", "always"],
@@ -95,6 +96,6 @@
       }
     ],
       "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "error"
+      "react-hooks/exhaustive-deps": "off"
   }
 }
