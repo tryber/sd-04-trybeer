@@ -1,4 +1,5 @@
 import React from 'react';
+
 import SideBar from '../../components/ClientBar.jsx';
 import CardOrders from '../../components/CardAdmOrders.jsx';
 import './CSS/Orders.css';
@@ -7,7 +8,14 @@ const Orders = () => {
   const loginInStorage = JSON.parse(localStorage.getItem('cart'));
   let orderCount = 0;
 
-  if (!loginInStorage) return <SideBar title={'TryBeer'} isAdm={true} />;
+  if (!loginInStorage) {
+    return ( 
+      <div className="bodyAdm">
+        <SideBar title={'TryBeer'} isAdm={true} />
+        <h2 className="pedidos-text">Pedidos</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="bodyAdm">
@@ -17,14 +25,14 @@ const Orders = () => {
         <div>
           {loginInStorage.map((order) => {
             orderCount += 1;
-            const { price, quantity } = order;
+            const { price, quantity, address, status } = order;
             const totalPrice = parseFloat(price) * parseFloat(quantity);
             return (
               <CardOrders
                 order={orderCount}
-                address={'Rua da pinga, 2'}
+                address={address}
                 price={totalPrice}
-                status={'Pendente'}
+                status={status}
                 key={`${orderCount}order`}
               />
             );
