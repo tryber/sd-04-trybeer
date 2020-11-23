@@ -7,7 +7,6 @@ const { userUpdate } = require('./controllers/profile');
 const productController = require('./controllers/products');
 const { register } = require('./controllers/register');
 
-
 const app = express();
 const port = 3001;
 
