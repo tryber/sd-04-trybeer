@@ -65,6 +65,7 @@
 
 .input-field:read-only:focus {
   background-color: white;
+  color: #0f0f0f;
 }
 
 .input-field:read-only::placeholder {
