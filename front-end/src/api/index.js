@@ -1,14 +1,14 @@
 import axios from 'axios';
 
 const url = 'http://localhost:3001';
-const mockURL = 'https://my-json-server.typicode.com/pedrotpo/trybeer-mockapi/users';
+// const mockURL = 'https://my-json-server.typicode.com/pedrotpo/trybeer-mockapi/users';
 
 export const userLogin = async (email, password) => axios
   .post(`${url}/login`, { email, password })
   .catch(({ response }) => response);
 
 export const userUpdate = async (id, name) => axios
-  .put(`${mockURL}/${id}`, { id, name })
+  .put(`${url}/profile`, { id, name })
   .catch(({ response }) => response);
 
 export const postRegister = async (signName, signEmail, signPassword, signRole) => axios

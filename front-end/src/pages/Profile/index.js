@@ -1,73 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Formik } from 'formik';
-import { Button, FormLabel, Input } from '@chakra-ui/react';
+import { useHistory, useLocation } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
-import { userUpdate } from '../../api';
-import Alert from '../../components/Alert';
+import ProfileClient from './ProfileClient';
+import ProfileAdmin from './ProfileAdmin';
 
 const Profile = () => {
   const history = useHistory();
+  const location = useLocation();
   const [localUser, setLocalUser] = useState({});
-  const [hasChanged, setHasChanged] = useState(true);
-  const [alertMsg, setAlertMsg] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
-  const onClose = () => setIsOpen(false);
 
   useEffect(() => {
     if (!localStorage.user) history.push('/login');
-    setLocalUser(jwtDecode(localStorage.user));
-  }, [hasChanged, history]);
+    if (localStorage.user) setLocalUser(jwtDecode(localStorage.user));
+  }, [history]);
 
+  if (location.pathname === '/profile') {
+    return (
+      <ProfileClient
+        userId={ localUser.id }
+        userName={ localUser.name }
+        userEmail={ localUser.email }
+      />
+    );
+  }
   return (
-    <>
-      <Alert isOpen={ isOpen } onClose={ onClose } message={ alertMsg } />
-      <Formik
-        enableReinitialize
-        initialValues={ {
-          profileName: localUser.name,
-          profileEmail: localUser.email,
-        } }
-        onSubmit={ async (values) => {
-          const result = await userUpdate(localUser.id, values.profileName);
-          /*  if (result.status !== statusCode) {
-                setError(result.data.message);
-                setIsOpen(true);
-                formik.resetForm();
-                return null;
-              } */
-          localStorage.user = JSON.stringify(result);
-          setAlertMsg('Atualização concluída com sucesso');
-          setIsOpen(true);
-        } }
-      >
-        {({
-          isSubmitting, handleSubmit, handleChange, handleBlur, values,
-        }) => (
-          <form onSubmit={ handleSubmit }>
-            <FormLabel htmlFor="profileName">Nome</FormLabel>
-            <Input
-              type="text"
-              onChange={ (e) => { handleChange(e); setHasChanged(false); } }
-              onBlur={ handleBlur }
-              value={ values.profileName }
-              data-testid="profile-name"
-              name="profileName"
-            />
-            <FormLabel htmlFor="profileEmail">E-mail</FormLabel>
-            <Input
-              type="text"
-              value={ values.profileEmail }
-              data-testid="profile-email"
-              disabled
-              name="profileEmail"
-            />
-            <Button type="submit" disabled={ hasChanged || isSubmitting }>Submit</Button>
-          </form>
-        )}
-      </Formik>
-    </>
+    <ProfileAdmin
+      userName={ localUser.name }
+      userEmail={ localUser.email }
+    />
   );
 };
 export default Profile;
