@@ -22,7 +22,6 @@ const AdminProfile = () => {
   return (
     <div>
       {userLogged ? <Redirect to="/login" /> : null}
-
       <MenuAdmin />
       <h1>Login</h1>
       <h3 data-testid="profile-name">Nome: {name}</h3>

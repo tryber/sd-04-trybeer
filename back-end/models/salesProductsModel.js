@@ -13,7 +13,7 @@ const getSaleById = async (saleId) => {
   const session = await simpleConnection();
   const result = await session
     .sql(
-      `SELECT P.name, P.price, S.total_price, S.sale_date, SP.quantity, SP.sale_id
+      `SELECT P.name, P.price, S.total_price, S.sale_date, S.status, SP.quantity, SP.sale_id
       FROM products AS P
       INNER JOIN sales_products AS SP
       ON P.id = SP.product_id
@@ -31,6 +31,7 @@ const getSaleById = async (saleId) => {
       productPrice,
       totalPrice,
       saleDate,
+      status,
       productQuantity,
       saleID,
     ]) => ({
@@ -38,6 +39,7 @@ const getSaleById = async (saleId) => {
       productPrice,
       totalPrice,
       saleDate,
+      status,
       productQuantity,
       saleID,
     }),

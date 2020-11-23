@@ -28,7 +28,7 @@ const Register = () => {
 
   const registerUser = () => {
     axios
-      .post('http://localhost:3001/register', { name, email, password, role })
+      .post('http://localhost:3001/users', { name, email, password, role })
       .then((_res) => setRedirect(true))
       .catch((_error) => setMessage('E-mail already in database.'));
   };

@@ -9,7 +9,7 @@ const MenuAdmin = () => {
   return (
     <header>
       <h1>TryBeer</h1>
-      <div class="admin-side-bar-container">
+      <div>
         <Link to="/admin/orders">
           <button data-testid="side-menu-item-orders" type="button">
             Pedidos

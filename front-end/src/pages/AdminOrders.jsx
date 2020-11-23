@@ -1,8 +1,9 @@
-import MenuAdmin from '../components/MenuAdmin';
 import React, { useState, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
+
+import MenuAdmin from '../components/MenuAdmin';
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -16,7 +17,7 @@ const AdminOrders = () => {
     }
 
     axios
-      .get('http://localhost:3001/sales/all')
+      .get('http://localhost:3001/sales')
       .then((res) => {
         setOrders(res.data);
         console.log(res.data);
@@ -27,10 +28,11 @@ const AdminOrders = () => {
   return (
     <div>
       <MenuAdmin title="Meus Pedidos" />
+      <h1>Pedidos</h1>
       {redirectToLogin && <Redirect to="/login" />}
       {orders &&
         orders.map((order, index) => (
-          <div key={order.id} data-testid={`${index}-order-card-container`}>
+          <div key={order.id}>
             <Link to={`/admin/orders/${order.id}`}>
               <p
                 data-testid={`${index}-order-number`}
@@ -43,9 +45,7 @@ const AdminOrders = () => {
               <p data-testid={`${index}-order-total-value`}>
                 {`R$ ${order.price.toFixed(2).replace('.', ',')}`}
               </p>
-              <p
-                data-testid={`${index}-order-status`}
-              >{`Pendente ${order.status}`}</p>
+              <p data-testid={`${index}-order-status`}>{order.status}</p>
             </Link>
           </div>
         ))}

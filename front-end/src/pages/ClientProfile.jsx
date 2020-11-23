@@ -22,7 +22,7 @@ const ClientProfile = () => {
 
   const editUser = () => {
     axios
-      .put('http://localhost:3001/edit', { name, email })
+      .put('http://localhost:3001/users', { name, email })
       .then((_res) => setMessage('Atualização concluída com sucesso'))
       .catch((error) => console.log(error));
   };
