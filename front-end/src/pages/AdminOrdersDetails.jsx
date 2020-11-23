@@ -6,8 +6,7 @@ import MenuAdmin from '../components/MenuAdmin';
 
 const AdminOrdersDetails = () => {
   const [orderDetails, setOrderDetails] = useState([]);
-
-  const [orderStatus, setOrderStatus] = useState('Pendente');
+  const [orderStatus, setOrderStatus] = useState('');
 
   useEffect(() => {
     axios
@@ -15,7 +14,7 @@ const AdminOrdersDetails = () => {
         params: { saleId: window.location.pathname.slice(14) },
       })
       .then((res) => {
-        console.log(res.data);
+        setOrderStatus(res.data[0].status);
         setOrderDetails(res.data);
       })
       .catch((error) => console.log(error));
