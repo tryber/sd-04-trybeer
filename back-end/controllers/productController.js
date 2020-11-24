@@ -10,6 +10,17 @@ const getBeer = async (_req, res) => {
   }
 };
 
+const getOrderByUserIdController = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const orders = await productModel.getOrderByUserId(id);
+    res.status(200).json(orders);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
 module.exports = {
   getBeer,
+  getOrderByUserIdController,
 };
