@@ -38,54 +38,55 @@
   font-weight: 800;
 }
 
-.input-field {
+.input-field-profile {
   border: 2px solid #0f0f0f;
   border-radius: 4px;
   display: flex;
   font-family: Roboto, sans-serif;
   font-size: 15px;
-  height: 25px;
+  height: 40px;
   margin: 5px auto;
   padding-left: 10px;
   width: 270px;
 }
 
-.input-field::placeholder {
+.input-field-profile::placeholder {
   color: #5e5e5e;
 }
 
-.input-field:focus {
+.input-field-profile:focus {
   background-color: #fca311;
   color: white;
 }
 
-.input-field:focus::placeholder {
+.input-field-profile:focus::placeholder {
   color: white;
 }
 
-.input-field:read-only:focus {
+.input-field-profile:read-only:focus {
   background-color: white;
 }
 
-.input-field:read-only::placeholder {
+.input-field-profile:read-only::placeholder {
   color: #5e5e5e;
 }
 
-.save-button {
+.save-button-profile {
   align-items: center;
   display: flex;
   background-color: #fca311;
   border: none;
+  border-radius: 4px;
   color: #e5e5e5;
   font-family: Roboto, sans-serif;
   font-weight: 500;
-  height: 30px;
+  height: 40px;
   justify-content: center;
   margin: 30px auto 0;
-  width: 100px;
+  width: 72vh;
 }
 
-.save-button:disabled {
+.save-button-profile:disabled {
   background-color: #e5e5e5;
   color: #383737;
 }
@@ -96,7 +97,7 @@
      width: 100vh;
   }
 
-  .input-field {
+  .input-field-profile {
     width: 70vh;
   }
 }

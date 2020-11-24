@@ -49,6 +49,7 @@ const NavBar = ({
               localStorage.removeItem('user');
               history.push('/login');
             } }
+            className="logout-button"
           >
             Sair
           </button>

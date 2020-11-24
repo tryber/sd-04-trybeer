@@ -1,3 +1,7 @@
+.logout-button {
+  border-style: none;
+}
+
 .side-menu-container {
   animation-duration: 0.4s;
   animation-fill-mode: forwards;
