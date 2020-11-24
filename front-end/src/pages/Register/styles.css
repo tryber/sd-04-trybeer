@@ -1,23 +1,27 @@
-button:disabled {
-  color: gray;
-}
 .btn-div {
   margin: auto;
 }
 
 .btn-cadastrar {
   align-items: center;
-  background-color: rgb(20, 33, 61);
-  border: 1px solid rgb(252, 163, 17);
-  border-radius: 5px;
-  color: rgb(252, 163, 17);
+  background-color: #14213d;
+  border: none;
+  border-radius: 4px;
+  color: #ffff;
   display: flex;
-  font-size: 20px;
-  font-weight: 700;
-  height: 60px;
+  font-size: 16px;
+  height: 40px;
   justify-content: center;
-  margin: 20px 0;
-  width: 332px;
+  margin: auto;
+  outline: none;
+  text-decoration: none;
+  width: 55vh;
+}
+
+.btn-cadastrar:disabled {
+  background-color: #e5e5e5;
+  cursor: pointer;
+  color: white;
 }
 
 .checkbox-text {
@@ -90,3 +94,68 @@ button:disabled {
   margin: 10px;
 }
 }
+
+
+/* div,
+form,
+label,
+input,
+button,
+img {
+  margin: 0;
+  padding: 0;
+}
+
+.main-container-form {
+  margin: 64px auto 0;
+}
+
+.user-icon {
+  display: flex;
+  margin: auto;
+  width: 150px;
+}
+
+.login-form {
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.login-label, .login-label input {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#emailInput,
+#passwordInput {
+  border: 2px solid black;
+  border-radius: 4px;
+  height: 20px;
+  margin: 5px auto 30px;
+  padding: 8px 0;
+}
+
+#emailInput:focus,
+#passwordInput:focus {
+  background-color: #fca311;
+  color: white;
+}
+
+.login-button:disabled {
+  background-color: #e5e5e5;
+  cursor: pointer;
+  color: white;
+}
+
+.register-link {
+  display: block;
+  color: rgb(133, 131, 131);
+  margin: 32px auto;
+  width: fit-content;
+} */
