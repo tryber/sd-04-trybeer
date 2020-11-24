@@ -1,3 +1,4 @@
+const { createToken } = require('../../middlewares/createJWT');
 const { updateUser, getById } = require('../../models/users');
 
 const userUpdate = async (req, res) => {
