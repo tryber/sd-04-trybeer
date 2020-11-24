@@ -23,14 +23,16 @@ const Login = () => {
   // VARIÁVEL QUE DEFINE O "ESTADO" DO BOTÃO
   const disableButton = !password || password.length < 6 || !emailValidated();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const api = await API.loginApi(eMail, password);
+    API.loginApi(eMail, password)
 
-    if (api.data.user.err) return setErrorMsg(api.data.user.err);
+    .then((api) => {
 
-    const { name, email, role } = await api.data.user;
+    // if (api.data.user.err) return setErrorMsg(api.data.user.err);
+
+    const { name, email, role } = api.data.user;
     const token = api.data.token;
 
     localStorage.setItem('user', JSON.stringify({ name, email, role, token }));
@@ -41,6 +43,8 @@ const Login = () => {
     if (api.data.user.role === 'client') return history.push('/products');
 
     return history.push('/admin/orders');
+    })
+    .catch((error) => setErrorMsg(error.data.response));
   };
 
   return (
