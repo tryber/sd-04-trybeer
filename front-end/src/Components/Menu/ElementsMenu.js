@@ -1,5 +1,6 @@
 import React from 'react';
 import Buttons from './buttons';
+import './styleMenu.css';
 
 function ElementsMenu() {
   return (
