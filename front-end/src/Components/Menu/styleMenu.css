@@ -5,7 +5,7 @@
   color: white;
   display: inline-block;
   padding: 20px 10px;
-  position: relative;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
@@ -22,8 +22,8 @@
 
 .header-icon {
   position: fixed;
-  top: 10px;
-  left: 30px;
+  top: 24px;
+  left: 40px;
   z-index: 9;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .buttons-content {
-  display: table-row-group;
+  display: table-row;
   vertical-align: middle;
 }
 
@@ -71,7 +71,8 @@
   position: fixed;
   top: 72px;
   left: 0;
-  display: list-item;
+
+  display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: black;

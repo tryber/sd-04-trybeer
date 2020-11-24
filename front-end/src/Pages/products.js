@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import TopMenu from '../Components/Menu/TopMenu';
 import ShopCart from '../Components/shopcart';
 import BeerContext from '../context/appBeerContext';
+
 import './styleClientPage.css';
 
 const Client = () => {
