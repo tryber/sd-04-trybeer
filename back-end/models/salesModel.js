@@ -92,7 +92,9 @@ const getAdminOrderById = async (orderId) => {
       status,
       price,
     }));
-  } catch (error) {}
+  } catch (error) {
+    return error;
+  }
 };
 
 module.exports = {
