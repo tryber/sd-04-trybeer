@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
-import cheersIcon from '../../assets/beer.svg';
+import profileIcon from '../../assets/profile.svg';
 import './styles.css';
 
 const AdminProfile = () => {
@@ -18,11 +18,11 @@ const AdminProfile = () => {
       <Header title="Admin - Perfil" />
       <div className="square">
         <h1 className="pageTitle">Perfil do Administrador</h1>
-        <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
-        <p data-testid="profile-name">
+        <img src={ profileIcon } className="profileIcon" alt="Cheers Beer Icon" />
+        <p data-testid="profile-name" className="admin-information">
           { userName }
         </p>
-        <p data-testid="profile-email">
+        <p data-testid="profile-email" className="admin-information">
           { userEmail }
         </p>
       </div>

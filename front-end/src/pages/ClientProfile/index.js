@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import { updateProfileValidation } from '../../validation';
 import api from '../../services/api';
-import cheersIcon from '../../assets/beer.svg';
+import profileIcon from '../../assets/profile.svg';
 import './styles.css';
 
 // const getUser = async (name, email, setMessage) => {
@@ -44,7 +44,7 @@ const ClientProfile = () => {
       <Header title="Meu perfil" />
       <div className="square">
         <h1 className="pageTitle">Meu Perfil</h1>
-        <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
+        <img src={ profileIcon } className="profileIcon" alt="Cheers Beer Icon" />
         <form onSubmit={ handleSubmit } className="form">
           <div className="form-group">
             <label htmlFor="name" className="label-text">
