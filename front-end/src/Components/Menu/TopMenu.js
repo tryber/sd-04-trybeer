@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
 import { BsJustify } from 'react-icons/bs';
+import './styleMenu.css';
 
 import ElementsMenu from './ElementsMenu';
 
@@ -11,17 +13,23 @@ function renderTopMenu(openMenu, setOpenMenu) {
 function TopMenu({ title }) {
   const [openMenu, setOpenMenu] = useState(false);
   return (
-    <div>
-      <div>
-        <div>
-          <button onClick={ () => renderTopMenu(openMenu, setOpenMenu) } data-testid="top-hamburguer" type="button">
-            <BsJustify />
+    <header className="header-content">
+      <div className="header-title">
+        <h2 data-testid="top-title">{`${title}`}</h2>
+      </div>
+      <div className="header-back">
+        <div className="header-icon">
+          <button
+            onClick={ () => renderTopMenu(openMenu, setOpenMenu) }
+            data-testid="top-hamburguer"
+            type="button"
+          >
+            <BsJustify className="style-icon" />
           </button>
         </div>
         {openMenu === true ? ElementsMenu() : null}
       </div>
-      <h2 data-testid="top-title">{`${title}`}</h2>
-    </div>
+    </header>
   );
 }
 

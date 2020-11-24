@@ -8,9 +8,9 @@ import Provider from './context/provider';
 import Login from './Pages/login';
 import Admin from './Pages/adminPage';
 import Registro from './Pages/registro';
-import Client from './Pages/clientPage';
-import Checkout from './Pages/checkoutPage';
+import Products from './Pages/products';
 import Profile from './Pages/clientProfile';
+import Checkout from './Pages/checkoutPage';
 import ClientOrders from './Pages/clientOrders';
 import OrdersDetails from './Pages/ordersDetail';
 
@@ -25,11 +25,11 @@ function App() {
           <Route path="/login" component={ Login } />
           <Route path="/admin/orders" component={ Admin } />
           <Route path="/register" component={ Registro } />
-          <Route path="/products" component={ Client } />
+          <Route path="/products" component={ Products } />
           <Route path="/profile" component={ Profile } />
-          <Route path="/orders" component={ ClientOrders } />
           <Route path="/checkout" component={ Checkout } />
           <Route path="/orders/:id" component={ OrdersDetails } />
+          <Route path="/orders" component={ ClientOrders } />
         </Switch>
       </Provider>
     </Container>
