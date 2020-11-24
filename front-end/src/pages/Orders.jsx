@@ -13,11 +13,12 @@ function Orders() {
     api
       .get('/orders', { headers: { Authorization: token } })
       .then((response) => setOrders(response.data))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err.response.data))
       
   }, []);
   
-
+  if (!orders) return <div>Carregando...</div>;
+  console.log(JSON.stringify(orders));
   return (
   <div>
     <TopBar title={'Meus Pedidos'} isAdm={false} />
@@ -28,11 +29,10 @@ function Orders() {
         index={index}
         orderId={order.id}
         orderDate={order.saleDate}  
-        orderPriceSum={order.totalPrice} 
+        orderPriceSum={order.totalPrice}
       />
       ))}
     </div>
-    <p>{orders}</p>
   </div>
   );
   }

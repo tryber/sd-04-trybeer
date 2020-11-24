@@ -1,4 +1,3 @@
-const productController = require('../controllers/productController');
 const connection = require('./connection');
 
 const findAllSalesProducts = async () => {
@@ -20,7 +19,7 @@ const findAllSalesProducts = async () => {
 
 const registerSalesProducts = async (saleId, productId, quantity) => {
   try {
-    console.log(`RegisterSalesProducts: ${saleId}, ${productId}, ${quantity}`)
+    console.log(`RegisterSalesProducts: ${saleId}, ${productId}, ${quantity}`);
     const db = await connection();
     const table = await db.getTable('sales_products');
     const result = await table

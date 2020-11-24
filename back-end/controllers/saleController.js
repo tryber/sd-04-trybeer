@@ -19,7 +19,6 @@ const findSalesByUserIdController = async (req, res) => {
   }
 };
 
-
 const findSalesBySaleId = async (req, res) => {
   try {
     const { id } = req.params;

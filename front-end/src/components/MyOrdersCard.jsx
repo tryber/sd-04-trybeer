@@ -2,6 +2,7 @@ import React from 'react';
 import './MyOrdersCard.css';
 
 function MyOrdersCard({ index, orderId, orderDate, orderPriceSum }) {
+  console.log(index);
   const redirect = () => {
       return window.location.replace(`http://localhost:3000/orders/${orderId}`);
   };
