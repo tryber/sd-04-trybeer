@@ -32,7 +32,7 @@ const AdminOrders = () => {
                 </div>
                 <div className="first-part">
                   <span data-testid={`${index}-order-total-value`}>
-                    {`Total: R$${totalPrice.toLocaleString('pt-BR', {
+                    {`Total: R$ ${totalPrice.toLocaleString('pt-BR', {
                       minimumFractionDigits: 2,
                     })}`}
                   </span>

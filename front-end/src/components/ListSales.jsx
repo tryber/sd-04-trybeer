@@ -18,7 +18,7 @@ export default function ListSales(props) {
       <div className="orderList" data-testid={`${index}-order-card-container`}>
         <div className="listFlex">
           <span className="elements" data-testid={`${index}-order-number`}>
-            Pedido{id}
+            Pedido {id}
           </span>
           <span className="elements" data-testid={`${index}-order-date`}>
             {date}

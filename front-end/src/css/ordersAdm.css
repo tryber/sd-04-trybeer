@@ -18,11 +18,11 @@
 }
 
 .orders-card {
+  background: linear-gradient(45deg, #4d4d4d 0%,#282828 30%,#242424 100%);
   text-decoration: none;
   border-style: groove;
-  box-shadow: #000 2px 2px 1px;
   box-shadow: 1px 5px 5px rgba(182, 0, 0, 0.473);
-  color: black;
+  color: white;
   display: flex;
   flex-direction: column;
   flex: 0 1 30%;
@@ -30,7 +30,7 @@
   justify-content: center;
   margin: 0.3em;
   overflow: hidden;
-  padding: 0.2em;
+  padding: 0.3em;
 }
 
 .first-part {

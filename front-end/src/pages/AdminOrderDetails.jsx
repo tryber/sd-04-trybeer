@@ -54,7 +54,7 @@ const AdminOrderDetails = () => {
                   className="product-unit-price"
                   data-testid={`${index}-order-unit-price`}
                 >
-                  {`R$ ${price.toLocaleString('pt-BR', {
+                  {`(R$ ${price.toLocaleString('pt-BR', {
                     minimumFractionDigits: 2,
                   })}`}
                   )

@@ -24,7 +24,7 @@ function SalesDetails({ details: { products, sale } }) {
             <span className="elementsD" data-testid="order-number">
               Pedido {saleId}
             </span>
-            <span className="elementsD" data-testid="">
+            <span className="elementsD" data-testid="order-date">
               {date}
             </span>
           </div>
