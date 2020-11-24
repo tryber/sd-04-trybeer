@@ -11,26 +11,19 @@ let productList = '';
 const Checkout = () => {
   const [total, setTotal] = useState(0);
   const [list, setList] = useState(productsData);
-  // useEffect(() => {
-  //   const totalPrice = localStorage.getItem('totalPriceCart');
-  //   setTotal(totalPrice);
-  // }, [totalPrice]);
+  useEffect(() => {
+    const totalPrice = JSON.parse(localStorage.getItem('totalPriceCart'));
+    setTotal(totalPrice);
+  }, [total]);
 
   useEffect(() => {
-    // const productsData = JSON.parse(localStorage.getItem('qttPdtsCart')) || [
-    //   {},
-    // ];
-    setTotal(
-      totalPrice.toLocaleString('pt-br', {
-        style: 'currency',
-        currency: 'BRL',
-      });
-    );
-  }, [totalPrice]);
+    const productsData = JSON.parse(localStorage.getItem('qttPdtsCart')) || [{}];
+      setList(productsData)
+  }, [total]);
 
   function updateList(id) {
     productList = productsData.filter(
-      (item) => item.id !== id && item.totalPrice !== 0;
+      (item) => item.id !== id && item.totalPrice !== 0,
     );
     const totalP = productList.reduce((acc, value) => acc + value.totalPrice, 0);
     setTotal(totalP);
