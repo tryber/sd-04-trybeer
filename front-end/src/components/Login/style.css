@@ -12,14 +12,6 @@ img {
   margin: 64px auto 0;
 }
 
-img {
-  background-color: #14213d;
-  border-radius: 50%;
-  display: block;
-  margin: 0 auto 16px;
-  padding: 16px;
-}
-
 form {
   border-radius: 4px;
   display: flex;
