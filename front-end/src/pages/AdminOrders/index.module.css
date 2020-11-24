@@ -80,9 +80,9 @@
 }
 
 @media only screen and (max-width: 750px) {
-  .pageContainer {
+  /* .pageContainer {
     margin-top: 48rem;
-  }
+  } */
 
   .ordersList {
     grid-template-columns: 1fr;
@@ -90,9 +90,9 @@
 }
 
 @media only screen and (min-width: 900px) {
-  .pageContainer {
-    margin-top: 20rem;
-  }
+  /* .pageContainer {
+    margin-top: 20rem; */
+  /* } */
 
   .ordersList {
     grid-template-columns: 1fr 1fr;
@@ -100,9 +100,9 @@
 }
 
 @media only screen and (min-width: 1500px) {
-  .pageContainer {
+  /* .pageContainer {
     margin-top: 5rem;
-  }
+  } */
 
   .ordersList {
     grid-template-columns: 1fr 1fr 1fr 1fr;

@@ -21,18 +21,4 @@ const connection = () => (schema
     })
     .catch((_err) => process.exit(1)));
 
-const connectionJoin = () => {
-  if (schema) {
-    Promise.resolve(schema);
-  } else {
-    schema = mysql
-      .getSession(config)
-      .then((session) => {
-        schema = session.getSchema('Trybeer');
-        return schema;
-      })
-      .catch((_err) => process.exit(1));
-  }
-};
-
-module.exports = { connection, connectionJoin };
+module.exports = { connection };

@@ -1,4 +1,5 @@
-const { connection, connectionJoin } = require('./connection');
+const { connection } = require('./connection');
+const connectionJoin = require('./simpleConnection');
 
 const getAllSales = async () => {
   try {
@@ -63,24 +64,12 @@ const insertSale = async (
   return insertedSale.getAutoIncrementValue();
 };
 
-const insertSalesProducts = async (
-  saleId,
-  productId,
-  quantity,
-) => {
+const insertSalesProducts = async (saleId, productId, quantity) => {
   const conn = await connection();
   await conn
     .getTable('sales_products')
-    .insert([
-      'sale_id',
-      'product_id',
-      'quantity',
-    ])
-    .values(
-      saleId,
-      productId,
-      quantity,
-    )
+    .insert(['sale_id', 'product_id', 'quantity'])
+    .values(saleId, productId, quantity)
     .execute();
 };
 
@@ -122,9 +111,21 @@ const getSaleById = async (saleId) => {
   );
 };
 
+const updateSaleStatus = async (saleId, saleStatus) => {
+  const conn = await connection();
+  await conn
+    .getTable('sales')
+    .update()
+    .set('status', saleStatus)
+    .where('id = :saleId')
+    .bind('saleId', saleId)
+    .execute();
+};
+
 module.exports = {
   getAllSales,
   getSaleById,
   insertSale,
   insertSalesProducts,
+  updateSaleStatus,
 };
