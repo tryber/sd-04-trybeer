@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
-
 import Header from '../../components/Header';
-// import Footer from '../../components/Rodape';
 import { updateProfileValidation } from '../../validation';
-
 import api from '../../services/api';
-
 import cheersIcon from '../../assets/beer.svg';
-
 import './styles.css';
+
+// const getUser = async (name, email, setMessage) => {
+//   try {
+//     const { status } = await api.put(
+//       { name, email },
+//       { headers: { Authorization: JSON.parse(localStorage.getItem('user')).token } },
+//     );
+//     const statusOk = 200;
+//     if (status === statusOk) { setMessage('Atualização concluída com sucesso') }
+//   } catch (err) {
+//     setMessage(err.message);
+//   }
+// };
 
 const ClientProfile = () => {
   const [userEmail, setUserEmail] = useState('');
@@ -83,20 +91,3 @@ const ClientProfile = () => {
 };
 
 export default ClientProfile;
-
-// para por nos services?
-// import axios from 'axios';
-
-// const getUser = async (name, email, setMessage) => {
-//   try {
-//     const { status } = await axios.put(
-//       'http://localhost:3001/users',
-//       { name, email },
-//       { headers: { Authorization: JSON.parse(localStorage.getItem('user')).token } },
-//     );
-//     const statusOk = 200;
-//     if (status === statusOk) { setMessage('Atualização concluída com sucesso') }
-//   } catch (err) {
-//     setMessage(err.message);
-//   }
-// };
