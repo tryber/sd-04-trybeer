@@ -26,20 +26,22 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const api = await API.loginApi(eMail, password);
+    const api = API.loginApi(eMail, password)
+    .then((api) => {
 
-    if (api.data.user.err) return setErrorMsg(api.data.user.err);
-
-    const { name, email, role } = await api.data.user;
+    const { name, email, role } = api.data.user
     const token = api.data.token;
-
+    
     localStorage.setItem('user', JSON.stringify({ name, email, role, token }));
-
+    
     setErrorMsg('');
-
+    
     if (api.data.user.role === 'client') return history.push('/products');
-
+    
     return history.push('/admin/orders');
+  })
+  .catch((error) => setErrorMsg(error))
+    
   };
 
   return (
