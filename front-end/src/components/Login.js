@@ -42,7 +42,7 @@ const Login = () => {
 
         return history.push('/admin/orders');
       })
-      .catch((error) => setErrorMsg(error));
+      .catch((error) => setErrorMsg(error.response.data));
   };
 
   return (
