@@ -11,17 +11,17 @@ import {
 } from '../actions/actionBase';
 
 import { internet } from 'faker';
-  
+
 describe('Crie uma página de registro de usuários', () => {
   before(() => {
-    createAndInsertsDataBase()
+    createAndInsertsDataBase();
   });
 
   after(() => {
     dropAndTruncateDataBase();
-  }) 
+  });
 
-  beforeEach( () => {
+  beforeEach(() => {
     cy.visit(Cypress.config().baseUrl);
     clickButton('[data-testid="no-account-btn"]');
   });
@@ -44,7 +44,7 @@ describe('Crie uma página de registro de usuários', () => {
   });
 
   it('Será validado que não é possível fazer o registro com um nome com menos de 12 letras', () => {
-    insertText('[data-testid="signup-name"]', 'bruno');  
+    insertText('[data-testid="signup-name"]', 'bruno');
     insertText('[data-testid="signup-email"]', 'email@gmail.com');
     insertText('[data-testid="signup-password"]', '12345678');
     verifyElementIsDisable('[data-testid="signup-btn"]');
