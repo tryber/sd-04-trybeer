@@ -4,17 +4,19 @@ import api from '../services/api';
 import MyOrdersCard from '../components/MyOrdersCard';
 import { useHistory } from 'react-router-dom';
 
+
 function Orders() {
   const [orders, setOrders] = useState([]);
-
+  const history = useHistory(); 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token'));
 
     api
       .get('/orders', { headers: { Authorization: token } })
       .then((response) => setOrders(response.data))
-      .catch((err) => console.error(err.response.data))
+      .catch((_err) => history.push('/login'));
       
+
   }, []);
   
   if (!orders) return <div>Carregando...</div>;

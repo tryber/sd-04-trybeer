@@ -20,7 +20,7 @@ function Details() {
 
   return (
     <div>
-      <TopBar title={'Detalhes do Pedido'} isAdm={false} />
+      <TopBar data-testid="top-title" title={'Detalhes do Pedido'} isAdm={false} />
       <div className="container">
         <div className="header">
           <p data-testid="order-number">Pedido {order[0].saleID}</p>

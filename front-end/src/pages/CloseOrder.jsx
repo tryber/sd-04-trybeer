@@ -19,9 +19,10 @@ function CloseOrder() {
   useEffect(() => {
     if (localStorage.getItem('cart')) {
       setCart(JSON.parse(localStorage.getItem('cart')));
-      setTotal(JSON.parse(localStorage.getItem('totalPrice')));
+      console.log(`eu so log do useffect: total: ${total}`)
       const loginInStorage = JSON.parse(localStorage.getItem('user'));
       setEmail(loginInStorage.email);
+      setTotal(JSON.parse(localStorage.getItem('totalPrice')));
     }
     const loginInStorage = JSON.parse(localStorage.getItem('user'));
 
@@ -57,16 +58,17 @@ function CloseOrder() {
     let totalPrice = document.getElementById('itemTotal');
 
     if (cart.length > 0) {
-      const total = cart
+      const sum = cart
         .map(({ price, quantity }) => {
           return price * quantity;
         })
         .reduce((acc, curr) => acc + curr);
-      totalPrice.innerText = `R$ ${total
+      totalPrice.innerText = `R$ ${sum
         .toFixed(2)
         .toString()
         .replace('.', ',')}`;
-      localStorage.setItem('totalPrice', JSON.stringify(total));
+      localStorage.setItem('totalPrice', JSON.stringify(sum));
+      setTotal(sum);
     } else {
       totalPrice.innerHTML = 'Total: R$ 0,00';
       setMessage('Não há produtos no carrinho');
@@ -98,6 +100,7 @@ function CloseOrder() {
     const orderDate = new Date();
     setData(orderDate);
     setStore();
+    console.log(`eu sou o log do doneOrder: ${total}`)
     postData(email, total, address, number, orderDate, cart);
     history.push('/products');
   }
