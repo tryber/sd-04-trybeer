@@ -14,7 +14,6 @@ import Profile from './Pages/clientProfile';
 import Checkout from './Pages/checkoutPage';
 import ClientOrders from './Pages/clientOrders';
 import OrdersDetails from './Pages/ordersDetail';
-import Checkout from './Pages/checkoutPage';
 
 import './App.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
