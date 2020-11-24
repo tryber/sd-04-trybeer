@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
+/* Shop Cart */
+.btn {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-family: 400 'Noto Sans', sans-serif;
+  font-size: 20px;
+}
+.btn-menos {
+  background-color: black;
+}
+
+.btn-mais {
+  background-color: #f5d628;
+}

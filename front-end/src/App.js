@@ -7,11 +7,14 @@ import { Container } from 'rbx';
 import Provider from './context/provider';
 import Login from './Pages/login';
 import Admin from './Pages/adminOrders';
+import AdminOrderDetail from './Pages/adminOrderDetail';
+import AdminProfile from './Pages/adminProfile';
 import Registro from './Pages/registro';
-import Client from './Pages/clientPage';
-import Checkout from './Pages/checkoutPage';
+import Products from './Pages/products';
 import Profile from './Pages/clientProfile';
+import Checkout from './Pages/checkoutPage';
 import ClientOrders from './Pages/clientOrders';
+import OrdersDetails from './Pages/ordersDetail';
 
 import './App.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
@@ -22,12 +25,16 @@ function App() {
       <Provider>
         <Switch>
           <Route path="/login" component={ Login } />
-          <Route path="/admin/orders" component={ Admin } />
           <Route path="/register" component={ Registro } />
-          <Route path="/products" component={ Client } />
-          <Route path="/profile" component={ Profile } />
+          <Route path="/products" component={ Products } />
           <Route path="/orders" component={ ClientOrders } />
+          <Route path="/profile" component={ Profile } />
+          <Route path="/admin/orders/:id" component={ AdminOrderDetail } />
+          <Route path="/admin/orders" component={ Admin } />
+          <Route exact path="/admin/profile" component={ AdminProfile } />
           <Route path="/checkout" component={ Checkout } />
+          <Route path="/orders/:id" component={ OrdersDetails } />
+          <Route path="/orders" component={ ClientOrders } />
         </Switch>
       </Provider>
     </Container>

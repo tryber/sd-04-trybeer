@@ -2,12 +2,10 @@ import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import BeerContext from '../context/appBeerContext';
+import './styleShopCart.css';
 
 const ShopCart = ({
-  product,
-  setCartUpdate,
-  cartUpdate,
-  index,
+  product, setCartUpdate, cartUpdate, index,
 }) => {
   const { cart, setCart } = useContext(BeerContext);
   const { name } = product;
@@ -36,7 +34,7 @@ const ShopCart = ({
       <div className="col px-md-5">
         <button
           type="button"
-          className="btn btn-success"
+          className="btn btn-mais"
           data-testid={ `${index}-product-plus` }
           onClick={ () => addCart() }
         >
@@ -44,12 +42,12 @@ const ShopCart = ({
         </button>
       </div>
       <div className="col px-md-5" data-testid={ `${index}-product-qtd` }>
-        { cart[name] === undefined ? <span>0</span> : <span>{cart[name].quantidade}</span> }
+        {cart[name] === undefined ? <span>0</span> : <span>{cart[name].quantidade}</span>}
       </div>
       <div className="col px-md-5">
         <button
           type="button"
-          className="btn btn-danger"
+          className="btn btn-menos"
           data-testid={ `${index}-product-minus` }
           onClick={ () => removeCart() }
         >

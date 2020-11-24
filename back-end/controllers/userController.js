@@ -36,10 +36,10 @@ const userRegister = async (req, res) => {
     const { name, email, password, role } = req.body;
 
     await userModel.registerUser(name, email, password, role);
-    res.status(200).json({ message: 'registrado com sucesso' });
+    return res.status(200).json({ message: 'registrado com sucesso' });
   } catch (err) {
-    console.log(err);
-    res.status(404).json({ message: 'E-mail already in database.' });
+    console.log('teste', err);
+    return res.status(404).json({ message: 'E-mail already in database.' });
   }
 };
 

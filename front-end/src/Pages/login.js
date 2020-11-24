@@ -7,6 +7,7 @@ import {
   Input,
 } from 'rbx';
 
+import './styleLogin.css';
 import ButtonEnviar from '../Components/buttonEnviar';
 
 const Login = () => {
@@ -17,9 +18,9 @@ const Login = () => {
   const { errorEmail, errorPassword } = simpleValidator.current.fields;
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form>
+    <div className="login-content">
+      <h2 className="lr-title">Login</h2>
+      <form className="form-content">
         <Field>
           <Label htmlFor="email">Email:</Label>
           <Input
@@ -43,9 +44,9 @@ const Login = () => {
           { simpleValidator.current.message('errorPassword', password, 'required|min:5') }
         </Field>
         { errorEmail && errorPassword
-          ? <ButtonEnviar email={ email } password={ password } isDisabled={ false } />
-          : <ButtonEnviar email={ email } password={ password } /> }
-        <Link to="/register" data-testid="no-account-btn">
+          ? <ButtonEnviar className="enviar-button" email={ email } password={ password } isDisabled={ false } />
+          : <ButtonEnviar className="enviar-button" email={ email } password={ password } /> }
+        <Link className="testlink" to="/register" data-testid="no-account-btn">
           Ainda não tenho conta
         </Link>
       </form>

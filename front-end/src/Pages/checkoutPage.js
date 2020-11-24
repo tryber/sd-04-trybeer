@@ -3,6 +3,7 @@ import {
   Button, Field, Label, Input,
 } from 'rbx';
 import { Redirect, useHistory } from 'react-router';
+
 import Loader from 'react-loader-spinner';
 import TopMenu from '../Components/Menu/TopMenu';
 import api from '../services/orderApi';
@@ -29,10 +30,10 @@ const CheckoutPage = () => {
     setTotal(totalProd);
   }, []);
 
-  const finishShop = (e) => {
+  const finishShop = async (e) => {
     e.preventDefault();
     setMessage('Compra realizada com sucesso!');
-    api.sendOrder(auth.email, total.replace(',', '.'), street, house);
+    api.sendOrder(auth.email, total.replace(',', '.'), street, house, cart);
 
     localStorage.removeItem('cart');
     setTimeout(() => {
