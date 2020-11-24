@@ -13,8 +13,7 @@ const schema = {
       .required(),
   }),
   updateSalesStatusSchema: joi.object({
-    status: joi.string().valid('Pendente', 'Entregue')
-      .required(),
+    status: joi.string().valid('Pendente', 'Entregue').required(),
   }),
 };
 

@@ -1,4 +1,4 @@
-const connection = require('./connection');
+const { connection } = require('./connection');
 
 const getAllProductMod = async () => {
   try {

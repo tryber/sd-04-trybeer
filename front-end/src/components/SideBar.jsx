@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { deleteFromLocalStorage, loadFromLocalStorage } from '../services/localStorage';
+import {
+  deleteFromLocalStorage,
+  loadFromLocalStorage,
+} from '../services/localStorage';
 import { useHistory, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../store/ducks/user';
@@ -55,20 +58,21 @@ const SideBar = ({ userType }) => {
   };
 
   return (
-    <div className={role === 'client' ? 'side-menu-container' : 'admin-side-bar-container'}>
+    <div
+      className={
+        role === 'client' ? 'side-menu-container' : 'admin-side-bar-container'
+      }
+    >
       <ul>
         {menus[role].map((menu) => (
           <li>
-            <Link to={menu.route} data-testid={menu.dataTestID}
-              onClick={() => dispatch(changeVisibility())}
-            >
+            <Link to={menu.route} data-testid={menu.dataTestID}>
               {menu.label}
-
             </Link>
           </li>
         ))}
       </ul>
-      <button data-testid="side-menu-item-logout" onClick={handleClick}>
+      <button data-testid="side-menu-item-logout" onClick={() => handleClick()}>
         Sair
       </button>
     </div>

@@ -7,12 +7,15 @@ import UserService from '../../services/trybeerAPI';
 export const Types = {
   POST_ORDER: 'POST_ORDER',
   ERROR_ORDER: 'ERROR_ORDER',
+  GET_ORDER: 'GET_ORDER',
 };
 
 /** Reducers */
 
 const initialState = {
   postOrderSuccess: false,
+  getOrderSuccess: false,
+  orders: [],
   errors: [],
 };
 
@@ -23,12 +26,18 @@ const ordersReducer = (state = initialState, { type, payload }) => {
         ...state,
         postOrderSuccess: true,
       };
+    case Types.GET_ORDER:
+      return {
+        ...state,
+        orders: payload,
+        getOrderSuccess: true,
+      };
     case Types.ERROR_ORDER:
       return {
         ...state,
         errors: [
           ...state.errors,
-          `${payload.error.code} mess: ${payload.error.message}`,
+          `${payload.error} mess: ${payload.error}`,
         ],
       };
 
@@ -41,6 +50,11 @@ const ordersReducer = (state = initialState, { type, payload }) => {
 
 export const sendOrder = (payload) => ({
   type: Types.POST_ORDER,
+  payload,
+});
+
+export const receivedOrder = (payload) => ({
+  type: Types.GET_ORDER,
   payload,
 });
 
@@ -71,6 +85,18 @@ export const postOrder = (cart, id, email, total, address, number, token) => (
   };
   UserService.postOrder(payload, token)
     .then((res) => dispatch(sendOrder(res)))
+    .catch((error) => dispatch(hasErrored(error)));
+};
+
+export const getOrders = (token) => (dispatch) => {
+  UserService.getOrders(token)
+    .then((response) => {
+      /** Verifica se o recurso foi criado no BD e procede */
+      /** Faz login se ok */
+      if (response.status === 200) {
+        dispatch(receivedOrder(response.data));
+      }
+    })
     .catch((error) => dispatch(hasErrored(error)));
 };
 

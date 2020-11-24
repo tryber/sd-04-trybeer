@@ -26,7 +26,8 @@
     "@mysql/xdevapi": "^8.0.20",
     "lodash": "^4.17.20",
     "mysql2": "^2.1.0",
-    "sequelize": "^6.3.4"
+    "sequelize": "^6.3.4",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "cypress": "^5.0.0",

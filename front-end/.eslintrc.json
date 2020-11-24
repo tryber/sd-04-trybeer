@@ -14,6 +14,7 @@
   },
   "plugins": ["react", "react-hooks"],
   "rules": {
+    "react-hooks/exhaustive-deps": ["off"],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
@@ -38,6 +39,7 @@
     ],
     "no-param-reassign": ["off"],
     "no-multi-assign": ["warn"],
+    "no-confusing-arrow": ["off"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/default-props-match-prop-types": ["error", { "allowRequiredDefaults": false }],
     "react/destructuring-assignment": ["error", "always"],

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import testImgBeer from '../images/testImgBeer.jpg'; // Only for test => ToRemove
 import { saveToLocalStorage, loadFromLocalStorage } from '../services/localStorage';
 import { addToCart, removeToCart, loadInitCart } from '../store/ducks/productsCart';
 import { useHistory } from 'react-router-dom';

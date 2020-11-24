@@ -14,11 +14,12 @@
 .sidebarwrapper {
   display: flex;
   position: fixed;
-  width: 700px;
+  width: 480px;
 }
 .sidebar {
   height: 100%;
   width: 20%;
+  float: left;
 }
 
 .maincomponent {

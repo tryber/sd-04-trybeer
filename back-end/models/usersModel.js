@@ -1,6 +1,7 @@
-const connection = require('./connection');
+const { connection } = require('./connection');
 
 const getUserByEmailMod = async (userEmail) => {
+  console.log('email model', userEmail);
   try {
     const db = await connection();
     const usersDB = await db
@@ -10,6 +11,7 @@ const getUserByEmailMod = async (userEmail) => {
       .bind('email', userEmail)
       .execute();
     const [id, name, email, password, role] = await usersDB.fetchOne();
+
     return {
       id,
       name,
@@ -61,10 +63,7 @@ const updateUsersNameMod = async (name, email) => {
 const getAllUsers = async () => {
   try {
     const db = await connection();
-    const usersDB = await db
-      .getTable('users')
-      .select()
-      .execute();
+    const usersDB = await db.getTable('users').select().execute();
     const allUsers = await usersDB.fetchAll();
     return allUsers.map(([id, name, email, password, role]) => ({
       id,

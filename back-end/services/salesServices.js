@@ -14,14 +14,17 @@ const finishSalesServ = async (id, total, address, number) => {
     dateNow.getMonth() + 1
   }-${dateNow.getDate()} - ${dateNow.getHours()}:${dateNow.getMinutes()}:${dateNow.getSeconds()}`;
 
-  const checkout = await salesModel.postFinishSalesMod(id, totalToInsert, address, number, date);
+  const checkout = await salesModel.postFinishSalesMod(
+    id,
+    totalToInsert,
+    address,
+    number,
+    date,
+  );
   const sales = await salesModel.getAllSalesMod();
-
-  const newSale = await sales.filter((elem) => elem.userId === id);
 
   const saleResponse = {
     ...checkout,
-    saleId: newSale[newSale.length - 1].id,
   };
 
   return saleResponse;

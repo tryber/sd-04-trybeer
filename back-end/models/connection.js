@@ -7,9 +7,18 @@ const config = {
   host: process.env.HOSTNAME,
   port: 33060,
   socketPath: '/var/run/mysqld/mysqld.sock',
+  schema: 'Trybeer',
 };
 
 let schema;
+
+const simpleConnection = () => {
+  if (schema) return Promise.resolve(schema);
+  return mysqlx.getSession(config).catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+};
 
 const connection = async () => {
   if (schema) return Promise.resolve(schema);
@@ -22,4 +31,4 @@ const connection = async () => {
   }
 };
 
-module.exports = connection;
+module.exports = { connection, simpleConnection };

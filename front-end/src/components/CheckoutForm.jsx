@@ -32,7 +32,7 @@ const CheckoutForm = (props) => {
     dispatch(postOrder(cart, user.id, user.email,
       props.total, address.street, address.number, session.token));
     deleteFromLocalStorage('cart');
-    setTimeout(goToProducts, 1000);
+    setTimeout(goToProducts, 3000);
   };
 
   return (
