@@ -29,10 +29,10 @@ const CheckoutPage = () => {
     setTotal(totalProd);
   }, []);
 
-  const finishShop = (e) => {
+  const finishShop = async (e) => {
     e.preventDefault();
     setMessage('Compra realizada com sucesso!');
-    api.sendOrder(auth.email, total.replace(',', '.'), street, house);
+    api.sendOrder(auth.email, total.replace(',', '.'), street, house, cart);
 
     localStorage.removeItem('cart');
     setTimeout(() => {
