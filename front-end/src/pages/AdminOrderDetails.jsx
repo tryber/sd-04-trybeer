@@ -24,51 +24,59 @@ const AdminOrderDetails = () => {
   return (
     <>
       <Header>Trybeer</Header>
-      <br />
-      <br />
+      <div className="marginDetails">
+        <div className="cardDetails">
+          <div className="pedido">
+            <span
+              class="titleOne"
+              data-testid="order-number"
+            >{`Pedido ${saleInfo.id}`}</span>
+            <span
+              class="titleOne"
+              data-testid="order-status"
+            >{`${saleStatus}`}</span>
+          </div>
+          <div className="listOrders">
+            {saleProduct.map(({ name, quantity, price }, index) => (
+              <div key={name}>
+                <span
+                  data-testid={`${index}-product-qtd`}
+                >{`${quantity} - `}</span>
+                <span
+                  data-testid={`${index}-product-name`}
+                >{`${name} - `}</span>
+                <span data-testid={`${index}-product-total-value`}>
+                  {`R$ ${(price * quantity).toLocaleString('pt-BR', {
+                    minimumFractionDigits: 2,
+                  })}`}
+                </span>
+                <span
+                  className="product-unit-price"
+                  data-testid={`${index}-order-unit-price`}
+                >
+                  {`R$ ${price.toLocaleString('pt-BR', {
+                    minimumFractionDigits: 2,
+                  })}`}
+                  )
+                </span>
+              </div>
+            ))}
+          </div>
 
-      <h1>
-        <span data-testid="order-number">
-          {`Pedido ${saleInfo.id}`}
-        </span>
-        <span data-testid="order-status">
-          {`${saleStatus}`}
-        </span>
-      </h1>
+          <h3 data-testid="order-total-value">
+            {`R$ ${total_price.toString().replace('.', ',')}0`}
+          </h3>
 
-      {saleProduct.map(({ name, quantity, price }, index) => (
-        <div key={ name }>
-          <span data-testid={ `${index}-product-qtd` }>
-            {`${quantity} - `}
-          </span>
-          <span data-testid={ `${index}-product-name` }>
-            {`${name} - `}
-          </span>
-          <span data-testid={ `${index}-product-total-value` }>
-            {`R$ ${(price * quantity).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
-          </span>
-          <span
-            className="product-unit-price"
-            data-testid={ `${index}-order-unit-price` }
+          <button
+            type="button"
+            data-testid="mark-as-delivered-btn"
+            onClick={() => sendPutStatus(id).then(setSaleStatus('Entregue'))}
+            className={`sale-${saleStatus}-btn`}
           >
-            { `(R$ ${price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}` }
-            )
-          </span>
+            Marcar como entregue
+          </button>
         </div>
-      ))}
-
-      <h3 data-testid="order-total-value">
-        {`R$ ${(total_price).toString().replace(".", ",")}0`}
-      </h3>
-
-      <button
-        type="button"
-        data-testid="mark-as-delivered-btn"
-        onClick={ () => sendPutStatus(id).then(setSaleStatus('Entregue'))}
-        className={ `sale-${saleStatus}-btn` }
-      >
-        Marcar como entregue
-      </button>
+      </div>
     </>
   );
 };

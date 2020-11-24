@@ -5,3 +5,57 @@
 .sale-Entregue-btn {
   display: none;
 }
+
+.cardDetails {
+  text-decoration: none;
+  border-style: groove;
+  box-shadow: #000 2px 2px 1px;
+  box-shadow: 1px 5px 5px rgba(182, 0, 0, 0.473);
+  color: black;
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 30%;
+  height: auto;
+  justify-content: center;
+  margin: 0.3em;
+  overflow: hidden;
+  padding: 0.2em;
+}
+
+.marginDetails {
+  padding-left: 200px;
+  padding-top: 54px;
+  flex: 1;
+}
+.marginDetails > * {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pedido {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.titleOne {
+  width: 100px;
+  flex: 1 1 80%;
+  margin: 5px;
+  font-weight: 500;
+  font-size: large;
+}
+
+.listOrders {
+  display: flex;
+  flex-wrap:wrap;
+  flex-direction: column;
+  text-align: left;
+}
+
+.listOrders>* {
+  flex: 1 1 15px;
+  font-size: medium;
+  font-weight: 400;
+}
