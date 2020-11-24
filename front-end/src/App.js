@@ -6,7 +6,7 @@ import { Container } from 'rbx';
 
 import Provider from './context/provider';
 import Login from './Pages/login';
-import Admin from './Pages/adminPage';
+import Admin from './Pages/adminOrders';
 import Registro from './Pages/registro';
 import Client from './Pages/clientPage';
 import Checkout from './Pages/checkoutPage';

@@ -11,6 +11,9 @@ const sendOrder = (email, total, address, number) => api.post('/order', {
   number,
 });
 
+const getAdminSales = () => (api.get('/admin/orders'));
+
 export default {
   sendOrder,
+  getAdminSales,
 };

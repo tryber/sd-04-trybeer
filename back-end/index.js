@@ -6,6 +6,7 @@ const profileRouter = require('./routers/profileRouter');
 const productRouter = require('./routers/productRouters');
 const userController = require('./controllers/userController');
 const orderRouter = require('./routers/salesRouters');
+const adminOrderRouter = require('./routers/adminOrderRouter');
 
 const app = express();
 const port = 3001;
@@ -20,6 +21,7 @@ app.post('/register', userController.userRegister);
 app.use('/login', userRouter);
 app.use('/products', productRouter);
 app.use('/order', orderRouter);
+app.use('/admin', adminOrderRouter);
 
 app.use('/profile', profileRouter);
 
