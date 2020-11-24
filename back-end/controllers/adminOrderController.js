@@ -1,4 +1,4 @@
-const adminOrderModel = require('../model/adminOrderModel')
+const adminOrderModel = require('../model/adminOrderModel');
 
 const getAllOrders = async (_req, res) => {
   try {
