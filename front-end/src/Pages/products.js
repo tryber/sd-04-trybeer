@@ -36,7 +36,6 @@ const Client = () => {
                   style={ { width: 400, height: 350 } }
                   alt="foto do produto"
                 />
-                { console.log(product) }
                 <div className="card-body">
                   <h4 className="card-title" data-testid={ `${index}-product-name` }>
                     {product.name}

@@ -12,8 +12,11 @@ import Registro from './Pages/registro';
 import Product from './Pages/products';
 import Profile from './Pages/clientProfile';
 import ClientOrders from './Pages/clientOrders';
+import OrdersDetails from './Pages/ordersDetail';
+import Checkout from './Pages/checkoutPage';
 
 import './App.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 function App() {
   return (
@@ -27,6 +30,8 @@ function App() {
           <Route path="/profile" component={ Profile } />
           <Route path="/admin/orders" component={ Admin } />
           <Route exact path="/admin/profile" component={ AdminProfile } />
+          <Route path="/checkout" component={ Checkout } />
+          <Route path="/orders/:id" component={ OrdersDetails } />
         </Switch>
       </Provider>
     </Container>
