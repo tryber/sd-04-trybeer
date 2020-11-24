@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import 'rbx/index.css';
-
 import { Container } from 'rbx';
 
 import Provider from './context/provider';
