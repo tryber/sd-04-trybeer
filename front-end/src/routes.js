@@ -16,7 +16,6 @@ import Details from './pages/Details';
 import OrdersAdm from './pages/admin/Orders';
 import ProfileAdm from './pages/admin/Profile';
 import test from './pages/test';
-import Cart from './components/Cart';
 
 const routes = () => (
   <Router>
@@ -40,7 +39,6 @@ const routes = () => (
       <Route exact path="/admin/profile" component={ ProfileAdm } />
       <Route exact path="/admin/orders/:id" component={ OrdersAdm } />
       <Route path="/test" component={ test } />
-      
     </Switch>
   </Router>
 );
