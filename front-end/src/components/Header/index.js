@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import BurguerMenuBtn from './components/BurguerMenuBtn';
 import NavBar from './components/NavBar';
 
-import logo from '../../assets/logo-sem-fundo.svg'
+import logo from '../../assets/logo-sem-fundo.svg';
 import './style.css';
 
 const navDisplayFalse = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, navDisplay) => {
