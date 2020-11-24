@@ -23,6 +23,32 @@ const findAllSales = async () => {
   }
 };
 
+const findAllSalesByUserId = async (uid) => {
+  try {
+    console.log(`sale model salebyid: ${uid}`)
+    const db = await connection();
+    const table = await db.getTable('sales');
+    const results = await table.select([])
+    .where('user_id = :user_id')
+    .bind('user_id', uid)
+    .execute();
+    const sales = await results.fetchAll();
+    return sales.map(([id, userId, totalPrice, deliveryAddress,
+      deliveryNumber, saleDate, status = 'ordered']) => ({
+      id,
+      userId,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      saleDate,
+      status,
+    }));
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
 const findSaleById = async (saleId) => {
   try {
     const db = await connection();
@@ -105,6 +131,7 @@ const findOrderBySaleId = async (saleId) => {
 
 module.exports = {
   findAllSales,
+  findAllSalesByUserId,
   findSaleById,
   registerSale,
   findOrderBySaleId,

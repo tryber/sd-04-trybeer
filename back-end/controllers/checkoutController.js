@@ -31,7 +31,7 @@ const checkoutController = async (req, res) => {
       salesProductsService.registerSalesProductsService(
         registeredSale,
         //  usar o campo id mesmo
-        products[i].id,
+        products[i].productId,
         products[i].quantity,
       );
     }

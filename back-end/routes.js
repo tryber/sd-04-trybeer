@@ -25,12 +25,9 @@ routes.get(
   validateJWT,
   productController.findAllProductsController,
 );
-routes.get('/orders', validateJWT, saleController.findAllSalesController);
+routes.get('/orders', validateJWT, saleController.findSalesByUserIdController);
 routes.get('/orders/:id', validateJWT, saleController.findSalesBySaleId);
 routes.post('/checkout', findUserIdByEmail, checkoutController);
-<<<<<<< HEAD
-=======
 //  routes.post('/checkout', getDataTestController);
->>>>>>> 432ab672fbc9009272681f0ed185360c2462ad09
 
 module.exports = routes;

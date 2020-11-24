@@ -7,6 +7,11 @@ const registerSaleService = async (userId, totalPrice, deliveryAdress,
   return newSale;
 };
 
+const findSalesByUserId = async (uid) => {
+  const sales = await saleModel.findAllSalesByUserId(uid);
+  return sales;
+};
+
 const findAllSalesService = async () => {
   const allSales = await saleModel.findAllSales();
   return allSales;
@@ -20,5 +25,6 @@ const findSalesBySaleId = async (id) => {
 module.exports = {
   registerSaleService,
   findAllSalesService,
+  findSalesByUserId,
   findSalesBySaleId,
 };
