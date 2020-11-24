@@ -5,99 +5,21 @@
   height: 100vh;
 }
 
-.square {
-  align-items: center;
-  align-self: center;
-  border-radius: 7px;
-  display: flex;
-  flex-direction: column;
-  height: 85vh;
-  justify-content: center;
-  width: 300px;
-}
-
 .pageTitle {
   font-size: 25px;
   font-family: Roboto condensed;
   text-transform: uppercase;
 }
 
-.cheesIcon {
-  width: 80px;
+.profile-icon {
+  width: 150px;
 }
 
-.form-group {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin: 15px 0;
-}
-
-.label-text {
-  font-family: Roboto, sans-serif;
-  font-weight: 800;
-}
-
-.input-field {
-  border: 2px solid #0f0f0f;
+.admin-information {
+  background-color: rgba(252, 162, 17, 0.514);
   border-radius: 4px;
-  display: flex;
-  font-family: Roboto, sans-serif;
-  font-size: 15px;
-  height: 25px;
-  margin: 5px auto;
-  padding-left: 10px;
-  width: 270px;
-}
-
-.input-field::placeholder {
-  color: #5e5e5e;
-}
-
-.input-field:focus {
-  background-color: #fca311;
-  color: white;
-}
-
-.input-field:focus::placeholder {
-  color: white;
-}
-
-.input-field:read-only:focus {
-  background-color: white;
-  color: #0f0f0f;
-}
-
-.input-field:read-only::placeholder {
-  color: #5e5e5e;
-}
-
-.save-button {
-  align-items: center;
-  display: flex;
-  background-color: #fca311;
-  border: none;
-  color: #e5e5e5;
-  font-family: Roboto, sans-serif;
+  font-size: 20px;
   font-weight: 500;
-  height: 30px;
-  justify-content: center;
-  margin: 30px auto 0;
-  width: 100px;
-}
-
-.save-button:disabled {
-  background-color: #e5e5e5;
-  color: #383737;
-}
-
-@media screen and (min-width: 650px) {
-  .square {
-     height: 100vh;
-     width: 100vh;
-  }
-
-  .input-field {
-    width: 70vh;
-  }
+  padding: 10px 16px;
+  width: 50%;
 }
