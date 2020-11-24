@@ -11,7 +11,7 @@ adminRouter
     '/',
     middleware.authJWT,
     middleware.validateUpdateStatusSales,
-    salesController.updateStatusCont
+    salesController.updateStatusCont,
   );
 
 module.exports = { adminRouter };

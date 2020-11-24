@@ -63,7 +63,10 @@ const updateUsersNameMod = async (name, email) => {
 const getAllUsers = async () => {
   try {
     const db = await connection();
-    const usersDB = await db.getTable('users').select().execute();
+    const usersDB = await db
+      .getTable('users')
+      .select()
+      .execute();
     const allUsers = await usersDB.fetchAll();
     return allUsers.map(([id, name, email, password, role]) => ({
       id,
