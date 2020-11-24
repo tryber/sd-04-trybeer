@@ -36,9 +36,7 @@ const UserRegister = () => {
 
   const disableButton = !nameValidated() || !password || password.length < six || !emailValidated();
 
-  const handleSubmit = async (e) => (
-    e.preventDefault();
-
+  const handleSubmit = async (e) => {
     const role = checkbox === 'on' ? 'administrator' : 'client';
 
     const apiResult = await API.registerApi(name, email, password, role);
@@ -56,7 +54,8 @@ const UserRegister = () => {
       localStorage.setItem('user', 'newUser');
       return history.push('/products');
     }
-  );
+    return e.preventDefault();
+  };
 
   return (
     <div>
