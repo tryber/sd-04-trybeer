@@ -45,9 +45,9 @@ const ProductsCard = ({
       <img src={ img } alt="Aqui vai uma imagem" data-testid={ `${testid}-product-img` } />
       <span className="product-title" data-testid={ `${testid}-product-name` }>{ name }</span>
       <div className="product-card-panel">
-        <button onClick={ decrementValue } type="button" data-testid={ `${testid}-product-minus` }>-</button>
+        <button onClick={ decrementValue } type="button" data-testid={ `${testid}-product-minus` } className="sum-button">-</button>
         <span data-testid={ `${testid}-product-qtd` }>{qtd}</span>
-        <button onClick={ incrementValue } type="button" data-testid={ `${testid}-product-plus` }>+</button>
+        <button onClick={ incrementValue } type="button" data-testid={ `${testid}-product-plus` } className="sum-button">+</button>
       </div>
     </div>
   );

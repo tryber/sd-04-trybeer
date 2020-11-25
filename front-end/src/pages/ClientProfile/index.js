@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import { updateProfileValidation } from '../../validation';
 import api from '../../services/api';
-import cheersIcon from '../../assets/beer.svg';
+import profileIcon from '../../assets/profile-icon.svg';
 import './styles.css';
 
 // const getUser = async (name, email, setMessage) => {
@@ -43,14 +43,14 @@ const ClientProfile = () => {
     <div className="container">
       <Header title="Meu perfil" />
       <div className="square">
-        <h1 className="pageTitle">Perfil do Cliente</h1>
-        <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
+        <h1 className="pageTitle">Meu Perfil</h1>
+        <img src={ profileIcon } className="profile-icon" alt="Cheers Beer Icon" />
         <form onSubmit={ handleSubmit } className="form">
           <div className="form-group">
             <label htmlFor="name" className="label-text">
               Nome
               <input
-                className="input-field"
+                className="input-field-profile"
                 placeholder="Nome Completo"
                 type="text"
                 data-testid="profile-name-input"
@@ -65,7 +65,7 @@ const ClientProfile = () => {
               Email
               <input
                 data-testid="profile-email-input"
-                className="input-field"
+                className="input-field-profile"
                 placeholder="Email"
                 type="text"
                 value={ userEmail }
@@ -78,7 +78,7 @@ const ClientProfile = () => {
               disabled={ updateProfileValidation(userName) || intialName === userName }
               type="submit"
               data-testid="profile-save-btn"
-              className="save-button"
+              className="save-button-profile"
             >
               Salvar
             </button>

@@ -18,6 +18,18 @@ header {
   background-color: #0f0f0f;
 }
 
+.flex-title-container {
+  display: flex;
+}
+
+.top-title {
+  color: transparent;
+}
+
+.logo {
+  width: 130px;
+}
+
 .menu-hamburger-btn {
   background-color: #0f0f0f;
   border: none;

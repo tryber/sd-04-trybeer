@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { EMAIL_PATTERN, PASS_LENGTH, setLocalStorage } from '../../validation';
 
-import userIcon from '../../assets/user.png';
+import userIcon from '../../assets/user.svg';
 
 import './style.css';
 import api from '../../services/api';
@@ -43,8 +43,8 @@ const Login = () => {
 
   return (
     <div className="main-container-form">
-      <img src={ userIcon } alt="Login" />
-      <form onSubmit={ handleSubmit }>
+      <img src={ userIcon } alt="Login" className="user-icon" />
+      <form onSubmit={ handleSubmit } className="login-form">
         <label className="login-label" htmlFor="emailInput">
           Email
           <input
@@ -70,12 +70,13 @@ const Login = () => {
             type="submit"
             data-testid="signin-btn"
             disabled={ !checkEmail(email) || !checkPass(password) }
+            className="login-button"
           >
             ENTRAR
           </button>
         </div>
       </form>
-      <Link to="/register" data-testid="no-account-btn">
+      <Link to="/register" data-testid="no-account-btn" className="register-link">
         Ainda não tenho conta
       </Link>
     </div>
