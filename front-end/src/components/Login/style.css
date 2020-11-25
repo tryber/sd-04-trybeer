@@ -10,6 +10,7 @@ img {
 
 .main-container-form {
   margin: 64px auto 0;
+  max-width: 400px;
 }
 
 img {
@@ -24,9 +25,9 @@ form {
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  max-width: 400px;
   margin: 0 auto;
   padding: 16px;
+  
 }
 
 .login-label, .login-label input {
@@ -40,7 +41,8 @@ form {
 #passwordInput {
   border: 2px solid;
   border-radius: 4px;
-  height: 30px;
+  box-sizing: border-box;
+  height: 46px;
   margin-bottom: 16px;
   padding: 8px;
 }
