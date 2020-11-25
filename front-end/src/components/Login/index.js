@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import { EMAIL_PATTERN, PASS_LENGTH } from '../../validation';
+import { EMAIL_PATTERN, PASS_LENGTH, setLocalStorage } from '../../validation';
 
-import userIcon from '../../assets/user.png';
+import userIcon from '../../assets/user.svg';
 
 import './style.css';
 import api from '../../services/api';
@@ -16,20 +16,35 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // {
+  //   "name": "Taylor Swift",
+  //   "email": "taylorswift@email.com",
+  //   "token": "eyJhb",
+  //   "role": "client"
+  // }
+
+  // const saveUserData = (userData) => {
+  //   localStorage.setItem('user', JSON.stringify(userData));
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data } = await api.post('/login', { email, password });
-    if (data.role === 'administrator') {
+    const response = await api.post('/login', { email, password });
+    if (response.data.role === 'administrator') {
+      // saveUserData(response.data);
+      setLocalStorage(response.data);
       history.push('/admin/orders');
     } else {
+      // saveUserData(response.data);
+      setLocalStorage(response.data);
       history.push('/products');
     }
   };
 
   return (
     <div className="main-container-form">
-      <img src={ userIcon } alt="Login" />
-      <form onSubmit={ handleSubmit }>
+      <img src={ userIcon } alt="Login" className="user-icon" />
+      <form onSubmit={ handleSubmit } className="login-form">
         <label className="login-label" htmlFor="emailInput">
           Email
           <input
@@ -55,12 +70,13 @@ const Login = () => {
             type="submit"
             data-testid="signin-btn"
             disabled={ !checkEmail(email) || !checkPass(password) }
+            className="login-button"
           >
             ENTRAR
           </button>
         </div>
       </form>
-      <Link to="/register" data-testid="no-account-btn">
+      <Link to="/register" data-testid="no-account-btn" className="register-link">
         Ainda não tenho conta
       </Link>
     </div>

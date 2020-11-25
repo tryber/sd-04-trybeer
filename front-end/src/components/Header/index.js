@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 550dcf4df5e1ad871a04f58497f1706b9cdb5d02
 import BurguerMenuBtn from './components/BurguerMenuBtn';
 import NavBar from './components/NavBar';
 
+import logo from '../../assets/logo-sem-fundo.svg';
 import './style.css';
 
 const navDisplayFalse = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, navDisplay) => {
@@ -28,7 +33,11 @@ const navDisplayTrue = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, n
   }, TIME);
 };
 
+<<<<<<< HEAD
 const Header = ({ title, dataTestid }) => {
+=======
+const Header = ({ title }) => {
+>>>>>>> 550dcf4df5e1ad871a04f58497f1706b9cdb5d02
   const [navDisplay, setNavDisplay] = useState(false);
   const [navStyle, setNavStyle] = useState({});
   const [transitionMenuHambuger, setTransitionMenuHambuger] = useState({});
@@ -45,7 +54,10 @@ const Header = ({ title, dataTestid }) => {
           navDisplayFalse={navDisplayFalse}
           navDisplayTrue={navDisplayTrue}
         />
-        <h1 data-testid={dataTestid}>{title}</h1>
+        <div className="flex-title-container">
+          <h1 data-testid="top-title" className="top-title">{ title }</h1>
+          <img src={ logo } alt="Logo" className="logo" />
+        </div>
         {navDisplay && (
           <NavBar
             navStyle={navStyle}
@@ -62,8 +74,7 @@ const Header = ({ title, dataTestid }) => {
 };
 
 Header.propTypes = {
-  title: PropTypes.string,
-  dataTestid: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 export default Header;

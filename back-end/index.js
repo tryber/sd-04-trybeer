@@ -6,9 +6,11 @@ const routes = require('./routes');
 const app = express();
 const port = 3001;
 
+app.use('/images', express.static('images'));
+
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/', routes.userRoutes);
+app.use('/', routes.userRoutes, routes.productsRoutes);
 
-app.listen(port, () => console.log('Example app listening on port port!'));
+app.listen(port, () => console.log(`App listening on port ${port}!`));

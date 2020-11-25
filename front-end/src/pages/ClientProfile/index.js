@@ -1,100 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
-// import Footer from '../../components/Rodape';
-import cheersIcon from '../../assets/beer.svg';
+import { updateProfileValidation } from '../../validation';
+import api from '../../services/api';
+import profileIcon from '../../assets/profile-icon.svg';
 import './styles.css';
-
-const ClientProfile = () => {
-  const [userEmail] = useState('');
-  const [userName, setUserName] = useState('');
-  const [inputUserName] = useState('');
-  const [disableButton, setDisableButton] = useState(true);
-  const [message] = useState('');
-
-  // const [userEmail, /* setUserEmail */] = useState('');
-  // const [userName, setUserName] = useState('');
-  // const [inputUserName, /* setInputUserName */] = useState('');
-  // const [disableButton, setDisableButton] = useState(true);
-  // const [message, /* setMessage */] = useState('');
-  // useEffect(() => {
-  //   const { email, name } = JSON.parse(localStorage.getItem('user'));
-  //   setUserEmail(email);
-  //   setUserName(name);
-  //   setInputUserName(name);
-  // }, []);
-
-  const minNameLenght = 12;
-
-  return (
-    <div className="container">
-      <div className="square">
-        <Header title="Perfil do cliente" />
-        <h1 className="pageTitle">Perfil do Cliente</h1>
-        <img src={ cheersIcon } className="cheesIcon" alt="Cheers Beer Icon" />
-        <form method="POST" action="/profile" className="form">
-          <div className="form-group">
-            <label htmlFor="name" className="label-text">
-              Nome
-              <input
-                className="input-field"
-                placeholder="Nome Completo"
-                type="text"
-                data-testid="profile-name-input"
-                name="name"
-                value={ userName }
-                onChange={ (e) => {
-                  setUserName(e.target.value);
-                  setDisableButton(
-                    !(e.target.value.length >= minNameLenght)
-                    && !(e.target.value !== inputUserName),
-                  );
-                } }
-                required
-              />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="email" className="label-text">
-              Email
-              <input
-                data-testid="profile-email-input"
-                className="input-field"
-                placeholder="Email"
-                type="text"
-                name="email"
-                value={ userEmail }
-                readOnly
-              />
-            </label>
-          </div>
-          <div className="div_btn">
-            <button
-              disabled={ disableButton }
-              type="button"
-              data-testid="profile-save-btn"
-              className="save-button"
-            // onClick={() => getUser(userName, userEmail, setMessage)}
-            >
-              Salvar
-            </button>
-            <span>{message}</span>
-          </div>
-        </form>
-        {/* <Footer className="footer" /> */}
-      </div>
-    </div>
-  );
-};
-
-export default ClientProfile;
-
-// para por nos services?
-// import axios from 'axios';
 
 // const getUser = async (name, email, setMessage) => {
 //   try {
-//     const { status } = await axios.put(
-//       'http://localhost:3001/users',
+//     const { status } = await api.put(
 //       { name, email },
 //       { headers: { Authorization: JSON.parse(localStorage.getItem('user')).token } },
 //     );
@@ -104,3 +17,77 @@ export default ClientProfile;
 //     setMessage(err.message);
 //   }
 // };
+
+const ClientProfile = () => {
+  const [userEmail, setUserEmail] = useState('');
+  const [userName, setUserName] = useState('');
+  const [message, setMessage] = useState('');
+  const [intialName, setInitialName] = useState(userName);
+
+  useEffect(() => {
+    const { name, userEmail: email } = JSON.parse(localStorage.getItem('user'));
+    setUserName(name);
+    setInitialName(name);
+    setUserEmail(email);
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { data } = await api.put('/updateUser', { userName, userEmail });
+    if (typeof data === 'string') {
+      setMessage(data);
+    }
+  };
+
+  return (
+    <div className="container">
+      <Header title="Meu perfil" />
+      <div className="square">
+        <h1 className="pageTitle">Meu Perfil</h1>
+        <img src={ profileIcon } className="profile-icon" alt="Cheers Beer Icon" />
+        <form onSubmit={ handleSubmit } className="form">
+          <div className="form-group">
+            <label htmlFor="name" className="label-text">
+              Nome
+              <input
+                className="input-field-profile"
+                placeholder="Nome Completo"
+                type="text"
+                data-testid="profile-name-input"
+                value={ userName }
+                onChange={ (e) => setUserName(e.target.value) }
+                required
+              />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="email" className="label-text">
+              Email
+              <input
+                data-testid="profile-email-input"
+                className="input-field-profile"
+                placeholder="Email"
+                type="text"
+                value={ userEmail }
+                readOnly
+              />
+            </label>
+          </div>
+          <div className="div_btn">
+            <button
+              disabled={ updateProfileValidation(userName) || intialName === userName }
+              type="submit"
+              data-testid="profile-save-btn"
+              className="save-button-profile"
+            >
+              Salvar
+            </button>
+          </div>
+        </form>
+        <span>{message}</span>
+      </div>
+    </div>
+  );
+};
+
+export default ClientProfile;

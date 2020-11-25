@@ -1,28 +1,45 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import { registerValidation } from '../../validation';
+import { registerValidation, setLocalStorage } from '../../validation';
 import api from '../../services/api';
 
-import TrybeerLogo from '../../imgs/logo.png';
+import womanRegister from '../../assets/woman-register.svg';
 
 import './styles.css';
 
 const Register = () => {
+  const history = useHistory();
   const [userName, setUserName] = useState('');
   const [emailUser, setEmailUser] = useState('');
   const [password, setPassword] = useState('');
   const [isSeller, setIsSeller] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const checkRole = async ({ name, email, role }) => {
+    // history.push(role === 'administrator' ? '/admin/orders' : '/products');
+    setLocalStorage({ name, email, role });
+    if (role === 'administrator') {
+      history.push('/admin/orders');
+    } else {
+      history.push('/products');
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post('/register', {
+      const result = await api.post('/register', {
         userName,
         emailUser,
         password,
         isSeller,
       });
+      if (result.data.message) {
+        setMessage(result.data.message);
+      } else {
+        checkRole(result.data);
+      }
     } catch (error) {
       // alert(error.message);
       // throw new Error();
@@ -31,7 +48,7 @@ const Register = () => {
 
   const ableRegisterButton = () => (
     <div className="btn-div">
-      <Link to="/">
+      <Link to="/" className="disable-link">
         <button
           data-testid="signup-btn"
           type="button"
@@ -47,7 +64,7 @@ const Register = () => {
 
   return (
     <article className="page-registro">
-      <img src={ TrybeerLogo } alt="Trybeer logo developed by Luma Arruda" className="logo-trybeer" />
+      <img src={ womanRegister } alt="Woman drinking" className="logo-trybeer" />
 
       <form className="form-registro">
         <label className="input-labels" htmlFor="input-name">
@@ -107,10 +124,9 @@ const Register = () => {
             </span>
           </label>
         </div>
-
         {ableRegisterButton()}
-
       </form>
+      <span>{message}</span>
     </article>
   );
 };
