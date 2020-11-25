@@ -36,11 +36,15 @@ const OrderedsCard = ({
   );
 };
 
+OrderedsCard.defaultProps = {
+  saleDate: '',
+};
+
 OrderedsCard.propTypes = {
   testid: PropTypes.number.isRequired,
   orderNumber: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
-  saleDate: PropTypes.string.isRequired,
+  saleDate: PropTypes.string,
 };
 
 export default OrderedsCard;
