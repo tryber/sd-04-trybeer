@@ -38,7 +38,10 @@ const Profile = () => {
         return null;
       }
       if (!localStorage.user) localStorage.user = JSON.stringify(result.data);
-      const redirect = jwtDecode(result.data).role === 'client' ? '/products' : '/admin/orders';
+      const redirect =
+        jwtDecode(result.data).role === 'client'
+          ? '/products'
+          : '/admin/orders';
       return history.push(redirect);
     },
   });
@@ -46,7 +49,7 @@ const Profile = () => {
   return (
     <div>
       <p>This is the {userRole.role} profile page</p>
-      <Alert isOpen={ isOpen } onClose={ onClose } message={ error } />
+      <Alert isOpen={isOpen} onClose={onClose} message={error} />
       <form action="/profile">
         <input readOnly value={userRole.email} />
         <label for="name">Name:</label>
@@ -54,16 +57,16 @@ const Profile = () => {
         <input type="submit" value="Submit"></input>
       </form>
       <Button
-          type="submit"
-          data-testid="signin-btn"
-          disabled={
-            formik.errors.loginPassword
-            || formik.errors.loginEmail
-            || formik.isSubmitting
-          }
-        >
-          ENTRAR
-        </Button>
+        type="submit"
+        data-testid="signin-btn"
+        disabled={
+          formik.errors.loginPassword ||
+          formik.errors.loginEmail ||
+          formik.isSubmitting
+        }
+      >
+        ENTRAR
+      </Button>
     </div>
   );
 };
