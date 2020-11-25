@@ -14,7 +14,7 @@ const sendEdit = async (e, name, email, history, setMessage) => {
   // ========================== //
 };
 
-const URL = 'http://localhost:3001/profile/1';
+const URL = 'http://localhost:3001/profile/2';
 
 export default () => {
   const [message, setMessage] = useState(null);
