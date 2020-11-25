@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const { login } = require('./controllers/login');
+const { userUpdate } = require('./controllers/profile');
 const productController = require('./controllers/products');
-// const { validateJWT } = require('./middlewares/validateJWT');
 const { register } = require('./controllers/register');
 
 const app = express();
@@ -17,7 +17,7 @@ app.use('/images', express.static('images'));
 
 app.post('/login', login);
 app.get('/products', productController.getAll);
-
+app.put('/profile', userUpdate);
 app.post('/register', register);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
