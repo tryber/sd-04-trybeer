@@ -5,7 +5,7 @@ const userUpdate = async (req, res) => {
   const { id, name } = req.body;
   try {
     await updateUser(id, name);
-    const user = getById(id);
+    const user = await getById(id);
     const { password: _, ...userWithoutPassword } = user;
     const token = createToken(userWithoutPassword);
 
