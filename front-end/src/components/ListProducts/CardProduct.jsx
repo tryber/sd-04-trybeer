@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState }from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart, removeFromCart, updateQuantity } from '../../redux/actions';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import Rating from '@material-ui/lab/Rating';
+import '../../css/pageProducts.css';
 
 function CardProduct(props) {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [starValue] = useState(Math.floor(Math.random() * 5) + 2);
+
   const {
     name, price, url_image: img, quantity, index,
   } = props;
+
   const priceArrendodado = price.toLocaleString('pt-br', {
     style: 'currency',
     currency: 'BRL',
   });
+
   const dispatch = useDispatch();
   const handleCart = (number) => {
     if (number < 0 && !quantity) return null;
@@ -18,36 +27,50 @@ function CardProduct(props) {
     } else if (quantity + number <= 0) dispatch(removeFromCart(props));
     else dispatch(updateQuantity({ ...props, number }));
   };
+
   return (
-    <div className="product-card">
+    <div className="product-card scale-in-center">
+
+      <div id ="flex-container">
+        <span data-testid={ `${index}-product-price` } className="product-price">
+          {priceArrendodado}
+        </span>
+        {isFavorite ?
+          <FavoriteIcon onClick={() => setIsFavorite(!isFavorite)} style={{ color: "red" }} />
+          : <FavoriteBorderIcon onClick={() => setIsFavorite(!isFavorite)} />}
+      </div>
+
       <img
         data-testid={ `${index}-product-img` }
         src={ img }
         alt={ name }
       />
-      <span data-testid={ `${index}-product-name` }>{name}</span>
-      <div>
-        <div className="product-quantity">
-          <button
-            data-testid={ `${index}-product-minus` }
-            onClick={ () => handleCart(-1) }
-            type="button"
-          >
-            -
-          </button>
-          <span data-testid={ `${index}-product-qtd` }>{quantity || 0}</span>
-          <button
-            data-testid={ `${index}-product-plus` }
-            onClick={ () => handleCart(1) }
-            type="button"
-          >
-            +
-          </button>
-        </div>
-        <span data-testid={ `${index}-product-price` } className="product-price">
-          {priceArrendodado}
-        </span>
+
+      <span data-testid={`${index}-product-name`}>{name}</span>
+
+      <Rating
+        value={starValue}
+        precision={0.5}
+      />
+
+      <div className="product-quantity">
+        <button
+          data-testid={ `${index}-product-minus` }
+          onClick={ () => handleCart(-1) }
+          type="button"
+        >
+          -
+        </button>
+        <span data-testid={ `${index}-product-qtd` }>{quantity || 0}</span>
+        <button
+          data-testid={ `${index}-product-plus` }
+          onClick={ () => handleCart(1) }
+          type="button"
+        >
+          +
+        </button>
       </div>
+
     </div>
   );
 }

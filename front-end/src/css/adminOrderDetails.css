@@ -6,6 +6,10 @@
   display: none;
 }
 
+.admin-order-details {
+  background: linear-gradient(45deg, #838383 0%,#cfcfcf 10%,#f3f3f3 25%,#f3f3f3 37%,#b4b3b3cc 50%,#eaeaea 51%,#f6f6f6 83%,#acacac 100%);
+}
+
 .cardDetails {
   text-decoration: none;
   border-style: groove;
@@ -26,6 +30,7 @@
   padding-left: 200px;
   padding-top: 54px;
   flex: 1;
+  
 }
 .marginDetails > * {
   margin-left: auto;

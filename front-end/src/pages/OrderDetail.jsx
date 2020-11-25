@@ -13,10 +13,10 @@ function OrderDetail() {
   }, [id]);
 
   return (
-    <div className="page">
+    <>
       <Header>Detalhes de pedido</Header>
       {details ? <SalesDetails details={details} /> : <Loading />}
-    </div>
+    </>
   );
 }
 

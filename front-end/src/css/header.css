@@ -7,6 +7,8 @@
   display: flex;
   pointer-events: none;
   height: 100%;
+  max-height: 400px;
+  z-index: 10;
 }
 
 .header-container button, .header-container a {
@@ -109,7 +111,7 @@
   }
   .side-bar {
     border-right: 3px solid rgb(177, 23, 23);
-    box-shadow: 5px 20px 20px rgba(182, 0, 0, 0.473);
+    border-bottom: 3px solid rgb(177, 23, 23);
   }
 }
 

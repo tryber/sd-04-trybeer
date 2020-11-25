@@ -14,7 +14,7 @@ export default function Orders() {
     <div className="page">
       <Header>Meus Pedidos</Header>
       {sales.length < 1 && (
-        <div className="page-content">
+        <div className="orders-page">
           <span className="noOrders">
             "A culpa é minha e eu coloco ela em quem eu quiser!"
             <br />
@@ -23,7 +23,7 @@ export default function Orders() {
         </div>
       )}
       {sales.length > 0 && (
-        <div className="page-content">
+        <div className="orders-page page-content">
           <div className="container">
             <h5>"Ao álcool... A causa e solução de todos os problemas"</h5>
           </div>

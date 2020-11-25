@@ -1,36 +1,123 @@
+.checkout-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.checkout-page > h1 {
+  display: block;
+  margin-top: 15px;
+  margin-right: auto;
+  margin-left: 25px;
+}
+
 .cart-products {
   display: flex;
-  border: 1px solid black;
+  border-radius: 10px;
   align-items: center;
+  width: 375px;
   margin-top: 15px;
   margin-bottom: 15px;
+  justify-content: space-around;
   font-weight: 600;
+  box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.466);
+}
+
+.cart-img {
+  height: 100px;
+}
+
+.cart-name {
+  position: relative;
+  margin-left: -15px;
 }
 
 .cart-qtd {
   width: 35px;
 }
 
-.cart-name {
-  flex: 2.5;
-}
-
-.cart-total {
-  flex: 1;
-}
-
-.cart-price {
+.flex-column {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  border: 1px solid brown;
+  font-size: 14pt;
 }
 
-.cart-price > button {
-  width: 45px;
-  height: 35px;
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-row > button {
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: red;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.total-price {
+  display: block;
+  margin-left: auto;
+  margin-right: 25px;
+  font-size: 18pt;
+  font-weight: 600;
 }
 
 .order-total-value {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+}
+
+.form-style {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-style > label {
+  font-size: 18pt;
+}
+
+.form-style > label > input {
+  background: linear-gradient(45deg, #4d4d4d 0,#242424 100%);
+  border-radius: 5px;
+  color: #f2f2f2;
+  height: 25px;
+  opacity: 0.8;
+  padding: 10px;
+  transition: opacity 0.5s;
+  width: 95%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.466);
+}
+
+.form-style > label > input:hover {
+  opacity: 1;
+}
+
+.btn-finish {
+  background: linear-gradient(45deg, #4d4d4d 0,#242424 100%);
+  border: 2px solid rgb(177, 23, 23);
+  padding: 10px;
+  border-radius: 4px;
+  color: white;
+  font-size: 22px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  width: 200px;
+  font-family: simpsons;
+}
+
+.btn-finish:hover {
+  cursor: pointer;
+  border: 2px solid rgb(1, 255, 22);
+  opacity: 1;
 }

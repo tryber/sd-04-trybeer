@@ -4,6 +4,7 @@ import { Header } from '../components/Header';
 import { useHistory } from 'react-router-dom';
 import { postOrder } from '../services/TrybeerApi';
 import { removeAllCart } from '../redux/actions';
+import '../css/checkoutPage.css';
 
 const Checkout = () => {
   const user = JSON.parse(localStorage.getItem('user') || null)
@@ -40,72 +41,92 @@ const Checkout = () => {
   return (
     <>
       <Header>Finalizar Pedido</Header>
-      <h2>Produtos</h2>
+      <div className="checkout-page">
+        <h1>Produtos</h1>
+        {cart.length < 1 && <h2>Não há produtos no carrinho</h2>}
+        {cart.map(({ price, name, quantity, url_image }, index) => (
+          <div className="cart-products" key={name}>
+            <img className="cart-img" src={url_image} alt={name} />
+            
+            <div className="flex-collum">
+              <div className="cart-name" data-testid={`${index}-product-name`}>
+              {name}
+              </div>
+              <div className="flex-row">
+                <div className="cart-qtd" data-testid={`${index}-product-qtd-input`}>
+                {quantity}
+                </div>
+                <div className="cart-price" data-testid={ `${index}-product-unit-price` }>
+                  { `(${price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} un)` }
+                </div>
+              </div>
+            </div>
 
-      {cart.length < 1 && <h2>Não há produtos no carrinho</h2>}
+            <div className="flex-row">
+              <div className="cart-total" data-testid={ `${index}-product-total-value` }>
+              {`${(quantity * price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`}
+              </div>
 
-      {cart.map(({ price, name, quantity }, index) => (
-        <div className="cart-products" key={ name }>
-          <div className="cart-qtd" data-testid={ `${index}-product-qtd-input` }>{ quantity }</div>
-          <div className="cart-name" data-testid={ `${index}-product-name` }>{ name }</div>
-          <div className="cart-total" data-testid={ `${index}-product-total-value` }>
-            {`${(quantity * price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`}
+              <button
+                type="submit"
+                value="Submit"
+                data-testid={ `${index}-removal-button` }
+                onClick={ () => removeItemCart(index) }
+              >
+                X
+              </button>
+            </div>
           </div>
-          <div className="cart-price" data-testid={ `${index}-product-unit-price` }>
-            { `(${price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} un)` }
-            <button
-              type="submit"
-              value="Submit"
-              data-testid={ `${index}-removal-button` }
-              onClick={ () => removeItemCart(index) }
-            >
-              X
-            </button>
-          </div>
+        ))}
+
+        <div
+          className="total-price"
+          data-testid="order-total-value"
+        >
+          { `Total: ${totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}` }
         </div>
-      ))}
 
-      <div data-testid="order-total-value">
-        { `Total: ${totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}` }
+        <h1>Endereço</h1>
+
+        <div className="form-style">
+          <label htmlFor="street">
+            Rua:
+            <input
+              id="street"
+              name="street"
+              data-testid="checkout-street-input"
+              type="text"
+              required
+              onChange={ (e) => setNameAdress(e.target.value) }
+              value={ nameAdress }
+            />
+          </label>
+
+          <label htmlFor="number">
+            Número da casa:
+            <input
+              id="number"
+              name="number"
+              data-testid="checkout-house-number-input"
+              type="text"
+              required
+              onChange={ (e) => setNumberAdress(e.target.value) }
+              value={ numberAdress }
+            />
+          </label>
+        </div>
+
+        <button
+          type="button"
+          className="btn-finish"
+          data-testid="checkout-finish-btn"
+          disabled={ totalPrice <= numberZero || !nameAdress || !numberAdress }
+          onClick={ () => requestApi() }
+        >
+          Finalizar Pedido
+        </button>
+        { message && <p>{message}</p>}
       </div>
-
-      <h2>Endereço</h2>
-      <label htmlFor="street">
-        Rua:
-        <input
-          id="street"
-          name="street"
-          data-testid="checkout-street-input"
-          type="text"
-          required
-          onChange={ (e) => setNameAdress(e.target.value) }
-          value={ nameAdress }
-        />
-      </label>
-      <br />
-      <label htmlFor="number">
-        Número da casa:
-        <input
-          id="number"
-          name="number"
-          data-testid="checkout-house-number-input"
-          type="text"
-          required
-          onChange={ (e) => setNumberAdress(e.target.value) }
-          value={ numberAdress }
-        />
-      </label>
-      <br />
-      <button
-        type="button"
-        data-testid="checkout-finish-btn"
-        disabled={ totalPrice <= numberZero || !nameAdress || !numberAdress }
-        onClick={ () => requestApi() }
-      >
-        Finalizar Pedido
-      </button>
-      { message && <p>{message}</p>}
-
       { message && 
         setTimeout(() => {
           history.push('/products');
