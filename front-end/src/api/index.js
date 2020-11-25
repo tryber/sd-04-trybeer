@@ -18,3 +18,11 @@ export const postRegister = async (signName, signEmail, signPassword, signRole) 
 export const listProducts = async () => axios
   .get(`${url}/products`)
   .catch(({ response }) => response);
+
+export const postCheckout = async (products, address, number) => axios
+  .post(`${url}/checkout`, {
+    products,
+    address,
+    number,
+  })
+  .catch((response) => response);
