@@ -23,8 +23,8 @@ const Login = () => {
   // VARIÁVEL QUE DEFINE O "ESTADO" DO BOTÃO
   const disableButton = !password || password.length < 6 || !emailValidated();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    // e.preventDefault();
 
     API.loginApi(eMail, password)
 
@@ -44,12 +44,12 @@ const Login = () => {
 
     return history.push('/admin/orders');
     })
-    .catch((error) => setErrorMsg(error.data.response));
+    .catch((error) => { setErrorMsg(error.response.data)); console.log(error.response)};
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="m-3">
+      <form className="m-3">
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
             <label htmlFor="email">Email</label>
@@ -83,9 +83,10 @@ const Login = () => {
           <div className="mx-auto m-2">
             <button
               data-testid="signin-btn"
-              type="submit"
+              type="button"
               disabled={disableButton}
               className="btn btn-warning m-2"
+              onClick={() => handleSubmit()}
             >
               ENTRAR
             </button>
