@@ -28,11 +28,41 @@ const initQttPdtsCart = (products, setTotalPriceCart) => {
   setLS('qttPdtsCart', qtt);
 
   return qtt;
-}
+};
 
 // Hook de effect customizado, com uma IIFE interna, criado para
 // diminuir a lógica dentro do componente default
-const useEffectCustom = (setQttPdtsCart, setTotalPriceCart, setProducts, history) => {
+// const useEffectCustom = (setQttPdtsCart, setTotalPriceCart, setProducts, history) => {
+//   useEffect(() => {
+//     (async () => {
+//       try {
+//         if (!getLS('user')) return history.push('/login');
+
+//         const token = getLS('user').token;
+
+//         const products = await api.getProducts(token);
+
+//         setQttPdtsCart(initQttPdtsCart(products.data, setTotalPriceCart));
+//         setProducts(products.data);
+//       } catch (e) {
+//         // console.log({ error: e.message })
+//       }
+//     })();
+//   }, [setQttPdtsCart, setTotalPriceCart, setProducts, history]);
+// };
+
+export default () => {
+  const history = useHistory();
+  // Registros de produtos do mysql
+  const [products, setProducts] = useState([]);
+  const {
+    qttPdtsCart: [qttPdtsCart, setQttPdtsCart],
+    totalPriceCart: [totalPriceCart, setTotalPriceCart]
+  } = useContext(TrybeerContext);
+  // const totalPriceCartLs = getLS('totalPriceCart');
+
+  // useEffectCustom(setQttPdtsCart, setTotalPriceCart, setProducts, history);
+
   useEffect(() => {
     (async () => {
       try {
@@ -49,19 +79,6 @@ const useEffectCustom = (setQttPdtsCart, setTotalPriceCart, setProducts, history
       }
     })();
   }, [setQttPdtsCart, setTotalPriceCart, setProducts, history]);
-};
-
-export default () => {
-  const history = useHistory();
-  // Registros de produtos do mysql
-  const [products, setProducts] = useState([]);
-  const {
-    qttPdtsCart: [qttPdtsCart, setQttPdtsCart],
-    totalPriceCart: [totalPriceCart, setTotalPriceCart]
-  } = useContext(TrybeerContext);
-  // const totalPriceCartLs = getLS('totalPriceCart');
-
-  useEffectCustom(setQttPdtsCart, setTotalPriceCart, setProducts, history);
 
   return (
     <div>

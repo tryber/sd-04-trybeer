@@ -5,13 +5,13 @@ import UserRegister from './components/UserRegister';
 import UserProfile from './components/UserProfile/index';
 import AdminProfile from './components/AdminProfile/index';
 import ClientProducts from './components/screens/ClientProducts/ClientProducts';
-import ClientCheckout from './components/Checkout';
+// import ClientCheckout from './components/Checkout';
 import PrivateRoute from './components/Auth';
 
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <PrivateRoute path="/checkout" component={ ClientCheckout } />
+      {/* <PrivateRoute path="/checkout" component={ ClientCheckout } /> */}
       <Route path="/products" component={ ClientProducts } />
       <Route path="/register" component={ UserRegister } />
       <Route path="/login" component={ Login } />
