@@ -22,9 +22,9 @@ const ProductsCard = ({
     const indice = productList.findIndex((item) => item.id === id);
     if (productList[indice].quantity > VALOR_ZERO) {
       productList[indice].quantity -= 1;
+      seTotalCarrinho(() => totalCarrinho - price);
+      localStorage.setItem('totalCarrinho', (totalCarrinho - price).toFixed(CASAS_DECIMAIS));
     }
-    seTotalCarrinho(() => totalCarrinho - price);
-    localStorage.setItem('totalCarrinho', (totalCarrinho - price).toFixed(CASAS_DECIMAIS));
     setProductList(productList);
   };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import OrderedsCard from '../../components/OderedsCard';
+// import OrderedsCard from '../../components/OderedsCard';
 import SideMenuAdmin from '../../components/SideMenuAdmin';
 
 import './styles.css';
@@ -12,7 +12,7 @@ const MyOrdereds = () => (
     </aside>
     <section className="admin-orders-loader">
       {/* Rodar um map() depois */}
-      <OrderedsCard testid={ 1 } />
+      {/* <OrderedsCard testid={ 1 } /> */}
     </section>
   </article>
 );
