@@ -32,7 +32,7 @@ function Details() {
         </div>
         <div>
           {order.map((p, index) => (
-            <div>
+            <div key={`${index}item`}>
               <div>
                 <div className="products">
                   <span data-testid={`${index}-product-qtd`}>{p.quantity}</span>
