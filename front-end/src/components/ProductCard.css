@@ -7,7 +7,7 @@
 .beer-card {
   align-items: center;
   border: 2px solid black;
-  box-shadow: 2px 2px 1px white;
+  box-shadow: 2px 2px 2px rgb(201, 201, 201);
   border-radius: 10px;
   display: flex;
   flex-direction: column;

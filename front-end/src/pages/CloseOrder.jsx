@@ -103,6 +103,7 @@ function CloseOrder() {
     setStore();
     console.log(`eu sou o log do doneOrder: ${total}`)
     postData(email, total, address, number, orderDate, cart);
+    localStorage.removeItem('cart');
     history.push('/products');
   }
 

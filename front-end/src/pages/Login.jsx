@@ -57,7 +57,7 @@ function Login() {
           </div>
 
           <div className="form-group">
-            <div className="col-sm-12">
+            <div className="col-sm-8">
               <label htmlFor="email">Password</label>
               <input
                 className="form-control"
@@ -72,21 +72,23 @@ function Login() {
           </div>
           <br />
           <div className="form-group">
-            <div className="col-sm-12">
-              <button
-                type="submit"
-                disabled={!(validateEmail(email) && validatePassword(password))}
-                data-testid="signin-btn"
-                className="col-sm-3 btn btn-success"
-              >
-                ENTRAR
-          </button>
+            <div className="bottom-btn">
+              <div className="col-sm-12">
+                <button
+                  type="submit"
+                  disabled={!(validateEmail(email) && validatePassword(password))}
+                  data-testid="signin-btn"
+                  className="col-sm-3 btn btn-success"
+                >
+                  ENTRAR
+                </button>
+              </div>
             </div>
           </div>
         </form>
 
         <div className="no-account">
-          <Link to="/register" style={{color:"white", textDecoration:"none"}}>
+          <Link to="/register" style={{ color: "white", textDecoration: "none" }}>
             <div
               data-testid="no-account-btn"
               onClick={() => <Redirect to="/register" />}
