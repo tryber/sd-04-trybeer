@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-<<<<<<< HEAD
-=======
-
->>>>>>> 550dcf4df5e1ad871a04f58497f1706b9cdb5d02
 import BurguerMenuBtn from './components/BurguerMenuBtn';
 import NavBar from './components/NavBar';
 
@@ -33,11 +29,7 @@ const navDisplayTrue = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, n
   }, TIME);
 };
 
-<<<<<<< HEAD
-const Header = ({ title, dataTestid }) => {
-=======
 const Header = ({ title }) => {
->>>>>>> 550dcf4df5e1ad871a04f58497f1706b9cdb5d02
   const [navDisplay, setNavDisplay] = useState(false);
   const [navStyle, setNavStyle] = useState({});
   const [transitionMenuHambuger, setTransitionMenuHambuger] = useState({});
