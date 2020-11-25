@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
+import SideBar from '../components/SideBarADMIN';
+
 import API from '../services/api';
 
 const Login = () => {
@@ -49,6 +51,7 @@ const Login = () => {
 
   return (
     <div>
+          <SideBar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
       <form className="m-3">
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
