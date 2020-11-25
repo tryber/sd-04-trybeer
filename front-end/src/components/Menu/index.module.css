@@ -34,3 +34,10 @@
 .navLink:hover {
   background-color: #faa307;
 }
+
+@media only screen and (max-width: 600px) {
+  .topTitle {
+    font-size: 25px;
+    line-height: 2.4rem;
+  }
+}

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useParams, Redirect } from 'react-router-dom';
+import Menu from '../../components/Menu';
 import api from '../../services/api';
 import { getLS } from '../../utils';
-import Menu from '../../components/AdminMenu';
 import styles from './index.module.css';
 
-const AdminOrdersDetails = () => {
+const OrderDetails = () => {
   const [orderData, setOrderData] = React.useState(null);
   const { id } = useParams();
 
@@ -16,40 +16,22 @@ const AdminOrdersDetails = () => {
     })();
   }, [id]);
 
-  React.useEffect(() => {
-    console.log(orderData);
-  }, [orderData]);
-
-  const handleStatus = async () => {
-    await api.updateSaleStatusAPI(orderData[0].saleID, 'delivered');
-    setOrderData(
-      orderData.map((product) =>
-        Object.assign({}, product, (product.status = 'delivered')),
-      ),
-    );
-  };
-
   if (!getLS('user') || !getLS('user').token) return <Redirect to="/login" />;
   return (
     <div className={styles.pageContainer}>
-      <Menu />
-
+      <Menu nomeTela="Detalhes de Pedido" />
       {!orderData ? (
         <h2>Pedido não encontrado</h2>
       ) : (
         <section className={styles.orderDetails}>
-          <h2>
-            <span data-testid="order-number">{`Pedido ${id} - `}</span>
-            <span
-              className={
-                orderData[0].status === 'pending'
-                  ? styles.pendingOrder
-                  : styles.deliveredOrder
-              }
-              data-testid="order-status"
-            >{`${
-              orderData[0].status === 'pending' ? 'Pendente' : 'Entregue'
-            }`}</span>
+          <h2 className={styles.titleContainer}>
+            <span data-testid="order-number">{`Pedido ${id}`}</span>
+            <span className={styles.date} data-testid="order-date">
+              {new Date(orderData[0].saleDate).toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+              })}
+            </span>
           </h2>
           <ul className={styles.orderList}>
             {orderData.map(
@@ -102,20 +84,10 @@ const AdminOrdersDetails = () => {
             style: 'currency',
             currency: 'BRL',
           })}`}</h2>
-          {orderData[0].status === 'pending' ? (
-            <button
-              type="button"
-              className="buttonMain"
-              onClick={() => handleStatus()}
-              data-testid="mark-as-delivered-btn"
-            >
-              Marcar como entregue
-            </button>
-          ) : null}
         </section>
       )}
     </div>
   );
 };
 
-export default AdminOrdersDetails;
+export default OrderDetails;

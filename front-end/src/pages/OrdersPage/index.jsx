@@ -7,17 +7,17 @@ import { getLS } from '../../utils';
 import styles from './index.module.css';
 
 const Orders = () => {
-  const [loading, setLoading] = useState(false);
-  const [sales, setSales] = useState([]);
+  const [sales, setSales] = useState(null);
 
   useEffect(() => {
-    setLoading(true);
-    api.getSalesTb().then((data) => setSales(data.data.sales));
-    setLoading(false);
+    (async () => {
+      const saleData = await api.getSalesTb();
+      setSales(saleData.data.sales);
+    })();
   }, []);
 
   if (!getLS('user').email) return <Redirect to="/login" />;
-  return loading ? (
+  return !sales ? (
     <h1>Carregando...</h1>
   ) : (
     <div>
