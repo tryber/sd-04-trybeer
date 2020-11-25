@@ -6,13 +6,13 @@ const checkoutController = async (req, res) => {
   const { email, total, address, number, date, products } = req.body;
   console.log(
     JSON.stringify(
-    email,
-    total,
-    address,
-    number,
-    date,
-    products,
-  ));
+      email,
+      total,
+      address,
+      number,
+      date,
+      products,
+    ));
   const id = req.user;
   const convertedDate = new Date(date)
     .toISOString()
@@ -39,7 +39,7 @@ const checkoutController = async (req, res) => {
     return res.status(201).json({ message: 'Compra realizada com sucesso!' });
   } catch (_err) {
     return res.status(401).json({ message: 'BAD REQUEST' });
-    
+
   }
 };
 
