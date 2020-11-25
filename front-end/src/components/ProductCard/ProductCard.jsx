@@ -18,7 +18,7 @@ const addOrSub = (qttPdtsCart, index, pdt, setTotalPriceCart, op) => {
 
     buttonCart.disabled = true;
   }
-  // Atualiza context
+  // Atualiza context e local storage com o preço total
   setTotalPriceCart(totalPriceCart);
   setLS('totalPriceCart', totalPriceCart);
   setLS('qttPdtsCart', qttPdtsCart);

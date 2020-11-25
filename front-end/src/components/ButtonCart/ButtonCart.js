@@ -4,6 +4,15 @@ import propTypes from 'prop-types';
 import { getLS } from '../../helpers/index';
 import './ButtonCart.css';
 
+// const createCheckout = (history) => {
+//   const qttPdtsCart = getLS('qttPdtsCart');
+//   const checkout = qttPdtsCart.filter((pdt) => pdt.qtt !== 0);
+
+//   setLS('checkout', checkout);
+
+//   return history.push('/checkout');
+// };
+
 const ButtonCart = ({ totalPriceCart }) => {
   const history = useHistory();
   const totalBr = totalPriceCart.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
