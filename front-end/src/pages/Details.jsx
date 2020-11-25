@@ -26,7 +26,8 @@ function Details() {
           <p data-testid="order-number">Pedido {order[0].saleID}</p>
           <p data-testid="order-date">
             {new Date(order[0].saleDate)
-              .toLocaleDateString('pt-BR', { timeZone: 'UTC' }).slice(0, 5)}
+              .toLocaleDateString('pt-BR').slice(0, 5)}
+            {console.log(order)}
           </p>
         </div>
         <div>
