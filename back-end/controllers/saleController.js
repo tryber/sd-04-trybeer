@@ -9,6 +9,16 @@ const findAllSalesController = async (_req, res) => {
   }
 };
 
+const findSalesByUserIdController = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const sales = await saleService.findSalesByUserId(id);
+    return res.status(200).json(sales);
+  } catch (_e) {
+    return res.status(500).json({ message: 'internal error ' });
+  }
+};
+
 const findSalesBySaleId = async (req, res) => {
   try {
     const { id } = req.params;
@@ -23,4 +33,5 @@ const findSalesBySaleId = async (req, res) => {
 module.exports = {
   findAllSalesController,
   findSalesBySaleId,
+  findSalesByUserIdController,
 };
