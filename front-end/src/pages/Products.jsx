@@ -17,19 +17,25 @@ function Products() {
     orderMessage,
   } = useContext(AppContext);
   const history = useHistory();
-
+  let val;
+  
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token'));
-
-    api
-      .get('/products', { headers: { Authorization: token } })
-      .then((response) => setProducts(response.data))
-      .catch(() => history.push('/login'));
-
-    if (localStorage.getItem('cart')) {
-      setCart(JSON.parse(localStorage.getItem('cart')));
-    }
+    
+    setTimeout(() => {
+      val = 0;
+      api
+        .get('/products', { headers: { Authorization: token } })
+        .then((response) => setProducts(response.data))
+        .catch(() => history.push('/login'));
+  
+      if (localStorage.getItem('cart')) {
+        setCart(JSON.parse(localStorage.getItem('cart')));
+      }
+      val = 1;
+    }, 1000);
   }, []);
+
 
   return (
     <div>
@@ -42,15 +48,15 @@ function Products() {
             onClick={() => <Redirect to="/checkout" />}
             disabled={total === 0}
           >
-            Ver Carrinho
-            <span data-testid="checkout-bottom-btn-value">
+            <i class="fas fa-shopping-cart"></i>
+            <span data-testid="checkout-bottom-btn-value" className="btn-value">
               {(total || total === 0) &&
                 `R$ ${total.toFixed(2).toLocaleString().replace('.', ',')}`}
             </span>
           </button>
         </Link>
       </div>
-
+      {val === 0 ? <div className="loading">Carregando...</div> : <div></div>}
       <div className="products">
         {products.map((product, index) => (
           <ProductCard

@@ -20,11 +20,11 @@ function Details() {
 
   return (
     <div>
-      <TopBar data-testid="top-title" title={'Detalhes do Pedido'} isAdm={false} />
+      <TopBar data-testid="top-title" title={'Detalhes do Pedido'} isAdm={false} isDetails={true} />
       <div className="container">
         <div className="header">
-          <p data-testid="order-number">Pedido {order[0].saleID}</p>
-          <p data-testid="order-date">
+          <p data-testid="order-number" className="order-name">Pedido {order[0].saleID}</p>
+          <p data-testid="order-date" className="order-date">
             {new Date(order[0].saleDate)
               .toLocaleDateString('pt-BR').slice(0, 5)}
             {console.log(order)}
@@ -32,7 +32,7 @@ function Details() {
         </div>
         <div>
           {order.map((p, index) => (
-            <div>
+            <div key={`${index}item`}>
               <div>
                 <div className="products">
                   <span data-testid={`${index}-product-qtd`}>{p.quantity}</span>

@@ -15,23 +15,23 @@
 	background-color: transparent;
 	border: 3px solid rgb(247, 247, 247);
 	display: flex;
-	height: 12vh;
+	height: 9vh;
 	justify-content: center;
 	margin-left: 3vw;
 	outline: none !important;
 	padding: none;
 	position: relative;
 	transition: all .5s ease-in-out;
-	width: 12vh;
+	width: 9vh;
 }
 
 .menu-btn-burguer {
 	background-color: rgb(255, 234, 203);
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(255, 255, 255, 0.3);
-	height: 6px;
+	height: 4px;
 	transition: all .5s ease-in-out;
-	width: 50px;
+	width: 27px;
 }
 
 .menu-btn-burguer::before,
@@ -41,19 +41,19 @@
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(255, 255, 255, 0.3);
 	content: '';
-	height: 6px;
+	height: 4px;
 	padding: 0;
 	position: absolute;
 	transition: all .5s ease-in-out;
-	width: 50px;
+	width: 27px;
 }
 
 .menu-btn-burguer::before {
-	transform: translate( -25px,-16px);
+	transform: translate( -13.5px,-13px);
 }
 
 .menu-btn-burguer::after {
-	transform: translate( -25px,16px);
+	transform: translate( -13.5px,13px);
 }
 
 .title {
@@ -134,11 +134,11 @@
 }
 
 .menu-btn.open .menu-btn-burguer::before {
-	transform: rotate(45deg) translate(17.5px, -17.5px);
+	transform: rotate(45deg) translate(26px, -26px);
 }
 
 .menu-btn.open .menu-btn-burguer::after {
-	transform: rotate(-45deg) translate(17.5px, 17.5px);
+	transform: rotate(-45deg) translate(26px, 26px);
 }
 
 .body-nav-bar.open .side-menu-container{
@@ -156,13 +156,13 @@
 }
 
 .body-nav-bar.open .nav-btn:hover {
-  border-color: rgb(255, 76, 76);
-  box-shadow: 0 4px 7px rgb(255, 92, 92, 0.25);
+  border-color: yellowgreen;
+  box-shadow: 0 4px 7px rgba(153, 205, 50, 0.25);
   color: rgb(255, 220, 220);
 }
 
 .nav-btn-adm:hover {
-  border-color: rgb(255, 76, 76);
-  box-shadow: 0 4px 7px rgb(255, 92, 92, 0.25);
+	border-color: yellowgreen;
+  box-shadow: 0 4px 7px rgba(153, 205, 50, 0.25);
   color: rgb(255, 220, 220);
 }

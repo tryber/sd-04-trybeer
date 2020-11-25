@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import './ClientBar.css';
 
 let ctrOpen = false;
@@ -19,7 +19,10 @@ const changeOpen = () => {
   ctrOpen = false;
 };
 
-const changeUrl = (history, url, clear) => {
+const changeUrl = (history, url, clear, isDetails) => {
+  if(isDetails) {
+    history.replace('/');
+  }
   history.push(url);
   if (clear) {
     localStorage.setItem('token', '');
@@ -59,7 +62,7 @@ const admOnline = (history, title) => {
   );
 };
 
-const TopBar = ({ title, isAdm }) => {
+const TopBar = ({ title, isAdm, isDetails }) => {
   const history = useHistory();
   if (isAdm) return admOnline(history, title);
   return (
@@ -79,21 +82,21 @@ const TopBar = ({ title, isAdm }) => {
             <button
               className="nav-btn"
               data-testid="side-menu-item-products"
-              onClick={() => changeUrl(history, 'products')}
+              onClick={() => changeUrl(history, 'products', null, isDetails)}
             >
               Produtos
             </button>
             <button
               className="nav-btn"
               data-testid="side-menu-item-my-orders"
-              onClick={() => changeUrl(history, 'orders')}
+              onClick={() => changeUrl(history, 'orders', null, isDetails)}
             >
               Meus Pedidos
             </button>
             <button
               className="nav-btn"
               data-testid="side-menu-item-my-profile"
-              onClick={() => changeUrl(history, 'profile')}
+              onClick={() => changeUrl(history, 'profile', null, isDetails)}
             >
               Meu Perfil
             </button>

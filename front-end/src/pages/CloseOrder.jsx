@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import TopBar from '../components/ClientBar.jsx';
 import { AppContext } from '../context/AppContext';
 import api from '../services/api.js';
+import './CloseOrder.css';
 
 function CloseOrder() {
   const { cart, setCart, total, setTotal } = useContext(AppContext);
@@ -102,6 +103,7 @@ function CloseOrder() {
     setStore();
     console.log(`eu sou o log do doneOrder: ${total}`)
     postData(email, total, address, number, orderDate, cart);
+    localStorage.removeItem('cart');
     history.push('/products');
   }
 
@@ -139,7 +141,7 @@ function CloseOrder() {
                       </div>
                       <div
                         data-testid={`${index}-product-unit-price`}
-                        className="col"
+                        className="price"
                       >
                         {`(R$ ${price
                           .toFixed(2)
@@ -148,7 +150,7 @@ function CloseOrder() {
                       </div>
                       <div
                         data-testid={`${index}-product-total-value`}
-                        className="col"
+                        className="price"
                       >
                         {`R$ ${(price * quantity)
                           .toFixed(2)
@@ -178,16 +180,16 @@ function CloseOrder() {
             })}
           </ul>
           <br />
-          <h4 data-testid="order-total-value" id="itemTotal"></h4>
+          <h4 className="order-total" data-testid="order-total-value" id="itemTotal"></h4>
         </div>
       </div>
 
       <hr />
 
-      <div className="container">
+      <div className="container end">
         <div className="col-lg-8 col-offset-6 centered">
           <form method="POST" action="">
-            <h2>Endereço</h2>
+            <h3>Dados para Entrega</h3>
             <label htmlFor="rua">Rua:</label>
             <input
               onChange={(e) => setAddress(e.target.value)}
@@ -206,7 +208,7 @@ function CloseOrder() {
               onChange={(e) => setNumber(e.target.value)}
               data-testid="checkout-house-number-input"
               type="text"
-              className="form-control"
+              className="form-control col-6"
             />
           </form>
           <br />

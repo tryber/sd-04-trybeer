@@ -17,7 +17,7 @@ const Profile = () => {
     <div className="bodyAdm">
       <SideBar title={'TryBeer'} isAdm={true} />
       <div className="profile-container">
-        <h2>Perfil</h2>
+        <h2 className="new-text">Perfil</h2>
         <div className="infoText">
           <span data-testid="profile-name">{`Nome: ${name}`}</span>
           <span data-testid="profile-email">{`Email: ${email}`}</span>
