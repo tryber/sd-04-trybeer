@@ -20,7 +20,10 @@ const changeOpen = () => {
 };
 
 const changeUrl = (history, url, clear, isDetails) => {
-  if(isDetails) return <Redirect to={`localhost:3000/${url}`} />;
+  if(isDetails) {
+    history.goBack();
+    history.push(url);
+  }
   history.push(url);
   if (clear) {
     localStorage.setItem('token', '');
