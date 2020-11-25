@@ -1,0 +1,23 @@
+.container {
+  width: 50%;
+  margin: 20px;
+  margin: 20px auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 900;
+}
+
+.products {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.total {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
