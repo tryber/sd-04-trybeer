@@ -26,11 +26,14 @@ const Checkout = () => {
   }
 
   // faz a requisicao pro back, se o retorno for ok retorna msg de sucesso se n de erro
-  const handleSubmit = async (id, value, addressvalue, numbervalue) => {
+  // limpa o localstorage se for ok e redireciona pra tela de produtos
+  // envia pro backend userid, valor total da compra, endereco de entrega, data do pedido e status
+  const handleSubmit = async (id, value, address, number) => {
     const date = Date.now();
     const status = 'pendente';
-    const result = await postCheckout(id, value, addressvalue, numbervalue, date, status);
-    if (result) {
+    const statusCode = 200;
+    const result = await postCheckout(id, value, address, number, date, status);
+    if (result.status === statusCode) {
       setMessage('Compra realizada com sucesso!');
       localStorage.cartItens = [];
       history.push('/products');

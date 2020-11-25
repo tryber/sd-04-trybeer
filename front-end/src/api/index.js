@@ -19,10 +19,13 @@ export const listProducts = async () => axios
   .get(`${url}/products`)
   .catch(({ response }) => response);
 
-export const postCheckout = async (products, address, number) => axios
+export const postCheckout = async (id, value, addressValue, numberValue, date, status) => axios
   .post(`${url}/checkout`, {
-    products,
-    address,
-    number,
+    id,
+    value,
+    addressValue,
+    numberValue,
+    date,
+    status,
   })
   .catch((response) => response);
