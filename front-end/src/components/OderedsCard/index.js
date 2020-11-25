@@ -4,8 +4,11 @@ import { useHistory } from 'react-router-dom';
 
 import './styles.css';
 
-const OrderedsCard = ({ testid, orderNumber, total, saleDate }) => {
-  const [day, month] = saleDate.substring(0, saleDate.indexOf('T')).split('-').reverse();
+const OrderedsCard = ({
+  testid, orderNumber, total, saleDate,
+}) => {
+  const NUMBER_ZERO = 0;
+  const [day, month] = saleDate.substring(NUMBER_ZERO, saleDate.indexOf('T')).split('-').reverse();
 
   const history = useHistory();
   const adminOrdersCards = () => (
@@ -20,13 +23,14 @@ const OrderedsCard = ({ testid, orderNumber, total, saleDate }) => {
     <div className="orders-card-body">
       <div className="ordereds-info">
         <span className="bold-text" data-testid={ `${testid}-order-number` }>
-          Pedido { orderNumber }
+          Pedido
+          { orderNumber }
         </span>
         <span data-testid={ `${testid}-order-date` }>{ `${day}/${month}` }</span>
       </div>
       { history.location.pathname === '/admin/orders' && adminOrdersCards() }
       <span className="bold-text" data-testid={ `${testid}-order-total-value` }>
-        { total.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }
+        { total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
       </span>
     </div>
   );
@@ -34,6 +38,9 @@ const OrderedsCard = ({ testid, orderNumber, total, saleDate }) => {
 
 OrderedsCard.propTypes = {
   testid: PropTypes.number.isRequired,
+  orderNumber: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  saleDate: PropTypes.string.isRequired,
 };
 
 export default OrderedsCard;
