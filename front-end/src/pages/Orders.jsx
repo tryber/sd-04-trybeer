@@ -24,7 +24,7 @@ function Orders() {
   return (
   <div>
     <TopBar title={'Meus Pedidos'} isAdm={false} />
-    <div>
+    <div className="main-container-orders">
     {orders.map((order, index) => (
       <MyOrdersCard
         key={order.id}

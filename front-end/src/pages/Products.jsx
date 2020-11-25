@@ -42,8 +42,8 @@ function Products() {
             onClick={() => <Redirect to="/checkout" />}
             disabled={total === 0}
           >
-            Ver Carrinho
-            <span data-testid="checkout-bottom-btn-value">
+            <i class="fas fa-shopping-cart"></i>
+            <span data-testid="checkout-bottom-btn-value" className="btn-value">
               {(total || total === 0) &&
                 `R$ ${total.toFixed(2).toLocaleString().replace('.', ',')}`}
             </span>
