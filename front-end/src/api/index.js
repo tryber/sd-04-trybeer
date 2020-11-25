@@ -15,6 +15,12 @@ export const postRegister = async (signName, signEmail, signPassword, signRole) 
   })
   .catch(({ response }) => response);
 
-export const listProducts = async () => axios
-  .get(`${url}/products`)
+const api = axios.create({
+  baseURL: 'http//localhost:3001',
+});
+
+export const userUpdate = async (name) => axios
+  .put(`${url}/profile`, { name })
   .catch(({ response }) => response);
+
+export const listProducts = () => (api.get('/products'));

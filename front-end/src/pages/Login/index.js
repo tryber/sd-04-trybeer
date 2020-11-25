@@ -8,6 +8,7 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
+import jwtDecode from 'jwt-decode';
 
 import { userLogin } from '../../api';
 import validationSchema from './validateLogin';
@@ -34,10 +35,8 @@ const Login = () => {
         formik.resetForm();
         return null;
       }
-
-      // salvando os dados do usuario no localstorage
       if (!localStorage.user) localStorage.user = JSON.stringify(result.data);
-      const redirect = result.data.role === 'client' ? '/products' : '/admin/orders';
+      const redirect = jwtDecode(result.data).role === 'client' ? '/products' : '/admin/orders';
       return history.push(redirect);
     },
   });
@@ -79,7 +78,6 @@ const Login = () => {
           <FormErrorMessage>{formik.errors.loginPassword}</FormErrorMessage>
         </FormControl>
         <Button
-          variantColor="green"
           type="submit"
           data-testid="signin-btn"
           disabled={
@@ -91,7 +89,6 @@ const Login = () => {
           ENTRAR
         </Button>
         <Button
-          variantColor="blue"
           type="submit"
           data-testid="no-account-btn"
           disabled={ formik.isSubmitting }
