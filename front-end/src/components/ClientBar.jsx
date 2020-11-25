@@ -21,8 +21,7 @@ const changeOpen = () => {
 
 const changeUrl = (history, url, clear, isDetails) => {
   if(isDetails) {
-    history.goBack();
-    history.push(url);
+    history.replace('/');
   }
   history.push(url);
   if (clear) {
