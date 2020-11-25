@@ -1,6 +1,6 @@
 const connection = require('./connection');
 
-const getAllPrdoucts = async () => {
+const getAllProducts = async () => {
   try {
     const db = await connection();
     const query = await db
@@ -9,13 +9,51 @@ const getAllPrdoucts = async () => {
       .execute();
     const result = await query.fetchAll();
     return result.map(([id, name, price, urlImage]) => ({
-      id, name, price, urlImage, quantity: 0,
+      id,
+      name,
+      price,
+      urlImage,
+      quantity: 0,
     }));
   } catch (error) {
     console.log(error.message);
   }
 };
 
+const getAllSales = async () => {
+  try {
+    const db = await connection();
+    const query = await db
+      .getTable('sales')
+      .select([
+        'id',
+        'user_id',
+        'total_price',
+        'delivery_address',
+        'delivery_number',
+        'sale_date',
+        'status',
+      ])
+      .execute();
+    const result = await query.fetchAll();
+    console.log('Result: ', result);
+    return result.map(
+      ([orderId, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status]) => ({
+        orderId,
+        userId,
+        totalPrice,
+        deliveryAddress,
+        deliveryNumber,
+        saleDate,
+        status,
+      }),
+    );
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 module.exports = {
-  getAllPrdoucts,
+  getAllProducts,
+  getAllSales,
 };

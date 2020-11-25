@@ -4,7 +4,9 @@ import { useHistory } from 'react-router-dom';
 
 import './styles.css';
 
-const OrderedsCard = ({ testid }) => {
+const OrderedsCard = ({ testid, orderNumber, total, saleDate }) => {
+  const [day, month] = saleDate.substring(0, saleDate.indexOf('T')).split('-').reverse();
+
   const history = useHistory();
   const adminOrdersCards = () => (
     <div className="admin-order-screen-details">
@@ -18,13 +20,13 @@ const OrderedsCard = ({ testid }) => {
     <div className="orders-card-body">
       <div className="ordereds-info">
         <span className="bold-text" data-testid={ `${testid}-order-number` }>
-          Pedido 001
+          Pedido { orderNumber }
         </span>
-        <span data-testid={ `${testid}-order-date` }>20/11</span>
+        <span data-testid={ `${testid}-order-date` }>{ `${day}/${month}` }</span>
       </div>
       { history.location.pathname === '/admin/orders' && adminOrdersCards() }
       <span className="bold-text" data-testid={ `${testid}-order-total-value` }>
-        R$ 46,85
+        { total.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }
       </span>
     </div>
   );
