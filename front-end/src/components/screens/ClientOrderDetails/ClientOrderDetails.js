@@ -7,6 +7,8 @@ export default () => {
 
   useEffect(() => {
     if (!getLS('user')) return history.push('/login');
+
+    return true;
   }, [history]);
 
   return (
