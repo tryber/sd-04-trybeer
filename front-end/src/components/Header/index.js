@@ -6,9 +6,9 @@ import './style.css';
 
 function Header({ title }) {
   return (
-    <div>
-      <header className="title">
-        <h1 data-testid="top-title">{title}</h1>
+    <div className="container-header">
+      <header className="header-title">
+        <h1 data-testid="top-title" className="title">{title}</h1>
       </header>
     </div>
   );

@@ -1,4 +1,4 @@
-.title {
+.header-title {
   align-items: center;
   background-color: #24252a;
   display: flex;
@@ -6,19 +6,20 @@
   height: 80px;
   position: fixed;
   width: 100%;
+  z-index: 1;
 }
 
-h1 {
+.title {
   color: #fff;
   text-shadow: 0 0 20px #ff005b;
   text-transform: uppercase;
 }
 
-header {
+/* header {
   position: fixed;
-}
+} */
 
-div {
+.container-header {
   display: flex;
   flex-direction: column;
 }

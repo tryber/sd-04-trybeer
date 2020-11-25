@@ -46,9 +46,11 @@
 }
 
 .toggle-btn {
+  background-color: white;
   left: 25%;
   position: absolute;
   top: 15px;
+  z-index: 2;
 }
 
 .toggle-btn span {
