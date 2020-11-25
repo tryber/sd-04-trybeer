@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { putUpdate } from '../services/TrybeerApi';
 import { Header } from '../components/Header';
-import { Beer, HomerProfile } from '../images/index';
+import { HomerProfile } from '../images/index';
 import '../css/profile.css';
 
 function UserProfile() {

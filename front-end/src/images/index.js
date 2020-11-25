@@ -8,3 +8,4 @@ export { default as Lupa } from './Lupa.png';
 export { default as DrinkDuff } from './otherDuff.png';
 export { default as BtnBurger } from './btn-hamburguer.png';
 export { default as HomerProfile } from './homer-profile.png';
+export { default as happy } from './happy.png';
