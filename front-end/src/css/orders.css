@@ -30,19 +30,27 @@
 }
 
 .listFlex {
-  box-shadow: #000 2px 2px 1px;
-  display: flex;
   color: black;
   margin: 0.2em;
   overflow: hidden;
   width: 80%;
-  border-style: groove;
   padding: 0.3em;
-  box-shadow: 1px 5px 5px rgba(182, 0, 0, 0.473);
+  box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.466);
+  display: flex;
+
 }
 
 .elements {
   flex: 1 1 80px;
+}
+.noOrders {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: large;
+  font-weight: 500;
+  font-family: akbar;
 }
 
 .listFlex > img {

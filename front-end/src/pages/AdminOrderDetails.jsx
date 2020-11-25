@@ -25,7 +25,7 @@ const AdminOrderDetails = () => {
     <>
       <Header>Trybeer</Header>
       <div className="marginDetails">
-        <div className="cardDetails">
+        <div className="cardDetailsA">
           <div className="pedido">
             <span
               class="titleOne"
@@ -40,18 +40,23 @@ const AdminOrderDetails = () => {
             {saleProduct.map(({ name, quantity, price }, index) => (
               <div key={name}>
                 <span
+                  className="element-orders-detail"
                   data-testid={`${index}-product-qtd`}
                 >{`${quantity} - `}</span>
                 <span
+                  className="element-orders-detail"
                   data-testid={`${index}-product-name`}
                 >{`${name} - `}</span>
-                <span data-testid={`${index}-product-total-value`}>
+                <span
+                  className="element-orders-detail"
+                  data-testid={`${index}-product-total-value`}
+                >
                   {`R$ ${(price * quantity).toLocaleString('pt-BR', {
                     minimumFractionDigits: 2,
                   })}`}
                 </span>
                 <span
-                  className="product-unit-price"
+                  className="product-unit-price element-orders-detail"
                   data-testid={`${index}-order-unit-price`}
                 >
                   {`(R$ ${price.toLocaleString('pt-BR', {
@@ -64,7 +69,7 @@ const AdminOrderDetails = () => {
           </div>
 
           <h3 data-testid="order-total-value">
-            {`R$ ${total_price.toString().replace('.', ',')}0`}
+            {`Total: R$ ${total_price.toString().replace('.', ',')}0`}
           </h3>
 
           <button

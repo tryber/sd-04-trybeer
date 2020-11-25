@@ -24,25 +24,33 @@ const AdminOrders = () => {
               <Link key={id} to={`/admin/orders/${id}`} className="orders-card">
                 <div className="first-part">
                   <span
+                    className="element-orders"
                     data-testid={`${index}-order-number`}
                   >{`Pedido ${id}`}</span>
                   <span
+                    className="element-orders"
                     data-testid={`${index}-order-address`}
                   >{`rua ${nameAdress}, ${numberAdress}`}</span>
                 </div>
                 <div className="first-part">
-                  <span data-testid={`${index}-order-total-value`}>
-                    {`Total: R$ ${totalPrice.toLocaleString('pt-BR', {
+                  <span
+                    className="element-orders"
+                    data-testid={`${index}-order-total-value`}
+                  >
+                    {`R$ ${totalPrice.toLocaleString('pt-BR', {
                       minimumFractionDigits: 2,
                     })}`}
                   </span>
 
-                  <p
+                  <span
+                    className="element-orders"
                     data-testid={`${index}-order-status`}
-                    className={status === 'Pendente' && 'pendente' || 'entregue'}
+                    className={
+                      (status === 'Pendente' && 'pendente') || 'entregue'
+                    }
                   >
                     {status}
-                  </p>
+                  </span>
                 </div>
               </Link>
             )

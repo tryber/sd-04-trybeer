@@ -21,16 +21,20 @@
   background: linear-gradient(45deg, #4d4d4d 0%,#282828 30%,#242424 100%);
   text-decoration: none;
   border-style: groove;
-  box-shadow: 1px 5px 5px rgba(182, 0, 0, 0.473);
+  box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.466);
   color: white;
   display: flex;
   flex-direction: column;
-  flex: 0 1 30%;
+  flex: 0 1 45%;
   height: 90px;
   justify-content: center;
   margin: 0.3em;
   overflow: hidden;
   padding: 0.3em;
+}
+
+.element-orders {
+  font-size: medium;
 }
 
 .first-part {
@@ -52,4 +56,14 @@
 
 .pendente {
   color: yellow;
+}
+
+@media screen and (max-width: 1000px) {
+  .orders-card {
+    height: 150px;
+    width: 90%;
+  }
+  .margin {
+    padding-left: 200px;
+  }
 }
