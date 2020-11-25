@@ -6,6 +6,8 @@ const userController = require('./controller/UserController');
 
 const productController = require('./controller/ProductController');
 
+const auth = require('./authentication/tokenValidator');
+
 router.post('/login', userController.userLogin);
 
 router.post('/register', userMiddlewares.isEmailAlreadyExists, userController.userRegister);

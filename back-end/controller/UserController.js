@@ -14,6 +14,8 @@ const userLogin = async (req, res) => {
 
     const token = createJWT(user);
 
+    req.headers.authorization = token;
+
     return res.status(200).json({ user, token });
   } catch (err) {
     console.log(err);
