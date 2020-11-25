@@ -17,19 +17,25 @@ function Products() {
     orderMessage,
   } = useContext(AppContext);
   const history = useHistory();
-
+  let val;
+  
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token'));
-
-    api
-      .get('/products', { headers: { Authorization: token } })
-      .then((response) => setProducts(response.data))
-      .catch(() => history.push('/login'));
-
-    if (localStorage.getItem('cart')) {
-      setCart(JSON.parse(localStorage.getItem('cart')));
-    }
+    
+    setTimeout(() => {
+      val = 0;
+      api
+        .get('/products', { headers: { Authorization: token } })
+        .then((response) => setProducts(response.data))
+        .catch(() => history.push('/login'));
+  
+      if (localStorage.getItem('cart')) {
+        setCart(JSON.parse(localStorage.getItem('cart')));
+      }
+      val = 1;
+    }, 1000);
   }, []);
+
 
   return (
     <div>
@@ -50,7 +56,7 @@ function Products() {
           </button>
         </Link>
       </div>
-
+      {val === 0 ? <div className="loading">Carregando...</div> : <div></div>}
       <div className="products">
         {products.map((product, index) => (
           <ProductCard
