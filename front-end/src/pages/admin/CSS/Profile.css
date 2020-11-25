@@ -8,6 +8,11 @@
 }
 
 .infoText {
+  color: white;
   display: flex;
   flex-direction: column;
+}
+
+.new-text {
+  color: white;
 }
