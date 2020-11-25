@@ -4,3 +4,8 @@ export { default as Beer } from './Beer.png';
 export { default as menuIcon } from './menuIcon.png';
 export { default as logout } from './logout.png';
 export { default as loading } from './loading.gif';
+export { default as Lupa } from './Lupa.png';
+export { default as DrinkDuff } from './otherDuff.png';
+export { default as BtnBurger } from './btn-hamburguer.png';
+export { default as HomerProfile } from './homer-profile.png';
+export { default as happy } from './happy.png';

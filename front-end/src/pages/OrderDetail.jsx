@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Header } from '../components/Header';
 import Loading from '../components/Loading';
 import SalesDetails from '../components/OrderDetails/SalesDetails';
-import { getDetailSales, getUserSales } from '../services/TrybeerApi';
+import { getDetailSales } from '../services/TrybeerApi';
 
 function OrderDetail() {
   const { id } = useParams();
@@ -13,10 +13,10 @@ function OrderDetail() {
   }, [id]);
 
   return (
-    <div className="page">
+    <>
       <Header>Detalhes de pedido</Header>
       {details ? <SalesDetails details={details} /> : <Loading />}
-    </div>
+    </>
   );
 }
 

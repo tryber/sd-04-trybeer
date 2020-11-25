@@ -18,7 +18,7 @@ export function Header({ children }) {
           className="header-menu-icon"
           onClick={ () => setBtnBurguer(!btnBurguer) }
         >
-          <img src={ menuIcon } alt="Hamburguer menu icon" />
+          <img id="btn-hmb"src={ menuIcon } alt="Hamburguer menu icon" />
         </button>
         <img src={ Duff } alt="duff logo" className="duff-logo" />
         <span data-testid="top-title" className="header-title">{children}</span>

@@ -1,0 +1,55 @@
+.admin-order-page {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  margin-left: 325px;
+  margin-right: 15px;
+  flex-wrap: wrap;
+  text-decoration: none;
+}
+
+.admin-order-page > h1 {
+  margin: 25px;
+}
+
+
+.flex-row-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.orders-card {
+  background: linear-gradient(45deg, #4d4d4d 0%,#282828 30%,#242424 100%);
+  text-decoration: none;
+  border-style: groove;
+  box-shadow: 1px 5px 5px rgba(182, 0, 0, 0.473);
+  color: white;
+  display: flex;
+  margin: 15px;
+  flex-direction: column;
+  flex: 0 1 30%;
+  width: 450px;
+  height: 125px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.first-part {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.first-part > * {
+  margin: auto;
+  flex: 0 1 30%;
+}
+
+.entregue {
+  color: green;
+}
+
+.pendente {
+  color: yellow;
+}
