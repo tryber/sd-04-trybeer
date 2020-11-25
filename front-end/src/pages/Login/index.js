@@ -35,7 +35,8 @@ const Login = () => {
         formik.resetForm();
         return null;
       }
-      if (!localStorage.user) localStorage.user = JSON.stringify(result.data);
+
+      if (!localStorage.user) localStorage.user = result.data;
       const redirect = jwtDecode(result.data).role === 'client' ? '/products' : '/admin/orders';
       return history.push(redirect);
     },
@@ -78,6 +79,7 @@ const Login = () => {
           <FormErrorMessage>{formik.errors.loginPassword}</FormErrorMessage>
         </FormControl>
         <Button
+          variantColor="green"
           type="submit"
           data-testid="signin-btn"
           disabled={
@@ -89,6 +91,7 @@ const Login = () => {
           ENTRAR
         </Button>
         <Button
+          variantColor="blue"
           type="submit"
           data-testid="no-account-btn"
           disabled={ formik.isSubmitting }
