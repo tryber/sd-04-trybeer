@@ -11,11 +11,14 @@ const isAuthenticated = () => {
   return true;
 };
 
+// variável para corrigir o problema com magic number
+const zero = 0;
+
 const PrivateRoute = ({ component: Component }) => (
   <Route
     render={ (props) => {
       // console.log(document.referrer)
-      if (isAuthenticated() === true || document.referrer.length > 0) {
+      if (isAuthenticated() === true || document.referrer.length > zero) {
         return <Component />;
       }
       return <Redirect to={ { pathname: '/login', state: { from: props.location } } } />;
