@@ -30,11 +30,11 @@ const OrderCard = (props) => {
             Pedido 000
           </Text>
           <Spacer />
-          <Text data-testid={`${ id - 1}-order-date"` }>Dia/Mês</Text>
+          <Text data-testid={ `${id - 1}-order-date"` }>Dia/Mês</Text>
         </Flex>
         <Text
           fontWeight="bold"
-          data-testid={`${ id - 1}-order-total-value"` }
+          data-testid={ `${ id - 1}-order-total-value"` }
         >
           R$ 0,00
         </Text>
