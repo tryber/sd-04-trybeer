@@ -11,10 +11,10 @@ const excludeItem = (cart, setCartState, id) => {
 };
 
 const Products = ({ cartState, setCartState }) => {
-  // const totalPrice = cartState.reduce((ac, cc) => ac + cc.price * cc.amount, NUMBER_ZERO);
-  // const totalCurrency = totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   const calculateTotal = (yourCart) => {
-    const total = yourCart.reduce((sum, { price, quantity }) => sum + quantity * price, NUMBER_ZERO);
+    const total = yourCart.reduce(
+      (sum, { price, quantity }) => sum + quantity * price, NUMBER_ZERO,
+    );
     return total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   };
 
@@ -23,21 +23,22 @@ const Products = ({ cartState, setCartState }) => {
       <h2>Produtos</h2>
       {cartState.length > NUMBER_ZERO && (
         <ul>
-          { cartState.map(({ id, name, price, quantity }, index) => (
+          { cartState.map(({
+            id, name, price, quantity,
+          }, index) => (
             <li key={ id }>
-              <p data-testid={`${index}-product-qtd-input`}>{ quantity }</p>
-              <p data-testid={`${index}-product-name`}>{ name }</p>
-              <p data-testid={`${index}-product-total-value`}>
+              <p data-testid={ `${index}-product-qtd-input` }>{ quantity }</p>
+              <p data-testid={ `${index}-product-name` }>{ name }</p>
+              <p data-testid={ `${index}-product-total-value` }>
                 {(price * quantity).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
               </p>
-              <p data-testid={`${index}-product-unit-price`}>
-                { price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-                {` un`}
+              <p data-testid={ `${index}-product-unit-price` }>
+                {`(${price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} un)`}
               </p>
               <button
                 value={ id }
                 type="button"
-                data-testid={`${index}-removal-button`}
+                data-testid={ `${index}-removal-button` }
                 onClick={ (event) => {
                   excludeItem(cartState, setCartState, event.target.value);
                 } }
@@ -56,7 +57,6 @@ const Products = ({ cartState, setCartState }) => {
       <p data-testid="order-total-value">
         Total:&nbsp;
         { calculateTotal(cartState) }
-        {/* { totalCurrency } */}
       </p>
     </div>
   );

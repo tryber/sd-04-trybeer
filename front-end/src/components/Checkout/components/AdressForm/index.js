@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+
 import './style.css';
 
-const AdressForm = ({ cartState }) => {
-  const [checkoutBtnDisabled, setCheckoutBtnDisabled] = useState(true);
+const AdressForm = () => {
+  const [rua, setRua] = useState('');
+  const [numeroCasa, setNumeroCasa] = useState('');
 
-  useEffect(() => {
-    if (cartState.length < 1) {
-      setCheckoutBtnDisabled(true);
-    } else {
-      setCheckoutBtnDisabled(false);
-    }
-  }, [cartState]);
+  const validateCheckoutButton = (ruaEnd, numeroEnd) => ruaEnd === '' || numeroEnd === '';
 
   return (
     <div className="adress-form-container">
@@ -19,20 +14,34 @@ const AdressForm = ({ cartState }) => {
       <form>
         <label htmlFor="street">
           Rua
-          <input data-testid="checkout-street-input" type="text" id="street" />
+          <input
+            data-testid="checkout-street-input"
+            type="text"
+            id="street"
+            value={ rua }
+            onChange={ (e) => setRua(e.target.value) }
+          />
         </label>
         <label htmlFor="number">
           Número da casa
-          <input data-testid="checkout-house-number-input" type="text" id="number" />
+          <input
+            data-testid="checkout-house-number-input"
+            type="text"
+            id="number"
+            value={ numeroCasa }
+            onChange={ (e) => setNumeroCasa(e.target.value) }
+          />
         </label>
-        <button data-testid="checkout-finish-btn" type="button" disabled={ checkoutBtnDisabled }>Finalizar Pedido</button>
+        <button
+          data-testid="checkout-finish-btn"
+          type="button"
+          disabled={ validateCheckoutButton(rua, numeroCasa) }
+        >
+          Finalizar Pedido
+        </button>
       </form>
     </div>
   );
-};
-
-AdressForm.propTypes = {
-  cartState: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default AdressForm;

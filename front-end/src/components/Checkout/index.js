@@ -5,6 +5,8 @@ import AdressForm from './components/AdressForm';
 
 import { Context } from '../../context';
 
+import { NUMBER_ZERO } from '../../validation';
+
 import './style.css';
 
 const Checkout = () => {
@@ -13,12 +15,10 @@ const Checkout = () => {
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('products'));
     if (cart) {
-      const myProducts = cart.filter(({ quantity }) => quantity !== 0);
-      // console.log(cart);
-      console.log(myProducts);
+      const myProducts = cart.filter(({ quantity }) => quantity !== NUMBER_ZERO);
       setCartState(myProducts);
     }
-  }, []);
+  }, [setCartState]);
 
   return (
     <div className="checkout-container">
