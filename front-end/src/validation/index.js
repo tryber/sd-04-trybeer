@@ -3,6 +3,8 @@ const EMAIL_PATTERN = /[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i;
 const MIN_NAME_LENGTH = 12;
 const PASS_LENGTH = 6;
 
+const NUMBER_ZERO = 0;
+
 const registerValidation = (name, email, pass) => (
   name.length < MIN_NAME_LENGTH
   || pass === ' '
@@ -22,6 +24,7 @@ module.exports = {
   EMAIL_PATTERN,
   MIN_NAME_LENGTH,
   PASS_LENGTH,
+  NUMBER_ZERO,
   registerValidation,
   setLocalStorage,
   updateProfileValidation,

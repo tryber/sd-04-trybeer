@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
+import { NUMBER_ZERO } from '../../validation';
+
 import './styles.css';
 
 const OrderedsCard = ({
   testid, orderNumber, total, saleDate,
 }) => {
-  const NUMBER_ZERO = 0;
   const [day, month] = saleDate.substring(NUMBER_ZERO, saleDate.indexOf('T')).split('-').reverse();
 
   const history = useHistory();
