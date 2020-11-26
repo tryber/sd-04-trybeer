@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 // import { TrybeerContext } from '../../context/index';
 import { getLS, setLS } from '../../helpers/index';
 import './PdtCardCheckout.css';
@@ -22,20 +23,30 @@ const delPdt = (e) => {
   return true;
 };
 
-export default ({ id, i, name, price, qtt }) => {
-  // const { totalPriceCart: [, setTotalPriceCart] } = useContext(TrybeerContext);
+// Lint está obrigando a indentar de um modo muito feio :( bad
+const PdtCardCheckout = ({
+  id, i, name, price, qtt,
+}) => (
+  <div id={ id } className="card-checkout">
+    <p>{ id }</p>
+    <p id="qtt" data-testid={ `${i}-product-qtd` }>
+      Quantidade:
+      { qtt }
+    </p>
+    <p data-testid={ `${i}-product-name` } className="card-name-checkout">{ name }</p>
+    <p data-testid={ `${i}-product-price` } className="card-price-checkout">
+      { price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
+    </p>
+    <button type="button" onClick={ delPdt }>Excluir</button>
+  </div>
+);
 
-  return (
-    <div>
-      <div id={id} className='card-checkout'>
-        <p>{id}</p>
-        <p id="qtt" data-testid={`${i}-product-qtd`}>Quantidade: {qtt}</p>
-        <p data-testid={`${i}-product-name`} className="card-name-checkout">{name}</p>
-        <p data-testid={`${i}-product-price`} className="card-price-checkout">
-          {price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
-        </p>
-        <button onClick={delPdt}>Excluir</button>
-      </div>
-    </div>
-  );
+PdtCardCheckout.propTypes = {
+  id: propTypes.number.isRequired,
+  i: propTypes.number.isRequired,
+  name: propTypes.string.isRequired,
+  price: propTypes.number.isRequired,
+  qtt: propTypes.number.isRequired,
 };
+
+export default PdtCardCheckout;

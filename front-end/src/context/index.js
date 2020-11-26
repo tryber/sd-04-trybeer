@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const TrybeerContext = createContext();
 
 const ProviderTrybeer = ({ children }) => {
-  // Const criada para corrigir regra de magic number do CC.
+  // Const criada para corrigir regra de magic number do lint.
   // Nem queiram saber minha opinião sobre isso
   const zero = 0;
 

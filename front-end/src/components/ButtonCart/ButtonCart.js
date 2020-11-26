@@ -17,7 +17,7 @@ const ButtonCart = ({ totalPriceCart }) => {
   const history = useHistory();
   const totalBr = totalPriceCart.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
   const totalPriceCartLs = getLS('totalPriceCart');
-  // Magic number CC
+  // Correção lint magic number
   const zero = 0;
 
   return (

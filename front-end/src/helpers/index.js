@@ -5,50 +5,52 @@ export const getLS = (key) => JSON.parse(localStorage.getItem(key));
 export const setLS = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 
 export const pdtName = (productId) => {
+  // Conversão para contornar a loucura dos magic numbers do CC
+  productId = String(productId);
   let productName = '';
 
   switch (productId) {
-    case 1:
+    case '1':
       productName = 'Skol Lata 250ml';
       break;
 
-    case 2:
+    case '2':
       productName = 'Heineken 600ml';
       break;
 
-    case 3:
+    case '3':
       productName = 'Heineken 600ml';
       break;
 
-    case 4:
+    case '4':
       productName = 'Antarctica Pilsen 300ml';
       break;
 
-    case 5:
+    case '5':
       productName = 'Brahma 600ml';
       break;
 
-    case 6:
+    case '6':
       productName = 'Skol 269ml';
       break;
 
-    case 7:
+    case '7':
       productName = 'Skol Beats Senses 313ml';
       break;
 
-    case 8:
+    case '8':
       productName = 'Becks 330ml';
       break;
 
-    case 9:
+    case '9':
       productName = 'Brahma Duplo Malte 350ml';
       break;
 
-    case 10:
+    case '10':
       productName = 'Becks 600ml';
       break;
 
-    case 11:
+    case '11':
       productName = 'Skol Beats Senses 269ml';
       break;
 
