@@ -1,16 +1,28 @@
 import React from 'react';
-import MenuAdmin from '../../components/MenuAdmin';
+import MenuClient from '../../components/MenuClient';
+import {
+  Flex,
+  Text,
+} from '@chakra-ui/react';
+import OrderCard from '../../components/OrderCard';
 
 // Requisito 7 - Criar Tela de Meus Pedidos
+/*
+Banco de Dados
+table: sales
+columns:
+  id, user_id, total_price, sale_date, delivery_number
+*/
+// 1 - top-title -> alterar no MenuClient/Header parar receber uma props.title
+// 2 - fazer o mock do Order para testar a tela
+
 const Orders = () => (
   <div>
-    <MenuAdmin />
-    <p data-testid="top-title">Meus Pedidos</p>
-    <div data-testid="0-order-card-container">
-      <p data-testid="0-order-number"> Pedido 000</p>
-      <p data-testid="0-order-date">Dia/Mês</p>
-      <p data-testid="0-order-total-value">R$ 0,00</p>
-    </div>
+    <MenuClient />
+    <Text data-testid="top-title">Meus Pedidos</Text>
+    <Flex direction="column">
+      <OrderCard />
+    </Flex>
   </div>
 );
 export default Orders;
