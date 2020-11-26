@@ -9,7 +9,6 @@ const Input = ({
   value,
   type,
   className,
-  ...props
 }) => (
   <div className="fields-container">
     <label htmlFor={ name } className="input-label">
@@ -23,7 +22,6 @@ const Input = ({
       onChange={ handleChange }
       data-testid={ dataTestId }
       className={ className }
-      { ...props }
     />
   </div>
 );
@@ -31,10 +29,15 @@ const Input = ({
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   className: PropTypes.string,
-  handleChange: PropTypes.func,
+  type: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
   dataTestId: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
+};
+
+Input.defaultProps = {
+  className: '',
 };
 
 export default Input;

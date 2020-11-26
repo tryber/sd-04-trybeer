@@ -6,7 +6,7 @@ const Burger = ({ open, setOpen }) => (
   <button
     type="button"
     open={ open }
-    onClick={() => setOpen(!open)}
+    onClick={ () => setOpen(!open) }
     data-testid="top-hamburguer"
     className={ styles.btnBurger }
   >
