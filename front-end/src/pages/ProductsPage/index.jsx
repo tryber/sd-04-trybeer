@@ -7,7 +7,6 @@ import { getLS, setLS } from '../../utils';
 import { Context } from '../../context/Provider';
 import styles from './index.module.css';
 
-
 const Products = () => {
   const [data, setData] = useState([]);
   const [login, setLogin] = useState(true);
@@ -15,17 +14,9 @@ const Products = () => {
   const isInitialMount = React.useRef(true);
 
   useEffect(() => {
-    // (async () => {
-    //   const products = await api.productsAPI();
-    //   const { token } = getLS('user') || {};
-    //   if (!token) setLogin(false);
-    //   setData(products);
-    //   (() => (getLS('cart') ? setCart(getLS('cart')) : setCart([])))();
-    // })();
-
     api.productsAPI().then((products) => {
       setData(products);
-    })
+    });
     const { token } = getLS('user') || {};
     if (!token) setLogin(false);
     (() => (getLS('cart') ? setCart(getLS('cart')) : setCart([])))();
@@ -70,11 +61,20 @@ const Products = () => {
             })}`}
         </span>
         {cart.length === 0 ? (
-          <button disabled className={styles.buttonCart} type="button" data-testid="checkout-bottom-btn">
+          <button
+            disabled
+            className={styles.buttonCart}
+            type="button"
+            data-testid="checkout-bottom-btn"
+          >
             Ver Carrinho
           </button>
         ) : (
-          <button className={styles.buttonCart} type="button" data-testid="checkout-bottom-btn">
+          <button
+            className={styles.buttonCart}
+            type="button"
+            data-testid="checkout-bottom-btn"
+          >
             <Link to="/checkout">Ver Carrinho</Link>
           </button>
         )}
