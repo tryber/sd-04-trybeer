@@ -6,7 +6,7 @@ import SideBar from '../SideBarADMIN';
 const Orders = () => {
   return (
     <div>
-      <Header />
+      <Header title="Admin - Pedidos" />
       <SideBar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
     </div>
   );
