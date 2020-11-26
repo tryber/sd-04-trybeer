@@ -18,19 +18,25 @@ const UserRegister = () => {
 
   const isNameValid = (name = '') => name.match(/^([a-zA-Zà-úÀ-Ú]|\s+)+$/);
 
+  const six = 6;
+
+  const twelve = 12;
+
   const nameValidated = () => {
-    if (!name || !isNameValid(name) || name.length < 12) return false;
+    if (!name || !isNameValid(name) || name.length < twelve) return false;
     return true;
   };
 
-  const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
+  const isEmailValid = (email = '') =>
+    email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
   const emailValidated = () => {
-    if (!email || !isEmailValid(email) || email.length < 6) return false;
+    if (!email || !isEmailValid(email) || email.length < six) return false;
     return true;
   };
 
-  const disableButton = !nameValidated() || !password || password.length < 6 || !emailValidated();
+  const disableButton =
+    !nameValidated() || !password || password.length < six || !emailValidated();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,76 +52,76 @@ const UserRegister = () => {
     if (checkbox === 'on') {
       // localStorage.setItem('user', JSON.stringify({newUser:'admin'}));
       return history.push('/admin/orders');
-    };
+    }
 
     if (checkbox !== 'on') {
       // localStorage.setItem('user', JSON.stringify({newUser:'cli'}));
       return history.push('/products');
-    };
+    }
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <section className="card w-75 mx-auto m-3">
-          <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="name">Nome</label>
+      <form onSubmit={ handleSubmit }>
+        <section className='card w-75 mx-auto m-3'>
+          <div className='form-group w-75 mx-auto m-2'>
+            <label htmlFor='name'>Nome</label>
             <input
-              data-testid="signup-name"
-              id="name"
-              name="name"
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-              minLength="12"
-              className="form-control"
+              data-testid='signup-name'
+              id='name'
+              name='name'
+              type='text'
+              onChange={ (e) => setName(e.target.value) }
+              minLength='12'
+              className='form-control'
             />
           </div>
 
-          <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="email">Email</label>
+          <div className='form-group w-75 mx-auto m-2'>
+            <label htmlFor='email'>Email</label>
             <input
-              data-testid="signup-email"
-              id="email"
-              name="email"
-              type="email"
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
+              data-testid='signup-email'
+              id='email'
+              name='email'
+              type='email'
+              onChange={ (e) => setEmail(e.target.value) }
+              className='form-control'
             />
           </div>
 
-          <span className="mx-auto m-3 text-danger">{errMsg}</span>
+          <span className='mx-auto m-3 text-danger'>{ errMsg }</span>
 
-          <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="password">Password</label>
+          <div className='form-group w-75 mx-auto m-2'>
+            <label htmlFor='password'>Password</label>
             <input
-              data-testid="signup-password"
-              id="password"
-              name="password"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-              minLength="6"
-              className="form-control"
+              data-testid='signup-password'
+              id='password'
+              name='password'
+              type='password'
+              onChange={ (e) => setPassword(e.target.value) }
+              minLength='6'
+              className='form-control'
             />
           </div>
 
-          <div className="form-group w-75 mx-auto m-2">
+          <div className='form-group w-75 mx-auto m-2'>
             <input
-              data-testid="signup-seller"
-              id="sell"
-              name="sell"
-              type="checkbox"
-              onChange={(e) => setCheckbox(e.target.value)}
+              data-testid='signup-seller'
+              id='sell'
+              name='sell'
+              type='checkbox'
+              onChange={ (e) => setCheckbox(e.target.value) }
             />
-            <label htmlFor="sell" className="m-2">
+            <label htmlFor='sell' className='m-2'>
               Quero Vender
             </label>
           </div>
 
           <button
-            data-testid="signup-btn"
-            type="submit"
-            disabled={disableButton}
-            className="btn btn-warning w-50 mx-auto m-2"
+            data-testid='signup-btn'
+            type='submit'
+            disabled={ disableButton }
+            className='btn btn-warning w-50 mx-auto m-2'
           >
             Cadastrar
           </button>

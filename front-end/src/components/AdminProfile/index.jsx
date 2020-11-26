@@ -10,24 +10,17 @@ const AdminProfile = () => {
   const { name, email } = user;
   return (
     <div>
-      <Header title="Admin - Perfil" />
+      <Header title='Admin - Perfil' />
       <SideBar />
 
       <form>
-        <div className="form-group">
-          <span
-            data-testid="profile-name"
-            id="exampleInputName1"
-          >
-            { name }
+        <div className='form-group'>
+          <span data-testid='profile-name' id='exampleInputName1'>
+            {name}
           </span>
         </div>
-        <div className="form-group">
-          <span
-            data-testid="profile-email"
-          >
-            { email }
-          </span>
+        <div className='form-group'>
+          <span data-testid='profile-email'>{email}</span>
         </div>
       </form>
     </div>
