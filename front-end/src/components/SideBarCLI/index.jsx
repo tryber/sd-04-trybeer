@@ -13,6 +13,7 @@ export default (props) => {
     <Menu>
       <div className="side-menu-container">
       <Link to="products" data-testid="side-menu-item-products">Produtos</Link>
+      </div>
       <Link to="orders" data-testid="side-menu-item-my-orders">Meus pedidos</Link>
       <Link to="profile" data-testid="side-menu-item-my-profile">Meu Perfil</Link>
       <Link to="/login">
@@ -24,7 +25,6 @@ export default (props) => {
           Sair
         </button>
       </Link>
-      </div>
     </Menu>
   );
 };
