@@ -26,7 +26,6 @@ function App() {
           <Route path="/login" component={ Login } />
           <Route path="/register" component={ Registro } />
           <Route path="/products" component={ Products } />
-          <Route path="/orders" component={ ClientOrders } />
           <Route path="/profile" component={ Profile } />
           <Route path="/admin/orders" component={ Admin } />
           <Route exact path="/admin/profile" component={ AdminProfile } />
