@@ -36,8 +36,9 @@ const Products = () => {
   const createQuantity = () => products;
 
   const addProduct = async (product) => {
-    product.quantity = 0;
-    const { id, name, urlImage, price, quantity } = product;
+    const {
+      id, name, urlImage, price, quantity,
+    } = product;
 
     console.log('qunatity, linha 39', quantity);
 
@@ -80,36 +81,36 @@ const Products = () => {
       <h3 data-testid="top-title">Página de produtos</h3>
       <div className="container d-flex flex-wrap">
         {products.map((product, index) => (
-          <div className="card w-50 mx-auto m-3" key={product.id}>
-            <h4 data-testid={`${index}-product-name`} className="card-title text-center">
+          <div className="card w-50 mx-auto m-3" key={ product.id }>
+            <h4 data-testid={ `${index}-product-name` } className="card-title text-center">
               {product.name}
             </h4>
-            <h5 data-testid={`${index}-product-price`} className="card-content mx-auto">
+            <h5 data-testid={ `${index}-product-price` } className="card-content mx-auto">
               {product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
             </h5>
             <img
               className="mx-auto m-2"
               height="90px"
-              data-testid={`${index}-product-img`}
-              alt={product.name}
-              src={product.urlImage}
+              data-testid={ `${index}-product-img` }
+              alt={ product.name }
+              src={ product.urlImage }
             />
             <section className="mx-auto m-1 d-flex align-items-center justify-content-center">
               <button
-                data-testid={`${index}-product-plus`}
-                onClick={() => addProduct(product)}
+                data-testid={ `${index}-product-plus` }
+                onClick={ () => addProduct(product) }
                 className="btn btn-success"
                 type="button"
               >
                 +
               </button>
-              <h1 data-testid={`${index}-product-qtd`} className="card m-2">
+              <h1 data-testid={ `${index}-product-qtd` } className="card m-2">
                 {product.quantity || 0}
               </h1>
               <button
-                data-testid={`${index}-product-minus`}
-                onClick={() => removeProduct(product)}
-                disabled={buttonDisabled}
+                data-testid={ `${index}-product-minus` }
+                onClick={ () => removeProduct(product) }
+                disabled={ buttonDisabled }
                 className="btn btn-danger"
                 type="button"
               >
@@ -124,7 +125,8 @@ const Products = () => {
         className="fixed-bottom btn btn-info mx-auto w-75 m-2"
         to="/checkout"
       >
-        Ver Carrinho{' '}
+        Ver Carrinho
+        {' '}
         {totalValue === 0
           ? ''
           : totalValue.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
