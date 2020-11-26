@@ -16,8 +16,8 @@ const App = () => (
       <Route exact path="/" component={ Login } />
       <PrivateRoute path="/profile" component={ UserProfile } />
       <PrivateRoute path="/admin/profile" component={ AdminProfile } />
-      <PrivateRoute path="/products" component={ Products } />
-      <PrivateRoute path="/admin/orders" component={ Orders } />
+      <Route path="/products" component={ Products } />
+      <Route path="/admin/orders" component={ Orders } />
     </Switch>
   </BrowserRouter>
 );
