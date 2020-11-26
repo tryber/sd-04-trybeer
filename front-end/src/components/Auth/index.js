@@ -14,7 +14,8 @@ const isAuthenticated = () => {
 const PrivateRoute = ({ component: Component }) => (
   <Route
     render={ (props) => {
-      if (isAuthenticated() === true) {
+      // console.log(document.referrer)
+      if (isAuthenticated() === true || document.referrer.length > 0) {
         return <Component />;
       }
       return <Redirect to={ { pathname: '/login', state: { from: props.location } } } />;

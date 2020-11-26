@@ -44,12 +44,12 @@ const UserRegister = () => {
     setErrMsg('');
 
     if (checkbox === 'on') {
-      localStorage.setItem('user', 'newUser');
+      // localStorage.setItem('user', JSON.stringify({newUser:'admin'}));
       return history.push('/admin/orders');
     };
 
     if (checkbox !== 'on') {
-      localStorage.setItem('user', 'newUser');
+      // localStorage.setItem('user', JSON.stringify({newUser:'cli'}));
       return history.push('/products');
     };
   };
