@@ -19,13 +19,13 @@ const AdressForm = ({ cartState }) => {
       <form>
         <label htmlFor="street">
           Rua
-          <input type="text" id="street" />
+          <input data-testid="checkout-street-input" type="text" id="street" />
         </label>
         <label htmlFor="number">
           Número da casa
-          <input type="text" id="number" />
+          <input data-testid="checkout-house-number-input" type="text" id="number" />
         </label>
-        <button type="button" disabled={ checkoutBtnDisabled }>Finalizar Pedido</button>
+        <button data-testid="checkout-finish-btn" type="button" disabled={ checkoutBtnDisabled }>Finalizar Pedido</button>
       </form>
     </div>
   );

@@ -3,10 +3,11 @@ import { useHistory } from 'react-router-dom';
 
 import { Context } from '../../context';
 
+import { NUMBER_ZERO } from '../../validation';
+
 import './styles.css';
 
 const Rodape = () => {
-  const VALOR_ZERO = 0;
   const history = useHistory();
   const { totalCarrinho, seTotalCarrinho } = useContext(Context);
 
@@ -22,7 +23,7 @@ const Rodape = () => {
       <button
         type="button"
         data-testid="checkout-bottom-btn"
-        disabled={ totalCarrinho === VALOR_ZERO }
+        disabled={ totalCarrinho === NUMBER_ZERO }
         onClick={ () => history.push('/checkout') }
       >
         Ver Carrinho&nbsp;

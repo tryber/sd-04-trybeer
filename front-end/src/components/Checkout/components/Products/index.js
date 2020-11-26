@@ -11,26 +11,33 @@ const excludeItem = (cart, setCartState, id) => {
 };
 
 const Products = ({ cartState, setCartState }) => {
-  const totalPrice = cartState.reduce((ac, cc) => ac + cc.price * cc.amount, NUMBER_ZERO);
-  const totalCurrency = totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  // const totalPrice = cartState.reduce((ac, cc) => ac + cc.price * cc.amount, NUMBER_ZERO);
+  // const totalCurrency = totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  const calculateTotal = (yourCart) => {
+    const total = yourCart.reduce((sum, { price, quantity }) => sum + quantity * price, NUMBER_ZERO);
+    return total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  };
 
   return (
     <div className="products-container">
       <h2>Produtos</h2>
       {cartState.length > NUMBER_ZERO && (
         <ul>
-          { cartState.map((item) => (
-            <li key={ item.id }>
-              <p>{ item.amount }</p>
-              <p>{ item.name }</p>
-              <p>{(item.price * item.amount).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-              <p>
-                { item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-                un
+          { cartState.map(({ id, name, price, quantity }, index) => (
+            <li key={ id }>
+              <p data-testid={`${index}-product-qtd-input`}>{ quantity }</p>
+              <p data-testid={`${index}-product-name`}>{ name }</p>
+              <p data-testid={`${index}-product-total-value`}>
+                {(price * quantity).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+              </p>
+              <p data-testid={`${index}-product-unit-price`}>
+                { price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+                {` un`}
               </p>
               <button
-                value={ item.id }
+                value={ id }
                 type="button"
+                data-testid={`${index}-removal-button`}
                 onClick={ (event) => {
                   excludeItem(cartState, setCartState, event.target.value);
                 } }
@@ -46,9 +53,10 @@ const Products = ({ cartState, setCartState }) => {
           <p>Não há produtos no carrinho</p>
         </div>
       )}
-      <p>
-        Total:
-        { totalCurrency }
+      <p data-testid="order-total-value">
+        Total:&nbsp;
+        { calculateTotal(cartState) }
+        {/* { totalCurrency } */}
       </p>
     </div>
   );
