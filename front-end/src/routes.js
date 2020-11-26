@@ -11,6 +11,7 @@ import LoginPage from './pages/LoginPage';
 import ProductDetails from './pages/ProductDetails';
 import MyOrdersADM from './pages/MyOrdersADM';
 import PrivateRoute from './PrivateRoute';
+import Checkout from './pages/CheckoutPage';
 
 const Routes = () => (
   <Provider>
@@ -23,6 +24,7 @@ const Routes = () => (
       <Route path="/orders" exact component={ MyOrdereds } />
       <Route path="/orders/:orderNumber" exact component={ ProductDetails } />
       <Route path="/admin/orders" component={ MyOrdersADM } />
+      <Route path="/checkout" component={Checkout} />
       <PrivateRoute path="/admin/profile" component={ AdminProfile } />
     </Switch>
   </Provider>

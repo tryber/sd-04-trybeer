@@ -10,6 +10,7 @@ img {
 
 .main-container-form {
   margin: 64px auto 0;
+  max-width: 400px;
 }
 
 .user-icon {
@@ -22,9 +23,9 @@ img {
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  max-width: 400px;
   margin: 0 auto;
   padding: 16px;
+  
 }
 
 .login-label, .login-label input {
