@@ -15,3 +15,7 @@
   height: 40px;
   width: 100%;
 }
+
+.mobile-footer button:hover {
+  cursor: pointer;
+}

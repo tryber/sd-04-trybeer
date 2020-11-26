@@ -1,4 +1,10 @@
 .product-details-container {
+  /* align-items: center; */
+  display: flex;
+  flex-direction: column;
+}
+
+.order-details-card-container {
   align-items: center;
   display: flex;
   flex-direction: column;

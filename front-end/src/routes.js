@@ -24,7 +24,7 @@ const Routes = () => (
       <Route path="/orders" exact component={ MyOrdereds } />
       <Route path="/orders/:orderNumber" exact component={ ProductDetails } />
       <Route path="/admin/orders" component={ MyOrdersADM } />
-      <Route path="/checkout" component={Checkout} />
+      <PrivateRoute path="/checkout" component={ Checkout } />
       <PrivateRoute path="/admin/profile" component={ AdminProfile } />
     </Switch>
   </Provider>

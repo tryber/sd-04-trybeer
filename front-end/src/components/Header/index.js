@@ -38,13 +38,13 @@ const Header = ({ title }) => {
     <header>
       <div className="header-container">
         <BurguerMenuBtn
-          setNav={setNavDisplay}
-          display={navDisplay}
-          navStyle={setNavStyle}
-          transition={transitionMenuHambuger}
-          setTransition={setTransitionMenuHambuger}
-          navDisplayFalse={navDisplayFalse}
-          navDisplayTrue={navDisplayTrue}
+          setNav={ setNavDisplay }
+          display={ navDisplay }
+          navStyle={ setNavStyle }
+          transition={ transitionMenuHambuger }
+          setTransition={ setTransitionMenuHambuger }
+          navDisplayFalse={ navDisplayFalse }
+          navDisplayTrue={ navDisplayTrue }
         />
         <div className="flex-title-container">
           <h1 data-testid="top-title" className="top-title">{ title }</h1>
@@ -52,12 +52,12 @@ const Header = ({ title }) => {
         </div>
         {navDisplay && (
           <NavBar
-            navStyle={navStyle}
-            setNavStyle={setNavStyle}
-            setTransitionMenuHambuger={setTransitionMenuHambuger}
-            setNavDisplay={setNavDisplay}
-            navDisplay={navDisplay}
-            navDisplayTrue={navDisplayTrue}
+            navStyle={ navStyle }
+            setNavStyle={ setNavStyle }
+            setTransitionMenuHambuger={ setTransitionMenuHambuger }
+            setNavDisplay={ setNavDisplay }
+            navDisplay={ navDisplay }
+            navDisplayTrue={ navDisplayTrue }
           />
         )}
       </div>
