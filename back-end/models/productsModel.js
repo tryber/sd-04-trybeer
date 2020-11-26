@@ -53,7 +53,44 @@ const getAllSales = async () => {
   }
 };
 
+// {
+//   userId: 2,
+//   total: 6.98,
+//   rua: 'Rua Teste',
+//   numeroCasa: '207',
+//   currentDate: '2020-10-4',
+//   status: 'status'
+// }
+
+const insertNewSale = async ({ userId, total, rua, numeroCasa, currentDate, status }) => {
+  try {
+    const db = await connection();
+    await db
+    .getTable('sales')
+    .insert([
+      'user_id',
+      'total_price',
+      'delivery_address',
+      'delivery_number',
+      'sale_date',
+      'status',
+    ])
+    .values(
+      userId,
+      total,
+      rua,
+      numeroCasa,
+      currentDate,
+      status,
+    )
+    .execute();
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 module.exports = {
   getAllProducts,
   getAllSales,
+  insertNewSale,
 };

@@ -19,6 +19,14 @@ const setLocalStorage = (userData) => {
   localStorage.setItem('user', JSON.stringify(userData));
 };
 
+const dateSaleValidation = () => {
+  const date = new Date();
+  const formatedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+  // console.log(date.get);
+  // console.log(formatedDate);
+  return formatedDate;
+};
+
 module.exports = {
   NAME_PATTERN,
   EMAIL_PATTERN,
@@ -28,4 +36,5 @@ module.exports = {
   registerValidation,
   setLocalStorage,
   updateProfileValidation,
+  dateSaleValidation,
 };
