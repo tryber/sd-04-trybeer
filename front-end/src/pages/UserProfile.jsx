@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { putUpdate } from '../services/TrybeerApi';
 import { Header } from '../components/Header';
-import { Beer } from '../images/index';
+import { HomerProfile } from '../images/index';
 import '../css/profile.css';
 
 function UserProfile() {
@@ -16,39 +16,47 @@ function UserProfile() {
   };
 
   return (
-    <div className="profile page">
+    <>
       <Header>Meu perfil</Header>
-      <form onSubmit={ handleForm } className="profile form page-content">
-        <label htmlFor="name">
-          Name:
-          <input
-            data-testid="profile-name-input"
-            type="text"
-            name="name"
-            value={ userName }
-            onChange={ (e) => {
-              setUserName(e.target.value);
-            } }
-          />
-        </label>
-        <label htmlFor="email">
-          Email:
-          <input
-            data-testid="profile-email-input"
-            type="text"
-            name="email"
-            value={ email }
-            readOnly
-          />
-        </label>
 
-        <button data-testid="profile-save-btn" type="submit" disabled={ userName === name }>
-          Salvar
-        </button>
-        <span>{ message }</span>
-      </form>
-      <img src={ Beer } alt="Duff beer" className="duff-beer" />
-    </div>
+      <div className="user-profile-page">
+        <img src={ HomerProfile } alt="homer profile" />
+        <form onSubmit={ handleForm } className="profile form form-style page-content">
+          <label htmlFor="name">
+            Name:
+            <input
+              data-testid="profile-name-input"
+              type="text"
+              name="name"
+              value={ userName }
+              onChange={ (e) => {
+                setUserName(e.target.value);
+              } }
+            />
+          </label>
+          <label htmlFor="email">
+            Email:
+            <input
+              data-testid="profile-email-input"
+              type="text"
+              name="email"
+              value={ email }
+              readOnly
+            />
+          </label>
+
+          <button
+            className="btn-finish"
+            data-testid="profile-save-btn"
+            type="submit"
+            disabled={userName === name}>
+            Salvar
+          </button>
+          <span>{ message }</span>
+        </form>
+      </div>
+
+    </>
   );
 }
 

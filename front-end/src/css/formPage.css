@@ -76,9 +76,8 @@ body, html, body > div, .form-page{
 }
 
 .form > button:disabled {
-  border: 1px rgb(165, 165, 165) groove;
-  color:  rgb(187, 187, 187);
-  border-color: rgb(114, 114, 114);
+  border: 1px rgb(199, 199, 199) groove;
+  color: rgb(187, 187, 187);
 }
 
 .form > button:enabled:active {
