@@ -1,9 +1,9 @@
 import React from 'react';
-import MenuClient from '../../components/MenuClient';
 import {
   Flex,
   Text,
 } from '@chakra-ui/react';
+import MenuClient from '../../components/MenuClient';
 import OrderCard from '../../components/OrderCard';
 
 // Requisito 7 - Criar Tela de Meus Pedidos
