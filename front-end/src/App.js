@@ -1,28 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import Login from './components/Login';
+import UserRegister from './components/UserRegister';
+import UserProfile from './components/UserProfile';
+import AdminProfile from './components/AdminProfile';
+import Products from './components/Products';
+import Orders from './components/Orders';
+import PrivateRoute from './components/Auth';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>
-          Edit
-          <code>src/App.js</code>
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route path="/register" component={ UserRegister } />
+      <Route path="/login" component={ Login } />
+      <Route exact path="/" component={ Login } />
+      <PrivateRoute path="/profile" component={ UserProfile } />
+      <PrivateRoute path="/admin/profile" component={ AdminProfile } />
+      <PrivateRoute path="/products" component={ Products } />
+      <PrivateRoute path="/admin/orders" component={ Orders } />
+    </Switch>
+  </BrowserRouter>
+);
 
 export default App;
