@@ -42,7 +42,7 @@ const Login = () => {
       role,
       token,
     }),
-  );
+    );
 
     setErrorMsg('');
 
