@@ -6,6 +6,7 @@ const { login } = require('./controllers/login');
 const productController = require('./controllers/products');
 // const { validateJWT } = require('./middlewares/validateJWT');
 const { register } = require('./controllers/register');
+const { checkout } = require('./controllers/checkout');
 
 const app = express();
 const port = 3001;
@@ -19,5 +20,7 @@ app.post('/login', login);
 app.get('/products', productController.getAll);
 
 app.post('/register', register);
+
+app.post('/sales', checkout);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
