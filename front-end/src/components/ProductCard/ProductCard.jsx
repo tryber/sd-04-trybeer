@@ -69,23 +69,23 @@ export default ({ id, i, img, name, price, qtt }) => {
   const { totalPriceCart: [, setTotalPriceCart] } = useContext(TrybeerContext);
 
   return (
-    <div id={id} className='card'>
-      <img data-testid={`${i}-product-img`} src={img} alt="produto" />
-      <p data-testid={`${i}-product-name`} className="card-name">{name}</p>
-      <p data-testid={`${i}-product-price`} className="card-price">
+    <div id={ id } className='card'>
+      <img data-testid={ `${i}-product-img` } src={ img } alt="produto" />
+      <p data-testid={ `${i}-product-name` } className="card-name">{ name }</p>
+      <p data-testid={ `${i}-product-price` } className="card-price">
         {price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
       </p>
       <div className="qtt-btns">
         <button
-          type="button" data-testid={`${i}-product-plus`} className="btn btn-outline-success"
-          onClick={(e) => addQtt(e, setTotalPriceCart)}
+          type="button" data-testid={ `${i}-product-plus` } className="btn btn-outline-success"
+          onClick={ (e) => addQtt(e, setTotalPriceCart) }
         >
           +
         </button>
-        <p id="qtt" data-testid={`${i}-product-qtd`}>{qtt}</p>
+        <p id="qtt" data-testid={ `${i}-product-qtd` }>{ qtt }</p>
         <button
-          type="button" data-testid={`${i}-product-minus`} className="btn btn-outline-danger"
-          onClick={(e) => subQtt(e, setTotalPriceCart)}
+          type="button" data-testid={ `${i}-product-minus` } className="btn btn-outline-danger"
+          onClick={ (e) => subQtt(e, setTotalPriceCart) }
         >
           -
         </button>
