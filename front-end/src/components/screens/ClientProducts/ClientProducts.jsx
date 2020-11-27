@@ -67,7 +67,7 @@ export default () => {
   } = useContext(TrybeerContext);
 
   useEffect(() => {
-    (async function defaultHook (){
+    (async function defaultHook(){
       try {
         if (!getLS('user')) return history.push('/login');
 
@@ -96,7 +96,7 @@ export default () => {
             urlImg,
             name,
             price,
-          }, i
+          }, i,
         ) => {
           const currentQtt = qttPdtsCart.filter((pdt) => pdt.id === id)[0].qtt;
 
