@@ -11,6 +11,6 @@ router.post('/checkout', productsController.newSale);
 
 router.get('/orders', productsController.fetchSales);
 
-// router.get('/orders/:id', productsController.fetchSales);
+// router.get('/orders/:id', productsController.fetchSaleById);
 
 module.exports = router;

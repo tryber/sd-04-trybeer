@@ -24,7 +24,7 @@ const navDisplayTrue = (setTransitionMenuHambuger, setNavStyle, setNavDisplay, n
     lineThree: 'translate(0px, 0px) rotate(0deg)',
   });
   setNavStyle({ animationName: 'coverNav', left: '0%' });
-  setNavDisplay(!navDisplay);
+    setNavDisplay(!navDisplay);
   // setTimeout(() => {
   // }, TIME);
 };

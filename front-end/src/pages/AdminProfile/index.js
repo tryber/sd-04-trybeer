@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../../components/Header';
+import SideMenuAdmin from '../../components/SideMenuAdmin';
 import profileIcon from '../../assets/profile-icon.svg';
 import './styles.css';
 
@@ -15,7 +15,7 @@ const AdminProfile = () => {
 
   return (
     <div className="container">
-      <Header title="Admin - Perfil" />
+      <SideMenuAdmin title="Admin - Perfil" />
       <div className="square">
         <h1 className="pageTitle">Perfil do Administrador</h1>
         <img src={ profileIcon } className="profile-icon" alt="Cheers Beer Icon" />

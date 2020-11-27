@@ -20,7 +20,7 @@ const AdressForm = () => {
     const { id: userId } = JSON.parse(localStorage.getItem('user'));
     const total = JSON.parse(localStorage.getItem('totalCarrinho'));
     const currentDate = dateSaleValidation();
-    const status = 'PENDENTE';
+    const status = 'Pendente';
     const response = await api.post('/checkout', {
       userId, total, rua, numeroCasa, currentDate, status,
     });
