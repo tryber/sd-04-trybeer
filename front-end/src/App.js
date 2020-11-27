@@ -8,6 +8,7 @@ import ClientProducts from './components/screens/ClientProducts/ClientProducts';
 import ClientCheckout from './components/screens/ClientCheckout/ClientCheckout';
 import PrivateRoute from './components/Auth';
 import ClientOrderDetails from './components/screens/ClientOrderDetails/ClientOrderDetails';
+import ClientOrder from './components/screens/ClientOrder/ClientOrder';
 
 const App = () => (
   <BrowserRouter>
@@ -19,6 +20,7 @@ const App = () => (
       <Route exact path="/orders/:number" component={ ClientOrderDetails } />
       <Route exact path="/" component={ Login } />
       <PrivateRoute path="/profile" component={ UserProfile } />
+      <Route path="/orders" component={ ClientOrder } />
       <PrivateRoute path="/admin/profile" component={ AdminProfile } />
     </Switch>
   </BrowserRouter>

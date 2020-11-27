@@ -13,4 +13,6 @@ router.get('/products', auth, productsController.readProducts);
 
 router.put('/profile', userProfile.userUpdate);
 
+router.get('/orders', auth, productsController.readOrders);
+
 module.exports = router;
