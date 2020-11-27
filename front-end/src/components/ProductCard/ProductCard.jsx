@@ -72,7 +72,7 @@ export default ({
   img,
   name,
   price,
-  qtt
+  qtt,
 }) => {
   const { totalPriceCart: [, setTotalPriceCart] } = useContext(TrybeerContext);
 
@@ -85,16 +85,18 @@ export default ({
       </p>
       <div className="qtt-btns">
         <button
-          type="button" 
-          data-testid={ `${i}-product-plus` } className="btn btn-outline-success"
+          type="button"
+          data-testid={ `${i}-product-plus` }
+          className="btn btn-outline-success"
           onClick={ (e) => addQtt(e, setTotalPriceCart) }
         >
           +
         </button>
         <p id="qtt" data-testid={ `${i}-product-qtd` }>{ qtt }</p>
         <button
-          type="button" 
-          data-testid={ `${i}-product-minus` } className="btn btn-outline-danger"
+          type="button"
+          data-testid={ `${i}-product-minus` }
+          className="btn btn-outline-danger"
           onClick={ (e) => subQtt(e, setTotalPriceCart) }
         >
           -
