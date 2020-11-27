@@ -20,16 +20,16 @@ const UserRegister = () => {
 
   const nameLengthLimit = 12;
   const nameValidated = () => (!name || !isNameValid(name) || name.length < nameLengthLimit)
-  ? false
-  : true;
+    ? false
+    : true;
 
   const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
   const emailLengthLimit = 6;
   const emailValidated = () => (!email || !isEmailValid(email) || email.length < emailLengthLimit)
-      ? false
-      : true;
+    ? false
+    : true;
 
-  const disableButton = !nameValidated() 
+  const disableButton = !nameValidated()
   || !password
   || password.length < emailLengthLimit
   || !emailValidated();
@@ -58,7 +58,7 @@ const UserRegister = () => {
 
   return (
     <div>
-      <form onSubmit={ handleSubmit}>
+      <form onSubmit={ handleSubmit }>
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
             <label htmlFor="name">Nome</label>
