@@ -129,11 +129,11 @@ const Products = () => {
         <Link
           data-testid="checkout-bottom-btn"
           className={`btn btn-info mx-auto w-75 m-2 d-flex justify-content-center ${
-            totalValue === 0 ? 'disabled' : ''
+            totalValue === 0 ? 'disabled' : 'fixed-bottom'
           }`}
           to="/checkout"
         >
-          Ver Carrinho
+          Ver Carrinho{' '}
           <p data-testid="checkout-bottom-btn-value">
             {totalValue === 0
               ? 'R$ 0,00'
