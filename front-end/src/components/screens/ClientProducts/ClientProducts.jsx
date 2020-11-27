@@ -67,7 +67,7 @@ export default () => {
   } = useContext(TrybeerContext);
 
   useEffect(() => {
-    (async function defaultHook(){
+    (async function defaultHook() {
       try {
         if (!getLS('user')) return history.push('/login');
 
