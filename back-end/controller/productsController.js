@@ -11,12 +11,10 @@ const readOrders = async (req, res) => {
   const { id } = req.user;
   const orders = await orderModel.readOrder(id);
 
-  console.log(orders)
-
   res.status(200).json(orders);
 };
 
 module.exports = {
   readProducts,
-  readOrders
+  readOrders,
 };

@@ -13,20 +13,19 @@ const ClientOrder = () => {
 
         setPedidos(orders.data);
       } catch (e) {
-        console.log(e);
+          return e;
       }
     })();
   }, []);
 
   return (
     <div>
-      {console.log(pedidos)}
       <Header title="Cliente - Meus Pedidos" />
       {pedidos.map((e, i) => (
-        <div key={i} data-testid={i + '-order-card-container'}>
-          <p data-testid={i + '-order-number'}>{e.idSale}</p>
-          <p data-testid={i + '-order-date'}>{e.saleDate}</p>
-          <p data-testid={i + '-order-total-value'}>{e.totalPrice}</p>
+        <div key={ i } data-testid={ i + '-order-card-container' }>
+          <p data-testid={ i + '-order-number' }>{ e.idSale }</p>
+          <p data-testid={ i + '-order-date' }>{ e.saleDate }</p>
+          <p data-testid={ i + '-order-total-value' }>{ e.totalPrice }</p>
         </div>
       ))}
     </div>
