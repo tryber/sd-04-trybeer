@@ -13,7 +13,8 @@ const addOrSub = (qttPdtsCart, index, pdt, setTotalPriceCart, op) => {
   const totalPriceCart = qttPdtsCart.map((pdt) => pdt.totalPrice)
     .reduce((acc, value) => acc + value);
 
-  if (totalPriceCart === 0) {
+  const zero = 0 
+  if (totalPriceCart === zero) {
     const buttonCart = document.getElementById('btn-cart');
 
     buttonCart.disabled = true;
@@ -56,7 +57,7 @@ const subQtt = (e, setTotalPriceCart) => {
   const elQtt = e.target.previousSibling;
   let qtt = +(elQtt.innerText);
 
-  if (qtt === 0) {
+  if (qtt === zero) {
     return true;
   }
 
@@ -77,14 +78,16 @@ export default ({ id, i, img, name, price, qtt }) => {
       </p>
       <div className="qtt-btns">
         <button
-          type="button" data-testid={ `${i}-product-plus` } className="btn btn-outline-success"
+          type="button" 
+          data-testid={ `${i}-product-plus` } className="btn btn-outline-success"
           onClick={ (e) => addQtt(e, setTotalPriceCart) }
         >
           +
         </button>
         <p id="qtt" data-testid={ `${i}-product-qtd` }>{ qtt }</p>
         <button
-          type="button" data-testid={ `${i}-product-minus` } className="btn btn-outline-danger"
+          type="button" 
+          data-testid={ `${i}-product-minus` } className="btn btn-outline-danger"
           onClick={ (e) => subQtt(e, setTotalPriceCart) }
         >
           -
