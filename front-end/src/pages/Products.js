@@ -60,7 +60,7 @@ const Products = () => {
 
     const cartWithoutNewProduct = productCart.filter((prodCart) => prodCart.id !== id);
 
-    const newAmount = quantity ? parseInt(quantity.quantity) - 1 : 1;
+    const newAmount = quantity ? parseInt(quantity.quantity) - 1 : 0;
 
     const newProduct = {
       id,
@@ -80,7 +80,7 @@ const Products = () => {
 
   return (
     <div>
-      <h3 data-testid="top-title">Página de produtos</h3>
+      <h3 data-testid="top-title">Trybeer</h3>
       <div className="container mx-auto d-flex flex-wrap m-3">
         {products.map((product, index) => (
           <div className="card w-50 mx-auto m-3" key={product.id}>
@@ -114,7 +114,7 @@ const Products = () => {
               <button
                 data-testid={`${index}-product-minus`}
                 onClick={() => removeProduct(product)}
-                disabled={productCart.find((prod) => prod.id === product.id) ? false : true}
+                // disabled={productCart.find((prod) => prod.id === product.id) ? false : true}
                 className="btn btn-danger"
                 type="button"
               >
@@ -125,20 +125,22 @@ const Products = () => {
         ))}
       </div>
       <div className="m-5">
-        <Link
-          data-testid="checkout-bottom-btn"
-          className={`fixed-bottom btn btn-info mx-auto w-75 m-2 ${
-            totalValue === 0 ? 'disabled' : ''
-          }`}
-          to="/checkout"
-        >
-          Ver Carrinho
-          <p data-testid="checkout-bottom-btn-value">
-            {totalValue === 0
-              ? ''
-              : totalValue.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
-          </p>
-        </Link>
+        {/* <button disabled={totalValue === 0 ? true : false}> */}
+          <Link
+            data-testid="checkout-bottom-btn"
+            className={`fixed-bottom btn btn-info mx-auto w-75 m-2 ${
+              totalValue === 0 ? 'disabled' : ''
+            }`}
+            to="/checkout"
+          >
+            Ver Carrinho
+            <p data-testid="checkout-bottom-btn-value">
+              {totalValue === 0
+                ? 'R$ 0,00'
+                : totalValue.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+            </p>
+          </Link>
+        {/* </button> */}
       </div>
     </div>
   );

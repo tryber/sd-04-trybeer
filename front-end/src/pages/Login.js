@@ -16,7 +16,6 @@ const Login = () => {
   //  VALIDAÇÃO DE EMAIL
   const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
-  
   const emailValidated = () => {
     if (!eMail || !isEmailValid(eMail) || eMail.length < 6) return false;
     return true;
