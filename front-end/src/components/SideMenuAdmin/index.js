@@ -14,7 +14,7 @@ function SideMenuAdmin() {
   const history = useHistory();
   return (
     <div className="admin-side-bar-container">
-      <span className="app-side-title">
+      <span className="admin-app-side-title">
         TryBeer
       </span>
       <button
