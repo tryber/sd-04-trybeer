@@ -11,5 +11,4 @@ router.post('/checkout', productsController.newSale);
 
 router.get('/orders', productsController.fetchSales);
 
-
 module.exports = router;

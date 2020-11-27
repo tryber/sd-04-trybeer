@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { dateSaleValidation } from '../../../../validation';
+import { dateSaleValidation, CHECKOUT_TIME } from '../../../../validation';
 
 import api from '../../../../services/api';
 
@@ -22,16 +22,18 @@ const AdressForm = () => {
     const currentDate = dateSaleValidation();
     const status = 'PENDENTE';
     // console.log(dateSaleValidation());
-    const response = await api.post('/checkout', { userId, total, rua, numeroCasa, currentDate, status });
+    const response = await api.post('/checkout', {
+      userId, total, rua, numeroCasa, currentDate, status,
+    });
     // console.log(response.data.message);
-    setTimeout(() => history.push('/products'), 700);
+    setTimeout(() => history.push('/products'), CHECKOUT_TIME);
     setMessage(response.data.message);
   };
 
   return (
     <div className="adress-form-container">
       <h2>Endereço</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={ handleSubmit }>
         <label htmlFor="street">
           Rua
           <input

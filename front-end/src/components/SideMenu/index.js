@@ -6,7 +6,7 @@ import './styles.css';
 
 const test = (history, pathName) => {
   if (pathName == null) {
-    localStorage.setItem('user', JSON.stringify({}));
+    localStorage.removeItem('user');
     return history.push('/login');
   }
   return history.push(`/${pathName}`);

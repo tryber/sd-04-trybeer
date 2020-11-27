@@ -66,24 +66,24 @@ const insertNewSale = async ({ userId, total, rua, numeroCasa, currentDate, stat
   try {
     const db = await connection();
     await db
-    .getTable('sales')
-    .insert([
-      'user_id',
-      'total_price',
-      'delivery_address',
-      'delivery_number',
-      'sale_date',
-      'status',
-    ])
-    .values(
-      userId,
-      total,
-      rua,
-      numeroCasa,
-      currentDate,
-      status,
-    )
-    .execute();
+      .getTable('sales')
+      .insert([
+        'user_id',
+        'total_price',
+        'delivery_address',
+        'delivery_number',
+        'sale_date',
+        'status',
+      ])
+      .values(
+        userId,
+        total,
+        rua,
+        numeroCasa,
+        currentDate,
+        status,
+      )
+      .execute();
   } catch (error) {
     console.log(error.message);
   }
