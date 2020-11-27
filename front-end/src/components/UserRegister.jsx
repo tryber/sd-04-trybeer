@@ -107,16 +107,16 @@ const UserRegister = () => {
           </div>
 
           <div className="form-group w-75 mx-auto m-2">
-          <label htmlFor="sell" className="m-2">
+        <label htmlFor="sell" className="m-2">
             <input
               data-testid="signup-seller"
               id="sell"
               name="sell"
               type="checkbox"
               onChange={ (e) => setCheckbox(e.target.value) }
-            />
+          />
               Quero Vender
-            </label>
+          </label>
           </div>
 
           <button
