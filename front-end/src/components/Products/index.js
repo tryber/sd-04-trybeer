@@ -5,8 +5,8 @@ import SideBar from '../SideBarCLI';
 
 const Products = () => (
   <div>
-    <Header />
-    <SideBar data-testid="top-hamburguer" />
+    <Header title="TryBeer" />
+    <SideBar />
   </div>
 );
 
