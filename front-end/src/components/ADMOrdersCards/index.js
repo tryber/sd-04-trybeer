@@ -10,13 +10,7 @@ const ADMOrdersCards = ({ orders, testid }) => (
       </Link>
     </div>
     <span data-testid={ `${testid}-order-address` }>
-      `
-      $
-      {orders.deliveryAdress}
-      ,
-      $
-      {orders.deliveryNumber}
-      `
+      { `${orders.deliveryAdress}, ${orders.deliveryNumber}` }
     </span>
     <br />
     <span className="bold-text" data-testid={ `${testid}-order-total-value` }>
