@@ -2,6 +2,7 @@ const NAME_PATTERN = /^[a-záàâãéèêíïóôõöúçñ ]+$/i;
 const EMAIL_PATTERN = /[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i;
 const MIN_NAME_LENGTH = 12;
 const PASS_LENGTH = 6;
+const CHECKOUT_TIME = 700;
 
 const NUMBER_ZERO = 0;
 
@@ -19,13 +20,23 @@ const setLocalStorage = (userData) => {
   localStorage.setItem('user', JSON.stringify(userData));
 };
 
+const dateSaleValidation = () => {
+  const date = new Date();
+  const formatedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+  // console.log(date.get);
+  // console.log(formatedDate);
+  return formatedDate;
+};
+
 module.exports = {
   NAME_PATTERN,
   EMAIL_PATTERN,
   MIN_NAME_LENGTH,
   PASS_LENGTH,
+  CHECKOUT_TIME,
   NUMBER_ZERO,
   registerValidation,
   setLocalStorage,
   updateProfileValidation,
+  dateSaleValidation,
 };

@@ -17,15 +17,15 @@ const Routes = () => (
   <Provider>
     <Switch>
       <Route path="/" exact component={ LoginPage } />
-      <Route path="/login" component={ LoginPage } />
-      <Route path="/register" component={ Register } />
-      <PrivateRoute path="/products" component={ Produtcs } />
-      <PrivateRoute path="/profile" component={ ClientProfile } />
+      <Route path="/login" exact component={ LoginPage } />
+      <Route path="/register" exact component={ Register } />
+      <PrivateRoute path="/products" exact component={ Produtcs } />
+      <PrivateRoute path="/profile" exact component={ ClientProfile } />
       <Route path="/orders" exact component={ MyOrdereds } />
       <Route path="/orders/:orderNumber" exact component={ ProductDetails } />
-      <Route path="/admin/orders" component={ MyOrdersADM } />
-      <PrivateRoute path="/checkout" component={ Checkout } />
-      <PrivateRoute path="/admin/profile" component={ AdminProfile } />
+      <Route path="/admin/orders" exact component={ MyOrdersADM } />
+      <PrivateRoute path="/checkout" exact component={ Checkout } />
+      <PrivateRoute path="/admin/profile" exact component={ AdminProfile } />
     </Switch>
   </Provider>
 );
