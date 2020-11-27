@@ -4,15 +4,15 @@ import { slide as Menu } from 'react-burger-menu';
 
 import './style.css';
 
-export default (props) => {
+export default () => {
   useEffect(() => {
     const hamburger = document.querySelector('.bm-burger-button');
     hamburger.setAttribute('data-testid', 'top-hamburguer');
-  }, [])
+  }, []);
   return (
     <Menu>
       <div className="side-menu-container">
-      <Link to="products" data-testid="side-menu-item-products">Produtos</Link>
+        <Link to="products" data-testid="side-menu-item-products">Produtos</Link>
       </div>
       <Link to="orders" data-testid="side-menu-item-my-orders">Meus pedidos</Link>
       <Link to="profile" data-testid="side-menu-item-my-profile">Meu Perfil</Link>
