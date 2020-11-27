@@ -73,10 +73,11 @@ export default () => {
 
         const token = getLS('user').token;
 
-        const products = await api.getProducts(token);
+        const newProducts = await api.getProducts(token);
 
-        setQttPdtsCart(initQttPdtsCart(products.data, setTotalPriceCart));
-        setProducts(products.data);
+        setQttPdtsCart(initQttPdtsCart(newProducts.data, setTotalPriceCart));
+        setProducts(newProducts.data);
+        return;
       } catch (e) {
         // console.log({ error: e.message })
       }
@@ -88,23 +89,25 @@ export default () => {
       <Header title="TryBeer" />
       <SideBar userType="client" />
       <div className="cards-container">
-        {products.map(({ id, urlImg, name, price }, i) => {
+        {
+          products.map(({ id, urlImg, name, price }, i) => {
           const currentQtt = qttPdtsCart.filter((pdt) => pdt.id === id)[0].qtt;
 
           return (
             <Card
-              key={ id }
-              id={ id }
-              i={ i }
-              img={ urlImg }
-              name={ name }
-              price={ price }
-              qtt={ currentQtt }
+              key={id}
+              id={id}
+              i={i}
+              img={urlImg}
+              name={name}
+              price={price}
+              qtt={currentQtt}
             />
           );
-        })}
+        })
+      }
       </div>
-      <ButtonCart totalPriceCart={ totalPriceCart } />
+      <ButtonCart totalPriceCart={totalPriceCart} />
     </div>
   );
 };
