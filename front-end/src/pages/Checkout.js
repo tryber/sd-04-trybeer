@@ -19,12 +19,12 @@ const Checkout = () => {
   };
   const deliverInput = () => (
     <div className="container">
-      <form className="card w-75 mx-auto m-3" onSubmit={finishCheckout}>
+      <form className="card w-75 mx-auto m-3" onSubmit={ finishCheckout }>
         <h3 className="m-2">Endereço:</h3>
         <div className="form-group w-75 mx-auto m-2">
           <label htmlFor="street">Rua</label>
           <input
-            onChange={(e) => setStreetInput(e.target.value)}
+            onChange={ (e) => setStreetInput(e.target.value) }
             data-testid="checkout-street-input"
             type="text"
             id="street"
@@ -35,10 +35,10 @@ const Checkout = () => {
         <div className="form-group w-75 mx-auto m-2">
           <label htmlFor="house">Número da casa:</label>
           <input
-            onChange={(e) => setHouseInput(e.target.value)}
+            onChange={ (e) => setHouseInput(e.target.value) }
             data-testid="checkout-house-number-input"
             type="number"
-            pattern={/\d+/g}
+            pattern={ /\d+/g }
             id="house"
             className="form-control"
           />
@@ -47,7 +47,7 @@ const Checkout = () => {
           <button
             className="btn btn-info"
             data-testid="checkout-finish-btn"
-            disabled={totalValue === 0 || !streetInput || !houseInput ? true : false}
+            disabled={ !!(totalValue === 0 || !streetInput || !houseInput) }
             type="submit"
           >
             Finalizar pedido
@@ -84,21 +84,24 @@ const Checkout = () => {
       <h1 data-testid="top-title">Cliente - Checkout</h1>
       <div className="">
         {myCart.map((product, index) => (
-          <div key={product.name} className="d-flex m-3 justify-content-between border">
-            <p data-testid={`${index}-product-qtd-input`}>{product.quantity}</p>
-            <p data-testid={`${index}-product-name`}>{product.name}</p>
-            <p data-testid={`${index}-product-total-value`}>
+          <div key={ product.name } className="d-flex m-3 justify-content-between border">
+            <p data-testid={ `${index}-product-qtd-input` }>{product.quantity}</p>
+            <p data-testid={ `${index}-product-name` }>{product.name}</p>
+            <p data-testid={ `${index}-product-total-value` }>
               {(product.quantity * product.price).toLocaleString('pt-br', {
                 style: 'currency',
                 currency: 'BRL',
               })}
             </p>
-            <small data-testid={`${index}-product-unit-price`}>
-              ({product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} un)
+            <small data-testid={ `${index}-product-unit-price` }>
+              (
+              {product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+              {' '}
+              un)
             </small>
             <button
-              data-testid={`${index}-removal-button`}
-              onClick={() => removeProduct(product)}
+              data-testid={ `${index}-removal-button` }
+              onClick={ () => removeProduct(product) }
               className="btn btn-danger"
             >
               X

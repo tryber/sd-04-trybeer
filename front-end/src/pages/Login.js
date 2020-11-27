@@ -53,12 +53,12 @@ const Login = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="m-3">
+      <form onSubmit={ handleSubmit } className="m-3">
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
             <label htmlFor="email">Email</label>
             <input
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={ (e) => setEmail(e.target.value) }
               data-testid="email-input"
               type="text"
               name="email"
@@ -71,7 +71,7 @@ const Login = () => {
           <div className="form-group w-75 mx-auto m-2">
             <label htmlFor="password">Password</label>
             <input
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={ (e) => setPassword(e.target.value) }
               data-testid="password-input"
               type="password"
               name="password"
@@ -86,7 +86,7 @@ const Login = () => {
             <button
               data-testid="signin-btn"
               type="submit"
-              disabled={disableButton}
+              disabled={ disableButton }
               className="btn btn-warning m-2"
             >
               ENTRAR

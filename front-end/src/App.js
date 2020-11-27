@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import UserRegister from './pages/UserRegister';
 // import UserProfile from './pages/UserProfile/index';
 import Products from './pages/Products';
-import Checkout from './pages/Checkout'
+import Checkout from './pages/Checkout';
 
 const App = () => (
   <BrowserRouter>
