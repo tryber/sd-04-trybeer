@@ -20,12 +20,11 @@ const Login = () => {
   const emailLenghtLimit = 6;
   const emailValidated = () => {
     if (!eMail || !isEmailValid(eMail) || eMail.length < emailLenghtLimit) return false;
-      return true;
+    return true;
   };
 
   // VARIÁVEL QUE DEFINE O "ESTADO" DO BOTÃO
-  const disableButton =
-    !password || password.length < emailLenghtLimit || !emailValidated();
+  const disableButton = !password || password.length < emailLenghtLimit || !emailValidated();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,7 +43,7 @@ const Login = () => {
         email,
         role,
         token,
-      })
+      }),
     );
     setErrorMsg('');
 

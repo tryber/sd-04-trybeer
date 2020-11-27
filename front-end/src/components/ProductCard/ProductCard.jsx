@@ -13,7 +13,7 @@ const addOrSub = (qttPdtsCart, index, pdt, setTotalPriceCart, op) => {
   const totalPriceCart = qttPdtsCart.map((pdt) => pdt.totalPrice)
     .reduce((acc, value) => acc + value);
 
-  const zero = 0 
+  const zero = 0;
   if (totalPriceCart === zero) {
     const buttonCart = document.getElementById('btn-cart');
 
@@ -56,7 +56,8 @@ const addQtt = (e, setTotalPriceCart) => {
 const subQtt = (e, setTotalPriceCart) => {
   const elQtt = e.target.previousSibling;
   let qtt = +(elQtt.innerText);
-
+  
+  const zero = 0;
   if (qtt === zero) {
     return true;
   }
