@@ -22,10 +22,10 @@ const UserRegister = () => {
   const nameValidated = () =>
     !name || !isNameValid(name) || name.length < nameLengthLimit ? false : true;
 
-  const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
+  const isEmailValid = (email = '') =>
+    email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
   const emailLengthLimit = 6;
-  const emailValidated = () =>
-    !email || !isEmailValid(email) || email.length < emailLengthLimit
+  const emailValidated = () => !email || !isEmailValid(email) || email.length < emailLengthLimit
       ? false
       : true;
 
@@ -107,16 +107,16 @@ const UserRegister = () => {
           </div>
 
           <div className="form-group w-75 mx-auto m-2">
-        <label htmlFor="sell" className="m-2">
-            <input
-              data-testid="signup-seller"
-              id="sell"
-              name="sell"
-              type="checkbox"
-              onChange={ (e) => setCheckbox(e.target.value) }
-          />
+            <label htmlFor="sell" className="m-2">
+              <input
+                data-testid="signup-seller"
+                id="sell"
+                name="sell"
+                type="checkbox"
+                onChange={ (e) => setCheckbox(e.target.value) }
+              />
               Quero Vender
-          </label>
+            </label>
           </div>
 
           <button
