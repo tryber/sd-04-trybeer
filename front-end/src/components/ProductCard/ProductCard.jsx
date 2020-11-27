@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { TrybeerContext } from '../../context/index';
 import { getLS, setLS } from '../../helpers/index';
@@ -105,3 +106,7 @@ export default ({
     </div>
   );
 };
+
+ProductCard.propTypes = {
+  id: PropTypes.number
+}
