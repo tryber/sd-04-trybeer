@@ -30,8 +30,8 @@ const updateTotalPriceLS = (target, setTotalPriceCart, op) => {
   const id = +(target.parentNode.parentNode.id);
   const qttPdtsCart = getLS('qttPdtsCart');
   let index;
-  const pdt = qttPdtsCart.filter((pdt, i) => {
-    if (pdt.id === id) {
+  const pdt = qttPdtsCart.filter((prod, i) => {
+    if (prod.id === id) {
       index = i;
       return true;
     }
