@@ -67,7 +67,7 @@ export default () => {
   } = useContext(TrybeerContext);
 
   useEffect(() => {
-    (async function defaultHook () {
+    (async function defaultHook (){
       try {
         if (!getLS('user')) return history.push('/login');
 
@@ -77,11 +77,11 @@ export default () => {
 
         setQttPdtsCart(initQttPdtsCart(newProducts.data, setTotalPriceCart));
         setProducts(newProducts.data);
-        const magicNumber = 0;
-        return magicNumber;
       } catch (e) {
         // console.log({ error: e.message })
       }
+      const magicNumber = 0;
+      return magicNumber;
     })();
   }, [setQttPdtsCart, setTotalPriceCart, setProducts, history]);
 
@@ -91,12 +91,12 @@ export default () => {
       <SideBar userType="client" />
       <div className="cards-container">
         {products.map((
-          { 
+          {
             id,
             urlImg,
             name,
             price,
-        }, i
+          }, i
         ) => {
           const currentQtt = qttPdtsCart.filter((pdt) => pdt.id === id)[0].qtt;
 
