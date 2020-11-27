@@ -9,7 +9,7 @@ const ADMOrdersCards = ({ orders, testid }) => {
           {`Pedido ${orders.id}`}
         </Link>
       </div>
-      <span>{orders.deliveryAdress}</span>
+      <span data-testid={`${testid}-order-address`}>{orders.deliveryAdress} , {orders.deliveryNumber}</span><br />
       <span className="bold-text" data-testid={`${testid}-order-total-value`}>
         {orders.totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
       </span>

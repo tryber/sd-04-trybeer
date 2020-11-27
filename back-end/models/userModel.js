@@ -78,10 +78,11 @@ const getOrders = async () => {
       ])
      .execute();
     const result = await query.fetchAll();
-    return result.map(([id, totalPrice, deliveryAdress, status]) => ({
+    return result.map(([id, totalPrice, deliveryAdress, deliveryNumber, status]) => ({
      id,
      totalPrice,
      deliveryAdress,
+     deliveryNumber,
      status
     }));
   } catch (error) {
