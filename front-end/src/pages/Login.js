@@ -76,8 +76,6 @@ const Login = () => {
               type="password"
               name="password"
               id="password"
-              minLength="6"
-              required
               className="form-control"
             />
           </div>

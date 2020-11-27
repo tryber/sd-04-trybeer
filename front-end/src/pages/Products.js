@@ -80,7 +80,7 @@ const Products = () => {
 
   return (
     <div>
-      <h3 data-testid="top-title">Trybeer</h3>
+      <h3 data-testid="top-title">TryBeer</h3>
       <div className="container mx-auto d-flex flex-wrap m-3">
         {products.map((product, index) => (
           <div className="card w-50 mx-auto m-3" key={product.id}>
@@ -128,13 +128,13 @@ const Products = () => {
         {/* <button disabled={totalValue === 0 ? true : false}> */}
         <Link
           data-testid="checkout-bottom-btn"
-          className={`fixed-bottom btn btn-info mx-auto w-75 m-2 d-flex justify-content-center ${
+          className={`btn btn-info mx-auto w-75 m-2 d-flex justify-content-center ${
             totalValue === 0 ? 'disabled' : ''
           }`}
           to="/checkout"
         >
+          Ver Carrinho
           <p data-testid="checkout-bottom-btn-value">
-            Ver Carrinho |{' '}
             {totalValue === 0
               ? 'R$ 0,00'
               : totalValue.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}

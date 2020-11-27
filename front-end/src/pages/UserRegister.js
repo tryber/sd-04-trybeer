@@ -43,9 +43,16 @@ const UserRegister = () => {
 
     setErrMsg('');
 
-    if (checkbox === 'on') return history.push('/admin/orders');
+    if (checkbox === 'on') {
+      localStorage.setItem('user', JSON.stringify({ name, email, role }));
+      return history.push('/admin/orders');
+    }
 
-    return history.push('/products');
+    if (checkbox !== 'on') {
+      localStorage.setItem('user', JSON.stringify({ name, email, role }));
+      return history.push('/products');
+    }
+    return true;
   };
 
   return (
