@@ -18,3 +18,13 @@ export const postRegister = async (signName, signEmail, signPassword, signRole) 
 export const listProducts = async () => axios
   .get(`${url}/products`)
   .catch(({ response }) => response);
+
+// Pega os pedidos do banco de dados
+// export const getOrders = async () => axios
+//   .get(`${url}/orders`)
+//   .catch(({ response }) => response);
+const mockSales = 'https://my-json-server.typicode.com/josiasviveiro/trybeer-mockapi/sales';
+
+export const getOrders = async () => axios
+  .get(mockSales)
+  .catch(({ response }) => response);
