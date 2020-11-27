@@ -10,7 +10,7 @@ const addOrSub = (qttPdtsCart, index, pdt, setTotalPriceCart, op) => {
   pdt.totalPrice = pdt.price * pdt.qtt;
   qttPdtsCart[index] = pdt;
 
-  const totalPriceCart = qttPdtsCart.map((pdt) => pdt.totalPrice)
+  const totalPriceCart = qttPdtsCart.map((prod) => prod.totalPrice)
     .reduce((acc, value) => acc + value);
 
   const zero = 0;
@@ -55,7 +55,7 @@ const addQtt = (e, setTotalPriceCart) => {
 
 const subQtt = (e, setTotalPriceCart) => {
   const elQtt = e.target.previousSibling;
-  let qtt = +(elQtt.innerText);
+  const qtt = +(elQtt.innerText);
   const zero = 0;
   if (qtt === zero) {
     return true;
@@ -77,7 +77,7 @@ export default ({
   const { totalPriceCart: [, setTotalPriceCart] } = useContext(TrybeerContext);
 
   return (
-    <div id={ id } className='card'>
+    <div id={ id } className="card">
       <img data-testid={ `${i}-product-img` } src={ img } alt="produto" />
       <p data-testid={ `${i}-product-name` } className="card-name">{ name }</p>
       <p data-testid={ `${i}-product-price` } className="card-price">

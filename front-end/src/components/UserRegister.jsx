@@ -30,9 +30,9 @@ const UserRegister = () => {
       : true;
 
   const disableButton = !nameValidated()
-  ||  !password
-  ||  password.length < emailLengthLimit
-  ||  !emailValidated();
+  || !password
+  || password.length < emailLengthLimit
+  || !emailValidated();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,6 +107,7 @@ const UserRegister = () => {
           </div>
 
           <div className="form-group w-75 mx-auto m-2">
+          <label htmlFor="sell" className="m-2">
             <input
               data-testid="signup-seller"
               id="sell"
@@ -114,7 +115,6 @@ const UserRegister = () => {
               type="checkbox"
               onChange={ (e) => setCheckbox(e.target.value) }
             />
-            <label htmlFor="sell" className="m-2">
               Quero Vender
             </label>
           </div>
