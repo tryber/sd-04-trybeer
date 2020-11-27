@@ -12,8 +12,8 @@ const MyOrdersADM = () => {
   useEffect(() => {
     const getOrders = async () => {
       const { id } = JSON.parse(localStorage.getItem('user'));
-      const response = await api.get('/admin/orders', { id, teste: 'foi' });
-      console.log(response.data)
+      const response = await api.get('/admin/orders', { id, teste: 'abcfuncionou' });
+      console.log('response', response)
     };
     getOrders();
   }, []);
