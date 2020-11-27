@@ -56,7 +56,8 @@ const Login = () => {
       <form onSubmit={ handleSubmit } className="m-3">
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="email">Email
+            <label htmlFor="email">
+              Email
             <input
               onChange={ (e) => setEmail(e.target.value) }
               data-testid="email-input"
@@ -66,11 +67,12 @@ const Login = () => {
               required
               className="form-control"
             />
-            </label>
+          </label>
           </div>
 
           <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="password">Password
+            <label htmlFor="password">
+              Password
             <input
               onChange={ (e) => setPassword(e.target.value) }
               data-testid="password-input"
@@ -81,7 +83,7 @@ const Login = () => {
               required
               className="form-control"
             />
-            </label>
+          </label>
           </div>
 
           <span className="mx-auto m-3 text-danger">{errorMsg.toUpperCase()}</span>
