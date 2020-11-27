@@ -19,13 +19,13 @@ const UserRegister = () => {
   const isNameValid = (name = '') => name.match(/^([a-zA-Zà-úÀ-Ú]|\s+)+$/);
 
   const nameLengthLimit = 12;
-  const nameValidated = () => !name || !isNameValid(name) || name.length < nameLengthLimit
+  const nameValidated = () => (!name || !isNameValid(name) || name.length < nameLengthLimit)
     ? false
     : true;
 
   const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
   const emailLengthLimit = 6;
-  const emailValidated = () => !email || !isEmailValid(email) || email.length < emailLengthLimit
+  const emailValidated = () => (!email || !isEmailValid(email) || email.length < emailLengthLimit)
     ? false
     : true;
 
