@@ -1,5 +1,4 @@
 const { addSale, addSaleProduct } = require('../../models/sales');
-// import { addSale } from ;
 
 const checkout = async (req, res) => {
   const { products, status, date, userId, cartValue, addressValue, numberValue } = req.body;
@@ -14,8 +13,3 @@ const checkout = async (req, res) => {
 };
 
 module.exports = { checkout };
-
-// const handleSaleProduct = async (id) => {
-//   const storage = localStorage.cartItens ? localStorage.cartItens : [];
-//   storage.forEach(async (e) => await saleProduct(id, e.id, e.quantity));
-// };
