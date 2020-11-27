@@ -24,7 +24,12 @@ const initQttPdtsCart = (products, setTotalPriceCart) => {
     return qtt;
   }
 
-  qtt = products.map(({ id, price }) => ({ id, price, qtt: 0, totalPrice: 0 }));
+  qtt = products.map(({ id, price }) => ({
+    id,
+    price,
+    qtt: 0,
+    totalPrice: 0,
+  }));
 
   setLS('qttPdtsCart', qtt);
 
@@ -99,7 +104,7 @@ export default () => {
           );
         })}
       </div>
-      <ButtonCart totalPriceCart={totalPriceCart} />
+      <ButtonCart totalPriceCart={ totalPriceCart } />
     </div>
   );
 };
