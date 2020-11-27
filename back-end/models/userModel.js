@@ -64,9 +64,36 @@ const updateUser = async (name, email) => {
   }
 };
 
+const getOrders = async () => {
+  try {
+    const db = await connection();
+    const query = await db
+      .getTable('sales')
+      .select([
+        'id',
+        'total_price',
+        'delivery_address',
+        'delivery_number',
+        'status',
+      ])
+      .execute();
+    const result = await query.fetchAll();
+    return result.map(([id, totalPrice, deliveryAdress, deliveryNumber, status]) => ({
+      id,
+      totalPrice,
+      deliveryAdress,
+      deliveryNumber,
+      status,
+    }));
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 module.exports = {
   getUserByEmail,
   getUserByEmailAndPassword,
   registerNewUser,
   updateUser,
+  getOrders,
 };

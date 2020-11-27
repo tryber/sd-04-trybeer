@@ -9,4 +9,6 @@ router.post('/register', userController.registerUser);
 
 router.put('/updateUser', userController.updateUser);
 
+router.get('/admin/orders', userController.getUserOrders);
+
 module.exports = router;

@@ -1,4 +1,5 @@
 // const rescue = require('express-rescue');
+const userModel = require('../models/userModel');
 const { userService } = require('../services');
 
 const loginUser = async (req, res) => {
@@ -34,8 +35,18 @@ const updateUser = async (req, res) => {
   }
 };
 
+const getUserOrders = async (req, res) => {
+  try {
+    const orders = await userModel.getOrders();
+    res.status(200).json(orders);
+  } catch (error) {
+    return res.status(401).json({ message: 'BAD REQUEST' });
+  }
+};
+
 module.exports = {
   loginUser,
   updateUser,
   registerUser,
+  getUserOrders,
 };
