@@ -67,7 +67,7 @@ export default () => {
   } = useContext(TrybeerContext);
 
   useEffect(() => {
-    (async () => {
+    (async function() {
       try {
         if (!getLS('user')) return history.push('/login');
 
@@ -77,7 +77,6 @@ export default () => {
 
         setQttPdtsCart(initQttPdtsCart(newProducts.data, setTotalPriceCart));
         setProducts(newProducts.data);
-        return 0;
       } catch (e) {
         // console.log({ error: e.message })
       }
@@ -89,8 +88,13 @@ export default () => {
       <Header title="TryBeer" />
       <SideBar userType="client" />
       <div className="cards-container">
-        {
-          products.map(({ id, urlImg, name, price }, i) => {
+        {products.map((
+          { 
+            id, 
+            urlImg, 
+            name, 
+            price 
+        }, i) => {
           const currentQtt = qttPdtsCart.filter((pdt) => pdt.id === id)[0].qtt;
 
           return (
@@ -103,9 +107,8 @@ export default () => {
               price={ price }
               qtt={ currentQtt }
             />
-            );
-          })
-      }
+          );
+        })}
       </div>
       <ButtonCart totalPriceCart={ totalPriceCart } />
     </div>
