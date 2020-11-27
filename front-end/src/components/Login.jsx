@@ -15,19 +15,16 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   //  VALIDAÇÃO DE EMAIL
-  const isEmailValid = (email = '') =>
-    email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
+  const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
   const emailLenghtLimit = 6;
   const emailValidated = () => {
-    if (!eMail || !isEmailValid(eMail) || eMail.length < emailLenghtLimit)
-      return false;
+    if (!eMail || !isEmailValid(eMail) || eMail.length < emailLenghtLimit) return false;
     return true;
   };
 
   // VARIÁVEL QUE DEFINE O "ESTADO" DO BOTÃO
-  const disableButton =
-    !password || password.length < emailLenghtLimit || !emailValidated();
+  const disableButton = !password || password.length < emailLenghtLimit || !emailValidated();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,13 +36,11 @@ const Login = () => {
     const { name, email, role } = await api.data.user;
     const { token } = api.data;
 
-    localStorage.setItem(
-      'user',
-      JSON.stringify({
-        name,
-        email,
-        role,
-        token,
+    localStorage.setItem('user', JSON.stringify({
+      name,
+      email,
+      role,
+      token,
       })
     );
 
@@ -88,9 +83,7 @@ const Login = () => {
             />
           </div>
 
-          <span className="mx-auto m-3 text-danger">
-            { errorMsg.toUpperCase() }
-          </span>
+          <span className="mx-auto m-3 text-danger">{errorMsg.toUpperCase()}</span>
 
           <div className="mx-auto m-2">
             <button
