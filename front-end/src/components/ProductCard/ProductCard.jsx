@@ -20,7 +20,6 @@ const addOrSub = (qttPdtsCart, index, pdt, setTotalPriceCart, op) => {
   }
 
   // Atualiza context e local storage com o preço atual
-  console.log('addorsub', totalPriceCart)
   setTotalPriceCart(totalPriceCart);
   setLS('totalPriceCart', totalPriceCart);
   setLS('qttPdtsCart', qttPdtsCart);
