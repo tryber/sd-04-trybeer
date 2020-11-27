@@ -67,7 +67,7 @@ export default () => {
   } = useContext(TrybeerContext);
 
   useEffect(() => {
-    (async function() {
+    (async function defaultHook () {
       try {
         if (!getLS('user')) return history.push('/login');
 
@@ -77,6 +77,8 @@ export default () => {
 
         setQttPdtsCart(initQttPdtsCart(newProducts.data, setTotalPriceCart));
         setProducts(newProducts.data);
+        const magicNumber = 0;
+        return magicNumber;
       } catch (e) {
         // console.log({ error: e.message })
       }
@@ -90,11 +92,12 @@ export default () => {
       <div className="cards-container">
         {products.map((
           { 
-            id, 
-            urlImg, 
-            name, 
-            price 
-        }, i) => {
+            id,
+            urlImg,
+            name,
+            price,
+        }, i
+        ) => {
           const currentQtt = qttPdtsCart.filter((pdt) => pdt.id === id)[0].qtt;
 
           return (
