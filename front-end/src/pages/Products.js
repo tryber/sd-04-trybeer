@@ -126,20 +126,20 @@ const Products = () => {
       </div>
       <div className="m-5">
         {/* <button disabled={totalValue === 0 ? true : false}> */}
-          <Link
-            data-testid="checkout-bottom-btn"
-            className={`fixed-bottom btn btn-info mx-auto w-75 m-2 ${
-              totalValue === 0 ? 'disabled' : ''
-            }`}
-            to="/checkout"
-          >
-            Ver Carrinho
-            <p data-testid="checkout-bottom-btn-value">
-              {totalValue === 0
-                ? 'R$ 0,00'
-                : totalValue.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
-            </p>
-          </Link>
+        <Link
+          data-testid="checkout-bottom-btn"
+          className={`fixed-bottom btn btn-info mx-auto w-75 m-2 d-flex justify-content-center ${
+            totalValue === 0 ? 'disabled' : ''
+          }`}
+          to="/checkout"
+        >
+          <p data-testid="checkout-bottom-btn-value">
+            Ver Carrinho |{' '}
+            {totalValue === 0
+              ? 'R$ 0,00'
+              : totalValue.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+          </p>
+        </Link>
         {/* </button> */}
       </div>
     </div>

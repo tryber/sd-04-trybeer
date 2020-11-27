@@ -109,9 +109,13 @@ const Checkout = () => {
       <h3 data-testid="order-total-value">
         {totalValue.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
       </h3>
-      <h4>{totalValue === 0 ? 'Não há produtos no carrinho' : null}</h4>
+      <h4 className="bg-warning mx-auto text-center w-50">
+        {totalValue === 0 ? 'Não há produtos no carrinho' : null}
+      </h4>
       {deliverInput()}
-      <h4>{messageSuccess ? 'Compra realizada com sucesso!' : null}</h4>
+      <h4 className="bg-success mx-auto text-center w-50">
+        {messageSuccess ? 'Compra realizada com sucesso!' : null}
+      </h4>
     </div>
   );
 };
