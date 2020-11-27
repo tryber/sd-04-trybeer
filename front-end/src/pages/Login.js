@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -15,15 +16,14 @@ const Login = () => {
   //  VALIDAÇÃO DE EMAIL
   const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
-  const emailLength = 6;
-
+  
   const emailValidated = () => {
-    if (!eMail || !isEmailValid(eMail) || eMail.length < emailLength) return false;
+    if (!eMail || !isEmailValid(eMail) || eMail.length < 6) return false;
     return true;
   };
 
   // VARIÁVEL QUE DEFINE O "ESTADO" DO BOTÃO
-  const disableButton = !password || password.length < emailLength || !emailValidated();
+  const disableButton = !password || password.length < 6 || !emailValidated();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,12 +54,12 @@ const Login = () => {
 
   return (
     <div>
-      <form onSubmit={ handleSubmit } className="m-3">
+      <form onSubmit={handleSubmit} className="m-3">
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
             <label htmlFor="email">Email</label>
             <input
-              onChange={ (e) => setEmail(e.target.value) }
+              onChange={(e) => setEmail(e.target.value)}
               data-testid="email-input"
               type="text"
               name="email"
@@ -72,7 +72,7 @@ const Login = () => {
           <div className="form-group w-75 mx-auto m-2">
             <label htmlFor="password">Password</label>
             <input
-              onChange={ (e) => setPassword(e.target.value) }
+              onChange={(e) => setPassword(e.target.value)}
               data-testid="password-input"
               type="password"
               name="password"
@@ -89,7 +89,7 @@ const Login = () => {
             <button
               data-testid="signin-btn"
               type="submit"
-              disabled={ disableButton }
+              disabled={disableButton}
               className="btn btn-warning m-2"
             >
               ENTRAR
