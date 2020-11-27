@@ -1,5 +1,5 @@
 import React from 'react';
-import  { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const ADMOrdersCards = ({ orders, testid }) => {
   return (
@@ -13,7 +13,7 @@ const ADMOrdersCards = ({ orders, testid }) => {
       <span className="bold-text" data-testid={`${testid}-order-total-value`}>
         {orders.totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
       </span>
-  <button>{orders.status}</button>
+      <button data-testid={`${testid}-order-status`}>{orders.status}</button>
     </div>
 
   );
