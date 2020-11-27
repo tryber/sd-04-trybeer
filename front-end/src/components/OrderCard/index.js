@@ -7,8 +7,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
-
+// import PropTypes from 'prop-types';
 
 /*
 Banco de Dados
@@ -28,24 +27,24 @@ const OrderCard = (data) => {
     <Button
       border="1px solid black"
       borderRadius="5px"
-      mb={2}
+      mb={ 2 }
       maxWidth="60ch"
       type="button"
       onClick={ () => {
         history.push(`/orders/${id}`);
       } }
     >
-      <Container >
+      <Container>
         <Flex
           direction="column"
           data-testid={ `${id - 1}-order-card-container` }
-          >
+        >
           <Flex>
             <Text
               fontWeight="bold"
               data-testid={ `${id - 1}-order-number` }
-              >
-              Pedido {id}
+            >
+              Pedido { id }
             </Text>
             <Spacer />
             <Text data-testid={ `${id - 1}-order-date"` }>{saleDate}</Text>
@@ -53,25 +52,13 @@ const OrderCard = (data) => {
           <Text
             fontWeight="bold"
             data-testid={ `${id - 1}-order-total-value"` }
-            >
+          >
             R$ {totalPrice}
           </Text>
         </Flex>
       </Container>
     </Button>
   );
-};
-
-OrderCard.propTypes = {
-  id: PropTypes.number,
-  saleDate: PropTypes.string,
-  totalPrice: PropTypes.number,
-};
-
-OrderCard.defaultProps = {
-  id: 1,
-  saleDate: 'Dia/Mês',
-  totalPrice: 0.00,
 };
 
 export default OrderCard;

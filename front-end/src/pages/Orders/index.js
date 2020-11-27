@@ -14,7 +14,7 @@ table: sales
 columns:
   id, user_id, total_price, sale_date, delivery_number
 
-A busca no banco de dados precisa ser feita pelo user_id  
+A busca no banco de dados precisa ser feita pelo user_id
 */
 // 1 - top-title -> alterar no MenuClient/Header
 // para ter um context para o title
@@ -24,7 +24,7 @@ A busca no banco de dados precisa ser feita pelo user_id
 
 /*
   - Ao entrar na tela, se o usuário não estiver logado, deve ser redirecionado para a tela Login.
-    1. Verificar se tem usuário no Local Storage?
+    1. Verificar se tem usuário pelo LocalStorage ou Token?
 */
 
 const Orders = () => {
@@ -34,13 +34,13 @@ const Orders = () => {
     // Pegando os pedidos do banco de dados
     getOrders()
       .then((response) => {
-        console.log("Response: ", response);
+        // console.log('Response: ', response);
         setOrders(response.data);
       })
       .catch(() => 'um erro ocorreu');
-    
-    }, []);
-    console.log("Orders: ", orders);
+
+  }, []);
+  // console.log('Orders: ', orders);
 
   return (
     <div>
@@ -48,10 +48,7 @@ const Orders = () => {
       <Text data-testid="top-title">Meus Pedidos</Text>
       <Flex direction="column">
         {orders ? orders.map((e) =>
-          <OrderCard
-            data={e}
-            key={e.id}
-          />
+          <OrderCard data={ e } key={ e.id } />
         ) : <Text>Loading...</Text>}
       </Flex>
     </div>
