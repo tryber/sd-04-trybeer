@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { NUMBER_ZERO } from '../../validation';
 
@@ -23,10 +23,9 @@ const OrderedsCard = ({
   return (
     <div className="orders-card-body">
       <div className="ordereds-info">
-        <span className="bold-text" data-testid={ `${testid}-order-number` }>
-          Pedido
-          { orderNumber }
-        </span>
+        <Link to={ `/orders/${orderNumber}` } className="bold-text" data-testid={ `${testid}-order-number` }>
+          { `Pedido ${orderNumber}` }
+        </Link>
         <span data-testid={ `${testid}-order-date` }>{ `${day}/${month}` }</span>
       </div>
       { history.location.pathname === '/admin/orders' && adminOrdersCards() }

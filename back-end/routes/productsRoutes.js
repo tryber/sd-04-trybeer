@@ -7,6 +7,10 @@ router.get('/products', productsController.fetchProducts);
 
 router.get('/checkout', productsController.fetchProducts);
 
+router.post('/checkout', productsController.newSale);
+
 router.get('/orders', productsController.fetchSales);
+
+// router.get('/orders/:id', productsController.fetchSales);
 
 module.exports = router;
