@@ -8,13 +8,16 @@ const ClientOrder = () => {
   useEffect(() => {
     (async () => {
       try {
-        const token = getLS('user').token;
+        const userData = getLS('user');
+        const { token } = userData
         const orders = await api.getOrders(token);
 
         setPedidos(orders.data);
       } catch (e) {
         return e;
       }
+      const zero = 0;
+      return zero;
     })();
   }, []);
 
@@ -22,10 +25,10 @@ const ClientOrder = () => {
     <div>
       <Header title="Cliente - Meus Pedidos" />
       {pedidos.map((e, i) => (
-        <div key={ i } data-testid={ 'order-card-container' }>
+        <div key={ i } data-testid='order-card-container'>
           <p data-testid={ `${i}-order-number` }>{ e.idSale }</p>
-          <p data-testid={ `${i}-order-date`  }>{ e.saleDate }</p>
-          <p data-testid={ `${i}-order-total-value`  }>{ e.totalPrice }</p>
+          <p data-testid={ `${i}-order-date` }>{ e.saleDate }</p>
+          <p data-testid={ `${i}-order-total-value` }>{ e.totalPrice }</p>
         </div>
       ))}
     </div>
