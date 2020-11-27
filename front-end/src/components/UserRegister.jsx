@@ -61,7 +61,8 @@ const UserRegister = () => {
       <form onSubmit={ handleSubmit }>
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="name">Nome</label>
+            <label htmlFor="name">
+              Nome
             <input
               data-testid="signup-name"
               id="name"
@@ -71,10 +72,12 @@ const UserRegister = () => {
               minLength="12"
               className="form-control"
             />
+          </label>
           </div>
 
           <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">
+              Email
             <input
               data-testid="signup-email"
               id="email"
@@ -83,12 +86,14 @@ const UserRegister = () => {
               onChange={ (e) => setEmail(e.target.value) }
               className="form-control"
             />
+          </label>
           </div>
 
           <span className="mx-auto m-3 text-danger">{errMsg}</span>
 
           <div className="form-group w-75 mx-auto m-2">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">
+              Password
             <input
               data-testid="signup-password"
               id="password"
@@ -98,6 +103,7 @@ const UserRegister = () => {
               minLength="6"
               className="form-control"
             />
+          </label>
           </div>
 
           <div className="form-group w-75 mx-auto m-2">

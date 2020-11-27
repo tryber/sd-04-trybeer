@@ -56,7 +56,6 @@ const addQtt = (e, setTotalPriceCart) => {
 const subQtt = (e, setTotalPriceCart) => {
   const elQtt = e.target.previousSibling;
   let qtt = +(elQtt.innerText);
-  
   const zero = 0;
   if (qtt === zero) {
     return true;
@@ -67,7 +66,14 @@ const subQtt = (e, setTotalPriceCart) => {
   updateTotalPriceLS(e.target, setTotalPriceCart, 'sub');
 };
 
-export default ({ id, i, img, name, price, qtt }) => {
+export default ({
+  id,
+  i,
+  img,
+  name,
+  price,
+  qtt
+}) => {
   const { totalPriceCart: [, setTotalPriceCart] } = useContext(TrybeerContext);
 
   return (
