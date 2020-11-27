@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import api from '../../services/api';
+import ADMOrdersCards from '../../components/ADMOrdersCards';
 
 // import OrderedsCard from '../../components/OderedsCard';
 import SideMenuAdmin from '../../components/SideMenuAdmin';
@@ -9,11 +10,13 @@ import SideMenuAdmin from '../../components/SideMenuAdmin';
 import './styles.css';
 
 const MyOrdersADM = () => {
+const [adminOrders, setAdminOrders] = useState([]);
+
   useEffect(() => {
     const getOrders = async () => {
-      const { id } = JSON.parse(localStorage.getItem('user'));
-      const response = await api.get('/admin/orders', { id, teste: 'abcfuncionou' });
-      console.log('response', response)
+      const response = await api.get('/admin/orders');
+      setAdminOrders(response.data);
+      console.log(response.data);
     };
     getOrders();
   }, []);
@@ -26,7 +29,7 @@ const MyOrdersADM = () => {
         <SideMenuAdmin />
       </aside>
       <section className="admin-orders-loader">
-        {/* Rodar um map() depois */}
+        {adminOrders && adminOrders.map((order, index) => (<ADMOrdersCards key={order.id} orders={order} testid={index} />))}
         {/* <OrderedsCard testid={ 1 } /> */}
       </section>
     </article>

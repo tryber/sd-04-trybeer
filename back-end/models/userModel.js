@@ -64,33 +64,35 @@ const updateUser = async (name, email) => {
   }
 };
 
-const getUserOrdersByUserId = async (id) => {
+const getOrders = async () => {
   try {
-    connection()
-      .then((db) => db
-        .getTable('sales')
+    const db = await connection();
+    const query = await db
+      .getTable('sales')
         .select([
         'id',
-        'user_id',
         'total_price',
         'delivery_address',
         'delivery_number',
-        'sale_date',
         'status',
       ])
-      .where('user_id = :id')
-      .bind('id', id)
-      .execute());
+     .execute();
+    const result = await query.fetchAll();
+    return result.map(([id, totalPrice, deliveryAdress, status]) => ({
+     id,
+     totalPrice,
+     deliveryAdress,
+     status
+    }));
   } catch (error) {
     console.log(error.message);
   }
 };
-
 
 module.exports = {
   getUserByEmail,
   getUserByEmailAndPassword,
   registerNewUser,
   updateUser,
-  getUserOrdersByUserId,
+  getOrders,
 };

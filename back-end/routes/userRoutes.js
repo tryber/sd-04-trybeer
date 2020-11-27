@@ -9,6 +9,7 @@ router.post('/register', userController.registerUser);
 
 router.put('/updateUser', userController.updateUser);
 
-router.get('/admin/orders', (req, res) => console.log('ROUTES iae', req.body), userController.getUserOrders);
+// router.get('/admin/orders/:id', (req, res) => console.log('ROUTES', req.params), userController.getUserOrders);
+router.get('/admin/orders', userController.getUserOrders);
 
 module.exports = router;

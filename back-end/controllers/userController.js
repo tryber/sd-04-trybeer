@@ -36,13 +36,10 @@ const updateUser = async (req, res) => {
 };
 
 const getUserOrders = async (req, res) => {
-  try {
-    const { id } = req.body;
-    const orders = await userModel.getUserOrdersByUserId(id);
 
-    if (id) {
-      return console.log(id);
-    }
+  try {
+    const orders = await userModel.getOrders();
+    res.status(200).json(orders);
 
   } catch (error) {
     return res.status(401).json({ message: 'BAD REQUEST' });
