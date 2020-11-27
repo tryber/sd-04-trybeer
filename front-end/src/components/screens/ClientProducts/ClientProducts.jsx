@@ -77,7 +77,7 @@ export default () => {
 
         setQttPdtsCart(initQttPdtsCart(newProducts.data, setTotalPriceCart));
         setProducts(newProducts.data);
-        return;
+        return 0;
       } catch (e) {
         // console.log({ error: e.message })
       }
@@ -95,19 +95,19 @@ export default () => {
 
           return (
             <Card
-              key={id}
-              id={id}
-              i={i}
-              img={urlImg}
-              name={name}
-              price={price}
-              qtt={currentQtt}
+              key={ id }
+              id={ id }
+              i={ i }
+              img={ urlImg }
+              name={ name }
+              price={ price }
+              qtt={ currentQtt }
             />
-          );
-        })
+            );
+          })
       }
       </div>
-      <ButtonCart totalPriceCart={totalPriceCart} />
+      <ButtonCart totalPriceCart={ totalPriceCart } />
     </div>
   );
 };
