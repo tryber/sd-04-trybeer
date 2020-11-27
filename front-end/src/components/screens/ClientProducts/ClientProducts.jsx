@@ -71,7 +71,8 @@ export default () => {
       try {
         if (!getLS('user')) return history.push('/login');
 
-        const token = getLS('user').token;
+        const userData = getLS('user');
+        const { token } = userData ;
 
         const newProducts = await api.getProducts(token);
 
