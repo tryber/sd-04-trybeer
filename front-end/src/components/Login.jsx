@@ -41,8 +41,8 @@ const Login = () => {
       email,
       role,
       token,
-      })
-    );
+    }),
+  );
 
     setErrorMsg('');
 
