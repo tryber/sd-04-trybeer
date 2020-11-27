@@ -108,5 +108,5 @@ export default ({
 };
 
 updateTotalPriceLS.propTypes = {
-  id: PropTypes.number
-}
+  id: PropTypes.number,
+};
