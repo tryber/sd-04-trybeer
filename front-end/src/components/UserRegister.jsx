@@ -19,15 +19,11 @@ const UserRegister = () => {
   const isNameValid = (name = '') => name.match(/^([a-zA-Zà-úÀ-Ú]|\s+)+$/);
 
   const nameLengthLimit = 12;
-  const nameValidated = () =>
-    !name || !isNameValid(name) || name.length < nameLengthLimit ? false : true;
+  const nameValidated = () => (!name || !isNameValid(name) || name.length < nameLengthLimit) ? false : true;
 
-  const isEmailValid = (email = '') =>
-    email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
-
+  const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
   const emailLengthLimit = 6;
-  const emailValidated = () =>
-    !email || !isEmailValid(email) || email.length < emailLengthLimit
+  const emailValidated = () => (!email || !isEmailValid(email) || email.length < emailLengthLimit)
       ? false
       : true;
 
@@ -60,7 +56,7 @@ const UserRegister = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={ handleSubmit}>
         <section className="card w-75 mx-auto m-3">
           <div className="form-group w-75 mx-auto m-2">
             <label htmlFor="name">Nome</label>
@@ -69,7 +65,7 @@ const UserRegister = () => {
               id="name"
               name="name"
               type="text"
-              onChange={(e) => setName(e.target.value)}
+              onChange={ (e) => setName(e.target.value) }
               minLength="12"
               className="form-control"
             />
@@ -82,7 +78,7 @@ const UserRegister = () => {
               id="email"
               name="email"
               type="email"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={ (e) => setEmail(e.target.value) }
               className="form-control"
             />
           </div>
@@ -96,7 +92,7 @@ const UserRegister = () => {
               id="password"
               name="password"
               type="password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={ (e) => setPassword(e.target.value) }
               minLength="6"
               className="form-control"
             />
@@ -108,7 +104,7 @@ const UserRegister = () => {
               id="sell"
               name="sell"
               type="checkbox"
-              onChange={(e) => setCheckbox(e.target.value)}
+              onChange={ (e) => setCheckbox(e.target.value) }
             />
             <label htmlFor="sell" className="m-2">
               Quero Vender
@@ -118,7 +114,7 @@ const UserRegister = () => {
           <button
             data-testid="signup-btn"
             type="submit"
-            disabled={disableButton}
+            disabled={ disableButton }
             className="btn btn-warning w-50 mx-auto m-2"
           >
             Cadastrar
