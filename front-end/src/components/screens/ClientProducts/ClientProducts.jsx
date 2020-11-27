@@ -59,9 +59,6 @@ export default () => {
     qttPdtsCart: [qttPdtsCart, setQttPdtsCart],
     totalPriceCart: [totalPriceCart, setTotalPriceCart]
   } = useContext(TrybeerContext);
-  // const totalPriceCartLs = getLS('totalPriceCart');
-
-  // useEffectCustom(setQttPdtsCart, setTotalPriceCart, setProducts, history);
 
   useEffect(() => {
     (async () => {

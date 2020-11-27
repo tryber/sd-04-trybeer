@@ -19,39 +19,39 @@ export const pdtName = (productId) => {
       break;
 
     case '3':
-      productName = 'Heineken 600ml';
-      break;
-
-    case '4':
       productName = 'Antarctica Pilsen 300ml';
       break;
 
-    case '5':
+    case '4':
       productName = 'Brahma 600ml';
       break;
 
-    case '6':
+    case '5':
       productName = 'Skol 269ml';
       break;
 
-    case '7':
+    case '6':
       productName = 'Skol Beats Senses 313ml';
       break;
 
-    case '8':
+    case '7':
       productName = 'Becks 330ml';
       break;
 
-    case '9':
+    case '8':
       productName = 'Brahma Duplo Malte 350ml';
       break;
 
-    case '10':
+    case '9':
       productName = 'Becks 600ml';
       break;
 
-    case '11':
+    case '10':
       productName = 'Skol Beats Senses 269ml';
+      break;
+
+    case '11':
+      productName = 'Stella Artois 275ml';
       break;
 
     default:
