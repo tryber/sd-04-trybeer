@@ -107,6 +107,6 @@ export default ({
   );
 };
 
-ProductCard.propTypes = {
+updateTotalPriceLS.propTypes = {
   id: PropTypes.number
 }
