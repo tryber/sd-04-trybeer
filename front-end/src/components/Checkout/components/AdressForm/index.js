@@ -21,11 +21,9 @@ const AdressForm = () => {
     const total = JSON.parse(localStorage.getItem('totalCarrinho'));
     const currentDate = dateSaleValidation();
     const status = 'PENDENTE';
-    // console.log(dateSaleValidation());
     const response = await api.post('/checkout', {
       userId, total, rua, numeroCasa, currentDate, status,
     });
-    // console.log(response.data.message);
     setTimeout(() => history.push('/products'), CHECKOUT_TIME);
     setMessage(response.data.message);
   };

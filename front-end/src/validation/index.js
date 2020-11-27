@@ -22,9 +22,7 @@ const setLocalStorage = (userData) => {
 
 const dateSaleValidation = () => {
   const date = new Date();
-  const formatedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
-  // console.log(date.get);
-  // console.log(formatedDate);
+  const formatedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   return formatedDate;
 };
 
