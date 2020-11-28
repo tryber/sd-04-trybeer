@@ -16,7 +16,7 @@ const initQttPdtsCart = (products, setTotalPriceCart) => {
 
   if (qtt) {
     const totalPriceCart = qtt.map((pdt) => pdt.totalPrice)
-    .reduce((acc, value) => acc + value);
+     .reduce((acc, value) => acc + value);
 
     setTotalPriceCart(totalPriceCart);
 
