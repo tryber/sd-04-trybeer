@@ -1,22 +1,25 @@
 import axios from 'axios';
 
 const url = 'http://localhost:3001';
+// const mockURL = 'https://my-json-server.typicode.com/pedrotpo/trybeer-mockapi/users';
 
 export const userLogin = async (email, password) => axios
   .post(`${url}/login`, { email, password })
   .catch(({ response }) => response);
 
-export const postRegister = async (name, email, password, role) => axios
+export const userUpdate = async (id, name) => axios
+  .put(`${url}/profile`, { id, name })
+  .catch(({ response }) => response);
+
+export const postRegister = async (signName, signEmail, signPassword, signRole) => axios
   .post(`${url}/register`, {
-    name,
-    email,
-    password,
-    role,
+    signName,
+    signEmail,
+    signPassword,
+    signRole,
   })
   .catch(({ response }) => response);
 
-const api = axios.create({
-  baseURL: 'http//localhost:3001',
-});
-
-export const listProducts = () => (api.get('/products'));
+export const listProducts = async () => axios
+  .get(`${url}/products`)
+  .catch(({ response }) => response);

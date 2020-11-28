@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { ProductContext } from '../../context';
 
 // funcao verifica se tem itens no storage, se n tiver ele adiciona
 function addStorage(id, name, price, urlImage, quantity) {
@@ -34,31 +35,38 @@ function updateStorage(id, quantity) {
   localStorage.cartItens = JSON.stringify(newArray);
 }
 
+function subButton(quantity, zero, setQuantity) {
+  return quantity !== zero ? setQuantity(quantity - 1) : null;
+}
+
 // funcao que checa se tem item no storage e atualiza a quantidade
 function checkStorage(id, zero, setQuantity) {
-  const storage = JSON.parse(localStorage.cartItens);
+  const storage = localStorage.cartItens ? JSON.parse(localStorage.cartItens) : null;
   if (storage.length > zero) {
     storage.forEach((e) => {
       if (e.id === id) setQuantity(e.quantity);
       return null;
     });
   }
+  return null;
 }
 
 export default function ProductCard(data) {
+  const { setCartValue, totalValue } = useContext(ProductContext);
   const zero = 0;
   // variavel para formatacao do price
-  const formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' };
+  // const formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' };
   const {
     id, name, price, urlImage,
-  } = data;
+  } = data.data;
+
   const [quantity, setQuantity] = useState(zero);
 
   // roda quando o card eh montado, checa localstorage
   // checa se o item do card ja esta no localstorage e atribui a quantidade
   useEffect(() => {
-    checkStorage(zero, id);
-  });
+    checkStorage(id, zero, setQuantity);
+  }, [id]);
 
   // roda toda vez que o valor do "quantity" for alterado
   // checa se o item ja esta no localstorage, se tiver atualiza a quantidade,
@@ -78,21 +86,22 @@ export default function ProductCard(data) {
         updateStorage(id, quantity);
       }
     });
-  }, [id, name, price, quantity, urlImage]);
+    setCartValue(totalValue());
+  }, [id, name, price, quantity, setCartValue, totalValue, urlImage]);
 
   return (
     <div>
-      <div data-testid={ `${id - 1}-product-price` }>{price.toLocalString('pt-BR', formato)}</div>
+      <div data-testid={ `${id - 1}-product-price` }>{price.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })}</div>
       <div>
-        <div data-testid={ `${id - 1}-product-img` }>{urlImage}</div>
+        <img width="100px" data-testid={ `${id - 1}-product-img` } src={ urlImage } alt="url da imagem" />
         <div data-testid={ `${id - 1}-product-name` }>{name}</div>
       </div>
       <div>
         <button
           type="button"
-          disabled={ quantity === zero }
+          // disabled={ quantity === zero }
           data-testid={ `${id - 1}-product-minus` }
-          onClick={ () => setQuantity(quantity - 1) }
+          onClick={ () => subButton(quantity, zero, setQuantity) }
         >
           -
         </button>

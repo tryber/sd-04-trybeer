@@ -14,9 +14,12 @@ const validateJWT = (req, res, next) => {
     const data = jwt.verify(token, secret);
 
     if (!data) {
-      return res.status(500).json({ message: 'token inválido!' });
+      return res.redirect(`/login?redirect=${encodeURIComponent(req.url)}`);
+      // return res.status(500).json({ message: 'token inválido!' });
     }
     
+    req.user = data;
+
     req.user = data;
 
     next();

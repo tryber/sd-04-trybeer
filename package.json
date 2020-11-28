@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/betrybe/sd-0x-trybeer#readme",
   "dependencies": {
+    "@chakra-ui/icons": "^1.0.0",
     "@mysql/xdevapi": "^8.0.20",
     "mysql2": "^2.1.0",
     "sequelize": "^6.3.4"
