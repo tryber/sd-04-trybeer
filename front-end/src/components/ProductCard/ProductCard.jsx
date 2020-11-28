@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { TrybeerContext } from '../../context/index';
 import { getLS, setLS } from '../../helpers/index';
@@ -10,17 +11,17 @@ const addOrSub = (qttPdtsCart, index, pdt, setTotalPriceCart, op) => {
   pdt.totalPrice = pdt.price * pdt.qtt;
   qttPdtsCart[index] = pdt;
 
-  const totalPriceCart = qttPdtsCart.map((pdt) => pdt.totalPrice)
+  const totalPriceCart = qttPdtsCart.map((prod) => prod.totalPrice)
     .reduce((acc, value) => acc + value);
 
-  if (totalPriceCart === 0) {
+  const zero = 0;
+  if (totalPriceCart === zero) {
     const buttonCart = document.getElementById('btn-cart');
 
     buttonCart.disabled = true;
   }
 
   // Atualiza context e local storage com o preço atual
-  console.log('addorsub', totalPriceCart)
   setTotalPriceCart(totalPriceCart);
   setLS('totalPriceCart', totalPriceCart);
   setLS('qttPdtsCart', qttPdtsCart);
@@ -30,8 +31,8 @@ const updateTotalPriceLS = (target, setTotalPriceCart, op) => {
   const id = +(target.parentNode.parentNode.id);
   const qttPdtsCart = getLS('qttPdtsCart');
   let index;
-  const pdt = qttPdtsCart.filter((pdt, i) => {
-    if (pdt.id === id) {
+  const pdt = qttPdtsCart.filter((prod, i) => {
+    if (prod.id === id) {
       index = i;
       return true;
     }
@@ -55,9 +56,9 @@ const addQtt = (e, setTotalPriceCart) => {
 
 const subQtt = (e, setTotalPriceCart) => {
   const elQtt = e.target.previousSibling;
-  let qtt = +(elQtt.innerText);
-
-  if (qtt === 0) {
+  const qtt = +(elQtt.innerText);
+  const zero = 0;
+  if (qtt === zero) {
     return true;
   }
 
@@ -66,31 +67,46 @@ const subQtt = (e, setTotalPriceCart) => {
   updateTotalPriceLS(e.target, setTotalPriceCart, 'sub');
 };
 
-export default ({ id, i, img, name, price, qtt }) => {
+export default ({
+  id,
+  i,
+  img,
+  name,
+  price,
+  qtt,
+}) => {
   const { totalPriceCart: [, setTotalPriceCart] } = useContext(TrybeerContext);
 
   return (
-    <div id={id} className='card'>
-      <img data-testid={`${i}-product-img`} src={img} alt="produto" />
-      <p data-testid={`${i}-product-name`} className="card-name">{name}</p>
-      <p data-testid={`${i}-product-price`} className="card-price">
+    <div id={ id } className="card">
+      <img data-testid={ `${i}-product-img` } src={ img } alt="produto" />
+      <p data-testid={ `${i}-product-name` } className="card-name">{ name }</p>
+      <p data-testid={ `${i}-product-price` } className="card-price">
         {price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
       </p>
       <div className="qtt-btns">
         <button
-          type="button" data-testid={`${i}-product-plus`} className="btn btn-outline-success"
-          onClick={(e) => addQtt(e, setTotalPriceCart)}
+          type="button"
+          data-testid={ `${i}-product-plus` }
+          className="btn btn-outline-success"
+          onClick={ (e) => addQtt(e, setTotalPriceCart) }
         >
           +
         </button>
-        <p id="qtt" data-testid={`${i}-product-qtd`}>{qtt}</p>
+        <p id="qtt" data-testid={ `${i}-product-qtd` }>{ qtt }</p>
         <button
-          type="button" data-testid={`${i}-product-minus`} className="btn btn-outline-danger"
-          onClick={(e) => subQtt(e, setTotalPriceCart)}
+          type="button"
+          data-testid={ `${i}-product-minus` }
+          className="btn btn-outline-danger"
+          onClick={ (e) => subQtt(e, setTotalPriceCart) }
         >
           -
         </button>
       </div>
     </div>
   );
+};
+
+updateTotalPriceLS.propTypes = {
+  id: PropTypes.number,
 };

@@ -34,10 +34,13 @@ const userNameUpdateApi = async (name, email, newName) => {
   return result;
 };
 
+const getOrders = (token) => apiTrybeer.get('/orders', { headers: { authorization: token } });
+
 export default {
   loginApi,
   registerApi,
   // getUserByEmail,
   getProducts,
   userNameUpdateApi,
+  getOrders,
 };

@@ -15,15 +15,21 @@ const initQttPdtsCart = (products, setTotalPriceCart) => {
   let qtt = getLS('qttPdtsCart');
 
   if (qtt) {
-    const totalPriceCart = qtt.map((pdt) => pdt.totalPrice)
-     .reduce((acc, value) => acc + value);
+    const totalPriceCart = qtt
+      .map((pdt) => pdt.totalPrice)
+      .reduce((acc, value) => acc + value);
 
     setTotalPriceCart(totalPriceCart);
 
     return qtt;
   }
 
-  qtt = products.map(({ id, price }) => ({ id, price, qtt: 0, totalPrice: 0 }));
+  qtt = products.map(({ id, price }) => ({
+    id,
+    price,
+    qtt: 0,
+    totalPrice: 0,
+  }));
 
   setLS('qttPdtsCart', qtt);
 
@@ -57,23 +63,26 @@ export default () => {
   const [products, setProducts] = useState([]);
   const {
     qttPdtsCart: [qttPdtsCart, setQttPdtsCart],
-    totalPriceCart: [totalPriceCart, setTotalPriceCart]
+    totalPriceCart: [totalPriceCart, setTotalPriceCart],
   } = useContext(TrybeerContext);
 
   useEffect(() => {
-    (async () => {
+    (async function defaultHook() {
       try {
         if (!getLS('user')) return history.push('/login');
 
-        const token = getLS('user').token;
+        const userData = getLS('user');
+        const { token } = userData;
 
-        const products = await api.getProducts(token);
+        const newProducts = await api.getProducts(token);
 
-        setQttPdtsCart(initQttPdtsCart(products.data, setTotalPriceCart));
-        setProducts(products.data);
+        setQttPdtsCart(initQttPdtsCart(newProducts.data, setTotalPriceCart));
+        setProducts(newProducts.data);
       } catch (e) {
         // console.log({ error: e.message })
       }
+      const magicNumber = 0;
+      return magicNumber;
     })();
   }, [setQttPdtsCart, setTotalPriceCart, setProducts, history]);
 
@@ -82,15 +91,30 @@ export default () => {
       <Header title="TryBeer" />
       <SideBar userType="client" />
       <div className="cards-container">
-        {products.map(({ id, urlImg, name, price }, i) => {
+        {products.map((
+          {
+            id,
+            urlImg,
+            name,
+            price,
+          }, i,
+        ) => {
           const currentQtt = qttPdtsCart.filter((pdt) => pdt.id === id)[0].qtt;
 
-          return <Card
-            key={id} id={id} i={i} img={urlImg} name={name} price={price} qtt={currentQtt}
-          />
+          return (
+            <Card
+              key={ id }
+              id={ id }
+              i={ i }
+              img={ urlImg }
+              name={ name }
+              price={ price }
+              qtt={ currentQtt }
+            />
+          );
         })}
       </div>
-      <ButtonCart totalPriceCart={totalPriceCart} />
+      <ButtonCart totalPriceCart={ totalPriceCart } />
     </div>
   );
 };
