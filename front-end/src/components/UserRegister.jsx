@@ -25,11 +25,13 @@ const UserRegister = () => {
     return true;
   };
 
-  const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
+  const isEmailValid = (emailValue = '') => emailValue.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
   const emailLengthLimit = 6;
-  const emailValidated = () => (!email || !isEmailValid(email) || email.length < emailLengthLimit)
-    ? false
-    : true;
+  const emailValidated = () => {
+    if (!email || !isEmailValid(email) || email.length < emailLengthLimit) return false;
+
+    return true;
+  };
 
   const disableButton = !nameValidated()
   || !password
@@ -56,6 +58,8 @@ const UserRegister = () => {
       localStorage.setItem('user', 'newUser');
       return history.push('/products');
     }
+
+    return true;
   };
 
   return (
