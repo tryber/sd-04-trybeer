@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { Context } from '../../../../context';
 import { dateSaleValidation, CHECKOUT_TIME } from '../../../../validation';
 
 import api from '../../../../services/api';
@@ -8,6 +9,7 @@ import api from '../../../../services/api';
 import './style.css';
 
 const AdressForm = () => {
+  const { cartState } = useContext(Context);
   const history = useHistory();
   const [rua, setRua] = useState('');
   const [numeroCasa, setNumeroCasa] = useState('');
@@ -15,14 +17,19 @@ const AdressForm = () => {
 
   const validateCheckoutButton = (ruaEnd, numeroEnd) => ruaEnd === '' || numeroEnd === '';
 
+  const getPurchasedProducts = (myItems) => myItems.map(
+    ({ id, quantity }) => ({ id, quantity }),
+  );
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { id: userId } = JSON.parse(localStorage.getItem('user'));
     const total = JSON.parse(localStorage.getItem('totalCarrinho'));
     const currentDate = dateSaleValidation();
     const status = 'Pendente';
+    const purchasedProducts = getPurchasedProducts(cartState);
     const response = await api.post('/checkout', {
-      userId, total, rua, numeroCasa, currentDate, status,
+      userId, total, rua, numeroCasa, currentDate, status, purchasedProducts,
     });
     setTimeout(() => history.push('/products'), CHECKOUT_TIME);
     setMessage(response.data.message);

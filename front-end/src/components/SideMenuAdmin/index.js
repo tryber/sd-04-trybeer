@@ -2,9 +2,9 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './styles.css';
 
-const test = (history, pathName) => {
+const handlePath = (history, pathName) => {
   if (pathName == null) {
-    localStorage.setItem('user', JSON.stringify({}));
+    localStorage.removeItem('user');
     return history.push('/login');
   }
   return history.push(`/${pathName}`);
@@ -21,7 +21,7 @@ function SideMenuAdmin() {
         data-testid="side-menu-item-orders"
         type="button"
         className="admin-side-button"
-        onClick={ () => test(history, 'admin/orders') }
+        onClick={ () => handlePath(history, 'admin/orders') }
       >
         Pedidos
       </button>
@@ -29,7 +29,7 @@ function SideMenuAdmin() {
         data-testid="side-menu-item-profile"
         type="button"
         className="admin-side-button"
-        onClick={ () => test(history, 'admin/profile') }
+        onClick={ () => handlePath(history, 'admin/profile') }
       >
         Perfil
       </button>
@@ -37,7 +37,7 @@ function SideMenuAdmin() {
         data-testid="side-menu-item-logout"
         type="button"
         className="admin-side-button botao-sair"
-        onClick={ () => test(history, null) }
+        onClick={ () => handlePath(history, null) }
       >
         Sair
       </button>

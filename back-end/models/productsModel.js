@@ -62,10 +62,35 @@ const getAllSales = async () => {
 //   status: 'status'
 // }
 
-const insertNewSale = async ({ userId, total, rua, numeroCasa, currentDate, status }) => {
+const insertInSalesProducts = async (purchasedProducts, saleInsertedId) => {
   try {
     const db = await connection();
-    await db
+    purchasedProducts.forEach(async ({ id: productId, quantity }) => {
+      await db
+        .getTable('sales_products')
+        .insert([
+          'sale_id',
+          'product_id',
+          'quantity',
+        ])
+        .values(
+          saleInsertedId,
+          productId,
+          quantity,
+        )
+        .execute();
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const insertNewSale = async ({
+  userId, total, rua, numeroCasa, currentDate, status, purchasedProducts,
+}) => {
+  try {
+    const db = await connection();
+    const retorno = await db
       .getTable('sales')
       .insert([
         'user_id',
@@ -84,6 +109,10 @@ const insertNewSale = async ({ userId, total, rua, numeroCasa, currentDate, stat
         status,
       )
       .execute();
+      // Pra pegar o id inserido use a resposta do insert e
+      // resposta.getAutoIncrementValue();
+    const saleInsertedId = retorno.getAutoIncrementValue();
+    await insertInSalesProducts(purchasedProducts, saleInsertedId);
   } catch (error) {
     console.log(error.message);
   }

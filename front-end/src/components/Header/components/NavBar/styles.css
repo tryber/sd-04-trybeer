@@ -3,7 +3,7 @@
 }
 
 .side-menu-container {
-  animation-duration: 0.4s;
+  animation-duration: 0s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
   display: flex;
