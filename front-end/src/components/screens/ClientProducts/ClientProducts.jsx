@@ -81,6 +81,8 @@ export default () => {
       } catch (e) {
         // console.log({ error: e.message })
       }
+
+      return true;
     })();
   }, [setQttPdtsCart, setTotalPriceCart, setProducts, history]);
 
