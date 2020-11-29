@@ -67,7 +67,7 @@ export default () => {
   } = useContext(TrybeerContext);
 
   useEffect(() => {
-    (async function defaultHook() {
+    (async () => {
       try {
         if (!getLS('user')) return history.push('/login');
 
@@ -81,8 +81,6 @@ export default () => {
       } catch (e) {
         // console.log({ error: e.message })
       }
-      const magicNumber = 0;
-      return magicNumber;
     })();
   }, [setQttPdtsCart, setTotalPriceCart, setProducts, history]);
 
