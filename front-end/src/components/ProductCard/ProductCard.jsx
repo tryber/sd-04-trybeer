@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
+import propTypes from 'prop-types';
 import { TrybeerContext } from '../../context/index';
 import { getLS, setLS } from '../../helpers/index';
 import './ProductCard.css';
@@ -64,10 +64,10 @@ const subQtt = (e, setTotalPriceCart) => {
 
   elQtt.innerText = qtt - 1;
 
-  updateTotalPriceLS(e.target, setTotalPriceCart, 'sub');
+  return updateTotalPriceLS(e.target, setTotalPriceCart, 'sub');
 };
 
-export default ({
+const ProductCard = ({
   id,
   i,
   img,
@@ -107,6 +107,13 @@ export default ({
   );
 };
 
-updateTotalPriceLS.propTypes = {
-  id: PropTypes.number,
+ProductCard.propTypes = {
+  id: propTypes.number.isRequired,
+  i: propTypes.number.isRequired,
+  img: propTypes.string.isRequired,
+  name: propTypes.string.isRequired,
+  price: propTypes.number.isRequired,
+  qtt: propTypes.number.isRequired,
 };
+
+export default ProductCard;
