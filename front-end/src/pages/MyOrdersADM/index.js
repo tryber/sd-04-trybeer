@@ -22,7 +22,7 @@ const MyOrdersADM = () => {
 
   return (
     <article className="ordereds-container">
-      <aside className="side-menu-container">
+      <aside>
         <SideMenuAdmin />
       </aside>
       <section className="admin-orders-loader">

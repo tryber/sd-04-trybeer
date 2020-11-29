@@ -31,5 +31,6 @@ const newSale = async (req, res) => {
 module.exports = {
   fetchProducts,
   fetchSales,
+  // fetchSaleById,
   newSale,
 };

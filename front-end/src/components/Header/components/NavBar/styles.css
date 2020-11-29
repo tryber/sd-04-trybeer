@@ -57,14 +57,6 @@
   cursor: pointer;
 }
 
-.side-menu-item-products {}
-
-.side-menu-item-my-orders {}
-
-.side-menu-item-my-profile {}
-
-.side-menu-item-logout {}
-
 @keyframes displayNav {
   from {
     left: -100%;

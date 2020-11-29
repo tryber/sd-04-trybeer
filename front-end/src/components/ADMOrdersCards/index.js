@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const ADMOrdersCards = ({ orders, testid }) => (
   <div className="orders-card-body">
     <div className="ordereds-info">
-      <Link to={ `/orders/${orders.id}` } data-testid={ `${testid}-order-number` }>
+      <Link to={ `/admin/orders/${orders.id}` } data-testid={ `${testid}-order-number` }>
         { `Pedido ${orders.id}` }
       </Link>
     </div>
