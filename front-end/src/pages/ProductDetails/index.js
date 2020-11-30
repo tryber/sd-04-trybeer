@@ -10,7 +10,7 @@ import './styles.css';
 
 const ProductDetails = ({ match: { params: { orderNumber } } }) => {
   const [product, setProduct] = useState('');
-  const [dateFormat, setDateFormat] = useState('')
+  const [dateFormat, setDateFormat] = useState('');
   // console.log(match);
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -29,15 +29,14 @@ const ProductDetails = ({ match: { params: { orderNumber } } }) => {
           <div className="order-detail-info">
             <p className="details-order-head">
               <span data-testid="order-number">
-              Pedido  { product.id }
+                {`Pedido  ${product.id}`}
               </span>
               <span data-testid="order-date">
-                {console.log(dateFormat)}
-                { dateFormat && `${ dateFormat.getDate()+1 }/${ dateFormat.getMonth()+1 }` }
+                { dateFormat && `${dateFormat.getDate() + 1}/${dateFormat.getMonth() + 1}` }
               </span>
             </p>
           </div>
-          { product.products
+          {product.products
             && product.products.map(({
               orderId, quantity, name, price,
             }, index) => (
@@ -52,7 +51,7 @@ const ProductDetails = ({ match: { params: { orderNumber } } }) => {
           <p>
             Total: &nbsp;
             <span data-testid="order-total-value">
-              {product && product.totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
+              { product && product.totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
             </span>
           </p>
         </div>
