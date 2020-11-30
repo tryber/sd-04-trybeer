@@ -3,6 +3,7 @@ import {
   Flex,
   Text,
 } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 import MenuClient from '../../components/MenuClient';
 import OrderCard from '../../components/OrderCard';
 import { getOrders } from '../../api';
@@ -22,15 +23,17 @@ A busca no banco de dados precisa ser feita pelo user_id
 // - Pegar o id do usuário (user_id) para acessar seus pedidos
 //   (salesByUserId? no BACKEND)
 
-/*
-  - Ao entrar na tela, se o usuário não estiver logado, deve ser redirecionado para a tela Login.
-    1. Verificar se tem usuário pelo LocalStorage ou Token?
-*/
-
 const Orders = () => {
+  const history = useHistory();
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
+    // Verifica se o usuário está logado
+    const user = localStorage.getItem('user') || null;
+    if (!user) {
+      history.push('/login');
+    }
+
     // Pegando os pedidos do banco de dados
     getOrders()
       .then((response) => {
@@ -39,7 +42,7 @@ const Orders = () => {
       })
       .catch(() => 'um erro ocorreu');
 
-  }, []);
+  }, [history]);
   // console.log('Orders: ', orders);
 
   return (
