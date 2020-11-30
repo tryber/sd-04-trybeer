@@ -1,4 +1,5 @@
 const connection = require('./connection');
+const getSession = require('./getSession');
 
 const getAllProducts = async () => {
   try {
@@ -36,7 +37,6 @@ const getAllSales = async () => {
       ])
       .execute();
     const result = await query.fetchAll();
-    console.log('Result: ', result);
     return result.map(
       ([orderId, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status]) => ({
         orderId,
@@ -118,8 +118,62 @@ const insertNewSale = async ({
   }
 };
 
+const getSaleById = async (saleId) => {
+  const db = await connection();
+  const table = await db.getTable('sales');
+  const result = await table
+    .select()
+    .where('id = :id')
+    .bind('id', saleId)
+    .execute();
+  const sale = await result.fetchOne() || [];
+  if (!sale.length) return sale;
+  const [id, userId, totalPrice, deliveryAddress, deliveryNumber, date, status] = sale;
+  return {
+    id,
+    userId,
+    totalPrice,
+    deliveryAddress,
+    deliveryNumber,
+    date,
+    status,
+  };
+};
+
+const getSaleProducts = async (saleId) => {
+  const session = await getSession();
+  const result = await session
+  // SELECT sales.*,
+  //     sproducts.product_id AS sold_product_id,
+  //     sproducts.quantity AS sold_quantity,
+  //     products.name AS product_name,
+  //     products.price AS product_price,
+  //     FROM Trybeer.sales_products AS sproducts
+  //     INNER JOIN Trybeer.sales AS sales ON sproducts.sale_id = sales.id
+  //     AND sales.id = ${saleId}
+  //     INNER JOIN Trybeer.products AS products
+  //     ON sproducts.product_id = products.id ORDER BY sales.id
+    .sql(
+      `SELECT products.id, products.name, products.price, sp.quantity
+      FROM Trybeer.products AS products
+      INNER JOIN Trybeer.sales_products AS sp ON products.id = sp.product_id
+      WHERE sp.sale_id = ?;`,
+    )
+    .bind(saleId)
+    .execute();
+  const products = await result.fetchAll();
+  return products.map(([id, name, price, quantity]) => ({
+    id,
+    name,
+    price,
+    quantity,
+  }));
+};
+
 module.exports = {
   getAllProducts,
   getAllSales,
   insertNewSale,
+  getSaleById,
+  getSaleProducts,
 };

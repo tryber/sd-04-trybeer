@@ -2,7 +2,7 @@ const NAME_PATTERN = /^[a-záàâãéèêíïóôõöúçñ ]+$/i;
 const EMAIL_PATTERN = /[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i;
 const MIN_NAME_LENGTH = 12;
 const PASS_LENGTH = 6;
-const CHECKOUT_TIME = 700;
+const CHECKOUT_TIME = 2000;
 
 const NUMBER_ZERO = 0;
 
