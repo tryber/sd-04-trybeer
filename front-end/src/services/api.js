@@ -18,4 +18,14 @@ const registerApi = async (name, email, password, role) => {
 
 const getProducts = () => apiTrybeer.get('/products');
 
-export default { loginApi, registerApi, getProducts };
+const userNameUpdateApi = async (name, email, newName) => {
+  const result = await apiTrybeer.put('/profile', {
+    name,
+    email,
+    newName,
+  });
+
+  return result;
+};
+
+export default { loginApi, registerApi, getProducts, userNameUpdateApi };

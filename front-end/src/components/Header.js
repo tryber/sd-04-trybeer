@@ -2,13 +2,13 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import './style.css';
+import './Header.css';
 
 function Header({ title }) {
   return (
-    <div>
+    <div className="headerdiv">
       <header className="title">
-        <h1 data-testid="top-title">{title}</h1>
+        <h1 className="titleh1" data-testid="top-title">{title}</h1>
       </header>
     </div>
   );

@@ -8,16 +8,16 @@
   width: 100%;
 }
 
-h1 {
+.titleh1 {
   color: #fff;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 /* header {
   position: fixed;
 } */
 
-div {
+.headerdiv {
   display: flex;
   flex-direction: column;
 }
