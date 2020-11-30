@@ -26,25 +26,33 @@ const ProductDetails = ({ match: { params: { orderNumber } } }) => {
         <div className="order-detail-info">
           <p>
             Pedido&nbsp;
-            <span data-testid="order-number"> { product.saleId } </span>
-            <span data-testid="order-date"> { product.saleDate } </span>
+            <span data-testid="order-number">
+              { product.saleId }
+            </span>
+            <span data-testid="order-date">
+              { product.saleDate }
+            </span>
           </p>
         </div>
-        { console.log('produtos', product) }
+        {/* {console.log('produtos', product)} */}
         { product.products
-        && product.products.map(({ orderId, quantity, name, price, saleDate }, index) => (
-          <ProductDetailCard
-            key={ orderId }
-            testid={ index }
-            quantity={ quantity }
-            name={ name }
-            total={ quantity * price }
-            saleDate={ saleDate }
-          />
-        )) }
+          && product.products.map(({
+            orderId, quantity, name, price, saleDate,
+          }, index) => (
+            <ProductDetailCard
+              key={ orderId }
+              testid={ index }
+              quantity={ quantity }
+              name={ name }
+              total={ quantity * price }
+              saleDate={ saleDate }
+            />
+          ))}
         <p>
           Total: &nbsp;
-        <span data-testid="order-total-value">{ product.totalPrice }</span>
+          <span data-testid="order-total-value">
+            { product.totalPrice }
+          </span>
         </p>
       </div>
     </div>

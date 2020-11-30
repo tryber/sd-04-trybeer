@@ -18,9 +18,21 @@ const fetchSales = async (_req, res) => {
   }
 };
 
+const fetchSaleById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const saleData = await productsService.getSaleById(id);
+    const products = await productsService.getSaleProducts(id);
+    console.log(products);
+
+    return res.status(200).json({ ...saleData, products });
+  } catch (error) {
+    return res.json({ error: error.message });
+  }
+};
+
 const newSale = async (req, res) => {
   try {
-    console.log(req.body);
     await productsService.newSale(req.body);
     return res.status(200).json({ message: 'Compra realizada com sucesso!' });
   } catch (error) {
@@ -31,6 +43,6 @@ const newSale = async (req, res) => {
 module.exports = {
   fetchProducts,
   fetchSales,
-  // fetchSaleById,
+  fetchSaleById,
   newSale,
 };

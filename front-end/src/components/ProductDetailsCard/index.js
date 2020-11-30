@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 
-const ProductDetailCard = ({ testid, quantity, name, total }) => (
+const ProductDetailCard = ({
+  testid, quantity, name, total,
+}) => (
   <div className="product-detail-card-body">
     <p>
       <span data-testid={ `${testid}-product-qtd` }>{ quantity }</span>
@@ -16,6 +18,9 @@ const ProductDetailCard = ({ testid, quantity, name, total }) => (
 
 ProductDetailCard.propTypes = {
   testid: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  total: PropTypes.string.isRequired,
 };
 
 export default ProductDetailCard;
