@@ -28,7 +28,7 @@ const ProductDetails = ({ match: { params: { orderNumber } } }) => {
           <div className="order-detail-info">
             <p className="details-order-head">
               <span data-testid="order-number">
-                {`Pedido  ${product.id}`}
+                {`Pedido ${product.id}`}
               </span>
               <span data-testid="order-date">
                 { dateFormat && `${dateFormat.getDate() + 1}/${dateFormat.getMonth() + 1}` }
