@@ -127,7 +127,7 @@ const getSaleById = async (saleId) => {
     .bind('id', saleId)
     .execute();
   const sale = await result.fetchOne() || [];
-  if (sale.length === 0) return sale;
+  if (!sale.length) return sale;
   const [id, userId, totalPrice, deliveryAddress, deliveryNumber, date, status] = sale;
   return {
     id,
