@@ -4,6 +4,7 @@ const cors = require('cors');
 const userRouter = require('./routers/userRouters');
 const profileRouter = require('./routers/profileRouter');
 const productRouter = require('./routers/productRouters');
+const adminOrderRouter = require('./routers/adminOrderRouter');
 const ordersRouter = require('./routers/ordersRouter');
 const checkoutRouter = require('./routers/checkoutRouter');
 
@@ -17,6 +18,8 @@ app.use('/images', express.static('images'));
 
 app.use('/', userRouter);
 app.use('/products', productRouter);
+app.use('/admin', adminOrderRouter);
+
 app.use('/checkout', checkoutRouter);
 app.use('/profile', profileRouter);
 app.use('/orders', ordersRouter);

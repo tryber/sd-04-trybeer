@@ -13,7 +13,10 @@ const sendOrder = (email, total, address, number, cart) => api.post('/checkout',
 });
 const getOrderById = (id) => (api.get(`/orders/${id}`));
 
+const getAdminSales = () => (api.get('/admin/orders'));
+
 export default {
   sendOrder,
+  getAdminSales,
   getOrderById,
 };

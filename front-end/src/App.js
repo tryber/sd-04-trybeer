@@ -7,6 +7,7 @@ import { Container } from 'rbx';
 import Provider from './context/provider';
 import Login from './Pages/login';
 import Admin from './Pages/adminOrders';
+import AdminOrderDetail from './Pages/adminOrderDetail';
 import AdminProfile from './Pages/adminProfile';
 import Registro from './Pages/registro';
 import Products from './Pages/products';
@@ -27,6 +28,7 @@ function App() {
           <Route path="/register" component={ Registro } />
           <Route path="/products" component={ Products } />
           <Route path="/profile" component={ Profile } />
+          <Route path="/admin/orders/:id" component={ AdminOrderDetail } />
           <Route path="/admin/orders" component={ Admin } />
           <Route exact path="/admin/profile" component={ AdminProfile } />
           <Route path="/checkout" component={ Checkout } />
