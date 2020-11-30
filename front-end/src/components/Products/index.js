@@ -16,7 +16,7 @@ const Products = () => {
       <Header title="Cliente - Produtos" />
       <SideBar />
       {products.map((item) => (
-        <div key={ item.id } className="card" style={ { width: "8rem" } }>
+        <div key={ item.id } className="card" style={ { width: '8rem' } }>
           <img src={ item.urlImg } className="card-img-top" alt={ item.name } />
           <div className="card-body">
             <h5 className="card-title">{item.name}</h5>
