@@ -11,7 +11,6 @@ import './styles.css';
 const ProductDetails = ({ match: { params: { orderNumber } } }) => {
   const [product, setProduct] = useState('');
   const [dateFormat, setDateFormat] = useState('');
-  // console.log(match);
   useEffect(() => {
     const fetchProductDetails = async () => {
       const response = await api.get(`/orders/${orderNumber}`);
