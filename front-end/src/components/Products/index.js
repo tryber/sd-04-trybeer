@@ -13,7 +13,7 @@ const Products = () => {
   }, []);
   return (
     <div>
-      <Header title="Cliente - Produtos" />
+      <Header title="Trybeer" />
       <SideBar />
       {products.map((item) => (
         <div key={ item.id } className="card" style={ { width: '8rem' } }>
