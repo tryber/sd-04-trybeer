@@ -6,7 +6,7 @@ const userController = require('./controller/UserController');
 
 const productController = require('./controller/ProductController');
 
-const auth = require('./authentication/tokenValidator');
+// const auth = require('./authentication/tokenValidator');
 
 router.post('/login', userController.userLogin);
 

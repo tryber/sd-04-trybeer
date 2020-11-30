@@ -13,16 +13,18 @@ const Login = () => {
 
   const [password, setPassword] = useState('');
 
+  const six = 6;
+
   //  VALIDAÇÃO DE EMAIL
   const isEmailValid = (email = '') => email.match(/\S+@\w+\.\w{2,6}(\.\w{2})?/i);
 
   const emailValidated = () => {
-    if (!eMail || !isEmailValid(eMail) || eMail.length < 6) return false;
+    if (!eMail || !isEmailValid(eMail) || eMail.length < six) return false;
     return true;
   };
 
   // VARIÁVEL QUE DEFINE O "ESTADO" DO BOTÃO
-  const disableButton = !password || password.length < 6 || !emailValidated();
+  const disableButton = !password || password.length < six || !emailValidated();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

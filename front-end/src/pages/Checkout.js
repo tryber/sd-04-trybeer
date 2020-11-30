@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
+import SideBar from '../components/SideBarClient';
 
 const Checkout = () => {
   const history = useHistory();
@@ -77,12 +78,11 @@ const Checkout = () => {
 
   if (!userIsLogged) return <Redirect to="/login" />;
 
-  console.log(messageSuccess ? 'Compra realizada com sucesso!' : 'não');
-
   return (
     <div className="m-2">
       <h1 data-testid="top-title">Cliente - Checkout</h1>
-      <div className="">
+      <SideBar />
+      <div>
         {myCart.map((product, index) => (
           <div key={ product.name } className="d-flex m-3 justify-content-between border">
             <p data-testid={ `${index}-product-qtd-input` }>{product.quantity}</p>

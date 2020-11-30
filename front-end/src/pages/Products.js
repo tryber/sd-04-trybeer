@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import API from '../services/api';
 
 import Header from '../components/Header';
@@ -8,13 +8,16 @@ import SideBar from '../components/SideBarClient';
 import { TrybeerContext } from '../context';
 
 const Products = () => {
+  const zero = 0;
+  const history = useHistory();
+
   const { products, setProducts } = useContext(TrybeerContext);
 
   const [productCart, setProductCart] = useState([]);
 
   const [userIsLogged, setUserIsLogged] = useState(true);
 
-  const [totalValue, setTotalValue] = useState(0);
+  const [totalValue, setTotalValue] = useState(zero);
 
   useEffect(() => {
     localStorage.getItem('cart')
@@ -27,7 +30,7 @@ const Products = () => {
   }, []);
 
   useEffect(() => {
-    setTotalValue(productCart.reduce((tot, curr) => tot + curr.quantity * curr.price, 0));
+    setTotalValue(productCart.reduce((tot, curr) => tot + curr.quantity * curr.price, zero));
   }, [productCart]);
 
   if (!userIsLogged) return <Redirect to="/login" />;
@@ -67,7 +70,7 @@ const Products = () => {
 
     const cartWithoutNewProduct = productCart.filter((prodCart) => prodCart.id !== id);
 
-    const newAmount = quantity ? parseInt(quantity.quantity) - 1 : 0;
+    const newAmount = quantity ? parseInt(quantity.quantity) - 1 : zero;
 
     const newProduct = {
       id,
@@ -77,7 +80,7 @@ const Products = () => {
       quantity: newAmount,
     };
 
-    const newCart = newAmount === 0 ? [...cartWithoutNewProduct] : [...cartWithoutNewProduct, newProduct];
+    const newCart = newAmount === zero ? [...cartWithoutNewProduct] : [...cartWithoutNewProduct, newProduct];
 
     setProductCart(newCart);
 
@@ -86,7 +89,10 @@ const Products = () => {
 
   return (
     <div>
-      <Header title={"Trybeer"} />
+      <h1 className="fixed-top" data-testid="top-title">
+        Trybeer
+      </h1>
+      <Header title="Trybeer" />
       <SideBar />
       <div className="container mx-auto d-flex flex-wrap m-3">
         {products.map((product, index) => (
@@ -116,7 +122,7 @@ const Products = () => {
               <h1 data-testid={ `${index}-product-qtd` } className="card m-2">
                 {productCart.find((prod) => prod.id === product.id)
                   ? productCart.find((prod) => prod.id === product.id).quantity
-                  : 0}
+                  : zero}
               </h1>
               <button
                 data-testid={ `${index}-product-minus` }
@@ -132,22 +138,20 @@ const Products = () => {
         ))}
       </div>
       <div className="m-5">
-        <button disabled={ totalValue === 0 }>
-          <Link
-            data-testid="checkout-bottom-btn"
-            className={ `btn btn-info mx-auto w-75 m-2 d-flex justify-content-center ${
-              totalValue === 0 ? 'disabled' : ''
-            }` }
-            to="/checkout"
-          >
-            Ver Carrinho
-            {' '}
-            <p data-testid="checkout-bottom-btn-value">
-              {totalValue === 0
-                ? 'R$ 0,00'
-                : totalValue.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
-            </p>
-          </Link>
+        <button
+          className="fixed-bottom btn btn-info mx-auto w-75 m-2 d-flex justify-content-center"
+          type="button"
+          onClick={ () => history.push('/checkout') }
+          disabled={ totalValue === zero }
+          data-testid="checkout-bottom-btn"
+        >
+          Ver Carrinho
+          {' | '}
+          <p data-testid="checkout-bottom-btn-value">
+            {totalValue === zero
+              ? 'R$ 0,00'
+              : totalValue.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+          </p>
         </button>
       </div>
     </div>

@@ -28,4 +28,6 @@ const userNameUpdateApi = async (name, email, newName) => {
   return result;
 };
 
-export default { loginApi, registerApi, getProducts, userNameUpdateApi };
+export default {
+  loginApi, registerApi, getProducts, userNameUpdateApi,
+};
