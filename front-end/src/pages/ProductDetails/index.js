@@ -24,18 +24,27 @@ const ProductDetails = ({ match: { params: { orderNumber } } }) => {
       <Header title="Detalhes de Pedido" />
       <div className="order-details-card-container">
         <div className="order-detail-info">
-          { product }
           <p>
             Pedido&nbsp;
-            <span data-testid="order-number">0001</span>
-            <span data-testid="order-date">26/10</span>
+            <span data-testid="order-number"> { product.saleId } </span>
+            <span data-testid="order-date"> { product.saleDate } </span>
           </p>
         </div>
-        {/* Rodar map() depois */}
-        <ProductDetailCard testid={ 1 } />
+        { console.log('produtos', product) }
+        { product.products
+        && product.products.map(({ orderId, quantity, name, price, saleDate }, index) => (
+          <ProductDetailCard
+            key={ orderId }
+            testid={ index }
+            quantity={ quantity }
+            name={ name }
+            total={ quantity * price }
+            saleDate={ saleDate }
+          />
+        )) }
         <p>
           Total: &nbsp;
-          <span data-testid="order-total-value">2,20</span>
+        <span data-testid="order-total-value">{ product.totalPrice }</span>
         </p>
       </div>
     </div>
