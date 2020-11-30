@@ -1,19 +1,32 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { setLS } from '../../../helpers/index';
+import api from '../../../services/api';
+import { getLS, setLS } from '../../../helpers/index';
 
-const checkFields = (e, history, setTotalPriceCart) => {
+const checkFields = async (e, history, totalPriceCart, setTotalPriceCart, inpRua, inpNumber) => {
   e.preventDefault();
 
   // Correção lint, magic number
   const zero = 0;
+  const um = 1;
   const mil = 1000;
-  // const rua = e.target['inp-rua'].value;
-  // const numero = e.target['inp-numero'].value;
-  // const button = document.getElementById('but-submit');
+  const date = new Date();
+  const day = date.getDate();
+  const month = date.getMonth() + um;
+  const { token } = getLS('user');
+  const order = {
+    totalPrice: totalPriceCart,
+    deliveryAddress: inpRua,
+    deliveryNumber: inpNumber,
+    saleDate: `${day}/${month}`,
+    status: 'pendente',
+  };
   const elMsg = document.getElementById('msg');
 
   elMsg.innerText = 'Compra realizada com sucesso!';
+  console.log('form')
+  // Armazena pedido no banco
+  await api.setOrders(token, order);
 
   // Zerar local storage e context
   localStorage.removeItem('qttPdtsCart');
@@ -22,12 +35,16 @@ const checkFields = (e, history, setTotalPriceCart) => {
   setTimeout(() => history.push('/products'), mil);
 };
 
-const CheckoutForm = ({ history, setTotalPriceCart }) => {
+const CheckoutForm = ({ history, totalPriceCart, setTotalPriceCart }) => {
   const [inpRua, setInpRua] = useState('');
   const [inpNumber, setInpNumber] = useState('');
 
   return (
-    <form onSubmit={ (e) => checkFields(e, history, setTotalPriceCart) }>
+    <form
+      onSubmit={
+        (e) => checkFields(e, history, totalPriceCart, setTotalPriceCart, inpRua, inpNumber)
+      }
+    >
       <h1>Endereço</h1>
       <label htmlFor="inp-rua">
         Rua:
@@ -67,6 +84,7 @@ const CheckoutForm = ({ history, setTotalPriceCart }) => {
 
 CheckoutForm.propTypes = {
   history: propTypes.objectOf(propTypes.string).isRequired,
+  totalPriceCart: propTypes.number.isRequired,
   setTotalPriceCart: propTypes.func.isRequired,
 };
 

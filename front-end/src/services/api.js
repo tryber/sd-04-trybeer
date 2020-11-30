@@ -36,6 +36,10 @@ const userNameUpdateApi = async (name, email, newName) => {
 
 const getOrders = (token) => apiTrybeer.get('/orders', { headers: { authorization: token } });
 
+const setOrders = (token, order) => apiTrybeer.post(
+  '/orders', { order }, { headers: { authorization: token } }
+);
+
 export default {
   loginApi,
   registerApi,
@@ -43,4 +47,5 @@ export default {
   getProducts,
   userNameUpdateApi,
   getOrders,
+  setOrders,
 };

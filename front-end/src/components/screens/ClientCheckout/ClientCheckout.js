@@ -6,7 +6,7 @@ import CheckoutForm from './CheckoutForm';
 import { getLS, pdtName } from '../../../helpers';
 
 export default () => {
-  const { totalPriceCart: [, setTotalPriceCart] } = useContext(TrybeerContext);
+  const { totalPriceCart: [totalPriceCart, setTotalPriceCart] } = useContext(TrybeerContext);
 
   // Correção lint magic number
   const zero = 0;
@@ -68,6 +68,7 @@ export default () => {
       <CheckoutForm
         checkPriceCartLs={ checkPriceCartLs }
         history={ history }
+        totalPriceCart={ totalPriceCart }
         setTotalPriceCart={ setTotalPriceCart }
       />
     </div>
