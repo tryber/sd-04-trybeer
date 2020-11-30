@@ -2,15 +2,24 @@
   /* align-items: center; */
   display: flex;
   flex-direction: column;
+  margin: auto;
+  width: 100%;
 }
 
 .order-details-card-container {
   align-items: center;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .order-detail-info, p {
   font-size: 19pt;
   font-weight: 700;
+}
+
+.details-order-head {
+   display: flex;
+   justify-content: space-between;
+   width: 45vh;
 }

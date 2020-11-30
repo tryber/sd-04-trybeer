@@ -10,50 +10,52 @@ import './styles.css';
 
 const ProductDetails = ({ match: { params: { orderNumber } } }) => {
   const [product, setProduct] = useState('');
+  const [dateFormat, setDateFormat] = useState('')
   // console.log(match);
   useEffect(() => {
     const fetchProductDetails = async () => {
       const response = await api.get(`/orders/${orderNumber}`);
       setProduct(response.data);
+      setDateFormat(new Date(response.data.date));
     };
     fetchProductDetails();
   }, [orderNumber]);
 
   return (
-    <div className="product-details-container">
+    <div>
       <Header title="Detalhes de Pedido" />
-      <div className="order-details-card-container">
-        <div className="order-detail-info">
+      <div className="product-details-container">
+        <div className="order-details-card-container">
+          <div className="order-detail-info">
+            <p className="details-order-head">
+              <span data-testid="order-number">
+              Pedido  { product.id }
+              </span>
+              <span data-testid="order-date">
+                {console.log(dateFormat)}
+                { dateFormat && `${ dateFormat.getDate()+1 }/${ dateFormat.getMonth()+1 }` }
+              </span>
+            </p>
+          </div>
+          { product.products
+            && product.products.map(({
+              orderId, quantity, name, price,
+            }, index) => (
+              <ProductDetailCard
+                key={ orderId }
+                testid={ index }
+                quantity={ quantity }
+                name={ name }
+                total={ (quantity * price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
+              />
+            ))}
           <p>
-            Pedido&nbsp;
-            <span data-testid="order-number">
-              { product.saleId }
-            </span>
-            <span data-testid="order-date">
-              { product.saleDate }
+            Total: &nbsp;
+            <span data-testid="order-total-value">
+              {product && product.totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
             </span>
           </p>
         </div>
-        {/* {console.log('produtos', product)} */}
-        { product.products
-          && product.products.map(({
-            orderId, quantity, name, price, saleDate,
-          }, index) => (
-            <ProductDetailCard
-              key={ orderId }
-              testid={ index }
-              quantity={ quantity }
-              name={ name }
-              total={ quantity * price }
-              saleDate={ saleDate }
-            />
-          ))}
-        <p>
-          Total: &nbsp;
-          <span data-testid="order-total-value">
-            { product.totalPrice }
-          </span>
-        </p>
       </div>
     </div>
   );
