@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import API from '../services/api';
 
+import Header from '../components/Header';
+import SideBar from '../components/SideBarClient';
+
 import { TrybeerContext } from '../context';
 
 const Products = () => {
@@ -83,7 +86,8 @@ const Products = () => {
 
   return (
     <div>
-      <h3 data-testid="top-title">TryBeer</h3>
+      <Header title={"Trybeer"} />
+      <SideBar />
       <div className="container mx-auto d-flex flex-wrap m-3">
         {products.map((product, index) => (
           <div className="card w-50 mx-auto m-3" key={ product.id }>

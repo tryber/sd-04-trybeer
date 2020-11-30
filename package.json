@@ -26,6 +26,7 @@
     "@mysql/xdevapi": "^8.0.20",
     "mysql2": "^2.1.0",
     "prop-types": "^15.7.2",
+    "react-burger-menu": "^2.9.2",
     "sequelize": "^6.3.4"
   },
   "devDependencies": {
