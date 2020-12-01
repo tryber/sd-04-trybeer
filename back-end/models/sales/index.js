@@ -8,7 +8,7 @@ const findOrderByUserId = async (UId) => {
       .execute())
     .then((results) => results.fetchAll())
     .then((sales) => sales.map(
-      ([id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status ]) => ({
+      ([id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status]) => ({
         id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status,
       }),
     ));
