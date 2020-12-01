@@ -5,7 +5,7 @@ import SideBar from '../SideBarCLI';
 
 const Checkout = () => (
   <div>
-    <Header title='Cliente - Checkout' />
+    <Header title="Cliente - Checkout" />
     <SideBar />
   </div>
 );
