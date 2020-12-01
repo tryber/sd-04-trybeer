@@ -45,7 +45,8 @@ const Products = () => {
       ))}
       <span
         data-testid="checkout-bottom-btn-value"
-        className="badge badge-light">
+        className="badge badge-light"
+      >
         {zero.toLocaleString('pt-br', {
           style: 'currency',
           currency: 'BRL',
@@ -55,7 +56,7 @@ const Products = () => {
         href="/checkout"
         data-testid="checkout-bottom-btn"
         className="badge badge-dark"
-        >
+      >
         Ver Carrinho
       </a>
     </div>
