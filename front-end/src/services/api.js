@@ -37,7 +37,7 @@ const userNameUpdateApi = async (name, email, newName) => {
 const getOrders = (token) => apiTrybeer.get('/orders', { headers: { authorization: token } });
 
 const setOrders = (token, order) => apiTrybeer.post(
-  '/orders', { order }, { headers: { authorization: token } }
+  '/orders', { order }, { headers: { authorization: token } },
 );
 
 export default {

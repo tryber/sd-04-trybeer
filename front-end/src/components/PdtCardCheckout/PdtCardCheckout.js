@@ -23,7 +23,7 @@ const delPdt = (e, setTotalPriceCart) => {
   const totalPriceCart = qttPdtsCart.map((pdt) => pdt.totalPrice)
     .reduce((acc, value) => acc + value);
 
-  // Atualiza context e local storage com o preço atual
+  // Atualiza context e local storage com o preço recalculado
   setTotalPriceCart(totalPriceCart);
   setLS('totalPriceCart', totalPriceCart);
 

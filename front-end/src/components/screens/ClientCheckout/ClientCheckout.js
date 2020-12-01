@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { TrybeerContext } from '../../../context/index';
 import CardCheckout from '../../PdtCardCheckout/PdtCardCheckout';
@@ -66,11 +66,12 @@ export default () => {
           </div>
         )}
       <CheckoutForm
-        checkPriceCartLs={ checkPriceCartLs }
-        history={ history }
+        // checkPriceCartLs={ checkPriceCartLs }
+        // history={ history }
         totalPriceCart={ totalPriceCart }
         setTotalPriceCart={ setTotalPriceCart }
       />
+      {/* <CheckoutForm /> */}
     </div>
   );
 };

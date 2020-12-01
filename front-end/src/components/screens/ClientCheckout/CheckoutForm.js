@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import propTypes from 'prop-types';
+// import { TrybeerContext } from '../../../context/index';
 import api from '../../../services/api';
 import { getLS, setLS } from '../../../helpers/index';
 
@@ -8,23 +10,23 @@ const checkFields = async (e, history, totalPriceCart, setTotalPriceCart, inpRua
 
   // Correção lint, magic number
   const zero = 0;
-  const um = 1;
+  // const um = 1;
   const mil = 1000;
   const date = new Date();
   const day = date.getDate();
-  const month = date.getMonth() + um;
+  const month = date.getMonth();
+  const year = date.getFullYear();
   const { token } = getLS('user');
   const order = {
-    totalPrice: totalPriceCart,
+    totalPrice: totalPriceCart.toLocaleString('en-us', { minimumFractionDigits: 2 }),
     deliveryAddress: inpRua,
     deliveryNumber: inpNumber,
-    saleDate: `${day}/${month}`,
-    status: 'pendente',
+    saleDate: `${year}-${month + 1}-${day}`,
+    status: 'Pendente',
   };
   const elMsg = document.getElementById('msg');
 
   elMsg.innerText = 'Compra realizada com sucesso!';
-  console.log('form')
   // Armazena pedido no banco
   await api.setOrders(token, order);
 
@@ -35,9 +37,11 @@ const checkFields = async (e, history, totalPriceCart, setTotalPriceCart, inpRua
   setTimeout(() => history.push('/products'), mil);
 };
 
-const CheckoutForm = ({ history, totalPriceCart, setTotalPriceCart }) => {
+const CheckoutForm = ({ totalPriceCart, setTotalPriceCart }) => {
+  // const { totalPriceCart: [totalPriceCart, setTotalPriceCart] } = useContext(TrybeerContext);
   const [inpRua, setInpRua] = useState('');
   const [inpNumber, setInpNumber] = useState('');
+  const history = useHistory();
 
   return (
     <form
@@ -83,7 +87,7 @@ const CheckoutForm = ({ history, totalPriceCart, setTotalPriceCart }) => {
 };
 
 CheckoutForm.propTypes = {
-  history: propTypes.objectOf(propTypes.string).isRequired,
+  // history: propTypes.objectOf(propTypes.string).isRequired,
   totalPriceCart: propTypes.number.isRequired,
   setTotalPriceCart: propTypes.func.isRequired,
 };
