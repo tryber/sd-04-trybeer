@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Context } from '../../../../context';
-import { dateSaleValidation, CHECKOUT_TIME } from '../../../../validation';
+import { CHECKOUT_TIME } from '../../../../validation';
 
 import api from '../../../../services/api';
 
@@ -25,11 +25,10 @@ const AdressForm = () => {
     e.preventDefault();
     const { id: userId } = JSON.parse(localStorage.getItem('user'));
     const total = JSON.parse(localStorage.getItem('totalCarrinho'));
-    const currentDate = dateSaleValidation();
     const status = 'Pendente';
     const purchasedProducts = getPurchasedProducts(cartState);
     const response = await api.post('/checkout', {
-      userId, total, rua, numeroCasa, currentDate, status, purchasedProducts,
+      userId, total, rua, numeroCasa, status, purchasedProducts,
     });
     setTimeout(() => history.push('/products'), CHECKOUT_TIME);
     setMessage(response.data.message);
