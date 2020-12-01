@@ -5,13 +5,13 @@ const findOrderByUserId = async (UId) => {
     .then((db) => db.getTable('sales').select([])
       .where('user_id = :userId')
       .bind('userId', UId)
-        .execute(),)
+      .execute())
     .then((results) => results.fetchAll())
     .then((sales) => sales.map(
-        ([id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status,]) => ({
-          id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status,
-        }),
-      ),);
+      ([id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status ]) => ({
+        id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status,
+      }),
+    ));
 
   return userOrder;
 };
