@@ -8,12 +8,12 @@ const newSale = async (payload) => productsModel.insertNewSale(payload);
 
 const getSaleById = async (saleId) => {
   const { date: oldDate, ...restOfSale } = await productsModel.getSaleById(saleId);
-  // const settedDate = new Date(new Date().setDate(oldDate.getDate() + 1));
-  // console.log(settedDate.getUTCMonth());
-  const date = `${oldDate.getDate()}/${oldDate.getUTCMonth() + 1}`;
-  // const date = `${settedDate.getDate()}/${settedDate.getUTCMonth() + 1}`;
-  return { ...restOfSale, date };
-  // return await productsModel.getSaleById(saleId);
+  const [day, month] = new Date(oldDate)
+    .toISOString()
+    .substring(0, 10)
+    .split('-')
+    .reverse();
+  return { ...restOfSale, date: `${day}/${month}` };
 };
 
 const getSaleProducts = async (id) => productsModel.getSaleProducts(id);
