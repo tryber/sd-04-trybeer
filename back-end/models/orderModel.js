@@ -11,8 +11,7 @@ const create = async (order) => {
     'delivery_number',
     'sale_date',
     'status'
-  ])
-    .values(userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status)
+  ]).values(userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status)
     .execute();
 };
 
