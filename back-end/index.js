@@ -24,6 +24,6 @@ app.post('/register', register);
 
 app.put('/profile', userUpdate);
 
-app.get('/orders', getOrderByUserId)
+app.get('/orders', getOrderByUserId);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

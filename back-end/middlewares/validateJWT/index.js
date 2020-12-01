@@ -17,8 +17,6 @@ const validateJWT = (req, res, next) => {
       return res.redirect(`/login?redirect=${encodeURIComponent(req.url)}`);
       // return res.status(500).json({ message: 'token inválido!' });
     }
-    
-    req.user = data;
 
     req.user = data;
 
