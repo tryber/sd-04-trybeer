@@ -10,7 +10,7 @@ const create = async (order) => {
     'delivery_address',
     'delivery_number',
     'sale_date',
-    'status'
+    'status',
   ]).values(userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status)
     .execute();
 };
