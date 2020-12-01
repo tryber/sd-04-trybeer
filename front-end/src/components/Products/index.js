@@ -26,7 +26,7 @@ const Products = () => {
             alt={ item.name }
           />
           <div className="card-body">
-            <h5 data-testid={`${item.id - 1}-product-name`} className="card-title">{ item.name }</h5>
+            <h5 data-testid={ `${item.id - 1}-product-name` } className="card-title">{ item.name }</h5>
             <p className="card-text" data-testid={ `${item.id - 1}-product-price` }>
               {item.price.toLocaleString('pt-br', {
                 style: 'currency',
@@ -46,17 +46,16 @@ const Products = () => {
       <span
         data-testid="checkout-bottom-btn-value"
         className="badge badge-light">
-          {zero.toLocaleString('pt-br', {
-                style: 'currency',
-                currency: 'BRL',
-              })
-          }
+        {zero.toLocaleString('pt-br', {
+          style: 'currency',
+          currency: 'BRL',
+        })}
       </span>
       <a
-      href="/checkout"
-      data-testid="checkout-bottom-btn"
-      className="badge badge-dark"
-      >
+        href="/checkout"
+        data-testid="checkout-bottom-btn"
+        className="badge badge-dark"
+        >
         Ver Carrinho
       </a>
     </div>
