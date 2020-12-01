@@ -6,6 +6,7 @@ import UserProfile from './components/UserProfile';
 import AdminProfile from './components/AdminProfile';
 import Products from './components/Products';
 import Orders from './components/Orders';
+import Checkout from './components/Checkout';
 import PrivateRoute from './components/Auth';
 
 const App = () => (
@@ -18,6 +19,7 @@ const App = () => (
       <PrivateRoute path="/admin/profile" component={ AdminProfile } />
       <PrivateRoute path="/products" component={ Products } />
       <PrivateRoute path="/admin/orders" component={ Orders } />
+      <PrivateRoute path="/checkout" component={ Checkout } />
     </Switch>
   </BrowserRouter>
 );
