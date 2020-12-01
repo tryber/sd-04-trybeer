@@ -23,7 +23,7 @@ const fetchSaleById = async (req, res) => {
     const { id } = req.params;
     const saleData = await productsService.getSaleById(id);
     const products = await productsService.getSaleProducts(id);
-    console.log(products);
+    // console.log(products);
 
     return res.status(200).json({ ...saleData, products });
   } catch (error) {

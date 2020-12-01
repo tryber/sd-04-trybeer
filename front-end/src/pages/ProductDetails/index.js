@@ -11,11 +11,12 @@ import './styles.css';
 const ProductDetails = ({ match: { params: { orderNumber } } }) => {
   const [product, setProduct] = useState('');
   const [dateFormat, setDateFormat] = useState('');
+
   useEffect(() => {
     const fetchProductDetails = async () => {
       const response = await api.get(`/orders/${orderNumber}`);
       setProduct(response.data);
-      setDateFormat(new Date(response.data.date));
+      setDateFormat(response.data.date);
     };
     fetchProductDetails();
   }, [orderNumber]);
@@ -31,7 +32,7 @@ const ProductDetails = ({ match: { params: { orderNumber } } }) => {
                 {`Pedido ${product.id}`}
               </span>
               <span data-testid="order-date">
-                { dateFormat && `${dateFormat.getDate() + 1}/${dateFormat.getMonth() + 1}` }
+                { dateFormat }
               </span>
             </p>
           </div>

@@ -86,7 +86,7 @@ const insertInSalesProducts = async (purchasedProducts, saleInsertedId) => {
 };
 
 const insertNewSale = async ({
-  userId, total, rua, numeroCasa, currentDate, status, purchasedProducts,
+  userId, total, rua, numeroCasa, status, purchasedProducts,
 }) => {
   try {
     const db = await connection();
@@ -105,7 +105,9 @@ const insertNewSale = async ({
         total,
         rua,
         numeroCasa,
-        currentDate,
+        new Date().toISOString()
+          .replace('T', ' ')
+          .replace('Z', ''),
         status,
       )
       .execute();
