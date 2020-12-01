@@ -23,7 +23,7 @@ const ProductDetails = ({ match: { params: { orderNumber } } }) => {
 
   return (
     <div>
-      <Header title="Detalhes de Pedido" />
+      <Header title="Detalhes de Pedido" data-testid="top-title" />
       <div className="product-details-container">
         <div className="order-details-card-container">
           <div className="order-detail-info">
