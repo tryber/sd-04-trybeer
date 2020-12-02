@@ -1,5 +1,6 @@
 // const rescue = require('express-rescue');
 const userModel = require('../models/userModel');
+const productsModel = require('../models/productsModel');
 const { userService } = require('../services');
 
 const loginUser = async (req, res) => {

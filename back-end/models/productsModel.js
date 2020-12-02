@@ -111,8 +111,8 @@ const insertNewSale = async ({
         status,
       )
       .execute();
-      // Pra pegar o id inserido use a resposta do insert e
-      // resposta.getAutoIncrementValue();
+    // Pra pegar o id inserido use a resposta do insert e
+    // resposta.getAutoIncrementValue();
     const saleInsertedId = retorno.getAutoIncrementValue();
     await insertInSalesProducts(purchasedProducts, saleInsertedId);
   } catch (error) {
@@ -145,16 +145,16 @@ const getSaleById = async (saleId) => {
 const getSaleProducts = async (saleId) => {
   const session = await getSession();
   const result = await session
-  // SELECT sales.*,
-  //     sproducts.product_id AS sold_product_id,
-  //     sproducts.quantity AS sold_quantity,
-  //     products.name AS product_name,
-  //     products.price AS product_price,
-  //     FROM Trybeer.sales_products AS sproducts
-  //     INNER JOIN Trybeer.sales AS sales ON sproducts.sale_id = sales.id
-  //     AND sales.id = ${saleId}
-  //     INNER JOIN Trybeer.products AS products
-  //     ON sproducts.product_id = products.id ORDER BY sales.id
+    // SELECT sales.*,
+    //     sproducts.product_id AS sold_product_id,
+    //     sproducts.quantity AS sold_quantity,
+    //     products.name AS product_name,
+    //     products.price AS product_price,
+    //     FROM Trybeer.sales_products AS sproducts
+    //     INNER JOIN Trybeer.sales AS sales ON sproducts.sale_id = sales.id
+    //     AND sales.id = ${saleId}
+    //     INNER JOIN Trybeer.products AS products
+    //     ON sproducts.product_id = products.id ORDER BY sales.id
     .sql(
       `SELECT products.id, products.name, products.price, sp.quantity
       FROM Trybeer.products AS products
@@ -172,19 +172,19 @@ const getSaleProducts = async (saleId) => {
   }));
 };
 
-const updateSaleStatus = async (id) => {
-    try {
-      connection().then((db) => db
-        .getTable('sales')
-        .update()
-        .set('status', 'Entregue')
-        .where('id = :id')
-        .bind('id', id)
-        .execute());
-    } catch (error) {
-      console.log(error.message);
-    }
+const updateSaleStatus = async (id) => {
+  try {
+    connection().then((db) => db
+      .getTable('sales')
+      .update()
+      .set('status', 'Entregue')
+      .where('id = :id')
+      .bind('id', id)
+      .execute());
+  } catch (error) {
+    console.log(error.message);
   }
+}
 
 module.exports = {
   getAllProducts,
