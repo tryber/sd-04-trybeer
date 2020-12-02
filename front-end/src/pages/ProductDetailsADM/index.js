@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import SideMenuAdmin from '../../components/SideMenuAdmin';
 import ProductDetailsCard from '../../components/ProductDetailsCard';
@@ -8,26 +9,26 @@ import api from '../../services/api';
 import './styles.css';
 
 const ProductDetailsADM = ({ match: { params: { orderNumber } } }) => {
-    const [product, setProduct] = useState('');
-    const [status, setStatus] = useState('');
-  
-    const changeStatus = async () => {
-        try {
-            const response = await api.put(`/admin/orders/${orderNumber}`);
-            console.log(response.data);
-            setProduct(response);
-        } catch (error) {
-            console.log(error.response.data.error);
-        }
-      };
+  const [product, setProduct] = useState('');
+  const [status, setStatus] = useState('');
 
-    useEffect(() => {
-      const fetchProductDetails = async () => {
-        const response = await api.get(`/admin/orders/${orderNumber}`);
-        setProduct(response.data);
-      };
-      fetchProductDetails();
-    }, [orderNumber, setStatus]);
+  const changeStatus = async () => {
+    try {
+      const response = await api.put(`/admin/orders/${orderNumber}`);
+      // console.log(response.data);
+      setProduct(response);
+    } catch (error) {
+      // console.log(error.response.data.error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      const response = await api.get(`/admin/orders/${orderNumber}`);
+      setProduct(response.data);
+    };
+    fetchProductDetails();
+  }, [orderNumber, setStatus]);
 
   return (
     <div>
@@ -43,7 +44,7 @@ const ProductDetailsADM = ({ match: { params: { orderNumber } } }) => {
                 {`- ${status || product.status}`}
               </span>
             </p>
-            </div>
+          </div>
           {product.products
             && product.products.map(({
               orderId, quantity, name, price,
@@ -59,15 +60,23 @@ const ProductDetailsADM = ({ match: { params: { orderNumber } } }) => {
           <p>
             Total: &nbsp;
             <span data-testid="order-total-value">
-              { product && product.totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
+              {product && product.totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
             </span>
           </p>
         </div>
-          { product.status === "Pendente" ? (
-            <button data-testid="mark-as-delivered-btn" onClick={changeStatus}>Marcar como entregue</button>
-          ) : ("") }
+        {product.status === 'Pendente' ? (
+          <button type="button" data-testid="mark-as-delivered-btn" onClick={ changeStatus }>Marcar como entregue</button>
+        ) : ('')}
       </div>
     </div>
   );
 };
+
+ProductDetailsADM.propTypes = {
+  match: PropTypes.PropTypes.shape({
+    isExact: PropTypes.bool,
+    params: PropTypes.string,
+  }).isRequired,
+};
+
 export default ProductDetailsADM;

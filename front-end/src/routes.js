@@ -14,7 +14,6 @@ import PrivateRoute from './PrivateRoute';
 import Checkout from './pages/CheckoutPage';
 import ProductDetailsADM from './pages/ProductDetailsADM';
 
-
 const Routes = () => (
   <Provider>
     <Switch>
