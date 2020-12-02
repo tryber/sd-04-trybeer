@@ -12,6 +12,8 @@ import ProductDetails from './pages/ProductDetails';
 import MyOrdersADM from './pages/MyOrdersADM';
 import PrivateRoute from './PrivateRoute';
 import Checkout from './pages/CheckoutPage';
+import ProductDetailsADM from './pages/ProductDetailsADM';
+
 
 const Routes = () => (
   <Provider>
@@ -24,7 +26,7 @@ const Routes = () => (
       <PrivateRoute path="/orders" exact component={ MyOrdereds } />
       <PrivateRoute path="/orders/:orderNumber" exact component={ ProductDetails } />
       <Route path="/admin/orders" exact component={ MyOrdersADM } />
-      {/* <PrivateRoute path="/admin/orders/:id" exact component={ ProductDetails } /> */}
+      <PrivateRoute path="/admin/orders/:orderNumber" exact component={ ProductDetailsADM } />
       <PrivateRoute path="/checkout" exact component={ Checkout } />
       <PrivateRoute path="/admin/profile" exact component={ AdminProfile } />
     </Switch>

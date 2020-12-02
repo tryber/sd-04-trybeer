@@ -40,9 +40,21 @@ const newSale = async (req, res) => {
   }
 };
 
+  const updateStatus = async (req, res) => {
+    try {
+      const { id } = req.params;
+      await productsService.updateSaleStatus(id);
+      const updatedOrder = await productsModel.getSaleById(id);
+      return res.status(200).json(updatedOrder);
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  };
+
 module.exports = {
   fetchProducts,
   fetchSales,
   fetchSaleById,
   newSale,
+  updateStatus,
 };

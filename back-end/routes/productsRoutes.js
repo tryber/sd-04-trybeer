@@ -13,4 +13,8 @@ router.get('/orders', productsController.fetchSales);
 
 router.get('/orders/:id', productsController.fetchSaleById);
 
+router.put('/admin/orders/:id', productsController.updateStatus);
+
+router.get('/admin/orders/:id', productsController.fetchSaleById);
+
 module.exports = router;

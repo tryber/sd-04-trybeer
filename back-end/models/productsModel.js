@@ -172,10 +172,25 @@ const getSaleProducts = async (saleId) => {
   }));
 };
 
+const updateSaleStatus = async (id) => {
+    try {
+      connection().then((db) => db
+        .getTable('sales')
+        .update()
+        .set('status', 'Entregue')
+        .where('id = :id')
+        .bind('id', id)
+        .execute());
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
 module.exports = {
   getAllProducts,
   getAllSales,
   insertNewSale,
   getSaleById,
   getSaleProducts,
+  updateSaleStatus,
 };
