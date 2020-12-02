@@ -1,6 +1,14 @@
 const productsModel = require('../models/productsModel');
 const orderModel = require('../models/orderModel');
 
+const createSalesProducts = async (req, res) => {
+  const { salesPdts } = req.body;
+
+  await productsModel.createSalesProducts(salesPdts);
+
+  res.status(200).json({ msg: 'Quantidade de produtos vendidos criada com sucesso' });
+};
+
 const readProducts = async (_, res) => {
   const products = await productsModel.read();
 
@@ -15,6 +23,7 @@ const readOrders = async (req, res) => {
 };
 
 module.exports = {
+  createSalesProducts,
   readProducts,
   readOrders,
 };

@@ -10,25 +10,36 @@ const checkFields = async (e, history, totalPriceCart, setTotalPriceCart, inpRua
 
   // Correção lint, magic number
   const zero = 0;
-  // const um = 1;
   const mil = 1000;
-  const date = new Date();
-  const day = date.getDate();
-  const month = date.getMonth();
-  const year = date.getFullYear();
+  const date = () => new Date()
+    .toISOString()
+    .replace('T', ' ')
+    .replace('Z', '');
+  // const date = new Date();
+  // const day = date.getDate();
+  // const month = date.getMonth();
+  // const year = date.getFullYear();
   const { token } = getLS('user');
   const order = {
     totalPrice: totalPriceCart.toLocaleString('en-us', { minimumFractionDigits: 2 }),
     deliveryAddress: inpRua,
     deliveryNumber: inpNumber,
-    saleDate: `${year}-${month + 1}-${day}`,
+    saleDate: date(),
     status: 'Pendente',
   };
-  const elMsg = document.getElementById('msg');
 
+  const qttPdtsCart = getLS('qttPdtsCart');
+  const { data: { saleId } } = await api.setOrder(token, order);
+
+  // Pega os produtos q estão inclusos no pedido
+  const salesPdts = qttPdtsCart.filter((pdt) => pdt.qtt > zero)
+    .map((pdt) => ({ saleId, id: pdt.id, qtt: pdt.qtt }));
+
+  const elMsg = document.getElementById('msg');
   elMsg.innerText = 'Compra realizada com sucesso!';
+
   // Armazena pedido no banco
-  await api.setOrders(token, order);
+  await api.setSalesProducts(token, salesPdts);
 
   // Zerar local storage e context
   localStorage.removeItem('qttPdtsCart');

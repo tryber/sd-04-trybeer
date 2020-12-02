@@ -17,10 +17,10 @@ const App = () => (
       <Route path="/products" component={ ClientProducts } />
       <Route path="/register" component={ UserRegister } />
       <Route path="/login" component={ Login } />
-      <Route exact path="/orders/:number" component={ ClientOrderDetails } />
+      <Route path="/orders/:id" component={ ClientOrderDetails } />
       <Route exact path="/" component={ Login } />
       <PrivateRoute path="/profile" component={ UserProfile } />
-      <Route path="/orders" component={ ClientOrder } />
+      <Route exact path="/orders" component={ ClientOrder } />
       <PrivateRoute path="/admin/profile" component={ AdminProfile } />
     </Switch>
   </BrowserRouter>

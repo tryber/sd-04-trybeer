@@ -12,10 +12,14 @@ router.post('/register', userMiddlewares.isEmailAlreadyExists, userController.us
 
 router.get('/products', auth, productsController.readProducts);
 
+router.post('/products', auth, productsController.createSalesProducts);
+
 router.put('/profile', userProfile.userUpdate);
 
 router.get('/orders', auth, productsController.readOrders);
 
 router.post('/orders', auth, ordersController.createOrders);
+
+router.get('/orders/:id', auth, ordersController.getById);
 
 module.exports = router;

@@ -24,6 +24,10 @@ const registerApi = async (name, email, password, role) => {
 
 const getProducts = (token) => apiTrybeer.get('/products', { headers: { authorization: token } });
 
+const setSalesProducts = (token, salesPdts) => apiTrybeer.post(
+  '/products', { salesPdts }, { headers: { authorization: token } },
+);
+
 const userNameUpdateApi = async (name, email, newName) => {
   const result = await apiTrybeer.put('/profile', {
     name,
@@ -36,8 +40,12 @@ const userNameUpdateApi = async (name, email, newName) => {
 
 const getOrders = (token) => apiTrybeer.get('/orders', { headers: { authorization: token } });
 
-const setOrders = (token, order) => apiTrybeer.post(
+const setOrder = (token, order) => apiTrybeer.post(
   '/orders', { order }, { headers: { authorization: token } },
+);
+
+const getOrderById = (token, id) => apiTrybeer.get(
+  `orders/${id}`, { headers: { authorization: token } },
 );
 
 export default {
@@ -45,7 +53,9 @@ export default {
   registerApi,
   // getUserByEmail,
   getProducts,
+  setSalesProducts,
   userNameUpdateApi,
   getOrders,
-  setOrders,
+  setOrder,
+  getOrderById,
 };
