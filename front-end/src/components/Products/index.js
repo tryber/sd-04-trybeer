@@ -10,6 +10,16 @@ const zero = 0;
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [cartProducts, setcartProducts] = useState([]);
+  const [disable, setDisable] = useState(true);
+
+  function ableCart() {
+    const checkStorage = JSON.parse(localStorage.getItem('totalPrice'));
+    if (checkStorage) {
+      return setDisable(false);
+    }
+    return setDisable(true);
+  }
+
   useEffect(() => {
     const { token } = JSON.parse(localStorage.getItem('user'));
     API.getProducts(token).then((items) => setProducts(items.data));
@@ -18,6 +28,8 @@ const Products = () => {
     } return setcartProducts([]);
   }, []);
 
+  useEffect(() => ableCart());
+
   function addQuantity(product) {
     const {
       id, name, price, urlImg,
@@ -25,7 +37,7 @@ const Products = () => {
     const productCart = cartProducts.find((item) => item.id === id);
     const newQuantity = productCart ? productCart.quantity + 1 : 1;
     const upProduct = {
-      id, name, price, urlImg, quantity: newQuantity,
+      id, name, price, urlImg, quantity: newQuantity, totalPrice: newQuantity * price,
     };
     const noNewProductCart = cartProducts.filter((item) => item.id !== id);
     const newProductCart = [upProduct, ...noNewProductCart];
@@ -48,7 +60,7 @@ const Products = () => {
       if (productCart.quantity > 1) {
         newQuantity = productCart.quantity - 1;
         const upProduct = {
-          id, name, price, urlImg, quantity: newQuantity,
+          id, name, price, urlImg, quantity: newQuantity, totalPrice: newQuantity * price,
         };
         const noNewProductCart = cartProducts.filter((item) => item.id !== id);
         const newProductCart = [upProduct, ...noNewProductCart];
@@ -56,6 +68,25 @@ const Products = () => {
         setcartProducts(newProductCart);
       }
     }
+  }
+
+  function cart() {
+    const cartValue = JSON.parse(localStorage.getItem('cart'));
+    if (cartValue) {
+      const price = cartValue.reduce((acc, item) => acc + item.totalPrice, zero);
+      localStorage.setItem('totalPrice', JSON.stringify(price));
+      return price.toLocaleString('pt-br', {
+        style: 'currency',
+        currency: 'BRL',
+      });
+    }
+    return zero.toLocaleString('pt-br', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+  }
+  function goToCheckout() {
+    window.location.href = 'http://localhost:3000/checkout';
   }
   return (
     <div>
@@ -98,7 +129,6 @@ const Products = () => {
               type="button"
               className="btn btn-danger"
               onClick={ () => removeQuantity(item) }
-              disabled={ !cartProducts.find((product) => product.id === item.id) }
             >
               -
             </button>
@@ -118,18 +148,17 @@ const Products = () => {
         data-testid="checkout-bottom-btn-value"
         className="badge badge-light"
       >
-        {zero.toLocaleString('pt-br', {
-          style: 'currency',
-          currency: 'BRL',
-        })}
+        {cart()}
       </span>
-      <a
-        href="/checkout"
+      <button
+        type="button"
         data-testid="checkout-bottom-btn"
-        className="badge badge-dark"
+        className="btn btn-primary"
+        disabled={ disable }
+        onClick={ () => goToCheckout() }
       >
         Ver Carrinho
-      </a>
+      </button>
     </div>
   );
 };
