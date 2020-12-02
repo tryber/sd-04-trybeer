@@ -9,7 +9,6 @@ const zero = 0;
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  // const [quantity, setQuantity] = useState(0);
   const [cartProducts, setcartProducts] = useState([]);
   useEffect(() => {
     const { token } = JSON.parse(localStorage.getItem('user'));
@@ -32,6 +31,31 @@ const Products = () => {
     const newProductCart = [upProduct, ...noNewProductCart];
     localStorage.setItem('cart', JSON.stringify(newProductCart));
     setcartProducts(newProductCart);
+  }
+
+  function removeQuantity(product) {
+    const {
+      id, name, price, urlImg,
+    } = product;
+    const productCart = cartProducts.find((item) => item.id === id);
+    let newQuantity = zero;
+    if (productCart) {
+      if (productCart.quantity === 1) {
+        const noNewProductCart = cartProducts.filter((item) => item.id !== id);
+        localStorage.setItem('cart', [JSON.stringify(noNewProductCart)]);
+        setcartProducts(noNewProductCart);
+      }
+      if (productCart.quantity > 1) {
+        newQuantity = productCart.quantity - 1;
+        const upProduct = {
+          id, name, price, urlImg, quantity: newQuantity,
+        };
+        const noNewProductCart = cartProducts.filter((item) => item.id !== id);
+        const newProductCart = [upProduct, ...noNewProductCart];
+        localStorage.setItem('cart', JSON.stringify(newProductCart));
+        setcartProducts(newProductCart);
+      }
+    }
   }
   return (
     <div>
@@ -73,6 +97,8 @@ const Products = () => {
               data-testid={ `${item.id - 1}-product-minus` }
               type="button"
               className="btn btn-danger"
+              onClick={ () => removeQuantity(item) }
+              disabled={ !cartProducts.find((product) => product.id === item.id) }
             >
               -
             </button>
