@@ -1,4 +1,5 @@
 const { productsService } = require('../services');
+const productsModel = require('../models/productsModel');
 
 const fetchProducts = async (_req, res) => {
   try {

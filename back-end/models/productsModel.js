@@ -184,7 +184,7 @@ const updateSaleStatus = async (id) => {
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 
 module.exports = {
   getAllProducts,
