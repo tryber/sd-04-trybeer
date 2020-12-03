@@ -58,7 +58,7 @@ export default () => {
         setQttPdtsCart(initQttPdtsCart(newProducts.data, setTotalPriceCart));
         setProducts(newProducts.data);
       } catch (e) {
-        console.log(e.message);
+        // console.log(e.message);
       }
 
       return true;
