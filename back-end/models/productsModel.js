@@ -15,6 +15,20 @@ const createSalesProducts = async (salesPdts) => {
   });
 };
 
+const readSalesProducts = async (saleIdValue) => {
+  const table = await conn().then((db) => db.getTable('sales_products'));
+
+  return table
+    .select([])
+    .where('sale_id = :saleId')
+    .bind('saleId', saleIdValue)
+    .execute()
+    .then(
+      (sales) => sales.fetchAll()
+        .map(([saleId, productId, quantity]) => ({ saleId, productId, quantity })),
+    );
+};
+
 const read = async () => {
   const table = await conn().then((db) => db.getTable('products'));
   const products = await table.select([]).execute();
@@ -28,4 +42,5 @@ const read = async () => {
 module.exports = {
   createSalesProducts,
   read,
+  readSalesProducts,
 };

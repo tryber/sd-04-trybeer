@@ -14,6 +14,8 @@ router.get('/products', auth, productsController.readProducts);
 
 router.post('/products', auth, productsController.createSalesProducts);
 
+router.get('/sales/:id', auth, productsController.getSalesProducts);
+
 router.put('/profile', userProfile.userUpdate);
 
 router.get('/orders', auth, productsController.readOrders);

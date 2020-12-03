@@ -9,6 +9,13 @@ const createSalesProducts = async (req, res) => {
   res.status(200).json({ msg: 'Quantidade de produtos vendidos criada com sucesso' });
 };
 
+const getSalesProducts = async (req, res) => {
+  const saleId = req.params.id;
+  const sales = await productsModel.readSalesProducts(saleId);
+
+  res.status(200).json(sales);
+};
+
 const readProducts = async (_, res) => {
   const products = await productsModel.read();
 
@@ -24,6 +31,7 @@ const readOrders = async (req, res) => {
 
 module.exports = {
   createSalesProducts,
+  getSalesProducts,
   readProducts,
   readOrders,
 };

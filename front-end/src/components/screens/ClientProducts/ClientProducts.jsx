@@ -36,27 +36,6 @@ const initQttPdtsCart = (products, setTotalPriceCart) => {
   return qtt;
 };
 
-// Hook de effect customizado, com uma IIFE interna, criado para
-// diminuir a lógica dentro do componente default
-// const useEffectCustom = (setQttPdtsCart, setTotalPriceCart, setProducts, history) => {
-//   useEffect(() => {
-//     (async () => {
-//       try {
-//         if (!getLS('user')) return history.push('/login');
-
-//         const token = getLS('user').token;
-
-//         const products = await api.getProducts(token);
-
-//         setQttPdtsCart(initQttPdtsCart(products.data, setTotalPriceCart));
-//         setProducts(products.data);
-//       } catch (e) {
-//         // console.log({ error: e.message })
-//       }
-//     })();
-//   }, [setQttPdtsCart, setTotalPriceCart, setProducts, history]);
-// };
-
 export default () => {
   const history = useHistory();
   // Registros de produtos do mysql
@@ -79,7 +58,7 @@ export default () => {
         setQttPdtsCart(initQttPdtsCart(newProducts.data, setTotalPriceCart));
         setProducts(newProducts.data);
       } catch (e) {
-        // console.log({ error: e.message })
+        console.log(e.message);
       }
 
       return true;
