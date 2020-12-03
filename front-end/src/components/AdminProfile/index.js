@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import Header from '../Header/index';
-import SideBar from '../SideBar';
+import Header from '../Header';
+import SideBar from '../SideBarADMIN';
 
 import './style.css';
 

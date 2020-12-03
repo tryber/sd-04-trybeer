@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 export const TrybeerContext = createContext();
 
 const ProviderTrybeer = ({ children }) => {
-  // Const criada para corrigir regra de magic number do lint.
-  // Nem queiram saber minha opinião sobre isso
+  // Correção lint, magic number
   const zero = 0;
 
   const [user, setUser] = useState({});

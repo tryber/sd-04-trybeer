@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import API from '../../services/api';
 import Header from '../Header/index';
+import SideBar from '../SideBarCLI';
 
 import './style.css';
-import SideBar from '../SideBar';
 
 const UserProfile = () => {
   const user = JSON.parse(localStorage.getItem('user'));
