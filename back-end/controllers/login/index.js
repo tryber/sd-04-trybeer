@@ -19,8 +19,7 @@ const login = async (req, res) => {
 
   const token = createToken(userWithoutPassword);
 
-  res.cookie('token', token, { httpOnly: true, sameSite: true });
-  return res.status(200).json(userWithoutPassword);
+  return res.status(200).json(token);
 };
 
 module.exports = { login };

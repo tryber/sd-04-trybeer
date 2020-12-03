@@ -42,4 +42,12 @@ const add = (name, email, password, role) => connection()
     .execute())
   .catch((e) => e);
 
-module.exports = { getAll, getById, getByEmail, add };
+// Como estamos mandando o name e id separados, adicionei o param 'id'
+const updateUser = (id, name) => connection().then((db) => db.getTable('users')
+  .update()
+  .set('name', name)
+  .where('id = :id')
+  .bind('id', id)
+  .execute());
+
+module.exports = { getAll, getById, getByEmail, add, updateUser };
