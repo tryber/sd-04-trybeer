@@ -55,7 +55,7 @@ const Checkout = () => {
   }
   const { id, token } = JSON.parse(localStorage.getItem('user'));
 
-  const saveCart = (userId, auth, orderPrice, num, street, date) => {
+  const saveOrder = (userId, auth, orderPrice, num, street, date) => {
     API.setOrder(userId, auth, orderPrice, num, street, date);
   };
 
@@ -148,7 +148,7 @@ const Checkout = () => {
           disabled={ ableSubmitOrder() }
           onClick={ () => {
             setFinishedOrder('Compra realizada com sucesso!');
-            saveCart(id, token, total, numberValue, streetValue, time);
+            saveOrder(id, token, total, numberValue, streetValue, time);
             setTimeout(() => {
               window.location.href = 'http://localhost:3000/products';
               localStorage.removeItem('cart');

@@ -16,4 +16,6 @@ router.put('/profile', userProfile.userUpdate);
 
 router.post('/checkout', auth, ordersController.setOrder);
 
+router.get('/orders', auth, ordersController.getOrders);
+
 module.exports = router;

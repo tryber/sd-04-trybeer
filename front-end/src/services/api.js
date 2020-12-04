@@ -41,6 +41,8 @@ const setOrder = async (id, tk, total, num, street, date) => {
   return result;
 };
 
+const getOrders = (token) => apiTrybeer.get('/orders', { headers: { authorization: token } });
+
 export default {
   loginApi,
   registerApi,
@@ -48,4 +50,5 @@ export default {
   getProducts,
   userNameUpdateApi,
   setOrder,
+  getOrders,
 };
