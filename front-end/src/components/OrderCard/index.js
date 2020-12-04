@@ -34,7 +34,9 @@ const OrderCard = ({ order, userRole }) => {
       maxWidth="60ch"
       type="button"
       onClick={ () => {
-        history.push(`/orders/${id}`);
+        userRole === 'client'
+          ? history.push(`/orders/${id}`)
+          : history.push(`/admin/orders/${id}`);
       } }
     >
       <Container>
@@ -61,7 +63,7 @@ const OrderCard = ({ order, userRole }) => {
             ) : (
               <>
                 <Text data-testid={ `${id - 1}-order-address` }>
-                  {`${deliveryAddress} - ${deliveryNumber}`}
+                  {`${deliveryAddress}, ${deliveryNumber}`}
                 </Text>
                 <Text data-testid={ `${id - 1}-order-status` }>
                   {status}
