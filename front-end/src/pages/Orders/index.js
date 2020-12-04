@@ -1,74 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Flex,
-  Text,
-} from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
-import MenuClient from '../../components/MenuClient';
-import MenuAdmin from '../../components/MenuAdmin';
-import OrderCard from '../../components/OrderCard';
-import { getAllSales, getOrders } from '../../api';
+import React, { useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 
-// Requisito 7 - Criar Tela de Meus Pedidos
-/*
-Banco de Dados
-table: sales
-columns:
-  id, user_id, total_price, sale_date, delivery_number
-
-A busca no banco de dados precisa ser feita pelo user_id
-*/
-// 1 - top-title -> alterar no MenuClient/Header
-// para ter um context para o title
-
-// - Pegar o id do usuário (user_id) para acessar seus pedidos
-//   (salesByUserId? no BACKEND)
+import OrdersClient from './OrdersClient';
+import OrdersAdmin from './OrdersAdmin';
 
 const Orders = () => {
   const history = useHistory();
-  const [orders, setOrders] = useState([]);
-  const user = localStorage.getItem('user') || null;
-  // if (user) {
-  // }
-  const { userId, role } = jwtDecode(user);
-  
-  
+  const location = useLocation();
+
   useEffect(() => {
-    // Verifica se o usuário está logado
-    if (!user) {
-      history.push('/login');
-    }
-    
-    // Pegando os pedidos do banco de dados
-    if (role === 'client') {
-      getOrders(userId)
-        .then((response) => {
-          setOrders(response.data);
-        })
-        .catch(() => 'um erro ocorreu');
-    } else {
-      getAllSales()
-      .then((response) => {
-        setOrders(response.data);
-      })
-      .catch(() => 'um erro ocorreu');
-    }
+    if (!localStorage.user) history.push('/login');
+  }, [history]);
 
-  }, [history, orders]);
-  // console.log('Orders: ', orders);
-
+  if (location.pathname === '/orders') {
+    return (
+      <OrdersClient />
+    );
+  }
   return (
-    <div>
-      {role === 'client' ? <MenuClient /> : <MenuAdmin />}
-      <Text data-testid="top-title">Meus Pedidos</Text>
-      <Flex direction="column">
-        {orders ? orders.map((e) =>
-          <OrderCard order={ e } userRole={role} key={ e.id } />
-        ) : <Text>Loading...</Text>}
-      </Flex>
-    </div>
+    <OrdersAdmin />
   );
 };
-
 export default Orders;

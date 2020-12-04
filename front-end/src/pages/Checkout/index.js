@@ -2,9 +2,9 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import CheckoutCard from '../../components/CheckoutCard';
+import MenuClient from '../../components/MenuClient';
 import { ProductContext } from '../../context';
 import { postCheckout } from '../../api';
-
 
 const Checkout = () => {
   const zero = 0;
@@ -72,7 +72,7 @@ const Checkout = () => {
 
   return (
     <div>
-      <h1 data-testid="top-title">Finalizar Pedido</h1>
+      <MenuClient header="Finalizar Pedido" />
       {cartValue > zero ? null : <h5>{emptyCart}</h5>}
       {message ? <h5>{message}</h5> : null}
       {products ? products.map((e) => <CheckoutCard data={ e } key={ e.id } />) : <p>loading</p> }

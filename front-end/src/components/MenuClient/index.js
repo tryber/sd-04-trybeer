@@ -17,12 +17,12 @@ import Links from './Links';
 import Header from './Header';
 import LinkBtn from '../LinkBtn';
 
-const MenuClient = () => {
+const MenuClient = ({ header }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
-      <Header>
+      <Header text={ header }>
         <IconButton variant="outline" border="0px" onClick={ onOpen } icon={ <HamburgerIcon /> } data-testid="top-hamburguer" />
       </Header>
       <Flex id="modalContainer">

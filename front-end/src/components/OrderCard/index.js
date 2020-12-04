@@ -19,11 +19,12 @@ No componente
 id, totalPrice, saleDate,
 */
 
-const OrderCard = (order, role) => {
+const OrderCard = ({ order, userRole }) => {
   const history = useHistory();
-  const { id, saleDate, totalPrice } = order.data;
-  console.log('data', order.data);
-  console.log('role', role);
+  const {
+    id, saleDate, deliveryAddress, deliveryNumber, status, totalPrice,
+  } = order;
+  const formatDate = saleDate.slice(5, 10);
 
   return (
     <Button
@@ -46,16 +47,33 @@ const OrderCard = (order, role) => {
               fontWeight="bold"
               data-testid={ `${id - 1}-order-number` }
             >
-              Pedido { id }
+              Pedido
+              {' '}
+              { id }
             </Text>
             <Spacer />
-            <Text data-testid={ `${id - 1}-order-date"` }>{saleDate}</Text>
+            {userRole === 'client' ? (
+              <Text data-testid={ `${id - 1}-order-date` }>
+                {formatDate.split('-')[1]}
+                /
+                {formatDate.split('-')[0]}
+              </Text>
+            ) : (
+              <>
+                <Text data-testid={ `${id - 1}-order-address` }>
+                  {`${deliveryAddress} - ${deliveryNumber}`}
+                </Text>
+                <Text data-testid={ `${id - 1}-order-status` }>
+                  {status}
+                </Text>
+              </>
+            )}
           </Flex>
           <Text
             fontWeight="bold"
-            data-testid={ `${id - 1}-order-total-value"` }
+            data-testid={ `${id - 1}-order-total-value` }
           >
-            R$ {totalPrice}
+            {totalPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })}
           </Text>
         </Flex>
       </Container>

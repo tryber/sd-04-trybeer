@@ -24,7 +24,7 @@ function Products() {
 
   return (
     <div>
-      <MenuClient />
+      <MenuClient header="Trybeer" />
       {products ? products.map((e) => <ProductCard data={ e } key={ e.id } />) : <p>loading</p>}
       <Link to="/checkout">
         <button
