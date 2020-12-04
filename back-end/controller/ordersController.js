@@ -9,7 +9,7 @@ const setOrder = async (req, res) => {
 const getOrders = async (_, res) => {
   const orders = await ordersModel.getOrders();
   res.status(200).json(orders);
-}
+};
 
 module.exports = {
   setOrder,
