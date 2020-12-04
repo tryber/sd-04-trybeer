@@ -33,7 +33,7 @@ export const listProducts = async () => axios
 
 // Pega os pedidos do banco de dados
 export const getOrders = async (userId) => axios
-  .get(`${url}/orders`, { userId })
+  .get(`${url}/orders?userId=${userId}`)
   .catch(({ response }) => response);
 
 export const postCheckout = async (
