@@ -1,28 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import Login from './components/Login';
+import UserRegister from './components/UserRegister';
+import UserProfile from './components/UserProfile/index';
+import AdminProfile from './components/AdminProfile/index';
+import ClientProducts from './components/screens/ClientProducts/ClientProducts';
+import ClientCheckout from './components/screens/ClientCheckout/ClientCheckout';
+import PrivateRoute from './components/Auth';
+import ClientOrderDetails from './components/screens/ClientOrderDetails/ClientOrderDetails';
+import ClientOrder from './components/screens/ClientOrder/ClientOrder';
+import Orders from './components/Orders/index';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>
-          Edit
-          <code>src/App.js</code>
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route path="/checkout" component={ ClientCheckout } />
+      <Route path="/products" component={ ClientProducts } />
+      <Route path="/register" component={ UserRegister } />
+      <Route path="/login" component={ Login } />
+      <Route path="/orders/:id" component={ ClientOrderDetails } />
+      <Route exact path="/" component={ Login } />
+      <PrivateRoute path="/profile" component={ UserProfile } />
+      <Route exact path="/orders" component={ ClientOrder } />
+      <PrivateRoute path="/admin/profile" component={ AdminProfile } />
+      <PrivateRoute path="/admin/orders" component={ Orders } />
+    </Switch>
+  </BrowserRouter>
+);
 
 export default App;
