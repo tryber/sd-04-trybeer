@@ -19,9 +19,11 @@ No componente
 id, totalPrice, saleDate,
 */
 
-const OrderCard = (data) => {
+const OrderCard = (order, role) => {
   const history = useHistory();
-  const { id, saleDate, totalPrice } = data.data;
+  const { id, saleDate, totalPrice } = order.data;
+  console.log('data', order.data);
+  console.log('role', role);
 
   return (
     <Button

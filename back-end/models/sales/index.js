@@ -34,5 +34,16 @@ const findOrderByUserId = async (UId) => {
   return userOrder;
 };
 
-module.exports = { addSale, addSaleProduct, findOrderByUserId };
+const findAllSales = async () => {
+  const sales = await connection()
+  .then((db) => db.getTable('sales').select([])
+    .execute())
+  .then((results) => results.fetchAll())
+  .then((sales) => sales.map(([id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status]) => ({
+    id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status
+  })));
+return sales;
+};
+
+module.exports = { addSale, addSaleProduct, findOrderByUserId, findAllSales};
 

@@ -8,7 +8,7 @@ import jwtDecode from 'jwt-decode';
 import MenuClient from '../../components/MenuClient';
 import MenuAdmin from '../../components/MenuAdmin';
 import OrderCard from '../../components/OrderCard';
-import { getOrders } from '../../api';
+import { getAllSales, getOrders } from '../../api';
 
 // Requisito 7 - Criar Tela de Meus Pedidos
 /*
@@ -29,9 +29,9 @@ const Orders = () => {
   const history = useHistory();
   const [orders, setOrders] = useState([]);
   const user = localStorage.getItem('user') || null;
-  if (user) {
-    const { userId, role } = jwtDecode(user);
-  }
+  // if (user) {
+  // }
+  const { userId, role } = jwtDecode(user);
   
   
   useEffect(() => {
@@ -39,24 +39,32 @@ const Orders = () => {
     if (!user) {
       history.push('/login');
     }
-
+    
     // Pegando os pedidos do banco de dados
-    getOrders(userId)
+    if (role === 'client') {
+      getOrders(userId)
+        .then((response) => {
+          setOrders(response.data);
+        })
+        .catch(() => 'um erro ocorreu');
+    } else {
+      getAllSales()
       .then((response) => {
         setOrders(response.data);
       })
       .catch(() => 'um erro ocorreu');
+    }
 
   }, [history, orders]);
   // console.log('Orders: ', orders);
 
   return (
     <div>
-      {role ? <MenuClient /> : <MenuAdmin />}
+      {role === 'client' ? <MenuClient /> : <MenuAdmin />}
       <Text data-testid="top-title">Meus Pedidos</Text>
       <Flex direction="column">
         {orders ? orders.map((e) =>
-          <OrderCard data={ e } userRole={role} key={ e.id } />
+          <OrderCard order={ e } userRole={role} key={ e.id } />
         ) : <Text>Loading...</Text>}
       </Flex>
     </div>
