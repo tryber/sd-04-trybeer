@@ -11,14 +11,16 @@ const Orders = () => {
   useEffect(() => {
     if (!localStorage.user) history.push('/login');
   }, [history]);
-
-  if (location.pathname === '/orders') {
+  if (localStorage.user) {
+    if (location.pathname === '/orders') {
+      return (
+        <OrdersClient />
+      );
+    }
     return (
-      <OrdersClient />
+      <OrdersAdmin />
     );
   }
-  return (
-    <OrdersAdmin />
-  );
+  return <p> Loading...</p>
 };
 export default Orders;
