@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 
 import Header from '../Header';
 import SideBar from '../SideBarCLI';
+
+import API from '../../services/api';
+
+const timestamp = new Date();
+const time = moment(timestamp).format('yyyy-D-M hh:mm:ss');
 
 const zero = 0;
 const waitingTime = 3000;
@@ -47,6 +53,12 @@ const Checkout = () => {
       currency: 'BRL',
     });
   }
+  const { id, token } = JSON.parse(localStorage.getItem('user'));
+
+  const saveCart = (userId, auth, orderPrice, num, street, date) => {
+    API.setOrder(userId, auth, orderPrice, num, street, date);
+  };
+
   return (
     <div>
       <Header title="Cliente - Checkout" />
@@ -102,12 +114,13 @@ const Checkout = () => {
           currency: 'BRL',
         })}
       </h6>
-      <form>
+      <form method="POST">
         <h4>Endereço</h4>
         <div className="form-group">
           <label htmlFor="exampleInputText1">
             Rua:
             <input
+              name="street"
               data-testid="checkout-street-input"
               onChange={ (e) => setStreetValue(e.target.value) }
               type="text"
@@ -135,6 +148,7 @@ const Checkout = () => {
           disabled={ ableSubmitOrder() }
           onClick={ () => {
             setFinishedOrder('Compra realizada com sucesso!');
+            saveCart(id, token, total, numberValue, streetValue, time);
             setTimeout(() => {
               window.location.href = 'http://localhost:3000/products';
               localStorage.removeItem('cart');

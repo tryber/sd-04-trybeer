@@ -35,11 +35,13 @@ const Login = () => {
       .then((api) => {
         // if (api.data.user.err) return setErrorMsg(api.data.user.err);
 
-        const { name, email, role } = api.data.user;
+        const {
+          id, name, email, role,
+        } = api.data.user;
         const { token } = api.data;
 
         localStorage.setItem('user', JSON.stringify({
-          name, email, role, token,
+          id, name, email, role, token,
         }));
 
         setErrorMsg('');

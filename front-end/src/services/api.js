@@ -34,10 +34,18 @@ const userNameUpdateApi = async (name, email, newName) => {
   return result;
 };
 
+const setOrder = async (id, tk, total, num, street, date) => {
+  const result = await apiTrybeer.post('/checkout', {
+    id, total, num, street, date,
+  }, { headers: { authorization: tk } });
+  return result;
+};
+
 export default {
   loginApi,
   registerApi,
   // getUserByEmail,
   getProducts,
   userNameUpdateApi,
+  setOrder,
 };
