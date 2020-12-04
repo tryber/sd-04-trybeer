@@ -17,4 +17,21 @@ const addSaleProduct = (saleId, prodId, quantity) => connection()
     .execute())
   .catch((e) => e);
 
-module.exports = { addSale, addSaleProduct };
+const findOrderByUserId = async (UId) => {
+  const userOrder = await connection()
+    .then((db) => db.getTable('sales').select([])
+      .where('user_id = :userId')
+      .bind('userId', UId)
+      .execute())
+    .then((results) => results.fetchAll())
+    .then((sales) => sales.map(
+      ([id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status]) => ({
+        id, userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status,
+      }),
+    ));
+
+  return userOrder;
+};
+
+module.exports = { addSale, addSaleProduct, findOrderByUserId };
+
