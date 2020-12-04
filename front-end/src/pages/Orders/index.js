@@ -4,7 +4,9 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import MenuClient from '../../components/MenuClient';
+import MenuAdmin from '../../components/MenuAdmin';
 import OrderCard from '../../components/OrderCard';
 import { getOrders } from '../../api';
 
@@ -26,32 +28,35 @@ A busca no banco de dados precisa ser feita pelo user_id
 const Orders = () => {
   const history = useHistory();
   const [orders, setOrders] = useState([]);
+  const user = localStorage.getItem('user') || null;
+  if (user) {
+    const { userId, role } = jwtDecode(user);
+  }
+  
   
   useEffect(() => {
-    const user = localStorage.getItem('user') || null;
     // Verifica se o usuário está logado
     if (!user) {
       history.push('/login');
     }
 
     // Pegando os pedidos do banco de dados
-    getOrders(user)
+    getOrders(userId)
       .then((response) => {
-        console.log('Response: ', response);
         setOrders(response.data);
       })
       .catch(() => 'um erro ocorreu');
 
-  }, [history]);
+  }, [history, orders]);
   // console.log('Orders: ', orders);
 
   return (
     <div>
-      <MenuClient />
+      {role ? <MenuClient /> : <MenuAdmin />}
       <Text data-testid="top-title">Meus Pedidos</Text>
       <Flex direction="column">
         {orders ? orders.map((e) =>
-          <OrderCard data={ e } key={ e.id } />
+          <OrderCard data={ e } userRole={role} key={ e.id } />
         ) : <Text>Loading...</Text>}
       </Flex>
     </div>
