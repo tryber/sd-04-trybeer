@@ -36,9 +36,8 @@ const OrderCard = ({ order, userRole }) => {
       maxWidth="60ch"
       type="button"
       onClick={ () => {
-        userRole === 'client' // eslint-disable-line
-          ? history.push(`/orders/${id}`)
-          : history.push(`/admin/orders/${id}`);
+        if (userRole === 'client') return history.push(`/orders/${id}`);
+        return history.push(`/admin/orders/${id}`);
       } }
     >
       <Container>
