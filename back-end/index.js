@@ -6,6 +6,7 @@ const { login } = require('./controllers/login');
 const productController = require('./controllers/products');
 // const { validateJWT } = require('./middlewares/validateJWT');
 const { register } = require('./controllers/register');
+const { checkout } = require('./controllers/checkout');
 const { userUpdate } = require('./controllers/profile');
 const { getOrderByUserId } = require('./controllers/sale');
 
@@ -22,6 +23,7 @@ app.get('/products', productController.getAll);
 
 app.post('/register', register);
 
+app.post('/sales', checkout);
 app.put('/profile', userUpdate);
 
 app.get('/orders', getOrderByUserId);
