@@ -1,7 +1,7 @@
-const conn = require('./connection');
+const connection = require('./connection');
 
 const getOrders = async () => {
-  const table = await conn().then((db) => db.getTable('sales'));
+  const table = await connection().then((db) => db.getTable('sales'));
   const sales = await table.select([]).execute();
 
   return sales
@@ -9,13 +9,13 @@ const getOrders = async () => {
 };
 
 const setOrder = async (id, total, num, street, date) =>
-  conn().then((db) =>
-    db
+  connection()
+    .then((db) => db
       .getTable('sales')
-      .insert(['user_id','total_price','delivery_address','delivery_number','sale_date','status',
-  ])
-    .values(id, total, street, num, date, 'sold')
-    .execute());
+      .insert(['user_id', 'total_price', 'delivery_address', 'delivery_number', 'sale_date', 'status',
+    ])
+      .values(id, total, street, num, date, 'sold')
+      .execute());
 
 module.exports = {
   getOrders,

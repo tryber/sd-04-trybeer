@@ -13,6 +13,7 @@ const OrderDetailsCLI = () => {
     <div>
       <Header title="Cliente - Detalhes do Pedido" />
       <SideBar />
+      {console.log(orders)}
     </div>
   );
 };
