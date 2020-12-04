@@ -7,6 +7,8 @@ const LinkBtn = (props) => {
   const history = useHistory();
   const { route, children, testid } = props;
 
+  const exit = children === 'Sair' ? true : false;
+
   return (
     <Button
       variant="outline"
@@ -15,6 +17,9 @@ const LinkBtn = (props) => {
       type="button"
       data-testid={ testid }
       onClick={ () => {
+        if(exit) {
+          localStorage.clear();
+        }
         history.push(route);
       } }
     >
