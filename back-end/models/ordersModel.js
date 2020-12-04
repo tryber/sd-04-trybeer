@@ -15,7 +15,7 @@ const setOrder = async (id, total, num, street, date) => (
       .insert(['user_id', 'total_price', 'delivery_address', 'delivery_number', 'sale_date', 'status',
       ])
       .values(id, total, street, num, date, 'sold')
-      .execute());
+      .execute())
 );
 
 module.exports = {
