@@ -21,6 +21,6 @@ const Orders = () => {
       <OrdersAdmin />
     );
   }
-  return <p> Loading...</p>
+  return <p> Loading...</p>;
 };
 export default Orders;

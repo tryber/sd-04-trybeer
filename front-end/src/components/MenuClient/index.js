@@ -12,6 +12,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import PropTypes from 'prop-types';
 
 import Links from './Links';
 import Header from './Header';
@@ -51,3 +52,11 @@ const MenuClient = ({ header }) => {
   );
 };
 export default MenuClient;
+
+MenuClient.propTypes = {
+  header: PropTypes.string,
+};
+
+MenuClient.defaultProps = {
+  header: 'client',
+};

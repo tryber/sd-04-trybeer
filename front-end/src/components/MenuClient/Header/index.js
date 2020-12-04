@@ -22,8 +22,10 @@ export default Header;
 
 Header.propTypes = {
   children: PropTypes.string,
+  text: PropTypes.string,
 };
 
 Header.defaultProps = {
   children: 'TryBeer',
+  text: 'client',
 };

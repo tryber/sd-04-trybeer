@@ -7,7 +7,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 /*
 Banco de Dados
@@ -24,7 +24,9 @@ const OrderCard = ({ order, userRole }) => {
   const {
     id, saleDate, deliveryAddress, deliveryNumber, status, totalPrice,
   } = order;
-  const formatDate = saleDate.slice(5, 10);
+  const sliceOne = 5;
+  const sliceTwo = 10;
+  const formatDate = saleDate.slice(sliceOne, sliceTwo);
 
   return (
     <Button
@@ -34,7 +36,7 @@ const OrderCard = ({ order, userRole }) => {
       maxWidth="60ch"
       type="button"
       onClick={ () => {
-        userRole === 'client'
+        userRole === 'client' // eslint-disable-line
           ? history.push(`/orders/${id}`)
           : history.push(`/admin/orders/${id}`);
       } }
@@ -84,3 +86,27 @@ const OrderCard = ({ order, userRole }) => {
 };
 
 export default OrderCard;
+
+OrderCard.propTypes = {
+  order: PropTypes.shape({
+    id: PropTypes.number,
+    saleDate: PropTypes.string,
+    deliveryAddress: PropTypes.string,
+    deliveryNumber: PropTypes.number,
+    status: PropTypes.string,
+    totalPrice: PropTypes.number,
+  }),
+  userRole: PropTypes.string,
+};
+
+OrderCard.defaultProps = {
+  order: {
+    id: 0,
+    saleDate: '01-01',
+    deliveryAddress: 'Rua Um',
+    deliveryNumber: 1,
+    status: 'Pendente',
+    totalPrice: 0,
+  },
+  userRole: 'client',
+};

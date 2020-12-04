@@ -7,7 +7,7 @@ const LinkBtn = (props) => {
   const history = useHistory();
   const { route, children, testid } = props;
 
-  const exit = children === 'Sair' ? true : false;
+  const exit = children === 'Sair';
 
   return (
     <Button
@@ -17,7 +17,7 @@ const LinkBtn = (props) => {
       type="button"
       data-testid={ testid }
       onClick={ () => {
-        if(exit) {
+        if (exit) {
           localStorage.clear();
         }
         history.push(route);

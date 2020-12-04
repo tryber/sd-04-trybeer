@@ -6,9 +6,7 @@ const checkout = async (req, res) => {
     const resultSale = await addSale(userId, cartValue, addressValue, numberValue, date, status);
 
     const resultSaleProd = await Promise.all(
-      products.map(async (e) => {
-        return await addSaleProduct(resultSale, e.id, e.quantity);
-      })
+      products.map(async (e) => addSaleProduct(resultSale, e.id, e.quantity)),
     );
 
     return res.status(200).json({ resultSale, resultSaleProd });

@@ -51,7 +51,8 @@ const Checkout = () => {
       .replace('T', ' ')
       .replace('Z', '');
 
-    const newCartValue = cartValue.slice(3);
+    const sliceNum = 3;
+    const newCartValue = cartValue.slice(sliceNum);
     const floatCartValue = parseFloat(newCartValue.replace(',', '.'));
 
     const result = await postCheckout(
