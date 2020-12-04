@@ -6,12 +6,13 @@ const addSale = (id, value, address, number, date, status) => {
       .insert(['user_id', 'total_price', 'delivery_address', 'delivery_number', 'sale_date', 'status'])
       .values(id, value, address, number, date, status)
       .execute())
+    .then((results) => results.getAutoIncrementValue())
     .catch((e) => e);
   return result;
 };
 
 const addSaleProduct = (saleId, prodId, quantity) => connection()
-  .then((db) => db.getTable('sale_product')
+  .then((db) => db.getTable('sales_products')
     .insert(['sale_id', 'product_id', 'quantity'])
     .values(saleId, prodId, quantity)
     .execute())
