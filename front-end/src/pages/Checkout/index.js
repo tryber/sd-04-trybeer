@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import jwtDecode from 'jwt-decode';
 import CheckoutCard from '../../components/CheckoutCard';
 import { ProductContext } from '../../context';
 import { postCheckout } from '../../api';
 
+
 const Checkout = () => {
   const zero = 0;
-  const userId = localStorage.user ? localStorage.user.id : null;
+  const userId = localStorage.user ? jwtDecode(localStorage.user).id : null;
   const { cartValue } = useContext(ProductContext);
   const [products, setProducts] = useState([]);
   const [addressValue, setAddressValue] = useState('');
@@ -44,13 +45,19 @@ const Checkout = () => {
   // envia pro backend userid, valor total da compra, endereco de entrega, data do pedido e status
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const status = 'Pendendte';
-    const datas = new Date();
-    const dataFinal = `${datas.getDate()}-${datas.getMonth()}`;
+    const status = 'Pendente';
+
+    const datas = new Date().toISOString()
+      .replace('T', ' ')
+      .replace('Z', '');
+
+    const newCartValue = cartValue.slice(3);
+    const floatCartValue = parseFloat(newCartValue.replace(',', '.'));
+
     const result = await postCheckout(
-      products, status, dataFinal, userId, cartValue, addressValue, numberValue,
+      products, status, datas, userId, floatCartValue, addressValue, numberValue,
     );
-    // console.log('result', result);
+
     if (result) handleResult(result);
     setMessage('Compra realizada com sucesso!');
   };
@@ -61,7 +68,6 @@ const Checkout = () => {
     const storageList = localStorage.cartItens ? JSON.parse(localStorage.cartItens) : [];
 
     setProducts(storageList);
-    // console.log('produtos', products);
   }, [history]);
 
   return (
