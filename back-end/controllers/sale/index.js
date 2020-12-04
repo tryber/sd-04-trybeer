@@ -2,8 +2,8 @@ const { findOrderByUserId } = require('../../models/sales');
 
 const getOrderByUserId = async (req, res) => {
   try {
-    const { id } = req.user;
-    const order = findOrderByUserId(id);
+    const { userId } = req.body;
+    const order = await findOrderByUserId(userId);
     return res.status(200).json(order);
   } catch (err) {
     console.error(err);

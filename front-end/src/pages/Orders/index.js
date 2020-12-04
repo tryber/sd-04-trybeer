@@ -26,18 +26,18 @@ A busca no banco de dados precisa ser feita pelo user_id
 const Orders = () => {
   const history = useHistory();
   const [orders, setOrders] = useState([]);
-
+  
   useEffect(() => {
-    // Verifica se o usuário está logado
     const user = localStorage.getItem('user') || null;
+    // Verifica se o usuário está logado
     if (!user) {
       history.push('/login');
     }
 
     // Pegando os pedidos do banco de dados
-    getOrders()
+    getOrders(user)
       .then((response) => {
-        // console.log('Response: ', response);
+        console.log('Response: ', response);
         setOrders(response.data);
       })
       .catch(() => 'um erro ocorreu');
