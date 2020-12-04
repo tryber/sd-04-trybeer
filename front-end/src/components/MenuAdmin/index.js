@@ -5,7 +5,7 @@ import {
 
 import LinkBtn from '../LinkBtn';
 
-const MenuClient = () => (
+const MenuAdmin = () => (
   <Flex
     className="admin-side-bar-container"
     direction="column"
@@ -34,4 +34,4 @@ const MenuClient = () => (
     </Flex>
   </Flex>
 );
-export default MenuClient;
+export default MenuAdmin;
