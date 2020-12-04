@@ -5,17 +5,14 @@ const getOrders = async () => {
   const sales = await table.select([]).execute();
 
   return sales
-    .fetchAll()
+    .fetchAll();
 };
 
 const setOrder = async (id, total, num, street, date) =>
-  conn().then((db) => db.getTable('sales').insert([
-    'user_id',
-    'total_price',
-    'delivery_address',
-    'delivery_number',
-    'sale_date',
-    'status',
+  conn().then((db) =>
+    db
+      .getTable('sales')
+      .insert(['user_id','total_price','delivery_address','delivery_number','sale_date','status',
   ])
     .values(id, total, street, num, date, 'sold')
     .execute());
