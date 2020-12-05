@@ -43,8 +43,10 @@ const newSale = async (req, res) => {
 
 const updateStatus = async (req, res) => {
   try {
-    const { id } = req.params;
-    await productsService.updateSaleStatus(id);
+    const id = Number(req.params.id);
+    // console.log('Body: ', req.body);
+    // console.log('Params: ', req.params);
+    await productsService.updateSalesStatus(id);
     const updatedOrder = await productsModel.getSaleById(id);
     return res.status(200).json(updatedOrder);
   } catch (error) {
