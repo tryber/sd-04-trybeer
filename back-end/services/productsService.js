@@ -16,6 +16,8 @@ const getSaleById = async (saleId) => {
   return { ...restOfSale, date: `${day}/${month}` };
 };
 
+const updateSalesStatus = async (id) => productsModel.updateSaleStatus(id);
+
 const getSaleProducts = async (id) => productsModel.getSaleProducts(id);
 
 module.exports = {
@@ -24,4 +26,5 @@ module.exports = {
   newSale,
   getSaleById,
   getSaleProducts,
+  updateSalesStatus,
 };
