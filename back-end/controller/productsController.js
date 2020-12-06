@@ -30,15 +30,13 @@ const readOrders = async (req, res) => {
 
   orders.map(
     (date) =>
-      (date.saleDate = date.saleDate
+      date.saleDate = date.saleDate
         .toLocaleDateString('pt-BR')
-        .replace('/2020', ''))
+        .replace('/2020', ''),
   );
   orders.map(
     (price) =>
-      (price.totalPrice = price.totalPrice.toFixed(2).replace('.', ','))
-  );
-  console.log(orders);
+      price.totalPrice = price.totalPrice.toFixed(2).replace('.', ','));
 
   res.status(200).json(orders);
 };
