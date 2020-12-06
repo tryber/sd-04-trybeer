@@ -28,16 +28,14 @@ const readOrders = async (req, res) => {
   const { id } = req.user;
   const orders = await orderModel.readOrder(id);
 
-  orders.map(
-    (date) =>
-      date.saleDate = date.saleDate
-        .toLocaleDateString('pt-BR')
-        .replace('/2020', ''),
-  );
-  orders.map(
-    (price) =>
-      price.totalPrice = price.totalPrice.toFixed(2).replace('.', ','),
-  );
+  orders.forEach((e) => {
+    e.saleDate = e.saleDate
+      .toLocaleDateString('pt-BR')
+      .replace('/2020', '');
+  });
+  orders.forEach((e) => {
+    e.totalPrice = e.totalPrice.toFixed(2).replace('.', ',');
+  });
 
   res.status(200).json(orders);
 };
