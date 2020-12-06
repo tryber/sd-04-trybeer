@@ -30,7 +30,7 @@ const readOrders = async (req, res) => {
 
   orders.forEach((e) => {
     e.saleDate = e.saleDate
-      .toLocaleDateString('pt-BR')
+      .toLocaleDateString()
       .replace('/2020', '');
   });
   orders.forEach((e) => {
