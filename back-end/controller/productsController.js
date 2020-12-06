@@ -6,7 +6,9 @@ const createSalesProducts = async (req, res) => {
 
   await productsModel.createSalesProducts(salesPdts);
 
-  res.status(200).json({ msg: 'Quantidade de produtos vendidos criada com sucesso' });
+  res
+    .status(200)
+    .json({ msg: 'Quantidade de produtos vendidos criada com sucesso' });
 };
 
 const getSalesProducts = async (req, res) => {
@@ -25,6 +27,18 @@ const readProducts = async (_, res) => {
 const readOrders = async (req, res) => {
   const { id } = req.user;
   const orders = await orderModel.readOrder(id);
+
+  orders.map(
+    (date) =>
+      (date.saleDate = date.saleDate
+        .toLocaleDateString('pt-BR')
+        .replace('/2020', ''))
+  );
+  orders.map(
+    (price) =>
+      (price.totalPrice = price.totalPrice.toFixed(2).replace('.', ','))
+  );
+  console.log(orders);
 
   res.status(200).json(orders);
 };
