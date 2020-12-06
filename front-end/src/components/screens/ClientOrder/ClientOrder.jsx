@@ -26,11 +26,11 @@ const ClientOrder = () => {
       <Header title="Cliente - Meus Pedidos" />
 
       {pedidos.map((e, i) => (
-        <div key={e.idSale} data-testid="order-card-container">
-          <a href={`/orders/${e.idSale}`}>
-            <p data-testid={`${i}-order-number`}>{`Pedido ${e.idSale}`}</p>
-            <p data-testid={`${i}-order-date`}>{e.saleDate}</p>
-            <p data-testid={`${i}-order-total-value`}>{`R$ ${e.totalPrice}`}</p>
+        <div key={ e.idSale } data-testid="order-card-container">
+          <a href={ `/orders/${e.idSale}` }>
+            <p data-testid={ `${i}-order-number` }>{ `Pedido ${e.idSale}` }</p>
+            <p data-testid={ `${i}-order-date` }>{ e.saleDate }</p>
+            <p data-testid={ `${i}-order-total-value` }>{ `R$ ${e.totalPrice}` }</p>
           </a>
         </div>
       ))}
