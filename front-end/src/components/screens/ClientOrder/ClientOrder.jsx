@@ -27,7 +27,7 @@ const ClientOrder = () => {
 
       {pedidos.map((e, i) => (
         <a href={ `/orders/${e.idSale}` }>
-          <div key={ e.id} data-testid="order-card-container">
+          <div key={ e.id } data-testid="order-card-container">
             <p data-testid={ `${i}-order-number` }>{ `Pedido ${e.idSale}` }</p>
             <p data-testid={ `${i}-order-date` }>{ e.saleDate }</p>
             <p data-testid={ `${i}-order-total-value` }>{ `R$ ${e.totalPrice}` }</p>
