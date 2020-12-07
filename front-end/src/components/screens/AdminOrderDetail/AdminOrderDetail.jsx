@@ -1,5 +1,5 @@
 import React from 'react';
-import SideBar from '../../components/SideBarADMIN';
+import SideBar from '../../SideBarADMIN';
 
 const AdminOrderDetail = () => (
   <div>

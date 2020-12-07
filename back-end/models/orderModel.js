@@ -80,7 +80,7 @@ const readOrder = async (id) => {
     );
 };
 
-const readAllOrder = async (id) => {
+const readAllOrder = async () => {
   const table = await conn().then((db) => db.getTable('sales'));
   const orders = await table
     .select([])
@@ -107,7 +107,7 @@ const readAllOrder = async (id) => {
         status,
       }),
     );
-}
+};
 /*   const readOrder = async (id) => {
     console.log(id)
   }; */
