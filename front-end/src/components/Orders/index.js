@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../Header';
 import SideBar from '../SideBarADMIN';
-import api from '../../../src/services/api';
+import api from '../../services/api';
 import { getLS } from '../../helpers/index';
 import './adminOrder.css';
-
 
 const AdminOrder = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -27,8 +26,7 @@ const AdminOrder = () => {
   return (
     <div>
       <Header title="Admin - Meus Pedidos" />
-      <SideBar  noOverlay isOpen={ true } pageWrapId="page-wrap" outerContainerId="outer-container" />
-      {console.log(pedidos)}
+      <SideBar pageWrapId="page-wrap" outerContainerId="outer-container" />
       {pedidos.map((e, i) => (
         <div id="card-container" key={ e.idSale } data-testid="order-card-container">
           <a href={ `/admin/orders/${e.idSale}` }>

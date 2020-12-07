@@ -18,6 +18,8 @@ router.get('/sales/:id', auth, productsController.getSalesProducts);
 
 router.put('/profile', userProfile.userUpdate);
 
+router.get('/admin/orders', auth, productsController.readAllOrders);
+
 router.get('/orders', auth, productsController.readOrders);
 
 router.post('/orders', auth, ordersController.createOrders);

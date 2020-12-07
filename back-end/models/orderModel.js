@@ -80,6 +80,34 @@ const readOrder = async (id) => {
     );
 };
 
+const readAllOrder = async (id) => {
+  const table = await conn().then((db) => db.getTable('sales'));
+  const orders = await table
+    .select([])
+    .execute();
+
+  return orders
+    .fetchAll()
+    .map(
+      ([
+        idSale,
+        idUser,
+        totalPrice,
+        deliveryAddress,
+        deliveryNumber,
+        saleDate,
+        status,
+      ]) => ({
+        idSale,
+        idUser,
+        totalPrice,
+        deliveryAddress,
+        deliveryNumber,
+        saleDate,
+        status,
+      }),
+    );
+}
 /*   const readOrder = async (id) => {
     console.log(id)
   }; */
@@ -88,4 +116,5 @@ module.exports = {
   create,
   readOrder,
   readById,
+  readAllOrder,
 };

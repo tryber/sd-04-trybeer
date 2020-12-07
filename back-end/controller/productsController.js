@@ -29,9 +29,7 @@ const readOrders = async (req, res) => {
   const orders = await orderModel.readOrder(id);
 
   orders.forEach((e) => {
-    e.saleDate = e.saleDate
-      .toLocaleDateString('pt-BR')
-      .replace('/2020', '');
+    e.saleDate = e.saleDate.toLocaleDateString('pt-BR').replace('/2020', '');
   });
   orders.forEach((e) => {
     e.totalPrice = e.totalPrice.toFixed(2).replace('.', ',');
@@ -40,9 +38,20 @@ const readOrders = async (req, res) => {
   res.status(200).json(orders);
 };
 
+const readAllOrders = async (req, res) => {
+  const allOrders = await orderModel.readAllOrder();
+
+  allOrders.forEach((e) => {
+    e.totalPrice = e.totalPrice.toFixed(2).replace('.', ',');
+  });
+
+  res.status(200).json(allOrders);
+};
+
 module.exports = {
   createSalesProducts,
   getSalesProducts,
   readProducts,
   readOrders,
+  readAllOrders,
 };
