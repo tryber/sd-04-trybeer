@@ -29,7 +29,7 @@ const ClientOrder = () => {
         <div key={ e.idSale } data-testid="order-card-container">
           <a href={ `/orders/${e.idSale}` }>
             <p data-testid={ `${i}-order-number` }>{ `Pedido ${e.idSale}` }</p>
-            <p data-testid={ `${i}-order-date` }>{ `${String(e.saleDate)}` }</p>
+            <p data-testid={ `${i}-order-date` }>{ `${e.saleDate}` }</p>
             <p data-testid={ `${i}-order-total-value` }>{ `R$ ${e.totalPrice}` }</p>
           </a>
         </div>

@@ -44,6 +44,8 @@ const userNameUpdateApi = async (name, email, newName) => {
 
 const getOrders = (token) => apiTrybeer.get('/orders', { headers: { authorization: token } });
 
+const getAllOrders = (token) => apiTrybeer.get('/admin/orders', { headers: { authorization: token } });
+
 const setOrder = (token, order) => apiTrybeer.post(
   '/orders', { order }, { headers: { authorization: token } },
 );
@@ -63,4 +65,5 @@ export default {
   getOrders,
   setOrder,
   getOrderById,
+  getAllOrders,
 };

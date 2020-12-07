@@ -9,6 +9,7 @@ import ClientCheckout from './components/screens/ClientCheckout/ClientCheckout';
 import PrivateRoute from './components/Auth';
 import ClientOrderDetails from './components/screens/ClientOrderDetails/ClientOrderDetails';
 import ClientOrder from './components/screens/ClientOrder/ClientOrder';
+import AdminOrderDetails from './components/screens/AdminOrderDetail/AdminOrderDetail'
 import Orders from './components/Orders/index';
 
 const App = () => (
@@ -21,9 +22,11 @@ const App = () => (
       <Route path="/orders/:id" component={ ClientOrderDetails } />
       <Route exact path="/" component={ Login } />
       <PrivateRoute path="/profile" component={ UserProfile } />
+      <PrivateRoute path="/admin/orders/:id" component={ AdminOrderDetails } />
       <PrivateRoute exact path="/orders" component={ ClientOrder } />
       <PrivateRoute path="/admin/profile" component={ AdminProfile } />
       <PrivateRoute path="/admin/orders" component={ Orders } />
+
     </Switch>
   </BrowserRouter>
 );
