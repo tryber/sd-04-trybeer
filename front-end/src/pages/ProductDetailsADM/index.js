@@ -10,7 +10,7 @@ import './styles.css';
 
 const ProductDetailsADM = ({ match: { params: { orderNumber } } }) => {
   const [doneSales, setDoneSales] = useState('');
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState(false);
 
   const changeStatus = async () => {
     try {
@@ -24,10 +24,11 @@ const ProductDetailsADM = ({ match: { params: { orderNumber } } }) => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       const response = await api.get(`/admin/orders/${orderNumber}`);
+      setStatus(true);
       setDoneSales(response.data);
     };
     fetchProductDetails();
-  }, [orderNumber, setStatus]);
+  }, [orderNumber]);
 
   return (
     <div>
@@ -40,7 +41,7 @@ const ProductDetailsADM = ({ match: { params: { orderNumber } } }) => {
                 {`Pedido ${doneSales.id}`}
               </span>
               <span data-testid="order-status">
-                {`- ${status || doneSales.status}`}
+                {`- ${status && doneSales.status}`}
               </span>
             </p>
           </div>
@@ -53,6 +54,7 @@ const ProductDetailsADM = ({ match: { params: { orderNumber } } }) => {
                 testid={ index }
                 quantity={ quantity }
                 name={ name }
+                uniPrice={ `(${(price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })})` }
                 total={ (quantity * price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
               />
             ))}
