@@ -25,16 +25,14 @@ const ClientOrder = () => {
   let day = '';
   let month = '';
   return (
-    <div>
+    <>
       <Header title="Cliente - Meus Pedidos" />
-
-      {pedidos.map(
-        (e, i) => (
-          (newDate = new Date(e.saleDate)),
-          (day = Intl.DateTimeFormat('en', { day: '2-digit' }).format(newDate)),
-          (month = Intl.DateTimeFormat('en', { month: '2-digit' }).format(newDate)),
-          (
-            <div key={ e.idSale } data-testid="order-card-container">
+      {pedidos.map((e, i) => (
+          // eslint-disable-next-line 
+          newDate = new Date(e.saleDate),
+          day = Intl.DateTimeFormat('en', { day: '2-digit' }).format(newDate),
+          month = Intl.DateTimeFormat('en', { month: '2-digit' }).format(newDate),
+          (<div key={ e.idSale } data-testid="order-card-container">
               <a href={ `/orders/${e.idSale}` }>
                 <p data-testid={ `${i}-order-number` }>{ `Pedido ${e.idSale}` }</p>
                 <p data-testid={ `${i}-order-date` }>{ `${day}/${month}` }</p>
@@ -44,7 +42,7 @@ const ClientOrder = () => {
           )
         ),
       )}
-    </div>
+    </>
   );
 };
 export default ClientOrder;
