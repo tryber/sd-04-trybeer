@@ -23,28 +23,28 @@ const ClientOrder = () => {
 
   let newDate = '';
   let dateAndMonth = '';
+  let Ten = 10;
   return (
     <div>
       <Header title="Cliente - Meus Pedidos" />
 
-      {pedidos.map(
+      {pedidos.forEach(
         (e, i) => (
-          (newDate = new Date(e.saleDate)),
+          (newDate = new Date(e.saleDate))
           (dateAndMonth = `${
-            newDate.getDate() < 10 ? '0' + newDate.getDate() : newDate.getDate()
+            newDate.getDate() < Ten ? '0' + newDate.getDate() : newDate.getDate()
           }/${newDate.getMonth() + 1}`),
           (
-            <div key={e.idSale} data-testid="order-card-container">
+            <div key={ e.idSale } data-testid="order-card-container">
               <a href={ `/orders/${e.idSale}` }>
                 <p data-testid={ `${i}-order-number` }>{ `Pedido ${e.idSale}` }</p>
                 <p data-testid={ `${i}-order-date` }>{ `${dateAndMonth}` }</p>
-                <p
-                  data-testid={ `${i}-order-total-value` }
+                <p data-testid={ `${i}-order-total-value` }
                 >{ `R$ ${e.totalPrice}` }</p>
               </a>
             </div>
           )
-        )
+        ),
       )}
     </div>
   );
