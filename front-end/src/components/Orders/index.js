@@ -27,18 +27,12 @@ const AdminOrder = () => {
     <div>
       <Header title="Admin - Meus Pedidos" />
       {pedidos.map((e, i) => (
-        <div
-          id="card-container"
-          key={e.idSale}
-          data-testid="order-card-container"
-        >
-          <a href={`/admin/orders/${e.idSale}`}>
-            <p data-testid={`${i}-order-number`}>{`Pedido ${e.idSale}`}</p>
-            <p
-              data-testid={`${i}-order-address`}
-            >{`${e.deliveryAddress}, ${e.deliveryNumber}`}</p>
-            <p data-testid={`${i}-order-total-value`}>{`R$ ${e.totalPrice}`}</p>
-            <p data-testid={`${i}-order-status`}>{e.status}</p>
+        <div id="card-container" key={ e.idSale } data-testid="order-card-container">
+          <a href={ `/admin/orders/${e.idSale}` }>
+            <p data-testid={ `${i}-order-number` }>{ `Pedido ${e.idSale}` }</p>
+            <p data-testid={ `${i}-order-address` }>{ `${e.deliveryAddress}, ${e.deliveryNumber}` }</p>
+            <p data-testid={ `${i}-order-total-value` }>{ `R$ ${e.totalPrice}` }</p>
+            <p data-testid={ `${i}-order-status` }>{ e.status }</p>
           </a>
         </div>
       ))}
