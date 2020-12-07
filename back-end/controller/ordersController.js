@@ -4,6 +4,7 @@ const createOrders = async (req, res) => {
   try {
     const { id: userId } = req.user;
     const { order } = req.body;
+    console.log(order);
     const fullOrder = { ...order, userId };
     const saleId = await orderModel.create(fullOrder);
 

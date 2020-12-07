@@ -29,9 +29,6 @@ const readOrders = async (req, res) => {
   const orders = await orderModel.readOrder(id);
 
   orders.forEach((e) => {
-    e.saleDate = e.saleDate.toLocaleDateString('pt-BR').replace('/2020', '');
-  });
-  orders.forEach((e) => {
     e.totalPrice = e.totalPrice.toFixed(2).replace('.', ',');
   });
 
