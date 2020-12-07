@@ -9,26 +9,26 @@ import api from '../../services/api';
 import './styles.css';
 
 const ProductDetailsADM = ({ match: { params: { orderNumber } } }) => {
-  const [product, setProduct] = useState('');
-  const [status, setStatus] = useState('');
+  const [doneSales, setDoneSales] = useState('');
+  const [status, setStatus] = useState(false);
 
   const changeStatus = async () => {
     try {
       const response = await api.put(`/admin/orders/${orderNumber}`);
-      // console.log(response.data);
-      setProduct(response);
+      setDoneSales(response.data);
     } catch (error) {
-      // console.log(error.response.data.error);
+      // console.log(error.response.data);
     }
   };
 
   useEffect(() => {
     const fetchProductDetails = async () => {
       const response = await api.get(`/admin/orders/${orderNumber}`);
-      setProduct(response.data);
+      setStatus(true);
+      setDoneSales(response.data);
     };
     fetchProductDetails();
-  }, [orderNumber, setStatus]);
+  }, [orderNumber]);
 
   return (
     <div>
@@ -38,15 +38,15 @@ const ProductDetailsADM = ({ match: { params: { orderNumber } } }) => {
           <div className="order-detail-info">
             <p className="details-order-head">
               <span data-testid="order-number">
-                {`Pedido ${product.id}`}
+                {`Pedido ${doneSales.id}`}
               </span>
               <span data-testid="order-status">
-                {`- ${status || product.status}`}
+                {`- ${status && doneSales.status}`}
               </span>
             </p>
           </div>
-          {product.products
-            && product.products.map(({
+          {doneSales.products
+            && doneSales.products.map(({
               orderId, quantity, name, price,
             }, index) => (
               <ProductDetailsCard
@@ -54,17 +54,18 @@ const ProductDetailsADM = ({ match: { params: { orderNumber } } }) => {
                 testid={ index }
                 quantity={ quantity }
                 name={ name }
+                uniPrice={ `(${(price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })})` }
                 total={ (quantity * price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
               />
             ))}
           <p>
             Total: &nbsp;
             <span data-testid="order-total-value">
-              {product && product.totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+              {doneSales && doneSales.totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
             </span>
           </p>
         </div>
-        {product.status === 'Pendente' ? (
+        {doneSales.status === 'Pendente' ? (
           <button type="button" data-testid="mark-as-delivered-btn" onClick={ changeStatus }>Marcar como entregue</button>
         ) : ('')}
       </div>

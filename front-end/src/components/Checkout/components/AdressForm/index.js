@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Context } from '../../../../context';
@@ -21,6 +21,14 @@ const AdressForm = () => {
     ({ id, quantity }) => ({ id, quantity }),
   );
 
+  useEffect(() => {
+    let saleMessageTimeOut;
+    if (message !== '') {
+      saleMessageTimeOut = setTimeout(() => history.push('/products'), CHECKOUT_TIME);
+    }
+    return () => clearTimeout(saleMessageTimeOut);
+  }, [message, history]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { id: userId } = JSON.parse(localStorage.getItem('user'));
@@ -30,7 +38,6 @@ const AdressForm = () => {
     const response = await api.post('/checkout', {
       userId, total, rua, numeroCasa, status, purchasedProducts,
     });
-    setTimeout(() => history.push('/products'), CHECKOUT_TIME);
     setMessage(response.data.message);
   };
 
