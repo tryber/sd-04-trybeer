@@ -15,11 +15,11 @@ const ClientOrderDetails = ({ match: { params: { id } } }) => {
   const [pdtsSold, setPdtsSold] = useState([]);
   const [products, setProducts] = useState([]);
   const history = useHistory();
-  const orderNumber = `Pedido: 000${order.saleId}`;
+  const orderNumber = `Pedido ${order.saleId}`;
   const day = String(order.saleDate).slice(oito, nQuatorze);
   const month = String(order.saleDate).slice(cinco, nDezessete);
   const date = `${day}/${month}`;
-  const totalPriceDb = Number(order.totalPrice).toFixed(dois);
+  const totalPriceDb = Number(order.totalPrice).toFixed(dois).replace('.', ',');
   const totalPrice = `Total: R$ ${totalPriceDb}`;
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const ClientOrderDetails = ({ match: { params: { id } } }) => {
           if (pdtSoldId !== pdtId) return false;
 
           pdtName = name;
-          pdtPrice = price;
+          pdtPrice = price.toFixed(dois).replace('.', ',');
 
           return true;
         });
