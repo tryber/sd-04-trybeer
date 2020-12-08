@@ -44,7 +44,7 @@ const getOrderById = (id) => (
       .bind('idBind', id)
       .execute()
       .then((result) => result.fetchOne())
-      .then((order) => order));
+      .then((order) => order))
 );
 
 const getSaleById = async (id) => {
