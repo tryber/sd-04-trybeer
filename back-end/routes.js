@@ -18,4 +18,6 @@ router.post('/checkout', auth, ordersController.setOrder);
 
 router.get('/orders', auth, ordersController.getOrders);
 
+router.get('/orders/:id', auth, ordersController.getOrderById);
+
 module.exports = router;
