@@ -16,13 +16,14 @@ const setOrder = async (id, total, num, street, date) => {
       .insert(['user_id', 'total_price', 'delivery_address', 'delivery_number', 'sale_date', 'status',
       ])
       .values(id, total, street, num, date, 'sold')
-      .execute())
+      .execute());
   const result = await connection()
-    .then((db) => db
-    .getTable('sales')
-    .select([]).execute())
+      .then((db) => db
+      .getTable('sales')
+      .select([])
+      .execute());
   return result.fetchOne()[0];
-    };
+};
 
 const setOrderDetails = async (saleId, productId, quantity) => (
   connection()
@@ -35,8 +36,8 @@ const setOrderDetails = async (saleId, productId, quantity) => (
 );
 
 const getOrderById = (id) =>
-  connection().then((db) =>
-    db
+  connection()
+    .then((db) => db
       .getTable('sales')
       .select()
       .where('id = :idBind')
@@ -45,7 +46,6 @@ const getOrderById = (id) =>
       .then((result) => result.fetchOne())
       .then((order) => order),
   );
-
 const getSaleById = async (id) => {
   const session = await simpleConnection();
   const result = await session.sql(
@@ -53,8 +53,8 @@ const getSaleById = async (id) => {
     JOIN Trybeer.products AS p ON sp.product_id = p.id
     WHERE sp.sale_id = ${id}`
   )
-  .execute()
-  .then((result) => result.fetchAll());
+    .execute()
+    .then((data) => data.fetchAll());
   if (!result.length) return null;
   return result;
 };

@@ -7,11 +7,9 @@ const setOrder = async (req, res) => {
     total,
     num,
     street,
-    date
+    date,
   );
-  await details.forEach((element) =>
-    ordersModel.setOrderDetails(orderCreation, element[0], element[1])
-  );
+  await details.forEach((elem) => ordersModel.setOrderDetails(orderCreation, elem[0], elem[1]));
   res.status(200).json('Ordered');
 };
 
@@ -24,7 +22,7 @@ const getOrderById = async (req, res) => {
   const { id } = req.params;
   const order = await ordersModel.getOrderById(id);
   const saleDetails = await ordersModel.getSaleById(id);
-  
+
   res.status(200).json([order, ...saleDetails]);
 };
 
