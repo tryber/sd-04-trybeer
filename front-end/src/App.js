@@ -9,6 +9,7 @@ import Orders from './components/OrdersADMIN';
 import Checkout from './components/Checkout';
 import OrdersCli from './components/OrdersCLI';
 import OrderDetailsCLI from './components/OrderDetailsCLI';
+import OrdersDetailsAdmin from './components/OrdersDetailsAdmin';
 import PrivateRoute from './components/Auth';
 
 const App = () => (
@@ -20,10 +21,11 @@ const App = () => (
       <PrivateRoute path="/profile" component={ UserProfile } />
       <PrivateRoute path="/admin/profile" component={ AdminProfile } />
       <PrivateRoute path="/products" component={ Products } />
-      <PrivateRoute path="/admin/orders" component={ Orders } />
+      <PrivateRoute exact path="/admin/orders" component={ Orders } />
       <PrivateRoute path="/checkout" component={ Checkout } />
       <PrivateRoute exact path="/orders" component={ OrdersCli } />
       <PrivateRoute path="/orders/:id" component={ OrderDetailsCLI } />
+      <PrivateRoute path="/admin/orders/:id" component={ OrdersDetailsAdmin } />
     </Switch>
   </BrowserRouter>
 );

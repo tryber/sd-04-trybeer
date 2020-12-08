@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
+import { TrybeerContext } from '../../context/index';
 
 import './style.css';
 
 export default () => {
+  const { adminSidebar } = useContext(TrybeerContext);
   useEffect(() => {
     const hamburger = document.querySelector('.bm-burger-button');
     hamburger.setAttribute('data-testid', 'top-hamburguer');
   }, []);
   return (
-    <Menu isOpen>
+    <Menu isOpen={ adminSidebar }>
       <Link to="/admin/orders" data-testid="side-menu-item-orders">Pedidos</Link>
       <Link to="/admin/profile" data-testid="side-menu-item-profile">Perfil</Link>
       <Link to="/login">

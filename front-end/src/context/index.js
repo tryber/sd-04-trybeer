@@ -16,15 +16,15 @@ const ProviderTrybeer = ({ children }) => {
   // Estado para o valor total no carrinho
   const [totalPriceCart, setTotalPriceCart] = useState(zero);
 
-  const [products, setProductsCtx] = useState([]);
+  const [adminSidebar, setSideBar] = useState(true);
 
   const context = {
     user,
     setUser,
     qttPdtsCart: [qttPdtsCart, setQttPdtsCart],
     totalPriceCart: [totalPriceCart, setTotalPriceCart],
-    products,
-    setProductsCtx,
+    adminSidebar,
+    setSideBar,
   };
 
   return <TrybeerContext.Provider value={ context }>{ children }</TrybeerContext.Provider>;
