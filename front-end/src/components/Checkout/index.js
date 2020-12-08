@@ -55,8 +55,9 @@ const Checkout = () => {
   }
   const { id, token } = JSON.parse(localStorage.getItem('user'));
 
-  const saveOrder = (userId, auth, orderPrice, num, street, date) => {
-    API.setOrder(userId, auth, orderPrice, num, street, date);
+  const saveOrder = (userId, auth, orderPrice, num, street, date, cartItems) => {
+    const productDetails = cartItems.map((item) => [item.id, item.quantity]);
+    API.setOrder(userId, auth, orderPrice, num, street, date, productDetails);
   };
 
   return (
@@ -148,7 +149,7 @@ const Checkout = () => {
           disabled={ ableSubmitOrder() }
           onClick={ () => {
             setFinishedOrder('Compra realizada com sucesso!');
-            saveOrder(id, token, total, numberValue, streetValue, time);
+            saveOrder(id, token, total, numberValue, streetValue, time, cart);
             setTimeout(() => {
               window.location.href = 'http://localhost:3000/products';
               localStorage.removeItem('cart');

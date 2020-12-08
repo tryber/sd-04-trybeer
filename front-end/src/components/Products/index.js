@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// import { TrybeerContext } from '../../context/index';
 
 import API from '../../services/api';
 
@@ -8,6 +9,7 @@ import SideBar from '../SideBarCLI';
 const zero = 0;
 
 const Products = () => {
+  // const { setProductsCtx } = useContext(TrybeerContext);
   const [products, setProducts] = useState([]);
   const [cartProducts, setcartProducts] = useState([]);
   const [disable, setDisable] = useState(true);
@@ -29,6 +31,8 @@ const Products = () => {
   }, []);
 
   useEffect(() => ableCart());
+
+  // useEffect(() => setProductsCtx(products))
 
   function addQuantity(product) {
     const {
