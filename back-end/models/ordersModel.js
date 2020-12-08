@@ -17,7 +17,7 @@ const setOrder = async (id, total, num, street, date) => {
       ])
       .values(id, total, street, num, date, 'sold')
       .execute());
-  const result = await connection() 
+  const result = await connection()
     .then((db) => db
       .getTable('sales')
       .select([])
@@ -35,7 +35,7 @@ const setOrderDetails = async (saleId, productId, quantity) => (
       .execute())
 );
 
-const getOrderById = (id) =>
+const getOrderById = (id) => (
   connection()
     .then((db) => db
       .getTable('sales')
@@ -45,6 +45,8 @@ const getOrderById = (id) =>
       .execute()
       .then((result) => result.fetchOne())
       .then((order) => order));
+);
+
 const getSaleById = async (id) => {
   const session = await simpleConnection();
   const result = await session.sql(
