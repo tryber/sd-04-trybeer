@@ -23,7 +23,6 @@ const ClientOrder = () => {
 
   let day = '';
   let month = '';
-
   const renderPedidos = pedidos.map((e, i) => {
     day = Intl.DateTimeFormat('en', { day: '2-digit' }).format(
       new Date(e.saleDate),
