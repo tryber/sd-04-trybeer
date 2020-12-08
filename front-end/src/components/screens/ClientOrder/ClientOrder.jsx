@@ -28,9 +28,7 @@ const ClientOrder = () => {
       <Header title="Cliente - Meus Pedidos" />
       {pedidos.map(
        ((e, i) => (
-          (day = Intl.DateTimeFormat('en', { day: '2-digit' }).format(
-            new Date(e.saleDate)
-          )),
+          (day = Intl.DateTimeFormat('en', { day: '2-digit' }).format(new Date(e.saleDate))),
           (month = Intl.DateTimeFormat('en', { month: '2-digit' }).format(
             new Date(e.saleDate),
           )),
