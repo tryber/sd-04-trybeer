@@ -23,26 +23,28 @@ const ClientOrder = () => {
 
   let day = '';
   let month = '';
+
+  const renderPedidos = pedidos.map((e, i) => {
+    day = Intl.DateTimeFormat('en', { day: '2-digit' }).format(
+      new Date(e.saleDate)
+    );
+    month = Intl.DateTimeFormat('en', { month: '2-digit' }).format(
+      new Date(e.saleDate)
+    );
+    return (
+      <div key={ e.idSale } data-testid="order-card-container">
+        <a href={ `/orders/${e.idSale}` }>
+          <p data-testid={ `${i}-order-number` }>{ `Pedido ${e.idSale}` }</p>
+          <p data-testid={ `${i}-order-date` }>{ `${day}/${month}` }</p>
+          <p data-testid={ `${i}-order-total-value` }>{ `R$ ${e.totalPrice}` }</p>
+        </a>
+      </div>
+    );
+  });
   return (
     <>
       <Header title="Cliente - Meus Pedidos" />
-      {pedidos.map(
-        ((e, i) => (
-          (day = Intl.DateTimeFormat('en', { day: '2-digit' }).format(new Date(e.saleDate))),
-          (month = Intl.DateTimeFormat('en', { month: '2-digit' }).format(
-            new Date(e.saleDate),
-          )),
-          (
-            <div key={ e.idSale } data-testid="order-card-container">
-              <a href={ `/orders/${e.idSale}` }>
-                <p data-testid={ `${i}-order-number` }>{ `Pedido ${e.idSale}` }</p>
-                <p data-testid={ `${i}-order-date` }>{ `${day}/${month}` }</p>
-                <p data-testid={ `${i}-order-total-value` }>{ `R$ ${e.totalPrice}` }</p>
-              </a>
-            </div>
-          )
-        )),
-      )}
+      {renderPedidos}
     </>
   );
 };
