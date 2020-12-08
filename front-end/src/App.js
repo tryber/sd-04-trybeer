@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Login from './components/Login';
-import UserRegister from './components/UserRegister';
+import UserRegister from './components/UserRegisterOld';
 import UserProfile from './components/UserProfile/index';
 import AdminProfile from './components/AdminProfile/index';
 import ClientProducts from './components/screens/ClientProducts/ClientProducts';
