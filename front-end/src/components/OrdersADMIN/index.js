@@ -14,7 +14,7 @@ const Orders = () => {
   return (
     <div>
       <Header title="Admin - Pedidos" />
-      <div onKeyDown={ () => setSideBar(false) }>
+      <div onClick={ () => setSideBar(false) }>
         <SideBar pageWrapId="page-wrap" outerContainerId="outer-container" />
       </div>
       <h5>Pedidos</h5>
