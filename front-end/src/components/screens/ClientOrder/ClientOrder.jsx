@@ -26,10 +26,10 @@ const ClientOrder = () => {
 
   const renderPedidos = pedidos.map((e, i) => {
     day = Intl.DateTimeFormat('en', { day: '2-digit' }).format(
-      new Date(e.saleDate)
+      new Date(e.saleDate),
     );
     month = Intl.DateTimeFormat('en', { month: '2-digit' }).format(
-      new Date(e.saleDate)
+      new Date(e.saleDate),
     );
     return (
       <div key={ e.idSale } data-testid="order-card-container">
