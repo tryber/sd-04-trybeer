@@ -47,7 +47,10 @@ const OrdersCli = () => {
           ))}
         </ul>
         <h5 data-testid="order-total-value" className="card-title">
-          {`Total: ${products[2]}`}
+          { products[2] && `Total: ${products[2].toLocaleString('pt-br', {
+            style: 'currency',
+            currency: 'BRL',
+          })}`}
         </h5>
       </div>
     </div>
