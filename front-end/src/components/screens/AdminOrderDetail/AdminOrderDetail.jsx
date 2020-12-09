@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import api from '../../../services/api';
 import { getLS } from '../../../helpers';
+import SideBar from '../../../components/SideBarADMIN';
+
+import API from '../../../services/api';
 
 const AdminOrderDetail = () => {
   const two = 2;
   const history = useHistory();
-  const [pedidos, setPedidos] = useState([]);
   const [order, setOrder] = useState({});
   const [pdtsSold, setPdtsSold] = useState([]);
   const [products, setProducts] = useState([]);
@@ -17,7 +19,13 @@ const AdminOrderDetail = () => {
 
   const { id } = useParams();
 
-  console.log(products);
+  console.log(order);
+  const handleSubmit = () => {
+    const statusLabel = document.getElementById('status');
+    document.getElementById('btnSubmit').remove();
+    statusLabel.innerText = 'Entregue';
+    API.updateOrderStatus(id, 'Entregue');
+  };
 
   useEffect(() => {
     (async () => {
@@ -28,7 +36,10 @@ const AdminOrderDetail = () => {
         const { token } = userData;
 
         const newOrder = await api.getOrderById(token, id);
-        const newQttPdts = await api.getSalesProducts(token, newOrder.data[0].saleId);
+        const newQttPdts = await api.getSalesProducts(
+          token,
+          newOrder.data[0].saleId
+        );
         const newProducts = await api.getProducts(token);
 
         setOrder(newOrder.data[0]);
@@ -40,13 +51,15 @@ const AdminOrderDetail = () => {
       const zero = 0;
       return zero;
     })();
-  }, []);
+  }, [history, id]);
 
   return (
     <div>
       <h1 data-testid="top-title">Admin Order details</h1>
-      <span data-testid="order-number">{orderNumber}</span> - 
-      <span data-testid="order-status"> {order.status}</span>
+      <span data-testid="order-number">{orderNumber}</span> -
+      <span id="status" data-testid="order-status">
+        {order.status}
+      </span>
       {pdtsSold.map(({ productId: pdtSoldId, quantity }, i) => {
         let pdtName;
         let pdtPrice;
@@ -61,19 +74,28 @@ const AdminOrderDetail = () => {
         });
 
         return (
-          <p key={ pdtSoldId }>
-            <span data-testid={ `${i}-product-qtd` }>{ quantity }</span>
+          <p key={pdtSoldId}>
+            <span data-testid={`${i}-product-qtd`}>{quantity}</span>-
+            <span data-testid={`${i}-product-name`}>{pdtName}</span>-
+            <span
+              data-testid={`${i}-product-total-value`}
+            >{`R$ ${pdtPrice}`}</span>
             -
-            <span data-testid={ `${i}-product-name` }>{ pdtName }</span>
-            -
-            <span data-testid={ `${i}-product-total-value` }>{ `R$ ${pdtPrice}` }</span>
-            -
-            <span data-testid={ `${i}-order-unit-price` }>{ `(R$ ${pdtPrice})` }</span>
+            <span
+              data-testid={`${i}-order-unit-price`}
+            >{`(R$ ${pdtPrice})`}</span>
           </p>
         );
       })}
       <p data-testid="order-total-value">{totalPrice}</p>
-      <button data-testid="mark-as-delivered-btn">Marcar como entregue</button>
+      <button
+        id="btnSubmit"
+        data-testid="mark-as-delivered-btn"
+        onClick={() => handleSubmit()}
+      >
+        Marcar como entregue
+      </button>
+      <SideBar />
     </div>
   );
 };
