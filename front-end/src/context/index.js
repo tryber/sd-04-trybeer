@@ -18,6 +18,8 @@ const ProviderTrybeer = ({ children }) => {
 
   const [adminSidebar, setSideBar] = useState(true);
 
+  const [status, setStatus] = useState('Pendentes');
+
   const context = {
     user,
     setUser,
@@ -25,6 +27,8 @@ const ProviderTrybeer = ({ children }) => {
     totalPriceCart: [totalPriceCart, setTotalPriceCart],
     adminSidebar,
     setSideBar,
+    status,
+    setStatus,
   };
 
   return <TrybeerContext.Provider value={ context }>{ children }</TrybeerContext.Provider>;

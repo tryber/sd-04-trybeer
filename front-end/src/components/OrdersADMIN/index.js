@@ -5,7 +5,7 @@ import Header from '../Header';
 import SideBar from '../SideBarADMIN';
 
 const Orders = () => {
-  const { setSideBar } = useContext(TrybeerContext);
+  const { status, setSideBar } = useContext(TrybeerContext);
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     const { token } = JSON.parse(localStorage.getItem('user'));
@@ -31,7 +31,7 @@ const Orders = () => {
                     currency: 'BRL',
                   })}
                 </p>
-                <p data-testid={ `${order[0] - 1}-order-status` }>{order[6]}</p>
+                <p data-testid={ `${order[0] - 1}-order-status` }>{status}</p>
               </a>
             </li>
           ))}
