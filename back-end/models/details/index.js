@@ -5,7 +5,7 @@ const getDetail = async (saleId) => {
   const session = await simpleConnection();
   const result = await session.sql(
     `SELECT
-    sp.quantity as prodQuantity, p.name as prodName, (sp.quantity * p.price) as prodPrice 
+    sp.quantity as prodQuantity, p.name as prodName, (sp.quantity * p.price) as prodPrice, p.price as price 
     FROM sales_products as sp
     INNER JOIN products as p on sp.product_id = p.id
     WHERE sp.sale_id = ${saleId}`,
@@ -13,7 +13,7 @@ const getDetail = async (saleId) => {
     .execute()
     .then((results) => results.fetchAll())
     .then((sale) => sale.map(
-      ([prodQuantity, prodName, prodPrice]) => ({ prodQuantity, prodName, prodPrice }),
+      ([prodQuantity, prodName, prodPrice, price]) => ({ prodQuantity, prodName, prodPrice, price }),
     ));
   if (!result.length) return null;
   return result;
@@ -32,4 +32,14 @@ const getSaleInfo = async (saleId) => {
   return saleINfo;
 };
 
-module.exports = { getDetail, getSaleInfo };
+const updateSale = async (id) => {
+  connection()
+    .then((db) => db.getTable('sales')
+      .update()
+      .set('status', 'Entregue')
+      .where('id = :id')
+      .bind('id', id)
+      .execute());
+};
+
+module.exports = { getDetail, getSaleInfo, updateSale };
