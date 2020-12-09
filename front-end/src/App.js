@@ -22,10 +22,10 @@ const App = () => (
       <Route path="/orders/:id" component={ ClientOrderDetails } />
       <Route exact path="/" component={ Login } />
       <PrivateRoute path="/profile" component={ UserProfile } />
-      <PrivateRoute path="/admin/orders/:id" component={ AdminOrderDetails } />
       <PrivateRoute exact path="/orders" component={ ClientOrder } />
       <PrivateRoute path="/admin/profile" component={ AdminProfile } />
-      <PrivateRoute exact path="/admin/orders" component={ Orders } />
+      <Route path="/admin/orders/:id" component={ AdminOrderDetails } />
+      <PrivateRoute exact="/admin/orders" component={ Orders } />
 
     </Switch>
   </BrowserRouter>
