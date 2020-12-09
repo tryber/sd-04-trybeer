@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import api from '../../../services/api';
 import { getLS } from '../../../helpers';
-import SideBar from '../../../components/SideBarADMIN';
+import SideBar from '../../SideBarADMIN/index';
 
 const AdminOrderDetail = () => {
   const two = 2;
@@ -35,7 +35,7 @@ const AdminOrderDetail = () => {
         const newOrder = await api.getOrderById(token, id);
         const newQttPdts = await api.getSalesProducts(
           token,
-          newOrder.data[0].saleId
+          newOrder.data[0].saleId,
         );
         const newProducts = await api.getProducts(token);
 
@@ -53,7 +53,8 @@ const AdminOrderDetail = () => {
   return (
     <div>
       <h1 data-testid="top-title">Admin Order details</h1>
-      <span data-testid="order-number">{orderNumber}</span> -
+      <span data-testid="order-number">{orderNumber}</span>
+       -
       <span id="status" data-testid="order-status">
         {order.status}
       </span>
@@ -72,8 +73,10 @@ const AdminOrderDetail = () => {
 
         return (
           <p key={ pdtSoldId }>
-            <span data-testid={ `${i}-product-qtd`}>{ quantity }</span>-
-            <span data-testid={ `${i}-product-name`}>{ pdtName }</span>-
+            <span data-testid={ `${i}-product-qtd` }>{ quantity }</span>
+            -
+            <span data-testid={ `${i}-product-name` }>{ pdtName }</span>
+            -
             <span data-testid={ `${i}-product-total-value` }>{ `R$ ${pdtPrice}` }</span>
             -
             <span data-testid={ `${i}-order-unit-price` }>{ `(R$ ${pdtPrice})` }</span>
