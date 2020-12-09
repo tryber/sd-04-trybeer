@@ -11,7 +11,9 @@ function CardProduct(props) {
   const [starValue] = useState(Math.floor(Math.random() * 5) + 2);
 
   const {
-    name, price, url_image: img, quantity, index,
+    info: {
+      name, price, url_image: img, index,
+    }, quantity,
   } = props;
 
   const priceArrendodado = price.toLocaleString('pt-br', {

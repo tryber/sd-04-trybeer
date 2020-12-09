@@ -5,7 +5,9 @@ import '../css/orders.css';
 
 export default function ListSales(props) {
   const {
-    id, total_price: totalPrice, sale_date: saleData, index,
+    result: {
+      id, total_price: totalPrice, sale_date: saleData, index,
+    },
   } = props;
   const priceArrendodado = totalPrice.toLocaleString('pt-br', {
     style: 'currency',

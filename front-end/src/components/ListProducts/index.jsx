@@ -20,7 +20,12 @@ const ListProducts = ({ list }) => {
     <div className="page-content products-page">
       <div className="products-page">
         {carrinho.map((info, index) => (
-          <CardProduct key={ info[0] } { ...info[1] } index={ index } />
+          <CardProduct
+            key={ info[0] }
+            info={ info[1] }
+            quantity={ info[1].quantity }
+            index={ index }
+          />
         ))}
       </div>
       <button

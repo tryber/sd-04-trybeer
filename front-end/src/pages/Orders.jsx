@@ -31,7 +31,7 @@ export default function Orders() {
             {sales
               && sales.map((result, index) => (
                 <li className="listRemove" key={ result.id }>
-                  <ListSales { ...result } index={ index } />
+                  <ListSales result={ result } index={ index } />
                 </li>
               ))}
           </ul>
