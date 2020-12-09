@@ -46,3 +46,7 @@ export const postCheckout = async (
     products, status, date, userId, cartValue, addressValue, numberValue,
   })
   .catch((error) => error.response.data);
+
+export const getSalesDetails = async (id) => axios
+  .get(`${url}/orders/${id}`)
+  .catch(({ response }) => response);
