@@ -48,7 +48,7 @@ function LoginForm() {
       localStorage.user = '';
     }
     update.current = true;
-    return null;
+    return undefined;
   }, [form]);
   return (
     <form onSubmit={ handleSubmit } className="form">
