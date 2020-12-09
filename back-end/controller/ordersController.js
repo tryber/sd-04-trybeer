@@ -21,7 +21,18 @@ const getById = async (req, res) => {
   res.status(200).json(order);
 };
 
+const updateOrder = async (req, res) => {
+  const { id, status } = req.body;
+
+  const result = await orderModel.orderUpdate(id, status);
+
+  console.log(result);
+
+  res.status(200).json({ result });
+};
+
 module.exports = {
   createOrders,
   getById,
+  updateOrder,
 };

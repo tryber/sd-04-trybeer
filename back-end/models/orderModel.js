@@ -20,6 +20,17 @@ const create = async (order) => {
   }
 };
 
+const orderUpdate = async (orderId, newStatus) => {
+  await conn()
+    .then((db) => db
+      .getTable('sales')
+      .update()
+      .set('status', newStatus)
+      .where('id = :order_Id')
+      .bind('order_Id', orderId)
+      .execute());
+};
+
 const readById = async (orderId) => {
   const table = await conn().then((db) => db.getTable('sales'));
   const order = await table
@@ -117,4 +128,5 @@ module.exports = {
   readOrder,
   readById,
   readAllOrder,
+  orderUpdate,
 };
