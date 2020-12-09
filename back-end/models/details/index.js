@@ -13,24 +13,24 @@ const getDetail = async (saleId) => {
     .execute()
     .then((results) => results.fetchAll())
     .then((sale) => sale.map(
-      ([prodQuantity, prodName, prodPrice, price]) => ({ prodQuantity, prodName, prodPrice, price }),
+      ([prodQuan, prodName, prodPrice, price]) => ({ prodQuan, prodName, prodPrice, price }),
     ));
   if (!result.length) return null;
   return result;
 };
 
-const getSaleInfo = async (saleId) => {
-  const saleINfo = await connection()
-    .then((db) => db.getTable('sales').select([])
-      .where('id = :saleId')
-      .bind('saleId', saleId)
-      .execute())
-    .then((results) => results.fetchAll())
-    .then((products) => products.map(([id, userId, totalPrice, adress, nAdd, data, status]) => ({
-      id, userId, totalPrice, adress, nAdd, data, status,
-    })));
-  return saleINfo;
-};
+// const getSaleInfo = async (saleId) => {
+//   const saleINfo = await connection()
+//     .then((db) => db.getTable('sales').select([])
+//       .where('id = :saleId')
+//       .bind('saleId', saleId)
+//       .execute())
+//     .then((results) => results.fetchAll())
+//     .then((products) => products.map(([id, userId, totalPrice, adress, nAdd, data, status]) => ({
+//       id, userId, totalPrice, adress, nAdd, data, status,
+//     })));
+//   return saleINfo;
+// };
 
 const updateSale = async (id) => {
   connection()
@@ -42,4 +42,4 @@ const updateSale = async (id) => {
       .execute());
 };
 
-module.exports = { getDetail, getSaleInfo, updateSale };
+module.exports = { getDetail, updateSale };
