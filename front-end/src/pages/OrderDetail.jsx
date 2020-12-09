@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Header } from '../components/Header';
+import Header from '../components/Header';
 import Loading from '../components/Loading';
 import SalesDetails from '../components/OrderDetails/SalesDetails';
 import { getDetailSales } from '../services/TrybeerApi';
@@ -15,7 +15,7 @@ function OrderDetail() {
   return (
     <>
       <Header>Detalhes de pedido</Header>
-      {details ? <SalesDetails details={details} /> : <Loading />}
+      {details ? <SalesDetails details={ details } /> : <Loading />}
     </>
   );
 }

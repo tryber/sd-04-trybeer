@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Header } from '../components/Header';
+import Header from '../components/Header';
 import { getSalesById, sendPutStatus } from '../services/TrybeerApi';
 import '../css/adminOrderDetails.css';
+
+const sendRequest = (id) => getSalesById(id);
 
 const AdminOrderDetails = () => {
   const { id } = useParams();
   const [saleInfo, setSaleInfo] = useState({ total_price: 0 });
   const [saleProduct, setSaleProduct] = useState([]);
   const [saleStatus, setSaleStatus] = useState();
-  const { total_price } = saleInfo;
-
-  const sendRequest = async () => await getSalesById(id);
+  const { total_price: totalPrice } = saleInfo;
 
   useEffect(() => {
-    sendRequest().then((result) => {
+    sendRequest(id).then((result) => {
       setSaleInfo(result.data.sale);
       setSaleStatus(result.data.sale.status);
       setSaleProduct(result.data.products);
     });
-  }, [setSaleStatus]);
+  }, [id]);
 
   return (
     <div className="page">
@@ -28,28 +28,36 @@ const AdminOrderDetails = () => {
         <div className="cardDetailsA">
           <div className="pedido">
             <span
-              class="titleOne"
+              className="titleOne"
               data-testid="order-number"
-            >{`Pedido ${saleInfo.id}`}</span>
+            >
+              {`Pedido ${saleInfo.id}`}
+            </span>
             <span
-              class="titleOne"
+              className="titleOne"
               data-testid="order-status"
-            >{`${saleStatus}`}</span>
+            >
+              {`${saleStatus}`}
+            </span>
           </div>
           <div className="listOrders">
             {saleProduct.map(({ name, quantity, price }, index) => (
-              <div key={name}>
+              <div key={ name }>
                 <span
                   className="element-orders-detail"
-                  data-testid={`${index}-product-qtd`}
-                >{`${quantity} - `}</span>
+                  data-testid={ `${index}-product-qtd` }
+                >
+                  {`${quantity} - `}
+                </span>
                 <span
                   className="element-orders-detail"
-                  data-testid={`${index}-product-name`}
-                >{`${name} - `}</span>
+                  data-testid={ `${index}-product-name` }
+                >
+                  {`${name} - `}
+                </span>
                 <span
                   className="element-orders-detail"
-                  data-testid={`${index}-product-total-value`}
+                  data-testid={ `${index}-product-total-value` }
                 >
                   {`R$ ${(price * quantity).toLocaleString('pt-BR', {
                     minimumFractionDigits: 2,
@@ -57,7 +65,7 @@ const AdminOrderDetails = () => {
                 </span>
                 <span
                   className="product-unit-price element-orders-detail"
-                  data-testid={`${index}-order-unit-price`}
+                  data-testid={ `${index}-order-unit-price` }
                 >
                   {`(R$ ${price.toLocaleString('pt-BR', {
                     minimumFractionDigits: 2,
@@ -69,14 +77,14 @@ const AdminOrderDetails = () => {
           </div>
 
           <h3 data-testid="order-total-value">
-            {`Total: R$ ${total_price.toString().replace('.', ',')}0`}
+            {`Total: R$ ${totalPrice.toString().replace('.', ',')}0`}
           </h3>
 
           <button
             type="button"
             data-testid="mark-as-delivered-btn"
-            onClick={() => sendPutStatus(id).then(setSaleStatus('Entregue'))}
-            className={`sale-${saleStatus}-btn`}
+            onClick={ () => sendPutStatus(id).then(setSaleStatus('Entregue')) }
+            className={ `sale-${saleStatus}-btn` }
           >
             Marcar como entregue
           </button>

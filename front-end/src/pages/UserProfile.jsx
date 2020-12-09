@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { putUpdate } from '../services/TrybeerApi';
-import { Header } from '../components/Header';
+import Header from '../components/Header';
 import { HomerProfile } from '../images/index';
 import '../css/profile.css';
 

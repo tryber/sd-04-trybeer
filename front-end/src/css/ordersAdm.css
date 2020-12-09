@@ -49,11 +49,11 @@
   flex: 0 1 30%;
 }
 
-.entregue {
+.Entregue {
   color: green;
 }
 
-.pendente {
+.Pendente {
   color: yellow;
 }
 

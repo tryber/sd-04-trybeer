@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Header } from '../components/Header';
+import Header from '../components/Header';
 import { postOrder } from '../services/TrybeerApi';
 import { removeAllCart } from '../redux/actions';
 import { happy } from '../images';
@@ -32,7 +32,7 @@ const Checkout = () => {
       setTimeout(() => {
         history.push('/products');
       }, 2000);
-      return setMessage(response.data.message);
+      setMessage(response.data.message);
     }
   };
 
@@ -48,9 +48,11 @@ const Checkout = () => {
         <div className="checkout-list">
           { cart.length < 1 && <h2>Não há produtos no carrinho</h2> }
 
-          { cart.map(({ price, name, quantity, url_image }, index) => (
+          { cart.map(({
+            price, name, quantity, url_image: urlImage,
+          }, index) => (
             <div className="cart-product" key={ name }>
-              <img className="cart-img" src={url_image} alt={name} />
+              <img className="cart-img" src={ urlImage } alt={ name } />
               <div className="cart-name" data-testid={ `${index}-product-name` }>{ name }</div>
               <div className="cart-qtd" data-testid={ `${index}-product-qtd-input` }>{ quantity }</div>
               <div className="cart-price" data-testid={ `${index}-product-unit-price` }>
@@ -109,11 +111,14 @@ const Checkout = () => {
             Finalizar Pedido
           </button>
         </div>
-        {message && 
+        {
+        message && (
           <div className="success-message">
             { message }
             <img src={ happy } alt="Homer happy" />
-          </div>}
+          </div>
+        )
+        }
       </div>
     </div>
   );
