@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Flex, Text, Box, Container,
 } from '@chakra-ui/react';
-// import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 // import jwtDecode from 'jwt-decode';
 import MenuClient from '../../../components/MenuClient';
 // import OrderCard from '../../../components/OrderCard';
-// import { getOrders } from '../../../api';
+import { getSalesDetails } from '../../../api';
 import { ProductContext } from '../../../context';
 
 // Requisito 7 - Criar Tela de Meus Pedidos
@@ -17,13 +17,18 @@ const ClientDetails = () => {
   const {
     details,
   } = useContext(ProductContext);
+  const { id: salesId } = useParams();
+  const [products, setProducts] = useState([]);
   const { id, saleDate, totalPrice } = details;
   const sliceOne = 5;
   const sliceTwo = 10;
   const formatDate = saleDate.slice(sliceOne, sliceTwo);
+
   useEffect(() => {
-    console.log(details);
-  });
+    getSalesDetails(salesId).then((response) => {
+      setProducts(response.data);
+    });
+  }, [setProducts, salesId]);
 
   return (
     <>
@@ -44,9 +49,27 @@ const ClientDetails = () => {
             </Flex>
             <Box>
               Items
-              <Text data-testid="0-product-qtd">Quantidade</Text>
-              <Text data-testid="0-product-name">Nome do produto</Text>
-              <Text data-testid="0-product-total-value">Valor Total</Text>
+              {products ? (products.map(({ prodQuan, prodName, prodPrice }, i) => (
+                <>
+                  <Text data-testid={ `${i}-product-qtd` }>
+                    Quantidade:
+                    {prodQuan}
+                  </Text>
+                  <Text data-testid={ `${i}-product-name` }>
+                    Nome do produto
+                    {' '}
+                    {prodName}
+                  </Text>
+                  <Text data-testid={ `${i}-product-total-value` }>
+                    Valor Total
+                    {' '}
+                    {prodPrice}
+                  </Text>
+                </>
+              )))
+                : (
+                  <p>Loading</p>
+                )}
             </Box>
             <Box fontWeight="bold" data-testid="order-total-value">
               Total:
