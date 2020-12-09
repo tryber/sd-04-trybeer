@@ -6,15 +6,9 @@ import Rating from '@material-ui/lab/Rating';
 import { addToCart, removeFromCart, updateQuantity } from '../../redux/actions';
 import '../../css/pageProducts.css';
 
-function CardProduct(props) {
+function CardProduct({ quantity, index, info: { name, price, url_image: img }, info }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [starValue] = useState(Math.floor(Math.random() * 5) + 2);
-
-  const {
-    info: {
-      name, price, url_image: img, index,
-    }, quantity,
-  } = props;
 
   const priceArrendodado = price.toLocaleString('pt-br', {
     style: 'currency',
@@ -25,9 +19,15 @@ function CardProduct(props) {
   const handleCart = (number) => {
     if (number < 0 && !quantity) return null;
     if (!quantity) {
-      dispatch(addToCart({ ...props, number }));
-    } else if (quantity + number <= 0) dispatch(removeFromCart(props));
-    else dispatch(updateQuantity({ ...props, number }));
+      dispatch(addToCart({
+        ...info, number, index, quantity,
+      }));
+    } else if (quantity + number <= 0) dispatch(removeFromCart(info));
+    else {
+      dispatch(updateQuantity({
+        ...info, number, index, quantity,
+      }));
+    }
     return null;
   };
 
