@@ -6,7 +6,9 @@ import Rating from '@material-ui/lab/Rating';
 import { addToCart, removeFromCart, updateQuantity } from '../../redux/actions';
 import '../../css/pageProducts.css';
 
-function CardProduct({ quantity, index, info: { name, price, url_image: img }, info }) {
+function CardProduct({
+  quantity, index, info: { name, price, url_image: img }, info,
+}) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [starValue] = useState(Math.floor(Math.random() * 5) + 2);
 
