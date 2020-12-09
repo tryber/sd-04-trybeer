@@ -3,7 +3,7 @@ const { getByEmail } = require('../../models/users');
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-  console.log('ok');
+  // console.log('ok');
 
   if (!email || !password) {
     return res.status(401).json({ message: 'É necessário usuário e senha para fazer login' });
