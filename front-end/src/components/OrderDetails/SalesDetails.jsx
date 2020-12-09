@@ -10,7 +10,7 @@ function SalesDetails({ details: { products, sale } }) {
   };
   const priceArrendodado = totalPrice.toLocaleString('pt-br', options);
   const date = new Date(dateSale).toLocaleDateString('pt-br', {
-    day: 'numeric',
+    day: '2-digit',
     month: 'numeric',
   });
   return (
