@@ -4,8 +4,6 @@ import api from '../../../services/api';
 import { getLS } from '../../../helpers';
 import SideBar from '../../../components/SideBarADMIN';
 
-import API from '../../../services/api';
-
 const AdminOrderDetail = () => {
   const two = 2;
   const history = useHistory();
@@ -19,12 +17,11 @@ const AdminOrderDetail = () => {
 
   const { id } = useParams();
 
-  console.log(order);
   const handleSubmit = () => {
     const statusLabel = document.getElementById('status');
     document.getElementById('btnSubmit').remove();
     statusLabel.innerText = 'Entregue';
-    API.updateOrderStatus(id, 'Entregue');
+    api.updateOrderStatus(id, 'Entregue');
   };
 
   useEffect(() => {
@@ -74,24 +71,21 @@ const AdminOrderDetail = () => {
         });
 
         return (
-          <p key={pdtSoldId}>
-            <span data-testid={`${i}-product-qtd`}>{quantity}</span>-
-            <span data-testid={`${i}-product-name`}>{pdtName}</span>-
-            <span
-              data-testid={`${i}-product-total-value`}
-            >{`R$ ${pdtPrice}`}</span>
+          <p key={ pdtSoldId }>
+            <span data-testid={ `${i}-product-qtd`}>{ quantity }</span>-
+            <span data-testid={ `${i}-product-name`}>{ pdtName }</span>-
+            <span data-testid={ `${i}-product-total-value` }>{ `R$ ${pdtPrice}` }</span>
             -
-            <span
-              data-testid={`${i}-order-unit-price`}
-            >{`(R$ ${pdtPrice})`}</span>
+            <span data-testid={ `${i}-order-unit-price` }>{ `(R$ ${pdtPrice})` }</span>
           </p>
         );
       })}
       <p data-testid="order-total-value">{totalPrice}</p>
       <button
         id="btnSubmit"
+        type="submit"
         data-testid="mark-as-delivered-btn"
-        onClick={() => handleSubmit()}
+        onClick={ () => handleSubmit() }
       >
         Marcar como entregue
       </button>

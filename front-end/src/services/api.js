@@ -7,8 +7,6 @@ const apiTrybeer = axios.create({
 const updateOrderStatus = async (id, status) => {
   const result = await apiTrybeer.put('/update', { id, status });
 
-  console.log(result)
-
   return result;
 };
 
