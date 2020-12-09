@@ -1,9 +1,9 @@
-import React, { useState }from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addToCart, removeFromCart, updateQuantity } from '../../redux/actions';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Rating from '@material-ui/lab/Rating';
+import { addToCart, removeFromCart, updateQuantity } from '../../redux/actions';
 import '../../css/pageProducts.css';
 
 function CardProduct(props) {
@@ -26,18 +26,19 @@ function CardProduct(props) {
       dispatch(addToCart({ ...props, number }));
     } else if (quantity + number <= 0) dispatch(removeFromCart(props));
     else dispatch(updateQuantity({ ...props, number }));
+    return null;
   };
 
   return (
     <div className="product-card scale-in-center">
 
-      <div id ="flex-container">
+      <div id="flex-container">
         <span data-testid={ `${index}-product-price` } className="product-price">
           {priceArrendodado}
         </span>
-        {isFavorite ?
-          <FavoriteIcon onClick={() => setIsFavorite(!isFavorite)} style={{ color: "red" }} />
-          : <FavoriteBorderIcon onClick={() => setIsFavorite(!isFavorite)} />}
+        {isFavorite
+          ? <FavoriteIcon onClick={ () => setIsFavorite(!isFavorite) } style={ { color: 'red' } } />
+          : <FavoriteBorderIcon onClick={ () => setIsFavorite(!isFavorite) } />}
       </div>
 
       <img
@@ -46,11 +47,11 @@ function CardProduct(props) {
         alt={ name }
       />
 
-      <span data-testid={`${index}-product-name`}>{name}</span>
+      <span data-testid={ `${index}-product-name` }>{name}</span>
 
       <Rating
-        value={starValue}
-        precision={0.5}
+        value={ starValue }
+        precision={ 0.5 }
       />
 
       <div className="product-quantity">

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import CardProduct from './CardProduct';
 import '../../css/pageProducts.css';
 
-export const ListProducts = ({ list }) => {
+const ListProducts = ({ list }) => {
   const cart = useSelector((state) => state.cart);
   const carrinho = Object.entries({ ...list, ...cart });
   const total = Object.values(cart)

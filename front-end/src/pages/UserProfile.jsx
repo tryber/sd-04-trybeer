@@ -49,7 +49,8 @@ function UserProfile() {
             className="btn-finish"
             data-testid="profile-save-btn"
             type="submit"
-            disabled={userName === name}>
+            disabled={ userName === name }
+          >
             Salvar
           </button>
           <span>{ message }</span>

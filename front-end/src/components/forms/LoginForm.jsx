@@ -43,12 +43,12 @@ function LoginForm() {
       setMessage();
       return setCanLogin(true);
     }
-    console.log('local ',localStorage.user);
     if (localStorage.user) {
       setIsLoggingOut(true);
       localStorage.user = '';
     }
     update.current = true;
+    return null;
   }, [form]);
   return (
     <form onSubmit={ handleSubmit } className="form">
