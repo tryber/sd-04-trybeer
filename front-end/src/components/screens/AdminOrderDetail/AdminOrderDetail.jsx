@@ -54,7 +54,7 @@ const AdminOrderDetail = () => {
     <div>
       <h1 data-testid="top-title">Admin Order details</h1>
       <span data-testid="order-number">{orderNumber}</span>
-       -
+      -
       <span id="status" data-testid="order-status">
         {order.status}
       </span>
