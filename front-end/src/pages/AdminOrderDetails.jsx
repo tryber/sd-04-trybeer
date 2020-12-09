@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Header } from '../components/Header';
 import { useParams } from 'react-router-dom';
+import { Header } from '../components/Header';
 import { getSalesById, sendPutStatus } from '../services/TrybeerApi';
 import '../css/adminOrderDetails.css';
 
@@ -22,7 +22,7 @@ const AdminOrderDetails = () => {
   }, [setSaleStatus]);
 
   return (
-    <>
+    <div className="page">
       <Header>Trybeer</Header>
       <div className="marginDetails">
         <div className="cardDetailsA">
@@ -82,7 +82,7 @@ const AdminOrderDetails = () => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

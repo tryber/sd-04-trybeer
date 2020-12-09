@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { getSales } from '../services/TrybeerApi';
-import { Link } from 'react-router-dom';
 import '../css/ordersAdm.css';
 
 const AdminOrders = () => {
@@ -16,7 +16,7 @@ const AdminOrders = () => {
   return (
     <div className="page">
       <Header>Trybeer</Header>
-      <div className="margin">
+      <div className="admin-order-page">
         <h1>Admin Orders</h1>
         <div className="orders-listA">
           {orders.map(
@@ -60,5 +60,4 @@ const AdminOrders = () => {
     </div>
   );
 };
-
 export default AdminOrders;

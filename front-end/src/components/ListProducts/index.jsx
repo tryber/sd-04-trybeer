@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CardProduct from './CardProduct';
-import '../../css/listProducts.css';
+import '../../css/pageProducts.css';
 
 export const ListProducts = ({ list }) => {
   const cart = useSelector((state) => state.cart);
@@ -15,9 +15,10 @@ export const ListProducts = ({ list }) => {
     if (e.target.innerHTML.indexOf('0,00') !== -1) return e.preventDefault();
     return false;
   };
+
   return (
     <div className="page-content products-page">
-      <div className="products-list">
+      <div className="products-page">
         {carrinho.map((info, index) => (
           <CardProduct key={ info[0] } { ...info[1] } index={ index } />
         ))}

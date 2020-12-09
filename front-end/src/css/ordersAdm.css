@@ -1,22 +1,22 @@
-.orders-listA {
+.admin-order-page {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  margin-left: 325px;
+  margin-right: 15px;
+  flex-wrap: wrap;
+  text-decoration: none;
+  margin-top: 50px;
+}
+
+.admin-order-page > h1 {
+  margin: 25px;
+}
+
+.flex-row-wrap {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  margin: -2px;
-  text-decoration: none;
 }
-
-.margin {
-  padding-left: 200px;
-  padding-top: 54px;
-  flex: 1;
-}
-
-.margin > h1 {
-  text-align: center;
-}
-
 .orders-card {
   background: linear-gradient(45deg, #4d4d4d 0%,#282828 30%,#242424 100%);
   text-decoration: none;
@@ -24,13 +24,12 @@
   box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.466);
   color: white;
   display: flex;
+  margin: 15px;
   flex-direction: column;
   flex: 0 1 45%;
   height: 90px;
   justify-content: center;
-  margin: 0.3em;
   overflow: hidden;
-  padding: 0.3em;
 }
 
 .element-orders {
@@ -58,12 +57,11 @@
   color: yellow;
 }
 
-@media screen and (max-width: 1000px) {
-  .orders-card {
-    height: 150px;
-    width: 90%;
-  }
-  .margin {
-    padding-left: 200px;
-  }
+.orders-listA {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
 }
+
+

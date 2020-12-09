@@ -29,6 +29,7 @@
 .marginDetails {
   padding-top: 80px;
   flex: 1;
+  
 }
 .marginDetails > * {
   margin-left: auto;

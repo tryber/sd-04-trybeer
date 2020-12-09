@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function SideBar({ userRole, active }) {
   return (
-    <nav className={ `side-container ${active && 'appear'}` }>
+    <aside className={ `side-container ${active && 'appear'}` }>
       {userRole === 'client' && (
-        <div className={`${active && 'side-menu-container'} side-bar`}>
+        <div className={ `${active && 'side-menu-container'} side-bar` }>
           <div>
             <a href="/products" data-testid="side-menu-item-products">
               Produtos
@@ -36,6 +36,6 @@ export default function SideBar({ userRole, active }) {
           </a>
         </div>
       )}
-    </nav>
+    </aside>
   );
 }
