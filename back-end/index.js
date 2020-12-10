@@ -31,6 +31,6 @@ app.get('/orders', getOrderByUserId);
 app.get('/orders/:id', getDetailController);
 app.get('/admin/orders', getAllSales);
 app.get('/admin/orders/:id', getDetailController);
-app.post('/admin/orders/:id', postDetailController);
+app.put('/admin/orders/:id', postDetailController);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
