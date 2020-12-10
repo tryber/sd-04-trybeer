@@ -29,6 +29,7 @@ const AdminDetails = () => {
           <Flex fontWeight="bold" justify="space-between">
             <Box data-testid="order-number">
               Pedido
+              {' '}
               {id}
             </Box>
             <Box data-testid="order-status">
