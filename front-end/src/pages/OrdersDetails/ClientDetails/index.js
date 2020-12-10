@@ -39,6 +39,7 @@ const ClientDetails = () => {
             <Flex fontWeight="bold" justify="space-between">
               <Box data-testid="order-number">
                 Pedido
+                {' '}
                 {id}
               </Box>
               <Box data-testid="order-date">
@@ -61,9 +62,9 @@ const ClientDetails = () => {
                     {prodName}
                   </Text>
                   <Text data-testid={ `${i}-product-total-value` }>
-                    Valor Total
+                    Valor Total:
                     {' '}
-                    {prodPrice}
+                    {prodPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })}
                   </Text>
                 </>
               )))
