@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Header } from '../components/Header';
-import ListProducts from '../components/ListProducts/index';
+import Header from '../components/Header';
+import ListProducts from '../components/ListProducts';
 import Loading from '../components/Loading';
 import { getProducts } from '../services/TrybeerApi';
 import '../css/pageProducts.css';

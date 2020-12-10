@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { putUpdate } from '../services/TrybeerApi';
-import { Header } from '../components/Header';
+import Header from '../components/Header';
 import { HomerProfile } from '../images/index';
 import '../css/profile.css';
 
@@ -49,7 +49,8 @@ function UserProfile() {
             className="btn-finish"
             data-testid="profile-save-btn"
             type="submit"
-            disabled={userName === name}>
+            disabled={ userName === name }
+          >
             Salvar
           </button>
           <span>{ message }</span>

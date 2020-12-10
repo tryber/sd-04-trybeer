@@ -5,20 +5,20 @@
 .sale-Entregue-btn {
   display: none;
 }
-
-.admin-order-details {
-  background: linear-gradient(45deg, #838383 0%,#cfcfcf 10%,#f3f3f3 25%,#f3f3f3 37%,#b4b3b3cc 50%,#eaeaea 51%,#f6f6f6 83%,#acacac 100%);
+.element-orders-detail {
+  font-size: large;
+  font-weight: 500;
+  padding: 5px;
 }
 
-.cardDetails {
+.cardDetailsA {
+  box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.466);
   text-decoration: none;
-  border-style: groove;
-  box-shadow: #000 2px 2px 1px;
-  box-shadow: 1px 5px 5px rgba(182, 0, 0, 0.473);
   color: black;
   display: flex;
   flex-direction: column;
   flex: 0 1 30%;
+  width: 40%;
   height: auto;
   justify-content: center;
   margin: 0.3em;
@@ -27,8 +27,7 @@
 }
 
 .marginDetails {
-  padding-left: 200px;
-  padding-top: 54px;
+  padding-top: 80px;
   flex: 1;
   
 }
@@ -63,4 +62,13 @@
   flex: 1 1 15px;
   font-size: medium;
   font-weight: 400;
+}
+
+@media screen and (max-width: 1500px) {
+  .marginDetails {
+    padding-left: 200px;
+  }
+  .cardDetailsA {
+    width: 70%;
+  }
 }
