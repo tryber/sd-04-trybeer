@@ -51,7 +51,7 @@ const AdminDetails = () => {
 
           {products ? products.map(
             ({
-              prodQuan, prodName, prodPrice, price
+              prodQuan, prodName, prodPrice, price,
             }, i) => {
               const unitPrice = `(${price.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })})`;
               return (
