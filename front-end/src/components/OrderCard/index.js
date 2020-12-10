@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Button,
   Container,
@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { ProductContext } from '../../context';
 
 /*
 Banco de Dados
@@ -20,6 +21,9 @@ id, totalPrice, saleDate,
 */
 
 const OrderCard = ({ order, userRole }) => {
+  const {
+    setDetails,
+  } = useContext(ProductContext);
   const history = useHistory();
   const {
     id, saleDate, deliveryAddress, deliveryNumber, status, totalPrice,
@@ -36,6 +40,7 @@ const OrderCard = ({ order, userRole }) => {
       maxWidth="60ch"
       type="button"
       onClick={ () => {
+        setDetails(order);
         if (userRole === 'client') return history.push(`/orders/${id}`);
         return history.push(`/admin/orders/${id}`);
       } }

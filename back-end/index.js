@@ -9,6 +9,7 @@ const { register } = require('./controllers/register');
 const { checkout } = require('./controllers/checkout');
 const { userUpdate } = require('./controllers/profile');
 const { getOrderByUserId, getAllSales } = require('./controllers/sale');
+const { getDetailController, postDetailController } = require('./controllers/details');
 
 const app = express();
 const port = 3001;
@@ -27,7 +28,9 @@ app.post('/sales', checkout);
 app.put('/profile', userUpdate);
 
 app.get('/orders', getOrderByUserId);
+app.get('/orders/:id', getDetailController);
 app.get('/admin/orders', getAllSales);
-// app.post('/admin/orders')
+app.get('/admin/orders/:id', getDetailController);
+app.put('/admin/orders/:id', postDetailController);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
