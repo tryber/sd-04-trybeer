@@ -1,25 +1,34 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Flex, Text, Box, Container, Button,
 } from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
 // import { useHistory } from 'react-router-dom';
 // import jwtDecode from 'jwt-decode';
 import MenuAdmin from '../../../components/MenuAdmin';
+import { getAllSalesDetails, changeStatus } from '../../../api';
 import { ProductContext } from '../../../context';
 
 const AdminDetails = () => {
   const {
-    details,
+    details, setDetails
   } = useContext(ProductContext);
+  const { id: salesId } = useParams();
+  const [products, setProducts] = useState([]);
   const {
     id, saleDate, totalPrice, status,
   } = details;
   const sliceOne = 5;
   const sliceTwo = 10;
   const formatDate = saleDate.slice(sliceOne, sliceTwo);
+
+
   useEffect(() => {
-    console.log(details);
-  });
+    getAllSalesDetails(salesId).then((response) => {
+      setProducts(response.data);
+    });
+  }, [setProducts, salesId]);
+
 
   return (
     <Flex direction="row" h="100vh">
@@ -33,7 +42,7 @@ const AdminDetails = () => {
               {id}
             </Box>
             <Box data-testid="order-status">
-              Status
+              {status}
             </Box>
             <Box data-testid="order-date">
               {formatDate.split('-')[1]}
@@ -41,13 +50,31 @@ const AdminDetails = () => {
               {formatDate.split('-')[0]}
             </Box>
           </Flex>
-          <Box>
-            Items
-            <Text data-testid="0-product-qtd">Quantidade</Text>
-            <Text data-testid="0-product-name">Nome do produto</Text>
-            <Text data-testid="0-order-unit-price">Preço unitário do produto</Text>
-            <Text data-testid="0-product-total-value">Valor Total</Text>
-          </Box>
+
+          {products ? products.map(
+            ({prodQuan, prodName, prodPrice, price}, i) => {
+              const unitPrice = `(${price.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })})`;
+              return (
+                <Box>
+                  <Text data-testid={`${i}-product-qtd`}>
+                    Quantidade:
+                    {prodQuan}
+                  </Text>
+                  <Text data-testid={`${i}-product-name`}>{prodName}</Text>
+                  <Text data-testid={`${i}-order-unit-price`}>
+                    Preço unitário do produto:
+                    {unitPrice}
+                  </Text>
+                  <Text data-testid={`${i}-product-total-value`}>
+                    Valor Total:
+                    {prodPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })}
+                  </Text>
+                </Box>
+              )
+              }
+            ) : <Text>Loading...</Text>}
+
+
           <Box fontWeight="bold" data-testid="order-total-value">
             Total:
             {' '}
@@ -62,7 +89,10 @@ const AdminDetails = () => {
           {status === 'Pendente' ? (
             <Button
               data-testid="mark-as-delivered-btn"
-              onClick="Entregue"
+              onClick={() => {
+                changeStatus(salesId);
+                setDetails({...details, status: 'Entregue'});
+              }}
             >
               Marcar como entregue
             </Button>
