@@ -50,3 +50,11 @@ export const postCheckout = async (
 export const getSalesDetails = async (id) => axios
   .get(`${url}/orders/${id}`)
   .catch(({ response }) => response);
+
+export const getAllSalesDetails = async (id) => axios
+  .get(`${url}/admin/orders/${id}`)
+  .catch(({ response }) => response);
+
+export const changeStatus = async (id) => axios
+  .put(`${url}/admin/orders/${id}`)
+  .catch(({ response }) => response);
