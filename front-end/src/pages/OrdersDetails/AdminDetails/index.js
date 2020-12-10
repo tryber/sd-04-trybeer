@@ -11,7 +11,7 @@ import { ProductContext } from '../../../context';
 
 const AdminDetails = () => {
   const {
-    details, setDetails
+    details, setDetails,
   } = useContext(ProductContext);
   const { id: salesId } = useParams();
   const [products, setProducts] = useState([]);
@@ -22,13 +22,11 @@ const AdminDetails = () => {
   const sliceTwo = 10;
   const formatDate = saleDate.slice(sliceOne, sliceTwo);
 
-
   useEffect(() => {
     getAllSalesDetails(salesId).then((response) => {
       setProducts(response.data);
     });
   }, [setProducts, salesId]);
-
 
   return (
     <Flex direction="row" h="100vh">
@@ -52,28 +50,27 @@ const AdminDetails = () => {
           </Flex>
 
           {products ? products.map(
-            ({prodQuan, prodName, prodPrice, price}, i) => {
+            ({ prodQuan, prodName, prodPrice, price }, i) => {
               const unitPrice = `(${price.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })})`;
               return (
-                <Box>
-                  <Text data-testid={`${i}-product-qtd`}>
+                <Box key={`${i}-${prodName}`}>
+                  <Text data-testid={ `${i}-product-qtd` }>
                     Quantidade:
                     {prodQuan}
                   </Text>
-                  <Text data-testid={`${i}-product-name`}>{prodName}</Text>
-                  <Text data-testid={`${i}-order-unit-price`}>
+                  <Text data-testid={ `${i}-product-name` }>{prodName}</Text>
+                  <Text data-testid={ `${i}-order-unit-price` }>
                     Preço unitário do produto:
                     {unitPrice}
                   </Text>
-                  <Text data-testid={`${i}-product-total-value`}>
+                  <Text data-testid={ `${i}-product-total-value` }>
                     Valor Total:
                     {prodPrice.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })}
                   </Text>
                 </Box>
-              )
-              }
-            ) : <Text>Loading...</Text>}
-
+              );
+            },
+          ) : <Text>Loading...</Text>}
 
           <Box fontWeight="bold" data-testid="order-total-value">
             Total:
@@ -89,10 +86,10 @@ const AdminDetails = () => {
           {status === 'Pendente' ? (
             <Button
               data-testid="mark-as-delivered-btn"
-              onClick={() => {
+              onClick={ () => {
                 changeStatus(salesId);
-                setDetails({...details, status: 'Entregue'});
-              }}
+                setDetails({ ...details, status: 'Entregue' });
+              } }
             >
               Marcar como entregue
             </Button>
