@@ -11,6 +11,9 @@
     "sourceType": "module"
   },
   "rules": {
+    "linebreak-style": 0,
+    "global-require": 0,
+    "eslint linebreak-style": [0, "error", "unix"],
     "no-console": "off",
     "consistent-return": "off",
     "no-unused-vars": [
