@@ -50,10 +50,12 @@ const AdminDetails = () => {
           </Flex>
 
           {products ? products.map(
-            ({ prodQuan, prodName, prodPrice, price }, i) => {
+            ({
+              prodQuan, prodName, prodPrice, price
+            }, i) => {
               const unitPrice = `(${price.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })})`;
               return (
-                <Box key={`${i}-${prodName}`}>
+                <Box key={ `${price}-${prodName}` }>
                   <Text data-testid={ `${i}-product-qtd` }>
                     Quantidade:
                     {prodQuan}
